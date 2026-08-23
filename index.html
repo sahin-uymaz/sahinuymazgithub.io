@@ -13,11 +13,9 @@ content="Mustafa YILMAZ - Kamu Politikaları, Kamu Hizmetleri, Araştırma, İzl
 
 <title>Mustafa YILMAZ | Kamu Politikaları ve Kamu Hizmetleri</title>
 
-
 <style>
 
 :root{
-
   --red:#a71919;
   --red-dark:#751313;
   --red-light:#d93636;
@@ -35,49 +33,35 @@ content="Mustafa YILMAZ - Kamu Politikaları, Kamu Hizmetleri, Araştırma, İzl
   --muted:#687180;
 
   --border:rgba(28,39,56,.10);
-
 }
-
 
 *{
   box-sizing:border-box;
 }
 
-
 html{
   scroll-behavior:smooth;
 }
 
-
 body{
-
   margin:0;
-
-  font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
+  font-family:Arial,Helvetica,sans-serif;
 
   background:
-
     radial-gradient(
       circle at 10% 10%,
       rgba(184,148,82,.07),
       transparent 30%
     ),
-
     radial-gradient(
       circle at 90% 70%,
       rgba(28,39,56,.05),
       transparent 30%
     ),
-
     var(--bg);
 
   color:var(--text);
-
 }
-
 
 a{
   color:inherit;
@@ -86,19 +70,20 @@ a{
 
 
 /* =========================================================
-   HEADER
+   ÜST ALAN
 ========================================================= */
-
 
 .site-header{
 
   display:flex;
 
+  flex-direction:column;
+
   align-items:center;
 
-  justify-content:space-between;
+  justify-content:center;
 
-  padding:16px 40px;
+  padding:22px 20px 16px;
 
   background:#172131;
 
@@ -106,8 +91,6 @@ a{
 
   border-bottom:
     1px solid rgba(255,255,255,.10);
-
-  flex-wrap:wrap;
 
   position:sticky;
 
@@ -118,126 +101,23 @@ a{
 }
 
 
-/* MARKA ALANI */
-
-.brand-area{
-
-  display:flex;
-
-  align-items:center;
-
-  gap:14px;
-
-}
-
-
-/* TÜRK BAYRAĞI */
-
-.flag-area{
-
-  display:flex;
-
-  flex-direction:column;
-
-  align-items:center;
-
-  justify-content:center;
-
-  min-width:58px;
-
-}
-
-
-/*
-  Emoji kullanıldığı için farklı cihazlarda
-  Türk bayrağı görünümü korunur.
-*/
-
-.turkish-flag{
-
-  font-size:39px;
-
-  line-height:1;
-
-  display:block;
-
-  transform-origin:center;
-
-  animation:
-
-    flagWave
-    3s
-    ease-in-out
-    infinite;
-
-}
-
-
-@keyframes flagWave{
-
-  0%{
-    transform:
-      perspective(120px)
-      rotateY(0deg)
-      rotateZ(0deg);
-  }
-
-  25%{
-    transform:
-      perspective(120px)
-      rotateY(-9deg)
-      rotateZ(-1deg);
-  }
-
-  50%{
-    transform:
-      perspective(120px)
-      rotateY(7deg)
-      rotateZ(1deg);
-  }
-
-  75%{
-    transform:
-      perspective(120px)
-      rotateY(-5deg)
-      rotateZ(-1deg);
-  }
-
-  100%{
-    transform:
-      perspective(120px)
-      rotateY(0deg)
-      rotateZ(0deg);
-  }
-
-}
-
-
-.flag-motto{
-  font-size:9px;
-  font-weight:800;
-  letter-spacing:1px;
-  color:#f1dfb5;
-  white-space:nowrap;
-  margin-top:7px;
-  text-shadow:0 1px 3px rgba(0,0,0,.7);
-}
-
-
-/* MARKA */
+/* =========================================================
+   MUSTAFA YILMAZ
+========================================================= */
 
 .brand{
 
-  font-size:26px;
+  font-size:28px;
 
   font-weight:900;
 
-  background:
+  text-align:center;
 
+  background:
     linear-gradient(
       90deg,
       #ffffff,
-      #d7dce4,
+      #e4e8ed,
       var(--gold-light),
       #ffffff
     );
@@ -245,7 +125,6 @@ a{
   background-size:300% auto;
 
   -webkit-background-clip:text;
-
   background-clip:text;
 
   -webkit-text-fill-color:transparent;
@@ -257,7 +136,6 @@ a{
     infinite;
 
 }
-
 
 @keyframes brandShine{
 
@@ -272,33 +150,174 @@ a{
 }
 
 
-.brand span{
+/* =========================================================
+   GERÇEK TÜRK BAYRAĞI
+========================================================= */
 
-  display:block;
+.flag-area{
 
-  font-size:12px;
+  display:flex;
 
-  color:#b8c0cb;
+  flex-direction:column;
 
-  margin-top:5px;
+  align-items:center;
 
-  -webkit-text-fill-color:#b8c0cb;
+  justify-content:center;
 
-  letter-spacing:.4px;
+  margin-top:10px;
 
 }
 
 
-/* NAV */
+/*
+  turk-bayragi.png
+  GitHub'a yüklediğin gerçek bayrak görseli
+*/
+
+.turkish-flag{
+
+  width:105px;
+
+  height:66px;
+
+  display:block;
+
+  overflow:hidden;
+
+  perspective:500px;
+
+}
+
+
+.turkish-flag img{
+
+  width:100%;
+
+  height:100%;
+
+  object-fit:contain;
+
+  display:block;
+
+  transform-origin:left center;
+
+  animation:
+    bayrakDalga
+    3.8s
+    ease-in-out
+    infinite;
+
+  filter:
+    drop-shadow(
+      0 4px 6px
+      rgba(0,0,0,.30)
+    );
+
+}
+
+
+@keyframes bayrakDalga{
+
+  0%,
+  100%{
+
+    transform:
+      perspective(500px)
+      rotateY(0deg)
+      skewY(0deg)
+      scaleX(1);
+
+  }
+
+  20%{
+
+    transform:
+      perspective(500px)
+      rotateY(-7deg)
+      skewY(1deg)
+      scaleX(.98);
+
+  }
+
+  40%{
+
+    transform:
+      perspective(500px)
+      rotateY(5deg)
+      skewY(-1deg)
+      scaleX(.99);
+
+  }
+
+  60%{
+
+    transform:
+      perspective(500px)
+      rotateY(-6deg)
+      skewY(1deg)
+      scaleX(.98);
+
+  }
+
+  80%{
+
+    transform:
+      perspective(500px)
+      rotateY(4deg)
+      skewY(-1deg)
+      scaleX(.99);
+
+  }
+
+}
+
+
+/* =========================================================
+   BAYRAK ALTI YAZI
+========================================================= */
+
+.flag-motto{
+
+  margin-top:5px;
+
+  font-size:10px;
+
+  font-weight:800;
+
+  letter-spacing:1.1px;
+
+  color:#f1dfb5;
+
+  text-align:center;
+
+  white-space:nowrap;
+
+  text-shadow:
+    0 1px 3px
+    rgba(0,0,0,.75);
+
+}
+
+
+/* =========================================================
+   MENÜ
+========================================================= */
 
 .site-nav{
 
   display:flex;
 
+  justify-content:center;
+
+  align-items:center;
+
   gap:25px;
 
-}
+  margin-top:18px;
 
+  flex-wrap:wrap;
+
+}
 
 .site-nav a{
 
@@ -315,7 +334,6 @@ a{
 
 }
 
-
 .site-nav a:hover{
 
   opacity:1;
@@ -324,7 +342,6 @@ a{
     rgba(216,189,130,.7);
 
 }
-
 
 .site-nav a.active{
 
@@ -342,7 +359,6 @@ a{
    HERO
 ========================================================= */
 
-
 .hero{
 
   padding:70px 30px 90px;
@@ -350,13 +366,11 @@ a{
   text-align:center;
 
   background:
-
     radial-gradient(
       circle at center,
       rgba(184,148,82,.16),
       transparent 55%
     ),
-
     linear-gradient(
       160deg,
       #253246,
@@ -366,7 +380,6 @@ a{
   color:white;
 
 }
-
 
 .logo-area img{
 
@@ -386,7 +399,6 @@ a{
 
 }
 
-
 .hero h1{
 
   font-size:52px;
@@ -396,7 +408,6 @@ a{
   font-weight:900;
 
   background:
-
     linear-gradient(
       90deg,
       #fff,
@@ -408,7 +419,6 @@ a{
   background-size:300% auto;
 
   -webkit-background-clip:text;
-
   background-clip:text;
 
   -webkit-text-fill-color:transparent;
@@ -421,7 +431,6 @@ a{
 
 }
 
-
 @keyframes titleShine{
 
   0%{
@@ -433,7 +442,6 @@ a{
   }
 
 }
-
 
 .welcome-text{
 
@@ -454,7 +462,6 @@ a{
    ANA 5 KUTU
 ========================================================= */
 
-
 .feature-grid{
 
   display:grid;
@@ -469,7 +476,6 @@ a{
   margin-top:-45px;
 
 }
-
 
 .feature-card{
 
@@ -502,7 +508,6 @@ a{
 
 }
 
-
 .feature-card:nth-child(2){
 
   background:
@@ -513,7 +518,6 @@ a{
     );
 
 }
-
 
 .feature-card:nth-child(3){
 
@@ -526,7 +530,6 @@ a{
 
 }
 
-
 .feature-card:nth-child(4){
 
   background:
@@ -538,7 +541,6 @@ a{
 
 }
 
-
 .feature-card:nth-child(5){
 
   background:
@@ -549,7 +551,6 @@ a{
     );
 
 }
-
 
 .feature-card:hover{
 
@@ -565,7 +566,6 @@ a{
 
 }
 
-
 .feature-icon{
 
   font-size:30px;
@@ -573,7 +573,6 @@ a{
   margin-bottom:15px;
 
 }
-
 
 .feature-card h3{
 
@@ -586,7 +585,6 @@ a{
 
 }
 
-
 .feature-card p{
 
   font-size:14px;
@@ -596,9 +594,6 @@ a{
   color:#5d6673;
 
 }
-
-
-/* DETAY BUTONU */
 
 .detail-button{
 
@@ -632,7 +627,6 @@ a{
 
 }
 
-
 .detail-button:hover{
 
   background:
@@ -653,14 +647,12 @@ a{
    KURUM ALANLARI
 ========================================================= */
 
-
 .section{
 
   padding:
     70px 40px;
 
 }
-
 
 .section-title{
 
@@ -676,7 +668,6 @@ a{
 
 }
 
-
 .institution-grid{
 
   display:grid;
@@ -687,7 +678,6 @@ a{
   gap:22px;
 
 }
-
 
 .institution-card{
 
@@ -727,7 +717,6 @@ a{
 
 }
 
-
 .institution-card::before{
 
   content:"";
@@ -750,6 +739,24 @@ a{
 
 }
 
+@keyframes shine{
+
+  0%{
+    transform:
+      translate(-50%,-50%);
+  }
+
+  50%{
+    transform:
+      translate(20%,20%);
+  }
+
+  100%{
+    transform:
+      translate(-50%,-50%);
+  }
+
+}
 
 .institution-card:hover{
 
@@ -762,7 +769,6 @@ a{
 
 }
 
-
 .institution-card h3,
 .institution-card p{
 
@@ -772,7 +778,6 @@ a{
 
 }
 
-
 .institution-card h3{
 
   font-size:19px;
@@ -781,7 +786,6 @@ a{
 
 }
 
-
 .institution-card p{
 
   color:#5e6875;
@@ -789,7 +793,6 @@ a{
   font-size:14px;
 
 }
-
 
 .ministry{
 
@@ -802,7 +805,6 @@ a{
 
 }
 
-
 .public{
 
   background:
@@ -814,7 +816,6 @@ a{
 
 }
 
-
 .education{
 
   background:
@@ -825,7 +826,6 @@ a{
     );
 
 }
-
 
 .health{
 
@@ -843,7 +843,6 @@ a{
    SÜREÇ KARTLARI
 ========================================================= */
 
-
 .process-grid{
 
   display:grid;
@@ -854,7 +853,6 @@ a{
   gap:22px;
 
 }
-
 
 .process-card{
 
@@ -882,7 +880,6 @@ a{
 
 }
 
-
 .process-card:hover{
 
   transform:
@@ -893,7 +890,6 @@ a{
     rgba(28,39,56,.16);
 
 }
-
 
 .process-card h2{
 
@@ -908,7 +904,6 @@ a{
 
 }
 
-
 .process-card h3{
 
   margin:
@@ -917,7 +912,6 @@ a{
   font-size:19px;
 
 }
-
 
 .process-card p{
 
@@ -928,7 +922,6 @@ a{
   line-height:1.6;
 
 }
-
 
 .process-one{
 
@@ -941,7 +934,6 @@ a{
 
 }
 
-
 .process-two{
 
   background:
@@ -953,7 +945,6 @@ a{
 
 }
 
-
 .process-three{
 
   background:
@@ -964,7 +955,6 @@ a{
     );
 
 }
-
 
 .process-four{
 
@@ -981,7 +971,6 @@ a{
 /* =========================================================
    ÜYELİK UYARISI
 ========================================================= */
-
 
 .member-overlay{
 
@@ -1000,7 +989,6 @@ a{
   z-index:9998;
 
 }
-
 
 .member-message{
 
@@ -1040,7 +1028,6 @@ a{
 
 }
 
-
 .member-message h3{
 
   margin-top:0;
@@ -1051,7 +1038,6 @@ a{
 
 }
 
-
 .member-message p{
 
   color:#66707d;
@@ -1059,7 +1045,6 @@ a{
   line-height:1.6;
 
 }
-
 
 .member-buttons{
 
@@ -1074,7 +1059,6 @@ a{
   margin-top:18px;
 
 }
-
 
 .member-message button{
 
@@ -1095,14 +1079,12 @@ a{
 
 }
 
-
 .member-register{
 
   background:
     var(--red);
 
 }
-
 
 .member-register:hover{
 
@@ -1111,14 +1093,12 @@ a{
 
 }
 
-
 .member-close{
 
   background:
     var(--navy);
 
 }
-
 
 .member-close:hover{
 
@@ -1131,7 +1111,6 @@ a{
 /* =========================================================
    FOOTER
 ========================================================= */
-
 
 .site-footer{
 
@@ -1147,7 +1126,6 @@ a{
 
 }
 
-
 .footer-bottom{
 
   max-width:760px;
@@ -1157,7 +1135,6 @@ a{
   text-align:center;
 
 }
-
 
 .footer-bottom p{
 
@@ -1171,7 +1148,6 @@ a{
   line-height:1.6;
 
 }
-
 
 .footer-bottom p:first-child{
 
@@ -1187,7 +1163,6 @@ a{
 /* =========================================================
    CANLI ASİSTAN
 ========================================================= */
-
 
 .assistant-button{
 
@@ -1221,7 +1196,6 @@ a{
 
 }
 
-
 .assistant-box{
 
   display:none;
@@ -1254,14 +1228,12 @@ a{
 
 }
 
-
 .assistant-box h3{
 
   margin:
     0 0 8px;
 
 }
-
 
 .assistant-box input{
 
@@ -1283,7 +1255,6 @@ a{
 
 }
 
-
 .assistant-box button{
 
   background:
@@ -1302,7 +1273,6 @@ a{
 
 }
 
-
 .assistant-reply{
 
   margin-top:10px;
@@ -1320,7 +1290,6 @@ a{
    MOBİL
 ========================================================= */
 
-
 @media(max-width:900px){
 
   .feature-grid,
@@ -1331,20 +1300,18 @@ a{
 
   }
 
-
   .site-header{
 
     padding:
-      14px 20px;
+      18px 15px 14px;
 
   }
-
 
   .site-nav{
 
     gap:12px;
 
-    margin-top:12px;
+    margin-top:18px;
 
     width:100%;
 
@@ -1354,26 +1321,9 @@ a{
 
   }
 
-
   .hero h1{
 
     font-size:34px;
-
-  }
-
-
-  .section{
-
-    padding:
-      55px 20px;
-
-  }
-
-
-  .feature-grid{
-
-    padding:
-      0 20px;
 
   }
 
@@ -1384,31 +1334,25 @@ a{
 
   .brand{
 
-    font-size:21px;
+    font-size:23px;
 
   }
-
-
-  .flag-motto{
-
-    font-size:6px;
-
-  }
-
 
   .turkish-flag{
 
-    font-size:32px;
+    width:90px;
+
+    height:57px;
 
   }
 
+  .flag-motto{
 
-  .brand-area{
+    font-size:8px;
 
-    gap:8px;
+    letter-spacing:.8px;
 
   }
-
 
   .hero{
 
@@ -1416,7 +1360,6 @@ a{
       55px 20px 75px;
 
   }
-
 
   .logo-area img{
 
@@ -1426,20 +1369,17 @@ a{
 
   }
 
-
   .hero h1{
 
     font-size:30px;
 
   }
 
-
   .welcome-text{
 
     font-size:18px;
 
   }
-
 
   .assistant-button{
 
@@ -1448,7 +1388,6 @@ a{
     bottom:15px;
 
   }
-
 
   .assistant-box{
 
@@ -1472,38 +1411,36 @@ a{
 
 
 <!-- =====================================================
-     HEADER
+     ÜST ALAN
 ===================================================== -->
 
 <header class="site-header">
 
 
-  <div class="brand-area">
+  <div class="brand">
+
+    Mustafa YILMAZ
+
+  </div>
 
 
-    <div class="flag-area">
+  <div class="flag-area">
 
-      <span class="turkish-flag">
-        🇹🇷
-      </span>
+    <span class="turkish-flag">
 
-      <span class="flag-motto">
-        BAYRAK BİR VATANIN NAMUSUDUR
-      </span>
+      <img
+        src="turk-bayragi.png"
+        alt="Türk Bayrağı"
+      >
 
-    </div>
+    </span>
 
 
-    <div class="brand">
+    <span class="flag-motto">
 
-      Mustafa YILMAZ
+      BAYRAK BİR VATANIN NAMUSUDUR
 
-      <span>
-        Kamu Politikaları • Kamu Hizmetleri • Araştırma • İzleme
-      </span>
-
-    </div>
-
+    </span>
 
   </div>
 
@@ -1569,13 +1506,11 @@ a{
 
 
 <!-- =====================================================
-     5 ANA GÖREV KUTUSU
+     ANA 5 GÖREV
 ===================================================== -->
 
 <section class="feature-grid">
 
-
-  <!-- 1 -->
 
   <div
     class="feature-card"
@@ -1602,9 +1537,6 @@ a{
   </div>
 
 
-
-  <!-- 2 -->
-
   <div
     class="feature-card"
     onclick="uyeKontrol('kamu-hizmetleri.html')"
@@ -1629,9 +1561,6 @@ a{
 
   </div>
 
-
-
-  <!-- 3 -->
 
   <div
     class="feature-card"
@@ -1658,9 +1587,6 @@ a{
   </div>
 
 
-
-  <!-- 4 -->
-
   <div
     class="feature-card"
     onclick="uyeKontrol('izleme.html')"
@@ -1685,9 +1611,6 @@ a{
 
   </div>
 
-
-
-  <!-- 5 -->
 
   <div
     class="feature-card"
@@ -1724,11 +1647,9 @@ a{
 
 <section class="section">
 
-
   <h2 class="section-title">
     Kurum Alanları
   </h2>
-
 
   <div class="institution-grid">
 
@@ -1753,7 +1674,6 @@ a{
     </div>
 
 
-
     <div
       class="institution-card public"
       onclick="uyeKontrol()"
@@ -1774,7 +1694,6 @@ a{
     </div>
 
 
-
     <div
       class="institution-card education"
       onclick="uyeKontrol()"
@@ -1793,7 +1712,6 @@ a{
       </span>
 
     </div>
-
 
 
     <div
@@ -1828,11 +1746,9 @@ a{
 
 <section class="section">
 
-
   <h2 class="section-title">
     Bir Konu Nasıl İncelenir?
   </h2>
-
 
   <div class="process-grid">
 
@@ -1842,9 +1758,7 @@ a{
       onclick="uyeKontrol()"
     >
 
-      <h2>
-        01
-      </h2>
+      <h2>01</h2>
 
       <h3>
         Bildirim
@@ -1862,15 +1776,12 @@ a{
     </div>
 
 
-
     <div
       class="process-card process-two"
       onclick="uyeKontrol()"
     >
 
-      <h2>
-        02
-      </h2>
+      <h2>02</h2>
 
       <h3>
         İnceleme
@@ -1888,15 +1799,12 @@ a{
     </div>
 
 
-
     <div
       class="process-card process-three"
       onclick="uyeKontrol()"
     >
 
-      <h2>
-        03
-      </h2>
+      <h2>03</h2>
 
       <h3>
         Araştırma
@@ -1914,15 +1822,12 @@ a{
     </div>
 
 
-
     <div
       class="process-card process-four"
       onclick="uyeKontrol()"
     >
 
-      <h2>
-        04
-      </h2>
+      <h2>04</h2>
 
       <h3>
         Değerlendirme
@@ -1962,11 +1867,9 @@ a{
   id="memberBox"
 >
 
-
   <h3>
     Üyelik Gerekiyor
   </h3>
-
 
   <p>
 
@@ -1998,7 +1901,6 @@ a{
 
   </div>
 
-
 </div>
 
 
@@ -2009,14 +1911,11 @@ a{
 
 <footer class="site-footer">
 
-
   <div class="footer-bottom">
-
 
     <p>
       KORUMA UYARISI
     </p>
-
 
     <p>
 
@@ -2027,22 +1926,22 @@ a{
 
     </p>
 
-
     <p>
+
       © 2001 Mustafa Yılmaz · Kamu Politikaları,
       Kamu Hizmetleri, Araştırma • İzleme • Değerlendirme
+
     </p>
 
-
     <p>
+
       KVKK Aydınlatma Metni |
       Gizlilik Politikası |
       Kullanım Şartları
+
     </p>
 
-
   </div>
-
 
 </footer>
 
@@ -2068,16 +1967,13 @@ a{
   id="assistantBox"
 >
 
-
   <h3>
     Canlı Asistan
   </h3>
 
-
   <p>
     Merhaba, size nasıl yardımcı olabilirim?
   </p>
-
 
   <input
     type="text"
@@ -2085,25 +1981,23 @@ a{
     placeholder="Mesajınızı yazın"
   >
 
-
   <button
     onclick="assistantSend()"
   >
     Gönder
   </button>
 
-
   <div
     class="assistant-reply"
     id="assistantReply"
   ></div>
-
 
 </div>
 
 
 
 <script>
+
 
 /* =========================================================
    KISA KLİK SESİ
@@ -2161,7 +2055,9 @@ function klikSesi(){
       ctx.currentTime + 0.07
     );
 
-  }catch(error){
+  }
+
+  catch(error){
 
     console.log(
       "Klik sesi kullanılamadı."
@@ -2188,20 +2084,17 @@ function uyeKontrol(sayfa){
 
   document.getElementById(
     "memberOverlay"
-  ).style.display = "block";
+  ).style.display =
+    "block";
 
 
   document.getElementById(
     "memberBox"
-  ).style.display = "block";
+  ).style.display =
+    "block";
 
 }
 
-
-/*
-  Gerçek üyelik sistemi bağlandığında
-  bu bölüm üyelik kontrolüyle değiştirilecek.
-*/
 
 function uyeOl(event){
 
@@ -2229,12 +2122,14 @@ function uyeKapat(event){
 
   document.getElementById(
     "memberOverlay"
-  ).style.display = "none";
+  ).style.display =
+    "none";
 
 
   document.getElementById(
     "memberBox"
-  ).style.display = "none";
+  ).style.display =
+    "none";
 
 }
 
