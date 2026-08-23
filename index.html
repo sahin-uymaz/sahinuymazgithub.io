@@ -4,635 +4,2312 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex, nofollow, noarchive"><!-- Google'da görünmemesi için eklendi. Daha sonra kaldırılabilir. -->
-<meta name="description" content="Mustafa YILMAZ - Kamu Politikaları Araştırma ve İzleme">
 
-<title>Mustafa YILMAZ | Kamu Politikaları Araştırma ve İzleme</title>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<!-- Google'da görünmemesi için eklendi. Daha sonra kaldırılabilir. -->
+
+<meta name="description"
+content="Mustafa YILMAZ - Kamu Politikaları, Kamu Hizmetleri, Araştırma, İzleme ve Değerlendirme">
+
+<title>Mustafa YILMAZ | Kamu Politikaları ve Kamu Hizmetleri</title>
+
 
 <style>
 
 :root{
-  --red:#c81414;
-  --red-dark:#7a0d0d;
-  --red-light:#ff3333;
-  --gold:#f5c542;
-  --bg:#0a0a0a;
-  --panel:#111827;
-  --text:#f2f2f2;
-  --muted:#c9b9b9;
+
+  --red:#a71919;
+  --red-dark:#751313;
+  --red-light:#d93636;
+
+  --gold:#b89452;
+  --gold-light:#d8bd82;
+
+  --bg:#f4f3ef;
+  --panel:#ffffff;
+
+  --navy:#1c2738;
+  --navy-light:#2d3b50;
+
+  --text:#273142;
+  --muted:#687180;
+
+  --border:rgba(28,39,56,.10);
+
 }
+
 
 *{
   box-sizing:border-box;
 }
 
-body{
-  margin:0;
-  font-family:Arial,Helvetica,sans-serif;
-  background:var(--bg);
-  color:var(--text);
+
+html{
+  scroll-behavior:smooth;
 }
+
+
+body{
+
+  margin:0;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  background:
+
+    radial-gradient(
+      circle at 10% 10%,
+      rgba(184,148,82,.07),
+      transparent 30%
+    ),
+
+    radial-gradient(
+      circle at 90% 70%,
+      rgba(28,39,56,.05),
+      transparent 30%
+    ),
+
+    var(--bg);
+
+  color:var(--text);
+
+}
+
 
 a{
   color:inherit;
   text-decoration:none;
 }
 
-/* HEADER */
+
+/* =========================================================
+   HEADER
+========================================================= */
+
 
 .site-header{
+
   display:flex;
+
   align-items:center;
+
   justify-content:space-between;
-  padding:18px 40px;
-  background:#050505;
-  border-bottom:1px solid rgba(255,255,255,.08);
+
+  padding:16px 40px;
+
+  background:#172131;
+
+  color:white;
+
+  border-bottom:
+    1px solid rgba(255,255,255,.10);
+
   flex-wrap:wrap;
+
   position:sticky;
+
   top:0;
+
   z-index:500;
+
 }
+
+
+/* MARKA ALANI */
+
+.brand-area{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:14px;
+
+}
+
+
+/* TÜRK BAYRAĞI */
+
+.flag-area{
+
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:center;
+
+  justify-content:center;
+
+  min-width:58px;
+
+}
+
+
+/*
+  Emoji kullanıldığı için farklı cihazlarda
+  Türk bayrağı görünümü korunur.
+*/
+
+.turkish-flag{
+
+  font-size:39px;
+
+  line-height:1;
+
+  display:block;
+
+  transform-origin:center;
+
+  animation:
+
+    flagWave
+    3s
+    ease-in-out
+    infinite;
+
+}
+
+
+@keyframes flagWave{
+
+  0%{
+    transform:
+      perspective(120px)
+      rotateY(0deg)
+      rotateZ(0deg);
+  }
+
+  25%{
+    transform:
+      perspective(120px)
+      rotateY(-9deg)
+      rotateZ(-1deg);
+  }
+
+  50%{
+    transform:
+      perspective(120px)
+      rotateY(7deg)
+      rotateZ(1deg);
+  }
+
+  75%{
+    transform:
+      perspective(120px)
+      rotateY(-5deg)
+      rotateZ(-1deg);
+  }
+
+  100%{
+    transform:
+      perspective(120px)
+      rotateY(0deg)
+      rotateZ(0deg);
+  }
+
+}
+
+
+.flag-motto{
+
+  font-size:7px;
+
+  font-weight:700;
+
+  letter-spacing:.5px;
+
+  color:#e6d8b8;
+
+  white-space:nowrap;
+
+  margin-top:4px;
+
+}
+
+
+/* MARKA */
 
 .brand{
+
   font-size:26px;
+
   font-weight:900;
-  background:linear-gradient(90deg,#fff,var(--red-light),var(--gold),#fff);
-  background-size:400% auto;
+
+  background:
+
+    linear-gradient(
+      90deg,
+      #ffffff,
+      #d7dce4,
+      var(--gold-light),
+      #ffffff
+    );
+
+  background-size:300% auto;
+
   -webkit-background-clip:text;
+
   background-clip:text;
+
   -webkit-text-fill-color:transparent;
-  animation:brandShine 6s linear infinite;
+
+  animation:
+    brandShine
+    7s
+    linear
+    infinite;
+
 }
+
 
 @keyframes brandShine{
-  0%{background-position:0% center;}
-  100%{background-position:400% center;}
+
+  0%{
+    background-position:0% center;
+  }
+
+  100%{
+    background-position:300% center;
+  }
+
 }
+
 
 .brand span{
+
   display:block;
+
   font-size:12px;
-  color:var(--muted);
+
+  color:#b8c0cb;
+
   margin-top:5px;
-  -webkit-text-fill-color:var(--muted);
+
+  -webkit-text-fill-color:#b8c0cb;
+
+  letter-spacing:.4px;
+
 }
+
+
+/* NAV */
 
 .site-nav{
+
   display:flex;
+
   gap:25px;
+
 }
+
 
 .site-nav a{
+
   font-size:14px;
-  opacity:.85;
+
+  opacity:.82;
+
   padding-bottom:5px;
-  border-bottom:2px solid transparent;
+
+  border-bottom:
+    2px solid transparent;
+
   transition:.25s;
+
 }
+
 
 .site-nav a:hover{
+
   opacity:1;
-  border-bottom-color:rgba(200,20,20,.5);
+
+  border-bottom-color:
+    rgba(216,189,130,.7);
+
 }
+
 
 .site-nav a.active{
+
   color:#fff;
+
   opacity:1;
-  border-bottom:2px solid var(--red);
+
+  border-bottom:
+    2px solid var(--gold-light);
+
 }
 
-/* HERO */
+
+/* =========================================================
+   HERO
+========================================================= */
+
 
 .hero{
+
   padding:70px 30px 90px;
+
   text-align:center;
+
   background:
-    radial-gradient(circle at center,rgba(200,20,20,.45),transparent 60%),
-    linear-gradient(160deg,#180303,#050505);
+
+    radial-gradient(
+      circle at center,
+      rgba(184,148,82,.16),
+      transparent 55%
+    ),
+
+    linear-gradient(
+      160deg,
+      #253246,
+      #172131
+    );
+
+  color:white;
+
 }
+
 
 .logo-area img{
+
   width:110px;
+
   height:110px;
+
   object-fit:contain;
+
   border-radius:50%;
-  filter:drop-shadow(0 0 20px rgba(200,20,20,.8));
+
+  filter:
+    drop-shadow(
+      0 0 18px
+      rgba(216,189,130,.28)
+    );
+
 }
+
 
 .hero h1{
+
   font-size:52px;
+
   margin:20px 0 0;
+
   font-weight:900;
-  background:linear-gradient(90deg,#fff,var(--red-light),var(--gold),#fff,var(--red-light));
-  background-size:400% auto;
+
+  background:
+
+    linear-gradient(
+      90deg,
+      #fff,
+      #e4e8ed,
+      var(--gold-light),
+      #fff
+    );
+
+  background-size:300% auto;
+
   -webkit-background-clip:text;
+
   background-clip:text;
+
   -webkit-text-fill-color:transparent;
-  animation:titleShine 5s linear infinite,titleGlow 3s ease-in-out infinite alternate;
+
+  animation:
+    titleShine
+    7s
+    linear
+    infinite;
+
 }
+
 
 @keyframes titleShine{
-  0%{background-position:0% center;}
-  100%{background-position:400% center;}
+
+  0%{
+    background-position:0% center;
+  }
+
+  100%{
+    background-position:300% center;
+  }
+
 }
 
-@keyframes titleGlow{
-  from{filter:drop-shadow(0 0 5px rgba(200,20,20,.6));}
-  to{filter:drop-shadow(0 0 25px rgba(255,51,51,.9));}
-}
 
 .welcome-text{
+
   margin-top:25px;
-  font-size:25px;
-  font-weight:900;
-  animation:blink 2.5s infinite;
+
+  font-size:21px;
+
+  font-weight:700;
+
+  color:#ddd6c7;
+
+  letter-spacing:1px;
+
 }
 
-@keyframes blink{
-  0%,100%{opacity:1;color:white;}
-  50%{opacity:.5;color:#ff3333;}
-}
 
-/* ANA KARTLAR */
+/* =========================================================
+   ANA 5 KUTU
+========================================================= */
+
 
 .feature-grid{
+
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+
+  grid-template-columns:
+    repeat(3,1fr);
+
   gap:22px;
+
   padding:0 40px;
+
   margin-top:-45px;
+
 }
+
 
 .feature-card{
-  background:linear-gradient(145deg,#c81414,#7a0d0d);
-  border-radius:12px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #ffffff,
+      #eef1f4
+    );
+
+  border-radius:16px;
+
   padding:30px;
+
   position:relative;
+
   cursor:pointer;
-  box-shadow:0 10px 25px rgba(0,0,0,.5);
+
+  box-shadow:
+    0 10px 25px
+    rgba(28,39,56,.13);
+
   transition:.35s;
-  border:1px solid rgba(255,255,255,.06);
+
+  border:
+    1px solid
+    rgba(28,39,56,.10);
+
+  color:var(--text);
+
 }
+
+
+.feature-card:nth-child(2){
+
+  background:
+    linear-gradient(
+      145deg,
+      #f8f7f2,
+      #ece8dd
+    );
+
+}
+
+
+.feature-card:nth-child(3){
+
+  background:
+    linear-gradient(
+      145deg,
+      #eef4f8,
+      #e3ebf1
+    );
+
+}
+
+
+.feature-card:nth-child(4){
+
+  background:
+    linear-gradient(
+      145deg,
+      #f0f5f1,
+      #e4eee7
+    );
+
+}
+
+
+.feature-card:nth-child(5){
+
+  background:
+    linear-gradient(
+      145deg,
+      #f5f0e8,
+      #eee4d4
+    );
+
+}
+
 
 .feature-card:hover{
-  transform:translateY(-8px);
-  box-shadow:0 18px 40px rgba(200,20,20,.55);
-  border-color:rgba(255,255,255,.2);
+
+  transform:
+    translateY(-7px);
+
+  box-shadow:
+    0 18px 38px
+    rgba(28,39,56,.18);
+
+  border-color:
+    rgba(184,148,82,.40);
+
 }
 
-.feature-card.locked::after{
-  content:"🔒";
-  position:absolute;
-  right:15px;
-  top:15px;
-  font-size:22px;
-}
 
 .feature-icon{
+
   font-size:30px;
+
   margin-bottom:15px;
+
 }
+
 
 .feature-card h3{
-  margin:0 0 10px;
+
+  margin:
+    0 0 10px;
+
   font-size:18px;
+
+  color:var(--navy);
+
 }
+
 
 .feature-card p{
+
   font-size:14px;
+
   line-height:1.6;
-  color:#eee;
+
+  color:#5d6673;
+
 }
 
-/* KURUM ALANLARI */
+
+/* DETAY BUTONU */
+
+.detail-button{
+
+  display:inline-flex;
+
+  align-items:center;
+
+  gap:7px;
+
+  margin-top:18px;
+
+  padding:
+    9px 15px;
+
+  border-radius:9px;
+
+  border:
+    1px solid
+    rgba(28,39,56,.16);
+
+  background:
+    rgba(255,255,255,.65);
+
+  color:var(--navy);
+
+  font-size:12px;
+
+  font-weight:700;
+
+  transition:.25s;
+
+}
+
+
+.detail-button:hover{
+
+  background:
+    var(--navy);
+
+  color:white;
+
+  border-color:
+    var(--navy);
+
+  transform:
+    translateX(3px);
+
+}
+
+
+/* =========================================================
+   KURUM ALANLARI
+========================================================= */
+
 
 .section{
-  padding:70px 40px;
+
+  padding:
+    70px 40px;
+
 }
+
 
 .section-title{
+
   text-align:center;
+
   font-size:30px;
+
   margin-bottom:40px;
-  color:#fff;
+
+  color:var(--navy);
+
+  font-weight:800;
+
 }
+
 
 .institution-grid{
+
   display:grid;
-  grid-template-columns:repeat(4,1fr);
+
+  grid-template-columns:
+    repeat(4,1fr);
+
   gap:22px;
+
 }
+
 
 .institution-card{
-  height:190px;
+
+  min-height:210px;
+
   border-radius:16px;
+
   display:flex;
+
   flex-direction:column;
+
   justify-content:center;
+
   align-items:center;
+
   text-align:center;
-  padding:20px;
-  color:white;
+
+  padding:25px;
+
+  color:var(--navy);
+
   position:relative;
+
   overflow:hidden;
+
   transition:.4s;
-  box-shadow:0 10px 22px rgba(0,0,0,.45);
+
+  box-shadow:
+    0 10px 22px
+    rgba(28,39,56,.10);
+
+  cursor:pointer;
+
+  border:
+    1px solid
+    rgba(28,39,56,.08);
+
 }
+
 
 .institution-card::before{
+
   content:"";
+
   position:absolute;
+
   width:180%;
+
   height:180%;
-  background:radial-gradient(circle,rgba(255,255,255,.25),transparent 60%);
-  animation:shine 5s infinite;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,255,255,.45),
+      transparent 60%
+    );
+
+  animation:
+    shine 6s infinite;
+
 }
 
-@keyframes shine{
-  0%{transform:translate(-50%,-50%);}
-  50%{transform:translate(20%,20%);}
-  100%{transform:translate(-50%,-50%);}
-}
 
 .institution-card:hover{
-  transform:translateY(-10px) scale(1.02);
-  box-shadow:0 18px 34px rgba(0,0,0,.6);
+
+  transform:
+    translateY(-8px);
+
+  box-shadow:
+    0 18px 34px
+    rgba(28,39,56,.16);
+
 }
+
 
 .institution-card h3,
 .institution-card p{
+
   position:relative;
+
   z-index:2;
+
 }
 
-.ministry{background:linear-gradient(135deg,#991b1b,#dc2626);}
-.public{background:linear-gradient(135deg,#123b72,#2563eb);}
-.education{background:linear-gradient(135deg,#065f46,#10b981);}
-.health{background:linear-gradient(135deg,#c2410c,#f97316);}
 
-/* SÜREÇ KARTLARI */
+.institution-card h3{
+
+  font-size:19px;
+
+  margin-bottom:8px;
+
+}
+
+
+.institution-card p{
+
+  color:#5e6875;
+
+  font-size:14px;
+
+}
+
+
+.ministry{
+
+  background:
+    linear-gradient(
+      135deg,
+      #f2e9e8,
+      #ead8d6
+    );
+
+}
+
+
+.public{
+
+  background:
+    linear-gradient(
+      135deg,
+      #e7eef7,
+      #dce7f2
+    );
+
+}
+
+
+.education{
+
+  background:
+    linear-gradient(
+      135deg,
+      #e8f1ed,
+      #dcebe3
+    );
+
+}
+
+
+.health{
+
+  background:
+    linear-gradient(
+      135deg,
+      #f5eee4,
+      #eee1ce
+    );
+
+}
+
+
+/* =========================================================
+   SÜREÇ KARTLARI
+========================================================= */
+
 
 .process-grid{
+
   display:grid;
-  grid-template-columns:repeat(4,1fr);
+
+  grid-template-columns:
+    repeat(4,1fr);
+
   gap:22px;
+
 }
+
 
 .process-card{
+
   padding:25px;
-  border-radius:15px;
-  color:white;
+
+  border-radius:16px;
+
+  color:var(--navy);
+
   text-align:center;
-  min-height:190px;
-  box-shadow:0 10px 22px rgba(0,0,0,.45);
+
+  min-height:210px;
+
+  box-shadow:
+    0 10px 22px
+    rgba(28,39,56,.10);
+
   transition:.35s;
+
+  cursor:pointer;
+
+  border:
+    1px solid
+    rgba(28,39,56,.08);
+
 }
+
 
 .process-card:hover{
-  transform:translateY(-8px);
-  box-shadow:0 18px 34px rgba(0,0,0,.6);
+
+  transform:
+    translateY(-7px);
+
+  box-shadow:
+    0 18px 34px
+    rgba(28,39,56,.16);
+
 }
+
 
 .process-card h2{
-  margin:0 0 6px;
+
+  margin:
+    0 0 8px;
+
   font-size:34px;
+
   font-weight:900;
-  opacity:.9;
+
+  opacity:.75;
+
 }
 
-.process-one{background:linear-gradient(135deg,#991b1b,#ef4444);}
-.process-two{background:linear-gradient(135deg,#1d4ed8,#38bdf8);}
-.process-three{background:linear-gradient(135deg,#7e22ce,#c084fc);}
-.process-four{background:linear-gradient(135deg,#047857,#34d399);}
 
-/* ÜYELİK KUTUSU */
+.process-card h3{
+
+  margin:
+    0 0 8px;
+
+  font-size:19px;
+
+}
+
+
+.process-card p{
+
+  color:#5e6875;
+
+  font-size:14px;
+
+  line-height:1.6;
+
+}
+
+
+.process-one{
+
+  background:
+    linear-gradient(
+      135deg,
+      #f2e9e8,
+      #ead8d6
+    );
+
+}
+
+
+.process-two{
+
+  background:
+    linear-gradient(
+      135deg,
+      #e8eef7,
+      #dce6f2
+    );
+
+}
+
+
+.process-three{
+
+  background:
+    linear-gradient(
+      135deg,
+      #eee9f5,
+      #e5dff0
+    );
+
+}
+
+
+.process-four{
+
+  background:
+    linear-gradient(
+      135deg,
+      #e8f1ed,
+      #dcebe3
+    );
+
+}
+
+
+/* =========================================================
+   ÜYELİK UYARISI
+========================================================= */
+
+
+.member-overlay{
+
+  display:none;
+
+  position:fixed;
+
+  inset:0;
+
+  background:
+    rgba(16,24,38,.55);
+
+  backdrop-filter:
+    blur(5px);
+
+  z-index:9998;
+
+}
+
 
 .member-message{
+
   display:none;
+
   position:fixed;
+
   top:50%;
+
   left:50%;
-  transform:translate(-50%,-50%);
-  background:#111;
-  border:2px solid #c81414;
-  padding:30px;
-  border-radius:15px;
-  width:350px;
+
+  transform:
+    translate(-50%,-50%);
+
+  background:#ffffff;
+
+  color:var(--text);
+
+  border:
+    1px solid
+    rgba(184,148,82,.55);
+
+  padding:32px;
+
+  border-radius:18px;
+
+  width:
+    min(390px,90%);
+
   text-align:center;
+
   z-index:9999;
-  box-shadow:0 20px 50px rgba(0,0,0,.7);
+
+  box-shadow:
+    0 25px 70px
+    rgba(0,0,0,.30);
+
 }
+
+
+.member-message h3{
+
+  margin-top:0;
+
+  color:var(--navy);
+
+  font-size:22px;
+
+}
+
+
+.member-message p{
+
+  color:#66707d;
+
+  line-height:1.6;
+
+}
+
+
+.member-buttons{
+
+  display:flex;
+
+  gap:10px;
+
+  justify-content:center;
+
+  flex-wrap:wrap;
+
+  margin-top:18px;
+
+}
+
 
 .member-message button{
-  background:var(--red);
+
   color:white;
+
   border:0;
-  padding:10px 25px;
+
+  padding:
+    10px 22px;
+
   border-radius:8px;
+
   cursor:pointer;
+
   font-weight:700;
-  margin-top:8px;
+
   transition:.2s;
+
 }
 
-.member-message button:hover{
-  background:var(--red-light);
+
+.member-register{
+
+  background:
+    var(--red);
+
 }
 
-/* FOOTER */
+
+.member-register:hover{
+
+  background:
+    var(--red-light);
+
+}
+
+
+.member-close{
+
+  background:
+    var(--navy);
+
+}
+
+
+.member-close:hover{
+
+  background:
+    var(--navy-light);
+
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
 
 .site-footer{
-  background:#050505;
-  border-top:1px solid rgba(255,255,255,.08);
-  padding:34px 40px;
+
+  background:
+    #172131;
+
+  border-top:
+    1px solid
+    rgba(255,255,255,.08);
+
+  padding:
+    34px 40px;
+
 }
+
 
 .footer-bottom{
+
   max-width:760px;
+
   margin:0 auto;
+
   text-align:center;
+
 }
+
 
 .footer-bottom p{
-  margin:8px 0;
+
+  margin:
+    8px 0;
+
   font-size:12.5px;
-  color:var(--muted);
+
+  color:#aeb6c1;
+
   line-height:1.6;
+
 }
+
 
 .footer-bottom p:first-child{
+
   font-weight:800;
-  color:var(--red-light);
+
+  color:#d9c18c;
+
   letter-spacing:.5px;
+
 }
 
-/* CANLI ASİSTAN */
+
+/* =========================================================
+   CANLI ASİSTAN
+========================================================= */
+
 
 .assistant-button{
+
   position:fixed;
+
   right:25px;
+
   bottom:25px;
-  background:var(--red);
+
+  background:
+    var(--navy);
+
   color:white;
-  padding:15px 18px;
+
+  padding:
+    15px 18px;
+
   border-radius:50px;
+
   font-weight:bold;
+
   text-align:center;
+
   cursor:pointer;
-  box-shadow:0 0 20px rgba(200,20,20,.7);
+
+  box-shadow:
+    0 0 20px
+    rgba(28,39,56,.25);
+
   z-index:999;
-  animation:assistantPulse 2.2s ease-in-out infinite;
+
 }
 
-@keyframes assistantPulse{
-  0%,100%{box-shadow:0 0 12px rgba(200,20,20,.55);}
-  50%{box-shadow:0 0 30px rgba(255,51,51,.9);}
-}
 
 .assistant-box{
+
   display:none;
+
   position:fixed;
+
   right:25px;
+
   bottom:100px;
+
   width:300px;
-  background:#111;
-  border:1px solid #c81414;
+
+  background:#ffffff;
+
+  color:var(--text);
+
+  border:
+    1px solid
+    rgba(184,148,82,.45);
+
   padding:20px;
+
   border-radius:15px;
+
   z-index:999;
-  box-shadow:0 20px 50px rgba(0,0,0,.7);
+
+  box-shadow:
+    0 20px 50px
+    rgba(0,0,0,.20);
+
 }
+
 
 .assistant-box h3{
-  margin:0 0 8px;
+
+  margin:
+    0 0 8px;
+
 }
+
 
 .assistant-box input{
+
   width:100%;
+
   padding:10px;
+
   margin:10px 0;
+
   border-radius:6px;
-  border:1px solid rgba(255,255,255,.15);
-  background:#1a1a1a;
-  color:#fff;
+
+  border:
+    1px solid
+    rgba(28,39,56,.15);
+
+  background:#f5f6f7;
+
+  color:var(--text);
+
 }
+
 
 .assistant-box button{
-  background:var(--red);
+
+  background:
+    var(--navy);
+
   color:white;
+
   border:0;
-  padding:10px 20px;
+
+  padding:
+    10px 20px;
+
   border-radius:6px;
+
   cursor:pointer;
-  transition:.2s;
+
 }
 
-.assistant-box button:hover{
-  background:var(--red-light);
-}
 
 .assistant-reply{
+
   margin-top:10px;
+
   font-size:12.5px;
+
   color:var(--muted);
+
   min-height:16px;
+
 }
 
+
+/* =========================================================
+   MOBİL
+========================================================= */
+
+
 @media(max-width:900px){
+
   .feature-grid,
   .institution-grid,
   .process-grid{
+
     grid-template-columns:1fr;
+
   }
+
+
+  .site-header{
+
+    padding:
+      14px 20px;
+
+  }
+
 
   .site-nav{
+
     gap:12px;
+
+    margin-top:12px;
+
+    width:100%;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
   }
 
+
   .hero h1{
+
     font-size:34px;
+
   }
+
+
+  .section{
+
+    padding:
+      55px 20px;
+
+  }
+
+
+  .feature-grid{
+
+    padding:
+      0 20px;
+
+  }
+
+}
+
+
+@media(max-width:480px){
+
+  .brand{
+
+    font-size:21px;
+
+  }
+
+
+  .flag-motto{
+
+    font-size:6px;
+
+  }
+
+
+  .turkish-flag{
+
+    font-size:32px;
+
+  }
+
+
+  .brand-area{
+
+    gap:8px;
+
+  }
+
+
+  .hero{
+
+    padding:
+      55px 20px 75px;
+
+  }
+
+
+  .logo-area img{
+
+    width:90px;
+
+    height:90px;
+
+  }
+
+
+  .hero h1{
+
+    font-size:30px;
+
+  }
+
+
+  .welcome-text{
+
+    font-size:18px;
+
+  }
+
+
+  .assistant-button{
+
+    right:15px;
+
+    bottom:15px;
+
+  }
+
+
+  .assistant-box{
+
+    right:15px;
+
+    bottom:90px;
+
+    width:
+      calc(100% - 30px);
+
+  }
+
 }
 
 </style>
 
 </head>
 
+
 <body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
 
 <header class="site-header">
 
-  <div class="brand">
-    Mustafa YILMAZ
-    <span>Kamu Politikaları • Araştırma • İzleme</span>
+
+  <div class="brand-area">
+
+
+    <div class="flag-area">
+
+      <span class="turkish-flag">
+        🇹🇷
+      </span>
+
+      <span class="flag-motto">
+        BAYRAK BİR VATANIN NAMUSUDUR
+      </span>
+
+    </div>
+
+
+    <div class="brand">
+
+      Mustafa YILMAZ
+
+      <span>
+        Kamu Politikaları • Kamu Hizmetleri • Araştırma • İzleme
+      </span>
+
+    </div>
+
+
   </div>
 
+
   <nav class="site-nav">
-    <a href="#" class="active">Ana Sayfa</a>
-    <a href="#">Hakkımda</a>
-    <a href="#">Araştırmalar</a>
-    <a href="saha-ziyaretlerim.html">Saha Ziyaretlerim</a>
-    <a href="#">İletişim</a>
+
+    <a href="#" class="active">
+      Ana Sayfa
+    </a>
+
+    <a href="#">
+      Hakkımda
+    </a>
+
+    <a href="#">
+      Araştırmalar
+    </a>
+
+    <a href="saha-ziyaretlerim.html">
+      Saha Ziyaretlerim
+    </a>
+
+    <a href="#">
+      İletişim
+    </a>
+
   </nav>
+
 
 </header>
 
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
 <section class="hero">
 
+
   <div class="logo-area">
-    <img src="logo.png" alt="Mustafa Yılmaz Logo">
+
+    <img
+      src="logo.png"
+      alt="Mustafa Yılmaz Logo"
+    >
+
   </div>
 
-  <h1>Mustafa YILMAZ</h1>
 
-  <div class="welcome-text">✨ HOŞ GELDİNİZ ✨</div>
+  <h1>
+    Mustafa YILMAZ
+  </h1>
+
+
+  <div class="welcome-text">
+    HOŞ GELDİNİZ
+  </div>
+
 
 </section>
+
+
+
+<!-- =====================================================
+     5 ANA GÖREV KUTUSU
+===================================================== -->
 
 <section class="feature-grid">
 
-  <div class="feature-card locked" onclick="uyeKontrol()">
-    <div class="feature-icon">🏛️</div>
-    <h3>KAMU POLİTİKALARI</h3>
-    <p>Kamu politikaları araştırılır, analiz edilir ve uygulanabilir çözüm önerileri sunulur.</p>
+
+  <!-- 1 -->
+
+  <div
+    class="feature-card"
+    onclick="uyeKontrol('kamu-politikalari.html')"
+  >
+
+    <div class="feature-icon">
+      🏛️
+    </div>
+
+    <h3>
+      KAMU POLİTİKALARI
+    </h3>
+
+    <p>
+      Kamu politikaları araştırılır, analiz edilir
+      ve uygulanabilir çözüm önerileri geliştirilir.
+    </p>
+
+    <span class="detail-button">
+      Detayları İncele →
+    </span>
+
   </div>
 
-  <div class="feature-card locked" onclick="uyeKontrol()">
-    <div class="feature-icon">📊</div>
-    <h3>KAMU HİZMETLERİ</h3>
-    <p>Kamu hizmetleri izlenir, değerlendirir ve geliştirilmesine yönelik çözüm önerileri sunulur.</p>
+
+
+  <!-- 2 -->
+
+  <div
+    class="feature-card"
+    onclick="uyeKontrol('kamu-hizmetleri.html')"
+  >
+
+    <div class="feature-icon">
+      📊
+    </div>
+
+    <h3>
+      KAMU HİZMETLERİ
+    </h3>
+
+    <p>
+      Kamu hizmetleri izlenir, değerlendirilir ve
+      geliştirilmesine yönelik çalışmalar yürütülür.
+    </p>
+
+    <span class="detail-button">
+      Detayları İncele →
+    </span>
+
   </div>
 
-  <div class="feature-card locked" onclick="uyeKontrol()">
-    <div class="feature-icon">👥</div>
-    <h3>ARAŞTIRMA • İZLEME • DEĞERLENDİRME</h3>
-    <p>Kamu kurumları ve hizmetleri araştırılır, izlenilir ve Vatandaşlardan gelen bildirim, talep ve saha bilgileri. değerlendirilir.</p>
+
+
+  <!-- 3 -->
+
+  <div
+    class="feature-card"
+    onclick="uyeKontrol('arastirma.html')"
+  >
+
+    <div class="feature-icon">
+      🔎
+    </div>
+
+    <h3>
+      ARAŞTIRMA
+    </h3>
+
+    <p>
+      Kamu kurumları, hizmetleri ve uygulamalarına
+      ilişkin bilgi, belge ve veriler araştırılır.
+    </p>
+
+    <span class="detail-button">
+      Detayları İncele →
+    </span>
+
   </div>
+
+
+
+  <!-- 4 -->
+
+  <div
+    class="feature-card"
+    onclick="uyeKontrol('izleme.html')"
+  >
+
+    <div class="feature-icon">
+      📍
+    </div>
+
+    <h3>
+      İZLEME
+    </h3>
+
+    <p>
+      Kamu politikaları ve hizmetlerindeki gelişmeler,
+      uygulamalar ve değişiklikler izlenir.
+    </p>
+
+    <span class="detail-button">
+      Detayları İncele →
+    </span>
+
+  </div>
+
+
+
+  <!-- 5 -->
+
+  <div
+    class="feature-card"
+    onclick="uyeKontrol('degerlendirme.html')"
+  >
+
+    <div class="feature-icon">
+      ✓
+    </div>
+
+    <h3>
+      DEĞERLENDİRME
+    </h3>
+
+    <p>
+      Elde edilen bilgiler ve bulgular değerlendirilerek
+      gerekli sonuçlar ve geliştirme alanları belirlenir.
+    </p>
+
+    <span class="detail-button">
+      Detayları İncele →
+    </span>
+
+  </div>
+
 
 </section>
 
+
+
+<!-- =====================================================
+     KURUM ALANLARI
+===================================================== -->
+
 <section class="section">
 
-  <h2 class="section-title">Kurum Alanları</h2>
+
+  <h2 class="section-title">
+    Kurum Alanları
+  </h2>
+
 
   <div class="institution-grid">
 
-    <div class="institution-card ministry">
-      <h3>🏛️ Bakanlıklar</h3>
-      <p>Kamu politikaları ve uygulamalar</p>
+
+    <div
+      class="institution-card ministry"
+      onclick="uyeKontrol()"
+    >
+
+      <h3>
+        🏛️ Bakanlıklar
+      </h3>
+
+      <p>
+        Kamu politikaları ve uygulamalar
+      </p>
+
+      <span class="detail-button">
+        Detayları İncele →
+      </span>
+
     </div>
 
-    <div class="institution-card public">
-      <h3>🏢 Kamu Kurumları</h3>
-      <p>Kurumların işleyiş ve hizmet süreçleri</p>
+
+
+    <div
+      class="institution-card public"
+      onclick="uyeKontrol()"
+    >
+
+      <h3>
+        🏢 Kamu Kurumları
+      </h3>
+
+      <p>
+        Kurumların işleyiş ve hizmet süreçleri
+      </p>
+
+      <span class="detail-button">
+        Detayları İncele →
+      </span>
+
     </div>
 
-    <div class="institution-card education">
-      <h3>🏫 Eğitim Kurumları</h3>
-      <p>Eğitim hizmetleri ve uygulamalar</p>
+
+
+    <div
+      class="institution-card education"
+      onclick="uyeKontrol()"
+    >
+
+      <h3>
+        🏫 Eğitim Kurumları
+      </h3>
+
+      <p>
+        Eğitim hizmetleri ve uygulamalar
+      </p>
+
+      <span class="detail-button">
+        Detayları İncele →
+      </span>
+
     </div>
 
-    <div class="institution-card health">
-      <h3>🏥 Sağlık Kurumları</h3>
-      <p>Hizmet süreçleri ve vatandaş deneyimi</p>
+
+
+    <div
+      class="institution-card health"
+      onclick="uyeKontrol()"
+    >
+
+      <h3>
+        🏥 Sağlık Kurumları
+      </h3>
+
+      <p>
+        Hizmet süreçleri ve vatandaş deneyimi
+      </p>
+
+      <span class="detail-button">
+        Detayları İncele →
+      </span>
+
     </div>
+
 
   </div>
 
 </section>
+
+
+
+<!-- =====================================================
+     BİR KONU NASIL İNCELENİR?
+===================================================== -->
 
 <section class="section">
 
-  <h2 class="section-title">Bir Konu Nasıl İncelenir?</h2>
+
+  <h2 class="section-title">
+    Bir Konu Nasıl İncelenir?
+  </h2>
+
 
   <div class="process-grid">
 
-    <div class="process-card process-one">
-      <h2>1</h2>
-      <h3>Bildirim</h3>
-      <p>Vatandaşlardan gelen sorun, talep veya bilgi alınır.</p>
+
+    <div
+      class="process-card process-one"
+      onclick="uyeKontrol()"
+    >
+
+      <h2>
+        01
+      </h2>
+
+      <h3>
+        Bildirim
+      </h3>
+
+      <p>
+        Vatandaşlardan gelen sorun, talep veya
+        bilgi alınır.
+      </p>
+
+      <span class="detail-button">
+        Detayları İncele →
+      </span>
+
     </div>
 
-    <div class="process-card process-two">
-      <h2>2</h2>
-      <h3>İnceleme</h3>
-      <p>Konu hakkında mevcut bilgiler ve ilgili süreçler incelenir.</p>
+
+
+    <div
+      class="process-card process-two"
+      onclick="uyeKontrol()"
+    >
+
+      <h2>
+        02
+      </h2>
+
+      <h3>
+        İnceleme
+      </h3>
+
+      <p>
+        Konu hakkında mevcut bilgiler ve ilgili
+        süreçler incelenir.
+      </p>
+
+      <span class="detail-button">
+        Detayları İncele →
+      </span>
+
     </div>
 
-    <div class="process-card process-three">
-      <h2>3</h2>
-      <h3>Araştırma</h3>
-      <p>Gerekli görülen durumlarda ilgili kurum ve uygulamalar araştırılır.</p>
+
+
+    <div
+      class="process-card process-three"
+      onclick="uyeKontrol()"
+    >
+
+      <h2>
+        03
+      </h2>
+
+      <h3>
+        Araştırma
+      </h3>
+
+      <p>
+        Gerekli görülen durumlarda ilgili kurum
+        ve uygulamalar araştırılır.
+      </p>
+
+      <span class="detail-button">
+        Detayları İncele →
+      </span>
+
     </div>
 
-    <div class="process-card process-four">
-      <h2>4</h2>
-      <h3>Değerlendirme</h3>
-      <p>Elde edilen bilgiler değerlendirilerek gerekli bilgilendirme yapılır.</p>
+
+
+    <div
+      class="process-card process-four"
+      onclick="uyeKontrol()"
+    >
+
+      <h2>
+        04
+      </h2>
+
+      <h3>
+        Değerlendirme
+      </h3>
+
+      <p>
+        Elde edilen bilgiler değerlendirilerek
+        gerekli bilgilendirme yapılır.
+      </p>
+
+      <span class="detail-button">
+        Detayları İncele →
+      </span>
+
     </div>
+
 
   </div>
 
 </section>
 
-<div class="member-message" id="memberBox">
-  <h3>🔒 Üyelik Gerekiyor</h3>
-  <p>Bu alanı görüntülemek için üye olmanız gerekmektedir.</p>
-  <button onclick="uyeOl()">Üye Ol</button>
+
+
+<!-- =====================================================
+     ÜYELİK UYARISI
+===================================================== -->
+
+<div
+  class="member-overlay"
+  id="memberOverlay"
+  onclick="uyeKapat()"
+></div>
+
+
+<div
+  class="member-message"
+  id="memberBox"
+>
+
+
+  <h3>
+    Üyelik Gerekiyor
+  </h3>
+
+
+  <p>
+
+    Bu içerik üyelere özel olarak sunulmaktadır.
+    Detaylı araştırma ve değerlendirme içeriklerine
+    erişebilmek için üye olmanız gerekmektedir.
+
+  </p>
+
+
+  <div class="member-buttons">
+
+
+    <button
+      class="member-register"
+      onclick="uyeOl(event)"
+    >
+      Üye Ol
+    </button>
+
+
+    <button
+      class="member-close"
+      onclick="uyeKapat(event)"
+    >
+      Kapat
+    </button>
+
+
+  </div>
+
+
 </div>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
 
 <footer class="site-footer">
+
+
   <div class="footer-bottom">
-    <p>⚠️ KORUMA UYARISI</p>
-    <p>Bu internet sitesinde yer alan görseller, yazılar ve içerikler izinsiz kopyalanamaz, çoğaltılamaz veya başka platformlarda kullanılamaz.</p>
-    <p>© 2026 Mustafa YILMAZ</p>
-    <p>KVKK Aydınlatma Metni | Gizlilik Politikası | Kullanım Şartları</p>
+
+
+    <p>
+      KORUMA UYARISI
+    </p>
+
+
+    <p>
+
+      Bu internet sitesinde yer alan görseller,
+      yazılar ve içerikler izinsiz kopyalanamaz,
+      çoğaltılamaz veya başka platformlarda
+      kullanılamaz.
+
+    </p>
+
+
+    <p>
+      © 2001 Mustafa Yılmaz · Kamu Politikaları,
+      Kamu Hizmetleri, Araştırma • İzleme • Değerlendirme
+    </p>
+
+
+    <p>
+      KVKK Aydınlatma Metni |
+      Gizlilik Politikası |
+      Kullanım Şartları
+    </p>
+
+
   </div>
+
+
 </footer>
 
-<div class="assistant-button" onclick="assistantOpen()">
-  💬<br>Canlı Asistan
+
+
+<!-- =====================================================
+     CANLI ASİSTAN
+===================================================== -->
+
+<div
+  class="assistant-button"
+  onclick="assistantOpen()"
+>
+
+  💬<br>
+  Canlı Asistan
+
 </div>
 
-<div class="assistant-box" id="assistantBox">
-  <h3>Canlı Asistan</h3>
-  <p>Merhaba, size nasıl yardımcı olabilirim?</p>
-  <input type="text" id="assistantInput" placeholder="Mesajınızı yazın">
-  <button onclick="assistantSend()">Gönder</button>
-  <div class="assistant-reply" id="assistantReply"></div>
+
+<div
+  class="assistant-box"
+  id="assistantBox"
+>
+
+
+  <h3>
+    Canlı Asistan
+  </h3>
+
+
+  <p>
+    Merhaba, size nasıl yardımcı olabilirim?
+  </p>
+
+
+  <input
+    type="text"
+    id="assistantInput"
+    placeholder="Mesajınızı yazın"
+  >
+
+
+  <button
+    onclick="assistantSend()"
+  >
+    Gönder
+  </button>
+
+
+  <div
+    class="assistant-reply"
+    id="assistantReply"
+  ></div>
+
+
 </div>
+
+
 
 <script>
 
-function uyeKontrol(){
-  document.getElementById("memberBox").style.display = "block";
+/* =========================================================
+   KISA KLİK SESİ
+========================================================= */
+
+function klikSesi(){
+
+  try{
+
+    const AudioContext =
+      window.AudioContext ||
+      window.webkitAudioContext;
+
+    if(!AudioContext) return;
+
+    const ctx =
+      new AudioContext();
+
+    const oscillator =
+      ctx.createOscillator();
+
+    const gain =
+      ctx.createGain();
+
+    oscillator.type =
+      "sine";
+
+    oscillator.frequency.setValueAtTime(
+      520,
+      ctx.currentTime
+    );
+
+    oscillator.frequency.exponentialRampToValueAtTime(
+      330,
+      ctx.currentTime + 0.055
+    );
+
+    gain.gain.setValueAtTime(
+      0.045,
+      ctx.currentTime
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+      0.001,
+      ctx.currentTime + 0.065
+    );
+
+    oscillator.connect(gain);
+
+    gain.connect(ctx.destination);
+
+    oscillator.start();
+
+    oscillator.stop(
+      ctx.currentTime + 0.07
+    );
+
+  }catch(error){
+
+    console.log(
+      "Klik sesi kullanılamadı."
+    );
+
+  }
+
 }
 
-function uyeOl(){
-  window.location.href = "uyelik.html";
+
+/* =========================================================
+   ÜYELİK UYARISI
+========================================================= */
+
+let secilenSayfa = "";
+
+
+function uyeKontrol(sayfa){
+
+  klikSesi();
+
+  secilenSayfa =
+    sayfa || "";
+
+  document.getElementById(
+    "memberOverlay"
+  ).style.display = "block";
+
+
+  document.getElementById(
+    "memberBox"
+  ).style.display = "block";
+
 }
+
+
+/*
+  Gerçek üyelik sistemi bağlandığında
+  bu bölüm üyelik kontrolüyle değiştirilecek.
+*/
+
+function uyeOl(event){
+
+  if(event){
+
+    event.stopPropagation();
+
+  }
+
+  klikSesi();
+
+  window.location.href =
+    "uyelik.html";
+
+}
+
+
+function uyeKapat(event){
+
+  if(event){
+
+    event.stopPropagation();
+
+  }
+
+  document.getElementById(
+    "memberOverlay"
+  ).style.display = "none";
+
+
+  document.getElementById(
+    "memberBox"
+  ).style.display = "none";
+
+}
+
+
+/* =========================================================
+   CANLI ASİSTAN
+========================================================= */
 
 function assistantOpen(){
-  var box = document.getElementById("assistantBox");
-  box.style.display = (box.style.display === "block") ? "none" : "block";
+
+  var box =
+    document.getElementById(
+      "assistantBox"
+    );
+
+  box.style.display =
+    (box.style.display === "block")
+      ? "none"
+      : "block";
+
 }
+
 
 function assistantSend(){
-  var input = document.getElementById("assistantInput");
-  var reply = document.getElementById("assistantReply");
+
+  var input =
+    document.getElementById(
+      "assistantInput"
+    );
+
+  var reply =
+    document.getElementById(
+      "assistantReply"
+    );
+
+
   if(input.value.trim() === ""){
-    reply.textContent = "Lütfen bir mesaj yazın.";
+
+    reply.textContent =
+      "Lütfen bir mesaj yazın.";
+
     return;
+
   }
-  reply.textContent = "Mesajınız alındı, en kısa sürede size dönüş yapılacaktır.";
+
+
+  reply.textContent =
+    "Mesajınız alındı, en kısa sürede size dönüş yapılacaktır.";
+
   input.value = "";
+
 }
 
-document.addEventListener("contextmenu", function(e){
-  e.preventDefault();
-});
+
+/* =========================================================
+   SAĞ TIK KORUMASI
+========================================================= */
+
+document.addEventListener(
+  "contextmenu",
+  function(e){
+
+    e.preventDefault();
+
+  }
+);
 
 </script>
+
 
 </body>
 </html>
