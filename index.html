@@ -1,4 +1,3 @@
-```html
 <!doctype html>
 <html lang="tr">
 <head>
@@ -8,89 +7,40 @@
 
 <meta name="robots" content="noindex, nofollow, noarchive">
 
-<meta name="description"
-      content="Mustafa YILMAZ - Kamu Politikaları, Kamu Hizmetleri, Araştırma, İzleme ve Değerlendirme">
+<meta name="description" content="Mustafa YILMAZ - Kamu Politikaları Araştırma ve İzleme">
 
-<title>
-Mustafa YILMAZ | Kamu Politikaları • Kamu Hizmetleri • Araştırma • İzleme • Değerlendirme
-</title>
-
+<title>Mustafa YILMAZ | Kamu Politikaları Araştırma ve İzleme</title>
 
 <style>
 
-/* =========================================================
-   RENKLER
-========================================================= */
-
 :root{
+  --red:#c81414;
+  --red-dark:#7a0d0d;
+  --red-light:#ff3333;
+  --gold:#f5c542;
 
-  --blue:#2563eb;
-  --blue-dark:#173b73;
+  /* Zemini biraz açtık */
+  --bg:#151a21;
 
-  --navy:#172131;
-  --navy-light:#24344b;
-
-  --red:#b91c1c;
-
-  --green:#087f5b;
-
-  --orange:#c56a18;
-
-  --purple:#6941c6;
-
-  --gold:#d8bd82;
-
-  --bg:#eef2f6;
-
-  --section:#f7f9fc;
-
-  --text:#172131;
-
-  --muted:#667085;
-
-  --white:#ffffff;
-
+  --panel:#111827;
+  --text:#f2f2f2;
+  --muted:#c9b9b9;
 }
-
-
-/* =========================================================
-   GENEL
-========================================================= */
 
 *{
   box-sizing:border-box;
 }
 
-html{
-  scroll-behavior:smooth;
-}
-
 body{
-
   margin:0;
-
-  font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
-
-  background:
-    linear-gradient(
-      180deg,
-      #eef2f6 0%,
-      #f7f9fc 48%,
-      #e9eef5 100%
-    );
-
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--bg);
   color:var(--text);
 }
 
 a{
-
   color:inherit;
-
   text-decoration:none;
-
 }
 
 
@@ -99,249 +49,193 @@ a{
 ========================================================= */
 
 .site-header{
-
   display:flex;
-
-  flex-direction:column;
-
   align-items:center;
-
-  justify-content:center;
-
-  padding:
-    18px
-    20px
-    15px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #152033,
-      #1e2d42,
-      #172131
-    );
-
-  color:white;
-
-  border-bottom:
-    1px solid
-    rgba(255,255,255,.12);
-
+  justify-content:space-between;
+  padding:18px 40px;
+  background:#050505;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  flex-wrap:wrap;
   position:sticky;
-
   top:0;
-
   z-index:500;
-
-  box-shadow:
-    0 5px 20px
-    rgba(0,0,0,.16);
-
 }
 
 
 /* =========================================================
-   BAYRAK ALANI
+   ÜST ORTA BAYRAK ALANI
 ========================================================= */
 
-.flag-area{
-
-  display:flex;
-
-  flex-direction:column;
-
-  align-items:center;
-
-  justify-content:center;
-
+.flag-center{
   width:100%;
-
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
   text-align:center;
-
+  margin-bottom:8px;
 }
 
 
-/* =========================================================
-   TÜRK BAYRAĞI
-   SADECE KUMAŞ DALGALANMASI
-========================================================= */
+/* Gerçek bayrak görseli */
 
 .turkish-flag{
-
-  width:135px;
-
-  height:82px;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
+  width:145px;
+  height:88px;
   position:relative;
-
   overflow:hidden;
-
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
 
 /*
-   Bayrak sabit yerde kalır.
+   BAYRAK:
+   Yer değiştirme yok.
    Zıplama yok.
-   Büyüme-küçülme yok.
-   Sağ-sol hareket yok.
+   Kalp atışı yok.
+   Sadece kumaşın hafif rüzgar hareketi.
 */
 
 .turkish-flag img{
-
-  width:135px;
-
-  height:82px;
-
+  width:145px;
+  height:88px;
   object-fit:fill;
-
   display:block;
 
   transform-origin:left center;
 
   filter:
     drop-shadow(
-      0 4px 6px
-      rgba(0,0,0,.35)
+      0 4px 7px
+      rgba(0,0,0,.55)
     );
 
   animation:
-    flagWave
-    2.4s
+    flagFabricWave
+    2.8s
     ease-in-out
     infinite;
-
 }
 
 
 /*
-   Kumaş rüzgâr etkisi.
-   Hareket çok küçük tutuldu.
+   Sadece hafif kumaş dalgası.
+   Bayrağın konumu değişmez.
 */
 
-@keyframes flagWave{
+@keyframes flagFabricWave{
 
   0%{
-
     transform:
-      perspective(500px)
-      skewY(0deg)
-      scaleX(1);
-
+      perspective(700px)
+      rotateY(0deg)
+      skewY(0deg);
   }
 
   20%{
-
     transform:
-      perspective(500px)
-      skewY(1.2deg)
-      scaleX(.985);
-
+      perspective(700px)
+      rotateY(-3deg)
+      skewY(.6deg);
   }
 
   40%{
-
     transform:
-      perspective(500px)
-      skewY(-1.5deg)
-      scaleX(1);
-
+      perspective(700px)
+      rotateY(2deg)
+      skewY(-.7deg);
   }
 
   60%{
-
     transform:
-      perspective(500px)
-      skewY(1deg)
-      scaleX(.99);
-
+      perspective(700px)
+      rotateY(-2deg)
+      skewY(.5deg);
   }
 
   80%{
-
     transform:
-      perspective(500px)
-      skewY(-1deg)
-      scaleX(1);
-
+      perspective(700px)
+      rotateY(1.5deg)
+      skewY(-.4deg);
   }
 
   100%{
-
     transform:
-      perspective(500px)
-      skewY(0deg)
-      scaleX(1);
-
+      perspective(700px)
+      rotateY(0deg)
+      skewY(0deg);
   }
-
 }
 
 
-/* =========================================================
-   BAYRAK ALTI YAZI
-========================================================= */
+/* Bayrak altındaki yazı */
 
 .flag-motto{
-
   margin-top:7px;
-
+  color:#f5c542;
   font-size:12px;
-
   font-weight:900;
-
-  letter-spacing:1.3px;
-
-  color:#f4dfad;
-
-  text-align:center;
+  letter-spacing:1px;
 
   text-shadow:
     0 2px 5px
-    rgba(0,0,0,.8);
-
+    rgba(0,0,0,.9);
 }
 
 
 /* =========================================================
-   HEADER MUSTAFA YILMAZ
+   MARKA
 ========================================================= */
 
 .brand{
-
-  margin-top:9px;
-
-  font-size:27px;
-
+  font-size:26px;
   font-weight:900;
 
-  letter-spacing:.6px;
+  background:
+    linear-gradient(
+      90deg,
+      #fff,
+      var(--red-light),
+      var(--gold),
+      #fff
+    );
 
-  color:#ffffff;
+  background-size:400% auto;
+
+  -webkit-background-clip:text;
+  background-clip:text;
+
+  -webkit-text-fill-color:transparent;
+
+  animation:
+    brandShine
+    6s
+    linear
+    infinite;
 
   text-align:center;
+}
 
-  text-shadow:
-    0 2px 8px
-    rgba(0,0,0,.4);
+@keyframes brandShine{
 
+  0%{
+    background-position:0% center;
+  }
+
+  100%{
+    background-position:400% center;
+  }
 }
 
 .brand span{
-
   display:block;
-
+  font-size:12px;
+  color:var(--muted);
   margin-top:5px;
-
-  font-size:11px;
-
-  color:#d8e0eb;
-
+  -webkit-text-fill-color:var(--muted);
 }
 
 
@@ -350,56 +244,30 @@ a{
 ========================================================= */
 
 .site-nav{
-
   display:flex;
-
-  justify-content:center;
-
-  align-items:center;
-
   gap:25px;
-
-  margin-top:17px;
-
-  flex-wrap:wrap;
-
+  width:100%;
+  justify-content:center;
+  margin-top:12px;
 }
 
 .site-nav a{
-
   font-size:14px;
-
-  opacity:.86;
-
+  opacity:.85;
   padding-bottom:5px;
-
-  border-bottom:
-    2px solid
-    transparent;
-
+  border-bottom:2px solid transparent;
   transition:.25s;
-
 }
 
 .site-nav a:hover{
-
   opacity:1;
-
-  border-bottom-color:
-    rgba(216,189,130,.8);
-
+  border-bottom-color:rgba(200,20,20,.5);
 }
 
 .site-nav a.active{
-
   color:#fff;
-
   opacity:1;
-
-  border-bottom:
-    2px solid
-    var(--gold);
-
+  border-bottom:2px solid var(--red);
 }
 
 
@@ -408,46 +276,34 @@ a{
 ========================================================= */
 
 .hero{
-
-  padding:
-    62px
-    30px
-    90px;
-
+  padding:70px 30px 90px;
   text-align:center;
 
   background:
-
     radial-gradient(
       circle at center,
-      rgba(37,99,235,.13),
+      rgba(200,20,20,.45),
       transparent 60%
     ),
 
     linear-gradient(
       160deg,
-      #f8fbff,
-      #eaf0f7
+      #180303,
+      #050505
     );
-
 }
 
 .logo-area img{
-
   width:110px;
-
   height:110px;
-
   object-fit:contain;
-
   border-radius:50%;
 
   filter:
     drop-shadow(
-      0 0 18px
-      rgba(37,99,235,.28)
+      0 0 20px
+      rgba(200,20,20,.8)
     );
-
 }
 
 
@@ -455,105 +311,63 @@ a{
    BÜYÜK MUSTAFA YILMAZ
 ========================================================= */
 
-.main-name{
-
+.hero h1{
   font-size:52px;
-
-  margin:
-    20px
-    0
-    0;
-
+  margin:20px 0 0;
   font-weight:900;
-
-  text-align:center;
-
   letter-spacing:1px;
-
-}
-
-.mustafa-word{
-
-  color:#2563eb;
-
-  animation:
-    mustafaBlink
-    3s
-    ease-in-out
-    infinite;
-
-}
-
-.yilmaz-word{
-
-  color:#ffffff;
-
-  animation:
-    yilmazBlink
-    3s
-    ease-in-out
-    infinite;
-
 }
 
 
 /*
-   MUSTAFA:
-   mavi -> beyaz
+   MUSTAFA = MAVİ
+   YILMAZ = BEYAZ
 
-   YILMAZ:
-   beyaz -> mavi
+   Birbirinin rengine geçiş yapıyor.
 */
 
-@keyframes mustafaBlink{
+.mustafa{
+  color:#2563eb;
 
-  0%,
-  100%{
-
-    color:#2563eb;
-
-    text-shadow:
-      0 0 5px
-      rgba(37,99,235,.35);
-
-  }
-
-  50%{
-
-    color:#ffffff;
-
-    text-shadow:
-      0 0 18px
-      rgba(37,99,235,.35);
-
-  }
-
+  animation:
+    mustafaColor
+    3s
+    ease-in-out
+    infinite;
 }
 
+.yilmaz{
+  color:#fff;
 
-@keyframes yilmazBlink{
+  animation:
+    yilmazColor
+    3s
+    ease-in-out
+    infinite;
+}
+
+@keyframes mustafaColor{
 
   0%,
   100%{
-
-    color:#ffffff;
-
-    text-shadow:
-      0 0 10px
-      rgba(255,255,255,.8);
-
+    color:#2563eb;
   }
 
   50%{
+    color:#fff;
+  }
+}
 
-    color:#2563eb;
+@keyframes yilmazColor{
 
-    text-shadow:
-      0 0 18px
-      rgba(37,99,235,.65);
-
+  0%,
+  100%{
+    color:#fff;
   }
 
+  50%{
+    color:#2563eb;
+  }
 }
 
 
@@ -562,212 +376,142 @@ a{
 ========================================================= */
 
 .welcome-text{
-
   margin-top:25px;
-
-  font-size:22px;
-
+  font-size:25px;
   font-weight:900;
 
-  color:#172131;
-
-  letter-spacing:1px;
-
-  text-shadow:
-    0 0 8px
-    rgba(37,99,235,.15);
-
   animation:
-    welcomeHeartbeat
-    2.2s
+    heartbeat
+    2.3s
     ease-in-out
     infinite;
-
 }
 
+@keyframes heartbeat{
 
-/* =========================================================
-   KALP ATIŞI
-========================================================= */
-
-@keyframes welcomeHeartbeat{
-
-  0%{
-
+  0%,
+  100%{
     transform:scale(1);
-
-    opacity:.88;
-
+    opacity:1;
   }
 
   12%{
-
     transform:scale(1.08);
-
-    opacity:1;
-
   }
 
   22%{
-
     transform:scale(1);
-
-    opacity:.9;
-
   }
 
   34%{
-
     transform:scale(1.06);
-
-    opacity:1;
-
   }
 
   48%{
-
     transform:scale(1);
-
-    opacity:.9;
-
   }
-
-  100%{
-
-    transform:scale(1);
-
-    opacity:.88;
-
-  }
-
 }
 
 
 /* =========================================================
    ANA KARTLAR
+   MEVCUT RENKLİ YAPI KORUNDU
 ========================================================= */
 
 .feature-grid{
-
   display:grid;
-
-  grid-template-columns:
-    repeat(3,1fr);
-
+  grid-template-columns:repeat(3,1fr);
   gap:22px;
-
-  padding:
-    0
-    40px;
-
+  padding:0 40px;
   margin-top:-45px;
-
-  position:relative;
-
-  z-index:5;
-
 }
 
-
 .feature-card{
-
   background:
     linear-gradient(
       145deg,
-      #b91c1c,
-      #d73737
+      #c81414,
+      #7a0d0d
     );
 
-  border-radius:17px;
-
+  border-radius:12px;
   padding:30px;
-
   position:relative;
-
   cursor:pointer;
 
   box-shadow:
     0 10px 25px
-    rgba(0,0,0,.18);
+    rgba(0,0,0,.5);
 
   transition:.35s;
 
   border:
     1px solid
-    rgba(255,255,255,.25);
-
-  overflow:hidden;
-
+    rgba(255,255,255,.06);
 }
 
+
+/*
+   İkinci ve üçüncü kutuya hafif farklı ton.
+   Kırmızıya boğmuyoruz.
+*/
 
 .feature-card:nth-child(2){
 
   background:
     linear-gradient(
       145deg,
-      #234f87,
-      #3c76bb
+      #174a82,
+      #2563a6
     );
-
 }
-
 
 .feature-card:nth-child(3){
 
   background:
     linear-gradient(
       145deg,
-      #5a468f,
-      #806bb5
+      #5b438b,
+      #775aa7
     );
-
 }
 
 
 .feature-card:hover{
-
-  transform:
-    translateY(-8px);
+  transform:translateY(-8px);
 
   box-shadow:
     0 18px 40px
-    rgba(0,0,0,.25);
+    rgba(200,20,20,.40);
 
+  border-color:
+    rgba(255,255,255,.2);
+}
+
+
+/*
+   ESKİ KİLİT İKONU YOK
+*/
+
+.feature-card.locked::after{
+  display:none;
 }
 
 
 .feature-icon{
-
   font-size:30px;
-
   margin-bottom:15px;
-
 }
-
 
 .feature-card h3{
-
-  margin:
-    0
-    0
-    10px;
-
+  margin:0 0 10px;
   font-size:18px;
-
-  color:white;
-
 }
 
-
 .feature-card p{
-
   font-size:14px;
-
   line-height:1.6;
-
-  color:#f8f8f8;
-
+  color:#eee;
 }
 
 
@@ -776,103 +520,59 @@ a{
 ========================================================= */
 
 .section{
-
-  padding:
-    70px
-    40px;
-
+  padding:70px 40px;
 }
-
 
 .section-title{
-
   text-align:center;
-
   font-size:30px;
-
   margin-bottom:40px;
-
-  color:#172131;
-
-  font-weight:900;
-
+  color:#fff;
 }
-
 
 .institution-grid{
-
   display:grid;
-
-  grid-template-columns:
-    repeat(4,1fr);
-
+  grid-template-columns:repeat(4,1fr);
   gap:22px;
-
 }
 
-
 .institution-card{
-
   height:190px;
-
-  border-radius:17px;
+  border-radius:16px;
 
   display:flex;
-
   flex-direction:column;
-
   justify-content:center;
-
   align-items:center;
 
   text-align:center;
-
   padding:20px;
 
   color:white;
-
   position:relative;
-
   overflow:hidden;
 
   transition:.4s;
 
   box-shadow:
     0 10px 22px
-    rgba(0,0,0,.16);
+    rgba(0,0,0,.45);
 
   cursor:pointer;
-
 }
-
-
-.institution-card:hover{
-
-  transform:
-    translateY(-8px)
-    scale(1.02);
-
-  box-shadow:
-    0 18px 34px
-    rgba(0,0,0,.24);
-
-}
-
 
 .institution-card::before{
-
   content:"";
 
   position:absolute;
 
   width:180%;
-
   height:180%;
 
   background:
     radial-gradient(
       circle,
-      rgba(255,255,255,.18),
+      rgba(255,255,255,.25),
       transparent 60%
     );
 
@@ -880,115 +580,95 @@ a{
     shine
     5s
     infinite;
-
 }
-
 
 @keyframes shine{
 
   0%{
-
     transform:
       translate(-50%,-50%);
-
   }
 
   50%{
-
     transform:
       translate(20%,20%);
-
   }
 
   100%{
-
     transform:
       translate(-50%,-50%);
-
   }
-
 }
 
+.institution-card:hover{
+  transform:
+    translateY(-10px)
+    scale(1.02);
+
+  box-shadow:
+    0 18px 34px
+    rgba(0,0,0,.6);
+}
 
 .institution-card h3,
 .institution-card p{
-
   position:relative;
-
   z-index:2;
-
 }
-
 
 .ministry{
-
   background:
     linear-gradient(
       135deg,
-      #a92323,
-      #d95454
+      #991b1b,
+      #dc2626
     );
-
 }
-
 
 .public{
-
   background:
     linear-gradient(
       135deg,
-      #28558b,
-      #4a7db5
+      #123b72,
+      #2563eb
     );
-
 }
-
 
 .education{
-
   background:
     linear-gradient(
       135deg,
-      #26765d,
-      #4aa982
+      #065f46,
+      #10b981
     );
-
 }
 
-
 .health{
-
   background:
     linear-gradient(
       135deg,
-      #b76a28,
-      #d9944c
+      #c2410c,
+      #f97316
     );
-
 }
 
 
 /* =========================================================
    SÜREÇ KARTLARI
+   NUMARALAR KALDIRILDI
 ========================================================= */
 
 .process-grid{
-
   display:grid;
-
-  grid-template-columns:
-    repeat(4,1fr);
-
+  grid-template-columns:repeat(4,1fr);
   gap:22px;
-
 }
-
 
 .process-card{
 
   padding:25px;
 
-  border-radius:17px;
+  border-radius:15px;
 
   color:white;
 
@@ -998,111 +678,118 @@ a{
 
   box-shadow:
     0 10px 22px
-    rgba(0,0,0,.15);
+    rgba(0,0,0,.45);
 
   transition:.35s;
 
   cursor:pointer;
-
 }
 
-
 .process-card:hover{
-
   transform:
     translateY(-8px);
 
   box-shadow:
     0 18px 34px
-    rgba(0,0,0,.23);
+    rgba(0,0,0,.6);
+}
 
+
+/*
+   NUMARA YERİNE LOGO ALANI
+*/
+
+.process-logo{
+
+  width:48px;
+  height:48px;
+
+  margin:
+    0
+    auto
+    12px;
+
+  border-radius:50%;
+
+  border:
+    1px solid
+    rgba(255,255,255,.45);
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  background:
+    rgba(255,255,255,.12);
+
+  overflow:hidden;
+}
+
+
+/*
+   Daha sonra buraya kendi logonu
+   koyabilirsin.
+
+   Örnek:
+   <img src="logo.png">
+*/
+
+.process-logo img{
+
+  width:100%;
+  height:100%;
+
+  object-fit:contain;
+
+  display:block;
 }
 
 
 .process-card h2{
+  display:none;
+}
 
-  margin:
-    0
-    0
-    6px;
-
-  font-size:34px;
-
-  font-weight:900;
-
-  opacity:.9;
-
+.process-card h3{
+  margin-top:0;
 }
 
 
 .process-one{
-
   background:
     linear-gradient(
       135deg,
-      #a92323,
-      #d95454
+      #991b1b,
+      #ef4444
     );
-
 }
-
 
 .process-two{
-
   background:
     linear-gradient(
       135deg,
-      #28558b,
-      #4a7db5
+      #1d4ed8,
+      #38bdf8
     );
-
 }
-
 
 .process-three{
-
   background:
     linear-gradient(
       135deg,
-      #6941c6,
-      #866bd1
+      #7e22ce,
+      #c084fc
     );
-
 }
-
 
 .process-four{
-
   background:
     linear-gradient(
       135deg,
-      #26765d,
-      #4aa982
+      #047857,
+      #34d399
     );
-
-}
-
-
-/* =========================================================
-   ÜYELİK ARKA PLAN
-========================================================= */
-
-.member-overlay{
-
-  display:none;
-
-  position:fixed;
-
-  inset:0;
-
-  background:
-    rgba(8,15,25,.55);
-
-  backdrop-filter:
-    blur(4px);
-
-  z-index:9998;
-
 }
 
 
@@ -1117,80 +804,45 @@ a{
   position:fixed;
 
   top:50%;
-
   left:50%;
 
   transform:
     translate(-50%,-50%);
 
-  background:#ffffff;
-
-  color:#172131;
+  background:#111;
 
   border:
     2px solid
-    #c9d5e4;
+    #c81414;
 
-  padding:32px;
+  padding:30px;
 
-  border-radius:18px;
+  border-radius:15px;
 
-  width:360px;
-
-  max-width:
-    calc(100% - 30px);
+  width:350px;
 
   text-align:center;
 
   z-index:9999;
 
   box-shadow:
-    0 25px 70px
-    rgba(0,0,0,.35);
-
+    0 20px 50px
+    rgba(0,0,0,.7);
 }
-
-
-.member-message h3{
-
-  margin-top:0;
-
-  color:#172131;
-
-  font-size:21px;
-
-}
-
-
-.member-message p{
-
-  color:#667085;
-
-  line-height:1.6;
-
-  font-size:14px;
-
-}
-
 
 .member-message button{
 
   background:
-    linear-gradient(
-      135deg,
-      #1f4f91,
-      #2563eb
-    );
+    var(--red);
 
   color:white;
 
   border:0;
 
   padding:
-    11px
-    25px;
+    10px 25px;
 
-  border-radius:9px;
+  border-radius:8px;
 
   cursor:pointer;
 
@@ -1199,32 +851,11 @@ a{
   margin-top:8px;
 
   transition:.2s;
-
 }
-
 
 .member-message button:hover{
-
-  transform:
-    translateY(-2px);
-
-  box-shadow:
-    0 7px 18px
-    rgba(37,99,235,.25);
-
-}
-
-
-.member-close{
-
-  background:#eef2f6 !important;
-
-  color:#172131 !important;
-
-  margin-left:7px;
-
-  box-shadow:none !important;
-
+  background:
+    var(--red-light);
 }
 
 
@@ -1234,62 +865,49 @@ a{
 
 .site-footer{
 
-  background:
-    #172131;
+  background:#050505;
 
   border-top:
     1px solid
-    rgba(255,255,255,.1);
+    rgba(255,255,255,.08);
 
   padding:
-    30px
-    40px;
-
-  color:white;
-
+    34px 40px;
 }
-
 
 .footer-bottom{
 
-  max-width:900px;
+  max-width:760px;
 
   margin:0 auto;
 
   text-align:center;
-
 }
-
 
 .footer-bottom p{
 
-  margin:
-    8px
-    0;
+  margin:8px 0;
 
   font-size:12.5px;
 
-  color:#cbd5e1;
+  color:var(--muted);
 
   line-height:1.6;
-
 }
-
 
 .footer-bottom p:first-child{
 
   font-weight:800;
 
-  color:#f4dfad;
+  color:var(--red-light);
 
   letter-spacing:.5px;
-
 }
 
 
 /* =========================================================
    CANLI ASİSTAN
-   MAVİ - SABİT - ZIPLAMA YOK
+   MAVİ + SABİT
 ========================================================= */
 
 .assistant-button{
@@ -1297,7 +915,6 @@ a{
   position:fixed;
 
   right:25px;
-
   bottom:25px;
 
   background:
@@ -1310,8 +927,7 @@ a{
   color:white;
 
   padding:
-    15px
-    18px;
+    15px 18px;
 
   border-radius:50px;
 
@@ -1325,60 +941,55 @@ a{
     1px solid
     rgba(255,255,255,.25);
 
+  box-shadow:
+    0 0 15px
+    rgba(37,99,235,.45);
+
   z-index:999;
 
-  /*
-     Burada hareket yok.
-     Sadece ışık değişimi var.
-  */
+
+/*
+   ÇOK ÖNEMLİ:
+   Burada artık hareket animasyonu yok.
+   Zıplama yok.
+   Yukarı-aşağı hareket yok.
+*/
 
   animation:
     assistantGlow
     2.8s
     ease-in-out
     infinite;
-
-  transition:
-    box-shadow .25s ease,
-    background .25s ease;
-
 }
 
 
 @keyframes assistantGlow{
 
-  0%{
+  0%,
+  100%{
 
     box-shadow:
-      0 5px 18px
-      rgba(37,99,235,.30);
+      0 0 15px
+      rgba(37,99,235,.40);
 
   }
 
   50%{
 
     box-shadow:
-      0 5px 27px
-      rgba(37,99,235,.70);
-
-  }
-
-  100%{
-
-    box-shadow:
-      0 5px 18px
-      rgba(37,99,235,.30);
+      0 0 28px
+      rgba(37,99,235,.75);
 
   }
 
 }
 
 
-/*
-   Hover sırasında da zıplamaz.
-*/
-
 .assistant-button:hover{
+
+  /*
+     Zıplama kesinlikle yok.
+  */
 
   transform:none;
 
@@ -1389,16 +1000,8 @@ a{
       #2563eb
     );
 
-  box-shadow:
-    0 6px 28px
-    rgba(37,99,235,.65);
-
 }
 
-
-/* =========================================================
-   ASİSTAN PENCERESİ
-========================================================= */
 
 .assistant-box{
 
@@ -1407,41 +1010,30 @@ a{
   position:fixed;
 
   right:25px;
-
   bottom:100px;
 
   width:300px;
 
-  background:#ffffff;
-
-  color:#172131;
+  background:#111;
 
   border:
     1px solid
-    #cbd5e1;
+    #2563eb;
 
   padding:20px;
 
   border-radius:15px;
 
-  z-index:9999;
+  z-index:999;
 
   box-shadow:
     0 20px 50px
-    rgba(0,0,0,.25);
-
+    rgba(0,0,0,.7);
 }
-
 
 .assistant-box h3{
-
-  margin:
-    0
-    0
-    8px;
-
+  margin:0 0 8px;
 }
-
 
 .assistant-box input{
 
@@ -1455,14 +1047,12 @@ a{
 
   border:
     1px solid
-    #d0d5dd;
+    rgba(255,255,255,.15);
 
-  background:#f8fafc;
+  background:#1a1a1a;
 
-  color:#172131;
-
+  color:#fff;
 }
-
 
 .assistant-box button{
 
@@ -1473,8 +1063,7 @@ a{
   border:0;
 
   padding:
-    10px
-    20px;
+    10px 20px;
 
   border-radius:6px;
 
@@ -1482,22 +1071,20 @@ a{
 
 }
 
-
 .assistant-reply{
 
   margin-top:10px;
 
   font-size:12.5px;
 
-  color:#667085;
+  color:var(--muted);
 
   min-height:16px;
-
 }
 
 
 /* =========================================================
-   TABLET
+   MOBİL
 ========================================================= */
 
 @media(max-width:900px){
@@ -1511,156 +1098,68 @@ a{
   }
 
   .site-nav{
-
     gap:12px;
-
   }
 
-  .main-name{
-
-    font-size:40px;
-
+  .hero h1{
+    font-size:34px;
   }
 
 }
 
 
-/* =========================================================
-   TELEFON
-========================================================= */
-
 @media(max-width:480px){
 
   .site-header{
-
     padding:
       15px
-      12px;
-
+      15px;
   }
-
 
   .turkish-flag{
-
-    width:105px;
-
-    height:64px;
-
+    width:115px;
+    height:70px;
   }
-
 
   .turkish-flag img{
-
-    width:105px;
-
-    height:64px;
-
+    width:115px;
+    height:70px;
   }
-
 
   .flag-motto{
-
-    font-size:8px;
-
-    letter-spacing:.7px;
-
+    font-size:9px;
   }
-
 
   .brand{
-
-    font-size:22px;
-
+    font-size:23px;
   }
 
-
-  .brand span{
-
-    font-size:9px;
-
+  .hero h1{
+    font-size:31px;
   }
-
-
-  .site-nav{
-
-    gap:10px;
-
-    margin-top:14px;
-
-  }
-
-
-  .site-nav a{
-
-    font-size:12px;
-
-  }
-
-
-  .hero{
-
-    padding:
-      50px
-      20px
-      75px;
-
-  }
-
-
-  .logo-area img{
-
-    width:90px;
-
-    height:90px;
-
-  }
-
-
-  .main-name{
-
-    font-size:30px;
-
-  }
-
-
-  .welcome-text{
-
-    font-size:18px;
-
-  }
-
-
-  .section{
-
-    padding:
-      55px
-      20px;
-
-  }
-
 
   .feature-grid{
-
     padding:
       0
       20px;
-
   }
 
+  .section{
+    padding:
+      55px
+      20px;
+  }
 
   .assistant-button{
 
     right:15px;
-
     bottom:15px;
 
   }
 
-
   .assistant-box{
 
     right:15px;
-
     bottom:90px;
 
     width:
@@ -1678,15 +1177,16 @@ a{
 <body>
 
 
-<!-- ======================================================
-     ÜST ALAN
-====================================================== -->
+<!-- =========================================================
+     HEADER
+========================================================= -->
 
 <header class="site-header">
 
 
-  <div class="flag-area">
+  <!-- BAYRAK TAM ORTADA -->
 
+  <div class="flag-center">
 
     <div class="turkish-flag">
 
@@ -1715,9 +1215,7 @@ a{
 
     </div>
 
-
   </div>
-
 
 
   <nav class="site-nav">
@@ -1744,17 +1242,15 @@ a{
 
   </nav>
 
-
 </header>
 
 
 
-<!-- ======================================================
+<!-- =========================================================
      HERO
-====================================================== -->
+========================================================= -->
 
 <section class="hero">
-
 
   <div class="logo-area">
 
@@ -1766,19 +1262,17 @@ a{
   </div>
 
 
+  <h1>
 
-  <h1 class="main-name">
-
-    <span class="mustafa-word">
+    <span class="mustafa">
       MUSTAFA
     </span>
 
-    <span class="yilmaz-word">
+    <span class="yilmaz">
       YILMAZ
     </span>
 
   </h1>
-
 
 
   <div class="welcome-text">
@@ -1787,20 +1281,19 @@ a{
 
   </div>
 
-
 </section>
 
 
 
-<!-- ======================================================
-     ANA ALANLAR
-====================================================== -->
+<!-- =========================================================
+     ANA KUTULAR
+========================================================= -->
 
 <section class="feature-grid">
 
 
   <div
-    class="feature-card"
+    class="feature-card locked"
     onclick="uyeKontrol()"
   >
 
@@ -1808,16 +1301,14 @@ a{
       🏛️
     </div>
 
-
     <h3>
       KAMU POLİTİKALARI
     </h3>
 
-
     <p>
-      Kamu politikaları araştırılır, analiz edilir
-      ve uygulanabilir çözüm önerileri
-      geliştirilmesine yönelik değerlendirmeler yapılır.
+      Kamu politikaları araştırılır,
+      analiz edilir ve uygulanabilir
+      çözüm önerileri sunulur.
     </p>
 
   </div>
@@ -1825,7 +1316,7 @@ a{
 
 
   <div
-    class="feature-card"
+    class="feature-card locked"
     onclick="uyeKontrol()"
   >
 
@@ -1833,16 +1324,14 @@ a{
       📊
     </div>
 
-
     <h3>
       KAMU HİZMETLERİ
     </h3>
 
-
     <p>
-      Kamu hizmetleri izlenir, hizmet süreçleri
-      değerlendirilir ve geliştirilmesine yönelik
-      çalışmalar yürütülür.
+      Kamu hizmetleri izlenir,
+      değerlendirilir ve geliştirilmesine
+      yönelik çözüm önerileri sunulur.
     </p>
 
   </div>
@@ -1850,7 +1339,7 @@ a{
 
 
   <div
-    class="feature-card"
+    class="feature-card locked"
     onclick="uyeKontrol()"
   >
 
@@ -1858,16 +1347,14 @@ a{
       👥
     </div>
 
-
     <h3>
       ARAŞTIRMA • İZLEME • DEĞERLENDİRME
     </h3>
 
-
     <p>
       Kamu kurumları ve hizmetleri araştırılır,
-      saha bilgileri ve vatandaş bildirimleri
-      izlenerek değerlendirilir.
+      izlenilir ve vatandaşlardan gelen
+      bildirim, talep ve saha bilgileri değerlendirilir.
     </p>
 
   </div>
@@ -1877,17 +1364,15 @@ a{
 
 
 
-<!-- ======================================================
+<!-- =========================================================
      KURUM ALANLARI
-====================================================== -->
+========================================================= -->
 
 <section class="section">
-
 
   <h2 class="section-title">
     Kurum Alanları
   </h2>
-
 
 
   <div class="institution-grid">
@@ -1962,22 +1447,19 @@ a{
 
   </div>
 
-
 </section>
 
 
 
-<!-- ======================================================
+<!-- =========================================================
      BİR KONU NASIL İNCELENİR?
-====================================================== -->
+========================================================= -->
 
 <section class="section">
-
 
   <h2 class="section-title">
     Bir Konu Nasıl İncelenir?
   </h2>
-
 
 
   <div class="process-grid">
@@ -1988,9 +1470,11 @@ a{
       onclick="uyeKontrol()"
     >
 
-      <h2>
-        1
-      </h2>
+      <!-- NUMARA YOK -->
+
+      <div class="process-logo">
+        <!-- Daha sonra kendi logonu buraya koyabilirsin -->
+      </div>
 
       <h3>
         Bildirim
@@ -2010,17 +1494,19 @@ a{
       onclick="uyeKontrol()"
     >
 
-      <h2>
-        2
-      </h2>
+      <!-- NUMARA YOK -->
+
+      <div class="process-logo">
+        <!-- Daha sonra kendi logonu buraya koyabilirsin -->
+      </div>
 
       <h3>
         İnceleme
       </h3>
 
       <p>
-        Konu hakkında mevcut bilgiler ve
-        ilgili süreçler incelenir.
+        Konu hakkında mevcut bilgiler
+        ve ilgili süreçler incelenir.
       </p>
 
     </div>
@@ -2032,9 +1518,11 @@ a{
       onclick="uyeKontrol()"
     >
 
-      <h2>
-        3
-      </h2>
+      <!-- NUMARA YOK -->
+
+      <div class="process-logo">
+        <!-- Daha sonra kendi logonu buraya koyabilirsin -->
+      </div>
 
       <h3>
         Araştırma
@@ -2054,9 +1542,11 @@ a{
       onclick="uyeKontrol()"
     >
 
-      <h2>
-        4
-      </h2>
+      <!-- NUMARA YOK -->
+
+      <div class="process-logo">
+        <!-- Daha sonra kendi logonu buraya koyabilirsin -->
+      </div>
 
       <h3>
         Değerlendirme
@@ -2072,91 +1562,61 @@ a{
 
   </div>
 
-
 </section>
 
 
 
-<!-- ======================================================
+<!-- =========================================================
      ÜYELİK UYARISI
-====================================================== -->
-
-<div
-  class="member-overlay"
-  id="memberOverlay"
-  onclick="uyeKapat()"
-></div>
-
-
+========================================================= -->
 
 <div
   class="member-message"
   id="memberBox"
 >
 
-
   <h3>
-    Üyelik Gerekiyor
+    🔒 Üyelik Gerekiyor
   </h3>
 
-
   <p>
-    Bu alandaki içerikler yalnızca üyeler
-    tarafından görüntülenebilmektedir.
+    Bu alanı görüntülemek için üye olmanız gerekmektedir.
   </p>
-
-
-  <p>
-    İçeriğe devam etmek için üyelik
-    oluşturabilirsiniz.
-  </p>
-
 
   <button onclick="uyeOl()">
     Üye Ol
   </button>
 
-
-  <button
-    class="member-close"
-    onclick="uyeKapat()"
-  >
+  <button onclick="uyeKapat()">
     Kapat
   </button>
-
 
 </div>
 
 
 
-<!-- ======================================================
+<!-- =========================================================
      FOOTER
-====================================================== -->
+========================================================= -->
 
 <footer class="site-footer">
 
-
   <div class="footer-bottom">
 
-
     <p>
-      KORUMA UYARISI
+      ⚠️ KORUMA UYARISI
     </p>
-
 
     <p>
       Bu internet sitesinde yer alan görseller,
       yazılar ve içerikler izinsiz kopyalanamaz,
-      çoğaltılamaz veya başka platformlarda
-      kullanılamaz.
+      çoğaltılamaz veya başka platformlarda kullanılamaz.
     </p>
-
 
     <p>
       © 2001 Mustafa YILMAZ · Kamu Politikaları,
       Kamu Hizmetleri, Araştırma • İzleme • Değerlendirme
     </p>
-
 
     <p>
       KVKK Aydınlatma Metni |
@@ -2164,17 +1624,15 @@ a{
       Kullanım Şartları
     </p>
 
-
   </div>
-
 
 </footer>
 
 
 
-<!-- ======================================================
+<!-- =========================================================
      CANLI ASİSTAN
-====================================================== -->
+========================================================= -->
 
 <div
   class="assistant-button"
@@ -2189,22 +1647,18 @@ a{
 </div>
 
 
-
 <div
   class="assistant-box"
   id="assistantBox"
 >
 
-
   <h3>
     Canlı Asistan
   </h3>
 
-
   <p>
     Merhaba, size nasıl yardımcı olabilirim?
   </p>
-
 
   <input
     type="text"
@@ -2212,43 +1666,31 @@ a{
     placeholder="Mesajınızı yazın"
   >
 
-
   <button onclick="assistantSend()">
     Gönder
   </button>
-
 
   <div
     class="assistant-reply"
     id="assistantReply"
   ></div>
 
-
 </div>
 
 
 
-<!-- ======================================================
-     JAVASCRIPT
-====================================================== -->
-
 <script>
 
 
-/* ======================================================
-   ÜYELİK UYARISI
-====================================================== */
+/* =========================================================
+   ÜYELİK
+========================================================= */
 
 function uyeKontrol(){
 
   document
-    .getElementById("memberOverlay")
-    .style.display = "block";
-
-
-  document
     .getElementById("memberBox")
-    .style.display = "block";
+    .style.display="block";
 
 }
 
@@ -2256,28 +1698,22 @@ function uyeKontrol(){
 function uyeKapat(){
 
   document
-    .getElementById("memberOverlay")
-    .style.display = "none";
-
-
-  document
     .getElementById("memberBox")
-    .style.display = "none";
+    .style.display="none";
 
 }
 
 
 function uyeOl(){
 
-  window.location.href =
-    "uyelik.html";
+  window.location.href="uyelik.html";
 
 }
 
 
-/* ======================================================
+/* =========================================================
    CANLI ASİSTAN
-====================================================== */
+========================================================= */
 
 function assistantOpen(){
 
@@ -2286,22 +1722,14 @@ function assistantOpen(){
       "assistantBox"
     );
 
-
-  if(
-    box.style.display === "block"
-  ){
-
-    box.style.display =
-      "none";
-
-  }
-
-  else{
-
-    box.style.display =
-      "block";
-
-  }
+  box.style.display =
+    (
+      box.style.display === "block"
+    )
+    ?
+    "none"
+    :
+    "block";
 
 }
 
@@ -2313,7 +1741,6 @@ function assistantSend(){
       "assistantInput"
     );
 
-
   var reply =
     document.getElementById(
       "assistantReply"
@@ -2321,10 +1748,10 @@ function assistantSend(){
 
 
   if(
-    input.value.trim() === ""
+    input.value.trim()===""
   ){
 
-    reply.textContent =
+    reply.textContent=
       "Lütfen bir mesaj yazın.";
 
     return;
@@ -2332,38 +1759,17 @@ function assistantSend(){
   }
 
 
-  reply.textContent =
+  reply.textContent=
     "Mesajınız alındı, en kısa sürede size dönüş yapılacaktır.";
 
-
-  input.value = "";
+  input.value="";
 
 }
 
 
-/* ======================================================
-   ESC
-====================================================== */
-
-document.addEventListener(
-  "keydown",
-  function(e){
-
-    if(
-      e.key === "Escape"
-    ){
-
-      uyeKapat();
-
-    }
-
-  }
-);
-
-
-/* ======================================================
-   SAĞ TIK ENGELİ
-====================================================== */
+/* =========================================================
+   SAĞ TIK
+========================================================= */
 
 document.addEventListener(
   "contextmenu",
@@ -2374,10 +1780,8 @@ document.addEventListener(
   }
 );
 
-
 </script>
 
 
 </body>
 </html>
-```
