@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="tr">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="robots" content="noindex, nofollow, noarchive">
+
+<meta name="description" content="Kamu Hizmetlerinde İzleme - Mustafa YILMAZ">
+
+<title>Kamu Hizmetlerinde İzleme | Mustafa YILMAZ</title>
+
+<style>
+
+:root{
+  --bg:#14181f;
+  --panel:#1b212b;
+  --text:#eef0f2;
+  --muted:#b8bdc5;
+  --gold:#c9a227;
+  --red:#9e1c1c;
+  --border:rgba(255,255,255,.10);
+}
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.7;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.site-header{
+  background:#0c0f14;
+  border-bottom:1px solid var(--border);
+  padding:20px 30px;
+  text-align:center;
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+
+.brand{
+  font-size:24px;
+  font-weight:800;
+  color:#fff;
+}
+
+.brand span{
+  display:block;
+  margin-top:5px;
+  color:var(--muted);
+  font-size:12px;
+  font-weight:400;
+}
+
+.site-nav{
+  display:flex;
+  justify-content:center;
+  gap:25px;
+  margin-top:15px;
+  flex-wrap:wrap;
+}
+
+.site-nav a{
+  font-size:14px;
+  color:#ddd;
+  padding-bottom:4px;
+  border-bottom:2px solid transparent;
+}
+
+.site-nav a:hover,
+.site-nav a.active{
+  color:#fff;
+  border-bottom-color:var(--red);
+}
+
+
+/* =========================
+   MAKALE ALANI
+========================= */
+
+.article-container{
+  width:100%;
+  max-width:900px;
+  margin:0 auto;
+  padding:60px 25px 80px;
+}
+
+.article-header{
+  text-align:center;
+  margin-bottom:45px;
+}
+
+.article-header h1{
+  margin:0;
+  font-size:38px;
+  color:#fff;
+  line-height:1.25;
+}
+
+.article-header .subtitle{
+  margin:15px auto 0;
+  max-width:720px;
+  color:var(--muted);
+  font-size:15px;
+  line-height:1.7;
+}
+
+
+/* =========================
+   MAKALE
+========================= */
+
+.article{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:40px;
+  box-shadow:0 15px 35px rgba(0,0,0,.25);
+}
+
+.article h2{
+  color:#fff;
+  font-size:24px;
+  margin:0 0 18px;
+}
+
+.article h3{
+  color:#fff;
+  font-size:19px;
+  margin:32px 0 12px;
+}
+
+.article p{
+  color:#d2d5da;
+  font-size:16px;
+  margin:0 0 20px;
+}
+
+.article ul{
+  color:#d2d5da;
+  font-size:16px;
+  padding-left:25px;
+}
+
+.article li{
+  margin-bottom:10px;
+}
+
+
+/* =========================
+   ALT BİLGİ
+========================= */
+
+.article-bottom{
+  margin-top:45px;
+  padding-top:25px;
+  border-top:1px solid var(--border);
+}
+
+.publication-date{
+  font-size:16px;
+  font-weight:700;
+  color:#fff;
+  margin-bottom:20px;
+}
+
+.publication-date strong{
+  color:var(--gold);
+}
+
+.legal-warning{
+  background:#241919;
+  border:1px solid rgba(201,162,39,.45);
+  border-left:5px solid var(--gold);
+  border-radius:10px;
+  padding:20px 22px;
+}
+
+.legal-warning-title{
+  font-size:16px;
+  font-weight:800;
+  color:#fff;
+  margin-bottom:8px;
+}
+
+.legal-warning p{
+  margin:0;
+  color:#e3e3e3;
+  font-size:15px;
+  line-height:1.7;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.site-footer{
+  background:#0c0f14;
+  border-top:1px solid var(--border);
+  padding:30px 20px;
+  text-align:center;
+}
+
+.site-footer p{
+  margin:5px 0;
+  color:var(--muted);
+  font-size:12.5px;
+}
+
+.site-footer p:first-child{
+  color:var(--gold);
+  font-weight:700;
+}
+
+
+/* =========================
+   MOBİL
+========================= */
+
+@media(max-width:600px){
+
+  .site-header{
+    padding:16px 15px;
+  }
+
+  .brand{
+    font-size:21px;
+  }
+
+  .site-nav{
+    gap:14px;
+  }
+
+  .site-nav a{
+    font-size:13px;
+  }
+
+  .article-container{
+    padding:40px 15px 60px;
+  }
+
+  .article-header h1{
+    font-size:29px;
+  }
+
+  .article-header .subtitle{
+    font-size:14px;
+  }
+
+  .article{
+    padding:25px 20px;
+  }
+
+  .article h2{
+    font-size:21px;
+  }
+
+  .article h3{
+    font-size:18px;
+  }
+
+  .article p,
+  .article ul{
+    font-size:15px;
+  }
+
+  .publication-date{
+    font-size:15px;
+  }
+
+  .legal-warning{
+    padding:17px 18px;
+  }
+
+  .legal-warning p{
+    font-size:14px;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<header class="site-header">
+
+  <div class="brand">
+    Mustafa YILMAZ
+    <span>
+      Kamu Politikaları • Kamu Hizmetleri • Araştırma ve İzleme
+    </span>
+  </div>
+
+  <nav class="site-nav">
+
+    <a href="index.html">
+      Ana Sayfa
+    </a>
+
+    <a href="kamu-politikalari.html">
+      Kamu Politikaları
+    </a>
+
+    <a href="kamu-hizmetleri.html">
+      Kamu Hizmetleri
+    </a>
+
+    <a href="kamu-hizmetleri-izleme.html" class="active">
+      Hizmetlerde İzleme
+    </a>
+
+  </nav>
+
+</header>
+
+
+<main class="article-container">
+
+  <header class="article-header">
+
+    <h1>
+      Kamu Hizmetlerinde İzleme
+    </h1>
+
+    <div class="subtitle">
+      Kamu hizmetlerinin sahadaki uygulamalarının, erişilebilirliğinin ve vatandaşlara yansıyan sonuçlarının izlenmesi.
+    </div>
+
+  </header>
+
+
+  <article class="article">
+
+    <h2>
+      Kamu Hizmetlerinde İzleme
+    </h2>
+
+    <p>
+      Kamu hizmetlerinin planlandığı şekilde uygulanıp uygulanmadığının
+      takip edilmesi, hizmetlerin etkinliğinin değerlendirilmesi açısından
+      önemli bir çalışma alanıdır.
+    </p>
+
+    <p>
+      İzleme çalışmaları yalnızca kurumların yaptığı işlemlerin
+      incelenmesiyle sınırlı değildir. Hizmetlerin vatandaşlara nasıl
+      ulaştığı, uygulamada hangi sorunların yaşandığı ve ortaya çıkan
+      sonuçların nasıl değerlendirilebileceği de dikkate alınır.
+    </p>
+
+
+    <h3>
+      Hizmetlerin Sahada İzlenmesi
+    </h3>
+
+    <p>
+      Kamu hizmetlerinin sahadaki uygulamalarının izlenmesi sırasında
+      hizmete erişim, işlem süreçleri, bilgilendirme, iletişim ve
+      vatandaşların karşılaştığı sorunlar göz önünde bulundurulabilir.
+    </p>
+
+    <p>
+      Farklı bölgelerde veya farklı kurumlarda aynı hizmetin uygulanış
+      biçimlerinin değişebilmesi nedeniyle saha gözlemleri önemli bilgiler
+      sağlayabilir.
+    </p>
+
+
+    <h3>
+      Sorunların Tespit Edilmesi
+    </h3>
+
+    <p>
+      İzleme sürecinde karşılaşılan aksaklıkların belirlenmesi,
+      hizmetlerin geliştirilmesi açısından önem taşır.
+    </p>
+
+    <p>
+      Tespit edilen sorunlar; hizmetin uygulanması, vatandaşların
+      bilgilendirilmesi, kurumlar arasındaki koordinasyon veya kaynakların
+      kullanımı gibi farklı alanlarla ilişkili olabilir.
+    </p>
+
+
+    <h3>
+      Değerlendirme ve Raporlama
+    </h3>
+
+    <p>
+      İzleme sonucunda elde edilen bilgiler düzenli şekilde kayıt altına
+      alınarak değerlendirilebilir. Gerekli görülen durumlarda elde edilen
+      bulgular raporlanabilir.
+    </p>
+
+    <p>
+      Amaç, kamu hizmetlerinin sahadaki durumunu daha iyi anlamak ve
+      vatandaşların karşılaştığı sorunların görünür hale gelmesine
+      katkı sağlamaktır.
+    </p>
+
+
+    <div class="article-bottom">
+
+      <div class="publication-date">
+        <strong>Yayın Tarihi:</strong> 15 Nisan 2003
+      </div>
+
+      <div class="legal-warning">
+
+        <div class="legal-warning-title">
+          YASAL UYARI
+        </div>
+
+        <p>
+          Bu sayfada yer alan içeriklerin izinsiz olarak kopyalanması,
+          çoğaltılması veya paylaşılması hukuki sorumluluk doğurabilir.
+          İçeriklerin izinsiz kullanılması halinde ilgili mevzuat kapsamında
+          yasal haklarımız saklıdır.
+        </p>
+
+      </div>
+
+    </div>
+
+  </article>
+
+</main>
+
+
+<footer class="site-footer">
+
+  <p>
+    Şahin UYMAZ
+  </p>
+
+  <p>
+    Kamu Politikaları • Kamu Hizmetleri • Araştırma ve İzleme
+  </p>
+
+  <p>
+    © Şahin UYMAZ
+  </p>
+
+</footer>
+
+</body>
+</html>
