@@ -7,9 +7,9 @@
 
 <meta name="robots" content="noindex, nofollow, noarchive">
 
-<meta name="description" content="Mustafa YILMAZ - Kişisel Çalışma ve Görev Günlüğü">
+<meta name="description" content="Şahin UYMAZ - Kişisel Çalışma ve Görev Günlüğü">
 
-<title>Mustafa YILMAZ | Çalışmalarım</title>
+<title> Şahin  UYMAZ | Çalışmalarım</title>
 
 <style>
 
@@ -42,11 +42,7 @@ a{
 
 
 /* =========================================================
-   GİRİŞ EKRANI (PAROLA)
-   - Telefon/SMS yok, sadece basit bir erişim kapısı.
-   - İstersen parolayı QR kodunu verdiğin kişilerle paylaşırsın.
-   - Not: Bu istemci taraflı basit bir kapı, gerçek güvenlik
-     gerektiren bir amaç için kullanılmamalı.
+   GİRİŞ EKRANI
 ========================================================= */
 
 .gate{
@@ -141,7 +137,7 @@ body.locked > *:not(.gate){
 
 
 /* =========================================================
-   ÜST ORTA BAYRAK ALANI
+   BAYRAK
 ========================================================= */
 
 .flag-center{
@@ -153,9 +149,6 @@ body.locked > *:not(.gate){
   text-align:center;
   margin-bottom:8px;
 }
-
-/* Gerçek kumaş dalgası: SVG üzerinde feTurbulence + feDisplacementMap
-   kullanılarak bayrak dokusu gerçekten dalgalanır (konum sabit kalır). */
 
 .turkish-flag{
   width:150px;
@@ -269,7 +262,6 @@ body.locked > *:not(.gate){
 
 /* =========================================================
    ANA KARTLAR
-   Sadeleştirilmiş, tek tona yakın palet
 ========================================================= */
 
 .feature-grid{
@@ -335,7 +327,7 @@ body.locked > *:not(.gate){
 }
 
 .institution-card{
-  height:170px;
+  min-height:190px;
   border-radius:12px;
   display:flex;
   flex-direction:column;
@@ -352,6 +344,7 @@ body.locked > *:not(.gate){
 .institution-card:hover{
   transform:translateY(-6px);
   border-color:rgba(158,28,28,.4);
+  box-shadow:0 12px 26px rgba(0,0,0,.3);
 }
 
 .institution-card h3{
@@ -363,6 +356,32 @@ body.locked > *:not(.gate){
 .institution-card p{
   font-size:12.5px;
   color:var(--muted);
+  line-height:1.5;
+  margin:0 0 15px;
+}
+
+
+/* =========================================================
+   DETAYLAR BUTONU
+========================================================= */
+
+.detail-button{
+  display:inline-block;
+  margin-top:5px;
+  padding:8px 15px;
+  border-radius:7px;
+  background:rgba(158,28,28,.15);
+  border:1px solid rgba(158,28,28,.45);
+  color:#fff;
+  font-size:12px;
+  font-weight:700;
+  transition:.25s;
+}
+
+.detail-button:hover{
+  background:var(--red);
+  border-color:var(--red);
+  transform:translateY(-2px);
 }
 
 
@@ -457,8 +476,6 @@ body.locked > *:not(.gate){
 
 /* =========================================================
    ASİSTAN KUTUSU
-   - Sabit, zıplamıyor.
-   - Otomatik yanıt verdiği örtük biçimde belli: "Sohbet Asistanı"
 ========================================================= */
 
 .assistant-button{
@@ -553,6 +570,7 @@ body.locked > *:not(.gate){
 
   .site-nav{
     gap:12px;
+    flex-wrap:wrap;
   }
 
   .hero h1{
@@ -608,7 +626,7 @@ body.locked > *:not(.gate){
 
 
 <!-- =========================================================
-     GİRİŞ (PAROLA) EKRANI
+     GİRİŞ EKRANI
 ========================================================= -->
 
 <div class="gate" id="gateScreen">
@@ -649,20 +667,64 @@ body.locked > *:not(.gate){
     <div class="turkish-flag">
 
       <svg viewBox="0 0 150 92" xmlns="http://www.w3.org/2000/svg">
+
         <defs>
+
           <filter id="clothWave" x="-20%" y="-20%" width="140%" height="140%">
-            <feTurbulence type="turbulence" baseFrequency="0.015 0.06" numOctaves="2" seed="4" result="turb">
-              <animate attributeName="baseFrequency" dur="6s" values="0.015 0.06;0.02 0.05;0.015 0.06" repeatCount="indefinite" />
+
+            <feTurbulence
+              type="turbulence"
+              baseFrequency="0.015 0.06"
+              numOctaves="2"
+              seed="4"
+              result="turb">
+
+              <animate
+                attributeName="baseFrequency"
+                dur="6s"
+                values="0.015 0.06;0.02 0.05;0.015 0.06"
+                repeatCount="indefinite" />
+
             </feTurbulence>
-            <feDisplacementMap in="SourceGraphic" in2="turb" scale="9" xChannelSelector="R" yChannelSelector="G" />
+
+            <feDisplacementMap
+              in="SourceGraphic"
+              in2="turb"
+              scale="9"
+              xChannelSelector="R"
+              yChannelSelector="G" />
+
           </filter>
+
         </defs>
+
         <g filter="url(#clothWave)">
-          <rect x="0" y="0" width="150" height="92" fill="#c81414"/>
-          <circle cx="60" cy="46" r="19" fill="#ffffff"/>
-          <circle cx="65.5" cy="46" r="15.5" fill="#c81414"/>
-          <polygon points="93,46 78,51 82.5,46 78,41" fill="#ffffff"/>
+
+          <rect
+            x="0"
+            y="0"
+            width="150"
+            height="92"
+            fill="#c81414"/>
+
+          <circle
+            cx="60"
+            cy="46"
+            r="19"
+            fill="#ffffff"/>
+
+          <circle
+            cx="65.5"
+            cy="46"
+            r="15.5"
+            fill="#c81414"/>
+
+          <polygon
+            points="93,46 78,51 82.5,46 78,41"
+            fill="#ffffff"/>
+
         </g>
+
       </svg>
 
     </div>
@@ -672,18 +734,35 @@ body.locked > *:not(.gate){
     </div>
 
     <div class="brand">
-      Mustafa YILMAZ
+      Şahin UYMAZ
       <span>Kişisel Çalışmalarım • Notlarım • Kayıtlarım</span>
     </div>
 
   </div>
 
+
   <nav class="site-nav">
-    <a href="#" class="active">Ana Sayfa</a>
-    <a href="#">Hakkımda</a>
-    <a href="#">Çalışmalarım</a>
-    <a href="saha-ziyaretlerim.html">Saha Notlarım</a>
-    <a href="#">İletişim</a>
+
+    <a href="https://mustafayilmazgithup.io/" class="active">
+      Ana Sayfa
+    </a>
+
+    <a href="https://mustafayilmazgithup.io/hakkimda.html">
+      Hakkımda
+    </a>
+
+    <a href="https://mustafayilmazgithup.io/calismalarim.html">
+      Çalışmalarım
+    </a>
+
+    <a href="https://mustafayilmazgithup.io/saha-ziyaretlerim.html">
+      Saha Notlarım
+    </a>
+
+    <a href="https://mustafayilmazgithup.io/iletisim.html">
+      İletişim
+    </a>
+
   </nav>
 
 </header>
@@ -696,10 +775,14 @@ body.locked > *:not(.gate){
 <section class="hero">
 
   <div class="logo-area">
-    <img src="logo.png" alt="Mustafa Yılmaz Logo">
+
+    <img
+      src="logo.png"
+      alt="Şahin UYMAZ Logo">
+
   </div>
 
-  <h1>Mustafa Yılmaz</h1>
+  <h1>Şahin UYMAZ</h1>
 
   <div class="welcome-text">
     Görevlerimi ve çalışmalarımı bu sayfada paylaşıyorum.
@@ -715,21 +798,44 @@ body.locked > *:not(.gate){
 <section class="feature-grid">
 
   <div class="feature-card">
+
     <div class="feature-icon">📋</div>
+
     <h3>ÇALIŞMALARIM</h3>
-    <p>Üzerinde çalıştığım konular ve görevlerin özeti burada yer alır.</p>
+
+    <p>
+      Üzerinde çalıştığım konular ve görevlerin
+      özeti burada yer alır.
+    </p>
+
   </div>
 
+
   <div class="feature-card">
+
     <div class="feature-icon">📊</div>
+
     <h3>NOTLARIM</h3>
-    <p>Takip ettiğim süreçlere dair kişisel notlar ve gözlemler.</p>
+
+    <p>
+      Takip ettiğim süreçlere dair kişisel notlar
+      ve gözlemler.
+    </p>
+
   </div>
 
+
   <div class="feature-card">
+
     <div class="feature-icon">🗒️</div>
+
     <h3>KAYITLARIM</h3>
-    <p>Zaman içinde topladığım bilgiler ve saha kayıtları.</p>
+
+    <p>
+      Zaman içinde topladığım bilgiler ve saha
+      kayıtları.
+    </p>
+
   </div>
 
 </section>
@@ -737,33 +843,196 @@ body.locked > *:not(.gate){
 
 <!-- =========================================================
      ÇALIŞMA ALANLARI
+     MAKALE SAYFALARINA BAĞLANDI
 ========================================================= -->
 
 <section class="section">
 
-  <h2 class="section-title">Çalışma Alanlarım</h2>
+  <h2 class="section-title">
+    Çalışma Alanlarım
+  </h2>
+
 
   <div class="institution-grid">
 
-    <div class="institution-card">
-      <h3>Araştırma</h3>
-      <p>İlgilendiğim konulardaki incelemeler</p>
-    </div>
+
+    <!-- 01 -->
 
     <div class="institution-card">
-      <h3>Saha Notları</h3>
-      <p>Ziyaret ettiğim yerlerden notlar</p>
+
+      <h3>Kamu Politikaları</h3>
+
+      <p>
+        Kamu politikalarını ve uygulamalarını
+        araştırmak, izlemek ve değerlendirmek.
+      </p>
+
+      <a
+        class="detail-button"
+        href="https://sahinuymazgithub.io/kamu-politikalari.html">
+
+        Detaylar →
+
+      </a>
+
+
     </div>
 
-    <div class="institution-card">
-      <h3>Değerlendirme</h3>
-      <p>Topladığım bilgilerin özeti</p>
-    </div>
+
+    <!-- 02 -->
 
     <div class="institution-card">
-      <h3>Arşiv</h3>
-      <p>Geçmiş çalışmalarımın kaydı</p>
+
+      <h3>Bilgilendirme ve İletişim</h3>
+
+      <p>
+        Tespit edilen konuları ilgili kişi ve
+        kurumlara aktarmak.
+      </p>
+
+      <a
+        class="detail-button"
+        href="https://sahinuymazgithub.io/bilgilendirme-ve-iletisim.html">
+
+        Detaylar →
+      
+
+      </a>
+
     </div>
+
+
+    <!-- 03 -->
+
+    <div class="institution-card">
+
+      <h3>Takip ve Raporlama</h3>
+
+      <p>
+        İncelenen konuların gelişimini takip etmek
+        ve elde edilen sonuçları düzenlemek.
+      </p>
+
+      <a
+        class="detail-button"
+        href="https://sahinuymazgithub.io/takip-ve-raporlama.html">
+
+        Detaylar →
+
+      </a>
+
+    </div>
+
+
+    <!-- 04 -->
+
+    <div class="institution-card">
+
+      <h3>Kurum İncelemeleri</h3>
+
+      <p>
+        Kamu hizmetlerinin işleyişi üzerine yapılan
+        inceleme çalışmaları.
+      </p>
+
+      <a
+        class="detail-button"
+        href="https://sahinuymazgithub.io/kurum-incelemeleri.html">
+
+        Detaylar →
+
+      </a>
+
+    </div>
+
+
+    <!-- 05 -->
+
+    <div class="institution-card">
+
+      <h3>Toplumsal Araştırmalar</h3>
+
+      <p>
+        Saha verileri ve vatandaş deneyimleri
+        üzerine araştırmalar.
+      </p>
+
+      <a
+        class="detail-button"
+        href="https://sahinuymazgithub.io/toplumsal-arastirmalar.html">
+
+        Detaylar →
+
+      </a>
+
+    </div>
+
+
+    <!-- 06 -->
+
+    <div class="institution-card">
+
+      <h3>Kamu Hizmetlerinde Etkinlik</h3>
+
+      <p>
+        Kamu hizmetlerinin vatandaşlara ulaşma
+        süreçlerinin değerlendirilmesi.
+      </p>
+
+      <a
+        class="detail-button"
+        href="https://sahinuymazgithub.io/kamu-hizmetlerinde-etkinlik.html">
+
+        Detaylar →
+
+      </a>
+
+    </div>
+
+
+    <!-- 07 -->
+
+    <div class="institution-card">
+
+      <h3>Saha Gözlemleri</h3>
+
+      <p>
+        Yerinde inceleme ve saha verilerinin
+        analiz edilmesi.
+      </p>
+
+      <a
+        class="detail-button"
+        href="https://sahinuymazgithub.io/saha-gozlemleri.html">
+
+        Detaylar →
+
+      </a>
+
+    </div>
+
+
+    <!-- 08 -->
+
+    <div class="institution-card">
+
+      <h3>Politika Değerlendirmeleri</h3>
+
+      <p>
+        Uygulanan politikaların sonuçlarının
+        incelenmesi.
+      </p>
+
+      <a
+        class="detail-button"
+        href="https://sahinuymazgithub.io/politika-degerlendirmeleri.html">
+
+        Detaylar →
+
+      </a>
+
+    </div>
+
 
   </div>
 
@@ -776,33 +1045,68 @@ body.locked > *:not(.gate){
 
 <section class="section">
 
-  <h2 class="section-title">Bir Konuyu Nasıl İnceliyorum</h2>
+  <h2 class="section-title">
+    Bir Konuyu Nasıl İnceliyorum
+  </h2>
 
   <div class="process-grid">
 
+
     <div class="process-card">
+
       <div class="process-logo"></div>
+
       <h3>Not Alma</h3>
-      <p>İlgilendiğim konuyu ilk fark ettiğimde kısa notlar alırım.</p>
+
+      <p>
+        İlgilendiğim konuyu ilk fark ettiğimde
+        kısa notlar alırım.
+      </p>
+
     </div>
 
+
     <div class="process-card">
+
       <div class="process-logo"></div>
+
       <h3>İnceleme</h3>
-      <p>Konuyla ilgili mevcut bilgileri gözden geçiririm.</p>
+
+      <p>
+        Konuyla ilgili mevcut bilgileri
+        gözden geçiririm.
+      </p>
+
     </div>
 
+
     <div class="process-card">
+
       <div class="process-logo"></div>
+
       <h3>Araştırma</h3>
-      <p>Gerektiğinde daha derin araştırma yaparım.</p>
+
+      <p>
+        Gerektiğinde daha derin araştırma
+        yaparım.
+      </p>
+
     </div>
 
+
     <div class="process-card">
+
       <div class="process-logo"></div>
+
       <h3>Özetleme</h3>
-      <p>Sonuçları kendi notlarım için özetlerim.</p>
+
+      <p>
+        Sonuçları kendi notlarım için
+        özetlerim.
+      </p>
+
     </div>
+
 
   </div>
 
@@ -824,7 +1128,9 @@ body.locked > *:not(.gate){
       başka platformlarda izinsiz kullanılmamasını rica ederim.
     </p>
 
-    <p>© Mustafa YILMAZ · Kişisel Çalışma Günlüğü</p>
+    <p>
+      ©2001 Şahin UYMAZ· Kişisel Çalışma Günlüğü
+    </p>
 
   </div>
 
@@ -832,23 +1138,41 @@ body.locked > *:not(.gate){
 
 
 <!-- =========================================================
-     SOHBET ASİSTANI (otomatik yanıt verir)
+     SOHBET ASİSTANI
 ========================================================= -->
 
-<div class="assistant-button" onclick="assistantOpen()">
+<div
+  class="assistant-button"
+  onclick="assistantOpen()">
+
   💬 Sohbet Asistanı
+
 </div>
 
-<div class="assistant-box" id="assistantBox">
+
+<div
+  class="assistant-box"
+  id="assistantBox">
 
   <h3>Sohbet Asistanı</h3>
-  <p class="assistant-sub">Otomatik yanıt verir, mesajınızı iletir.</p>
 
-  <input type="text" id="assistantInput" placeholder="Mesajınızı yazın">
+  <p class="assistant-sub">
+    Otomatik yanıt verir, mesajınızı iletir.
+  </p>
 
-  <button onclick="assistantSend()">Gönder</button>
+  <input
+    type="text"
+    id="assistantInput"
+    placeholder="Mesajınızı yazın">
 
-  <div class="assistant-reply" id="assistantReply"></div>
+  <button onclick="assistantSend()">
+    Gönder
+  </button>
+
+  <div
+    class="assistant-reply"
+    id="assistantReply">
+  </div>
 
 </div>
 
@@ -857,37 +1181,61 @@ body.locked > *:not(.gate){
 
 /* =========================================================
    BASİT ERİŞİM KAPISI
-   - Telefon/SMS toplamıyor, gerçek kimlik doğrulaması değildir.
-   - Parolayı burada değiştirebilirsin.
 ========================================================= */
 
 const SITE_PASSWORD = "yaallahbismillah";
 
 function gateCheck(){
 
-  const input = document.getElementById("gateInput");
-  const error = document.getElementById("gateError");
+  const input =
+    document.getElementById("gateInput");
+
+  const error =
+    document.getElementById("gateError");
 
   if(input.value === SITE_PASSWORD){
+
     document.body.classList.remove("locked");
-    document.getElementById("gateScreen").style.display = "none";
-    sessionStorage.setItem("site_unlocked", "1");
-  } else {
-    error.textContent = "Parola hatalı, tekrar deneyin.";
+
+    document.getElementById("gateScreen")
+      .style.display = "none";
+
+    sessionStorage.setItem(
+      "site_unlocked",
+      "1"
+    );
+
+  }else{
+
+    error.textContent =
+      "Parola hatalı, tekrar deneyin.";
+
   }
 
 }
 
-if(sessionStorage.getItem("site_unlocked") === "1"){
+
+if(
+  sessionStorage.getItem("site_unlocked") === "1"
+){
+
   document.body.classList.remove("locked");
-  document.getElementById("gateScreen").style.display = "none";
+
+  document.getElementById("gateScreen")
+    .style.display = "none";
+
 }
 
-document.getElementById("gateInput").addEventListener("keydown", function(e){
-  if(e.key === "Enter"){
-    gateCheck();
-  }
-});
+
+document
+  .getElementById("gateInput")
+  .addEventListener("keydown",function(e){
+
+    if(e.key === "Enter"){
+      gateCheck();
+    }
+
+  });
 
 
 /* =========================================================
@@ -895,21 +1243,42 @@ document.getElementById("gateInput").addEventListener("keydown", function(e){
 ========================================================= */
 
 function assistantOpen(){
-  var box = document.getElementById("assistantBox");
-  box.style.display = (box.style.display === "block") ? "none" : "block";
+
+  var box =
+    document.getElementById("assistantBox");
+
+  box.style.display =
+    (box.style.display === "block")
+      ? "none"
+      : "block";
+
 }
 
+
 function assistantSend(){
-  var input = document.getElementById("assistantInput");
-  var reply = document.getElementById("assistantReply");
+
+  var input =
+    document.getElementById("assistantInput");
+
+  var reply =
+    document.getElementById("assistantReply");
+
 
   if(input.value.trim() === ""){
-    reply.textContent = "Lütfen bir mesaj yazın.";
+
+    reply.textContent =
+      "Lütfen bir mesaj yazın.";
+
     return;
+
   }
 
-  reply.textContent = "Mesajınız alındı, teşekkürler.";
+
+  reply.textContent =
+    "Mesajınız alındı, teşekkürler.";
+
   input.value = "";
+
 }
 
 </script>
