@@ -2,1287 +2,2858 @@
 <html lang="tr">
 <head>
 
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
 
-<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="description" content="Şahin UYMAZ - Kişisel Çalışma ve Görev Günlüğü">
+<!-- =====================================================
+     GOOGLE GÖRÜNÜRLÜĞÜ ŞİMDİLİK KAPALI
+===================================================== -->
 
-<title> Şahin  UYMAZ | Çalışmalarım</title>
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet">
+
+<title>Mustafa Yılmaz | Kamu Politikaları • Kamu Hizmetleri</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 <style>
 
-:root{
-  --red:#9e1c1c;
-  --red-dark:#6e1414;
-  --gold:#c9a227;
-  --bg:#14181f;
-  --panel:#1b212b;
-  --text:#eef0f2;
-  --muted:#a9adb4;
-  --border:rgba(255,255,255,.08);
-}
+/* =====================================================
+   TEMEL
+===================================================== */
 
-*{
-  box-sizing:border-box;
+html{
+    scroll-behavior:smooth;
 }
 
 body{
-  margin:0;
-  font-family:Arial,Helvetica,sans-serif;
-  background:var(--bg);
-  color:var(--text);
+    margin:0;
+    font-family:"Segoe UI",Arial,sans-serif;
+    background:#f3f5f8;
+    color:#172033;
 }
 
-a{
-  color:inherit;
-  text-decoration:none;
-}
-
-
-/* =========================================================
-   GİRİŞ EKRANI
-========================================================= */
-
-.gate{
-  position:fixed;
-  inset:0;
-  background:var(--bg);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  z-index:10000;
-  padding:20px;
-}
-
-.gate-box{
-  width:100%;
-  max-width:360px;
-  background:var(--panel);
-  border:1px solid var(--border);
-  border-radius:14px;
-  padding:34px 28px;
-  text-align:center;
-  box-shadow:0 20px 50px rgba(0,0,0,.5);
-}
-
-.gate-box h2{
-  margin:0 0 6px;
-  font-size:19px;
-}
-
-.gate-box p{
-  margin:0 0 18px;
-  font-size:13px;
-  color:var(--muted);
-  line-height:1.6;
-}
-
-.gate-box input{
-  width:100%;
-  padding:12px 14px;
-  border-radius:8px;
-  border:1px solid var(--border);
-  background:#10141b;
-  color:var(--text);
-  font-size:14px;
-  margin-bottom:12px;
-}
-
-.gate-box button{
-  width:100%;
-  padding:12px 14px;
-  border-radius:8px;
-  border:0;
-  background:var(--red);
-  color:#fff;
-  font-weight:700;
-  cursor:pointer;
-  transition:.2s;
-}
-
-.gate-box button:hover{
-  background:var(--red-dark);
-}
-
-.gate-error{
-  font-size:12.5px;
-  color:#ff8a8a;
-  min-height:16px;
-  margin-top:8px;
-}
-
-body.locked > *:not(.gate){
-  display:none;
+*{
+    box-sizing:border-box;
 }
 
 
-/* =========================================================
-   HEADER
-========================================================= */
+/* =====================================================
+   RENKLER
+===================================================== */
+
+:root{
+    --lacivert:#061b33;
+    --lacivert2:#0b2948;
+    --sari:#eab308;
+    --mavi:#168cff;
+    --beyaz:#ffffff;
+    --gri:#64748b;
+}
+
+
+/* =====================================================
+   MUSTAFA YILMAZ IŞIKLI İSİM
+===================================================== */
+
+.isim-alani{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:13px;
+    margin-bottom:8px;
+}
+
+.mustafa{
+    color:#168cff;
+
+    animation:
+        maviParla 2.4s ease-in-out infinite;
+
+    text-shadow:
+        0 0 5px rgba(22,140,255,.4);
+}
+
+.yilmaz{
+    color:#ffffff;
+
+    animation:
+        beyazParla 2.8s ease-in-out infinite;
+
+    text-shadow:
+        0 0 5px rgba(255,255,255,.25);
+}
+
+@keyframes maviParla{
+
+    0%,100%{
+        opacity:.55;
+        text-shadow:
+            0 0 4px rgba(22,140,255,.35);
+    }
+
+    50%{
+        opacity:1;
+        text-shadow:
+            0 0 8px rgba(22,140,255,.8),
+            0 0 18px rgba(22,140,255,.5);
+    }
+
+}
+
+@keyframes beyazParla{
+
+    0%,100%{
+        opacity:.55;
+        text-shadow:
+            0 0 4px rgba(255,255,255,.25);
+    }
+
+    50%{
+        opacity:1;
+        text-shadow:
+            0 0 8px rgba(255,255,255,.75),
+            0 0 18px rgba(255,255,255,.35);
+    }
+
+}
+
+
+/* =====================================================
+   ÜST MENÜ
+===================================================== */
 
 .site-header{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:18px 40px;
-  background:#0c0f14;
-  border-bottom:1px solid var(--border);
-  flex-wrap:wrap;
-  position:sticky;
-  top:0;
-  z-index:500;
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    z-index:100;
+
+    background:rgba(6,27,51,.96);
+
+    backdrop-filter:blur(12px);
+
+    box-shadow:
+        0 3px 20px rgba(0,0,0,.15);
+}
+
+.header-inner{
+    max-width:1280px;
+    margin:auto;
+
+    min-height:82px;
+
+    padding:12px 24px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:25px;
+}
+
+.logo-text{
+    text-decoration:none;
+    color:white;
+}
+
+.logo-text .isim-alani{
+    justify-content:flex-start;
+    margin:0;
+}
+
+.logo-text h1{
+    margin:0;
+    font-size:24px;
+    font-weight:800;
+}
+
+.logo-text p{
+    margin:3px 0 0;
+    font-size:12px;
+    color:#cbd5e1;
+}
+
+.main-nav{
+    display:flex;
+    align-items:center;
+    gap:25px;
+}
+
+.main-nav a{
+    color:#fff;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:600;
+    transition:.25s;
+}
+
+.main-nav a:hover{
+    color:#facc15;
 }
 
 
-/* =========================================================
-   BAYRAK
-========================================================= */
-
-.flag-center{
-  width:100%;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  margin-bottom:8px;
-}
-
-.turkish-flag{
-  width:150px;
-  height:92px;
-  position:relative;
-  filter:drop-shadow(0 4px 7px rgba(0,0,0,.55));
-}
-
-.turkish-flag svg{
-  width:100%;
-  height:100%;
-  display:block;
-}
-
-.flag-motto{
-  margin-top:9px;
-  color:var(--gold);
-  font-size:11.5px;
-  font-weight:700;
-  letter-spacing:1px;
-  text-shadow:0 2px 5px rgba(0,0,0,.9);
-}
-
-
-/* =========================================================
-   MARKA
-========================================================= */
-
-.brand{
-  font-size:24px;
-  font-weight:800;
-  color:#fff;
-  text-align:center;
-  letter-spacing:.3px;
-}
-
-.brand span{
-  display:block;
-  font-size:12px;
-  color:var(--muted);
-  margin-top:5px;
-  font-weight:400;
-}
-
-
-/* =========================================================
-   MENÜ
-========================================================= */
-
-.site-nav{
-  display:flex;
-  gap:25px;
-  width:100%;
-  justify-content:center;
-  margin-top:14px;
-}
-
-.site-nav a{
-  font-size:14px;
-  opacity:.85;
-  padding-bottom:5px;
-  border-bottom:2px solid transparent;
-  transition:.25s;
-}
-
-.site-nav a:hover{
-  opacity:1;
-  border-bottom-color:rgba(158,28,28,.5);
-}
-
-.site-nav a.active{
-  color:#fff;
-  opacity:1;
-  border-bottom:2px solid var(--red);
-}
-
-
-/* =========================================================
+/* =====================================================
    HERO
-========================================================= */
+===================================================== */
 
 .hero{
-  padding:64px 30px 80px;
-  text-align:center;
-  background:linear-gradient(160deg,#161010,#0c0f14);
+    height:720px;
+    position:relative;
+    overflow:hidden;
+    background:#061b33;
 }
 
-.logo-area img{
-  width:100px;
-  height:100px;
-  object-fit:contain;
-  border-radius:50%;
-  border:2px solid var(--border);
+.hero-slide{
+    position:absolute;
+    inset:0;
+
+    background-size:cover;
+    background-position:center;
+
+    opacity:0;
+
+    animation:heroFade 21s infinite;
 }
 
-.hero h1{
-  font-size:44px;
-  margin:22px 0 0;
-  font-weight:800;
-  letter-spacing:.5px;
-  color:#fff;
+.hero-slide:nth-child(1){
+    background-image:
+        linear-gradient(
+            rgba(4,20,38,.73),
+            rgba(4,20,38,.78)
+        ),
+        url("gorsel1.jpg");
 }
 
-.welcome-text{
-  margin-top:20px;
-  font-size:16px;
-  font-weight:600;
-  color:var(--muted);
+.hero-slide:nth-child(2){
+    background-image:
+        linear-gradient(
+            rgba(4,20,38,.73),
+            rgba(4,20,38,.78)
+        ),
+        url("gorsel2.jpg");
+
+    animation-delay:7s;
+}
+
+.hero-slide:nth-child(3){
+    background-image:
+        linear-gradient(
+            rgba(4,20,38,.73),
+            rgba(4,20,38,.78)
+        ),
+        url("gorsel3.jpg");
+
+    animation-delay:14s;
+}
+
+@keyframes heroFade{
+
+    0%{
+        opacity:0;
+        transform:scale(1.02);
+    }
+
+    10%{
+        opacity:1;
+    }
+
+    30%{
+        opacity:1;
+        transform:scale(1.06);
+    }
+
+    40%{
+        opacity:0;
+    }
+
+    100%{
+        opacity:0;
+    }
+
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+
+    max-width:1280px;
+    height:100%;
+    margin:auto;
+
+    display:flex;
+    align-items:center;
+
+    padding:100px 24px 40px;
+}
+
+.hero-inner{
+    max-width:850px;
+    color:white;
+}
+
+.hero-label{
+    color:#facc15;
+    font-weight:800;
+    letter-spacing:2px;
+    font-size:15px;
+}
+
+.hero h2{
+    font-size:58px;
+    line-height:1.08;
+    margin:20px 0;
+
+    font-weight:800;
+}
+
+.hero p{
+    max-width:760px;
+    font-size:19px;
+    line-height:1.7;
+    color:#e2e8f0;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+    margin-top:30px;
+}
+
+.btn-primary{
+    display:inline-block;
+
+    padding:13px 25px;
+
+    border-radius:7px;
+
+    background:#eab308;
+    color:#111827;
+
+    text-decoration:none;
+
+    font-weight:800;
+
+    transition:.25s;
+}
+
+.btn-primary:hover{
+    transform:translateY(-3px);
+    background:#facc15;
+}
+
+.btn-outline{
+    display:inline-block;
+
+    padding:12px 25px;
+
+    border:1px solid rgba(255,255,255,.7);
+
+    border-radius:7px;
+
+    color:white;
+
+    text-decoration:none;
+
+    font-weight:700;
+
+    transition:.25s;
+}
+
+.btn-outline:hover{
+    background:rgba(255,255,255,.12);
 }
 
 
-/* =========================================================
-   ANA KARTLAR
-========================================================= */
-
-.feature-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:20px;
-  padding:0 40px;
-  margin-top:-40px;
-}
-
-.feature-card{
-  background:var(--panel);
-  border:1px solid var(--border);
-  border-radius:10px;
-  padding:28px;
-  transition:.3s;
-}
-
-.feature-card:hover{
-  transform:translateY(-4px);
-  border-color:rgba(158,28,28,.4);
-  box-shadow:0 12px 26px rgba(0,0,0,.35);
-}
-
-.feature-icon{
-  font-size:26px;
-  margin-bottom:14px;
-}
-
-.feature-card h3{
-  margin:0 0 10px;
-  font-size:16px;
-  color:#fff;
-}
-
-.feature-card p{
-  font-size:13.5px;
-  line-height:1.6;
-  color:var(--muted);
-}
-
-
-/* =========================================================
-   BÖLÜMLER
-========================================================= */
+/* =====================================================
+   GENEL BÖLÜMLER
+===================================================== */
 
 .section{
-  padding:64px 40px;
+    padding:85px 24px;
+}
+
+.section-inner{
+    max-width:1280px;
+    margin:auto;
 }
 
 .section-title{
-  text-align:center;
-  font-size:26px;
-  margin-bottom:36px;
-  color:#fff;
-  font-weight:700;
+    margin-bottom:42px;
 }
 
-.institution-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:20px;
+.section-title.center{
+    text-align:center;
 }
 
-.institution-card{
-  min-height:190px;
-  border-radius:12px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  padding:20px;
-  color:var(--text);
-  background:var(--panel);
-  border:1px solid var(--border);
-  transition:.3s;
+.section-title h2{
+    color:var(--lacivert);
+    font-size:34px;
+    margin:0 0 10px;
+    font-weight:800;
 }
 
-.institution-card:hover{
-  transform:translateY(-6px);
-  border-color:rgba(158,28,28,.4);
-  box-shadow:0 12px 26px rgba(0,0,0,.3);
-}
-
-.institution-card h3{
-  font-size:15px;
-  margin:0 0 8px;
-  color:#fff;
-}
-
-.institution-card p{
-  font-size:12.5px;
-  color:var(--muted);
-  line-height:1.5;
-  margin:0 0 15px;
+.section-title p{
+    color:#64748b;
+    font-size:16px;
+    margin:0;
 }
 
 
-/* =========================================================
-   DETAYLAR BUTONU
-========================================================= */
+/* =====================================================
+   KURUMSAL TANITIM
+===================================================== */
 
-.detail-button{
-  display:inline-block;
-  margin-top:5px;
-  padding:8px 15px;
-  border-radius:7px;
-  background:rgba(158,28,28,.15);
-  border:1px solid rgba(158,28,28,.45);
-  color:#fff;
-  font-size:12px;
-  font-weight:700;
-  transition:.25s;
+.intro{
+    background:#fff;
+    text-align:center;
 }
 
-.detail-button:hover{
-  background:var(--red);
-  border-color:var(--red);
-  transform:translateY(-2px);
+.intro-text{
+    max-width:900px;
+    margin:auto;
+
+    font-size:18px;
+    line-height:1.8;
+    color:#526070;
 }
 
 
-/* =========================================================
-   SÜREÇ KARTLARI
-========================================================= */
+/* =====================================================
+   ÇALIŞMA ALANLARI
+===================================================== */
+
+.areas{
+    background:#f1f4f7;
+}
+
+.area-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+}
+
+.area-card{
+    position:relative;
+
+    background:white;
+
+    padding:28px;
+
+    border-radius:14px;
+
+    border:1px solid #e2e8f0;
+
+    min-height:240px;
+
+    transition:.3s;
+
+    overflow:hidden;
+}
+
+.area-card:after{
+    content:"";
+
+    position:absolute;
+
+    width:120px;
+    height:120px;
+
+    right:-45px;
+    top:-45px;
+
+    border-radius:50%;
+
+    background:rgba(22,140,255,.07);
+
+    transition:.3s;
+}
+
+.area-card:hover{
+    transform:translateY(-6px);
+
+    box-shadow:
+        0 14px 35px rgba(15,23,42,.12);
+
+    border-color:#cbd5e1;
+}
+
+.area-card:hover:after{
+    transform:scale(1.5);
+}
+
+.area-number{
+    font-size:13px;
+    font-weight:800;
+    color:#eab308;
+}
+
+.area-icon{
+    font-size:32px;
+    color:var(--lacivert);
+    margin:12px 0 17px;
+}
+
+.area-card h3{
+    margin:0;
+    font-size:20px;
+    color:var(--lacivert);
+}
+
+.area-card p{
+    color:#64748b;
+    line-height:1.65;
+    font-size:14px;
+}
+
+.detail-link{
+    display:inline-block;
+
+    margin-top:12px;
+
+    color:#155eaa;
+
+    text-decoration:none;
+
+    font-weight:800;
+    font-size:14px;
+}
+
+.detail-link:hover{
+    color:#eab308;
+}
+
+
+/* =====================================================
+   ÖNE ÇIKAN ÇALIŞMALAR
+===================================================== */
+
+.featured{
+    background:white;
+    overflow:hidden;
+}
+
+.horizontal-scroll{
+    display:flex;
+    gap:25px;
+
+    overflow-x:auto;
+
+    padding-bottom:15px;
+
+    scrollbar-width:thin;
+}
+
+.work-card{
+    min-width:350px;
+
+    background:#f4f6f8;
+
+    border-radius:14px;
+
+    overflow:hidden;
+
+    transition:.3s;
+}
+
+.work-card:hover{
+    transform:translateY(-7px);
+
+    box-shadow:
+        0 15px 35px rgba(15,23,42,.13);
+}
+
+.work-card img{
+    width:100%;
+    height:215px;
+    object-fit:cover;
+}
+
+.work-content{
+    padding:23px;
+}
+
+.work-content h3{
+    margin:0;
+    color:var(--lacivert);
+    font-size:20px;
+}
+
+.work-content p{
+    color:#64748b;
+    line-height:1.6;
+    font-size:14px;
+}
+
+
+/* =====================================================
+   GÜNCEL ARAŞTIRMALAR
+===================================================== */
+
+.research{
+    background:#f1f4f7;
+}
+
+.research-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:24px;
+}
+
+.research-card{
+    background:white;
+    padding:27px;
+    border-radius:14px;
+
+    border-top:4px solid #eab308;
+
+    transition:.3s;
+}
+
+.research-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 12px 30px rgba(15,23,42,.1);
+}
+
+.research-card h3{
+    color:var(--lacivert);
+    margin:0;
+    font-size:20px;
+}
+
+.research-card p{
+    color:#64748b;
+    line-height:1.6;
+}
+
+
+/* =====================================================
+   ÇALIŞMA SÜRECİ
+===================================================== */
+
+.process{
+    background:var(--lacivert);
+    color:white;
+}
+
+.process .section-title h2{
+    color:white;
+}
+
+.process .section-title p{
+    color:#cbd5e1;
+}
 
 .process-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:20px;
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:25px;
 }
 
-.process-card{
-  padding:24px;
-  border-radius:12px;
-  color:var(--text);
-  text-align:center;
-  min-height:170px;
-  background:var(--panel);
-  border:1px solid var(--border);
-  transition:.3s;
+.process-item{
+    text-align:center;
 }
 
-.process-card:hover{
-  transform:translateY(-4px);
-  border-color:rgba(158,28,28,.4);
+.process-number{
+    font-size:46px;
+    font-weight:900;
+    color:#facc15;
 }
 
-.process-logo{
-  width:44px;
-  height:44px;
-  margin:0 auto 12px;
-  border-radius:50%;
-  border:1px solid var(--border);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:rgba(255,255,255,.05);
-  overflow:hidden;
+.process-item h3{
+    margin:12px 0 8px;
+    font-size:17px;
 }
 
-.process-logo img{
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  display:block;
-}
-
-.process-card h3{
-  margin-top:0;
-  font-size:15px;
-  color:#fff;
-}
-
-.process-card p{
-  font-size:13px;
-  color:var(--muted);
-  line-height:1.5;
+.process-item p{
+    color:#cbd5e1;
+    font-size:13px;
+    line-height:1.6;
 }
 
 
-/* =========================================================
+/* =====================================================
+   ARAŞTIR → İZLE → DEĞERLENDİR
+===================================================== */
+
+.approach{
+    background:white;
+}
+
+.approach-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.approach-card{
+    text-align:center;
+    padding:32px 25px;
+
+    border:1px solid #e2e8f0;
+    border-radius:14px;
+
+    background:#fff;
+}
+
+.approach-card strong{
+    display:block;
+
+    font-size:21px;
+    color:var(--lacivert);
+
+    margin-bottom:12px;
+}
+
+.approach-card span{
+    color:#64748b;
+    line-height:1.6;
+}
+
+
+/* =====================================================
+   SAHA ZİYARETLERİ
+===================================================== */
+
+.visits{
+    background:white;
+    overflow:hidden;
+}
+
+.visit-window{
+    overflow:hidden;
+    width:100%;
+}
+
+.visit-track{
+    display:flex;
+    gap:24px;
+    width:max-content;
+
+    animation:
+        visitMove 45s linear infinite;
+}
+
+.visit-track:hover{
+    animation-play-state:paused;
+}
+
+.visit-card{
+    width:360px;
+
+    flex-shrink:0;
+
+    background:#f3f5f7;
+
+    border-radius:14px;
+
+    overflow:hidden;
+}
+
+.visit-card img{
+    width:100%;
+    height:210px;
+    object-fit:cover;
+}
+
+.visit-content{
+    padding:21px;
+}
+
+.visit-content h3{
+    margin:0;
+    color:var(--lacivert);
+}
+
+.visit-date{
+    color:#64748b;
+    font-size:13px;
+    margin-top:8px;
+}
+
+.visit-content p{
+    color:#64748b;
+    font-size:14px;
+    line-height:1.6;
+}
+
+@keyframes visitMove{
+
+    from{
+        transform:translateX(0);
+    }
+
+    to{
+        transform:translateX(-50%);
+    }
+
+}
+
+
+/* =====================================================
+   AYŞE CANLI ASİSTAN
+===================================================== */
+
+.ayse-launcher{
+    position:fixed;
+
+    right:22px;
+    bottom:22px;
+
+    z-index:300;
+
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    background:white;
+
+    padding:7px 12px 7px 7px;
+
+    border-radius:50px;
+
+    box-shadow:
+        0 10px 35px rgba(0,0,0,.22);
+
+    border:1px solid #e2e8f0;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.ayse-launcher:hover{
+    transform:translateY(-4px);
+}
+
+.ayse-photo-small{
+    width:58px;
+    height:58px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:3px solid white;
+
+    box-shadow:
+        0 0 0 2px #22c55e;
+}
+
+.ayse-launcher-text strong{
+    display:block;
+    color:var(--lacivert);
+}
+
+.ayse-launcher-text small{
+    color:#22a35a;
+}
+
+.ayse-panel{
+    position:fixed;
+
+    right:22px;
+    bottom:95px;
+
+    width:370px;
+    max-width:calc(100vw - 30px);
+
+    height:540px;
+
+    z-index:301;
+
+    background:white;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.25);
+
+    display:none;
+
+    flex-direction:column;
+}
+
+.ayse-panel.open{
+    display:flex;
+
+    animation:
+        ayseOpen .25s ease;
+}
+
+@keyframes ayseOpen{
+    from{
+        opacity:0;
+        transform:translateY(15px) scale(.97);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+.ayse-header{
+    background:var(--lacivert);
+    color:white;
+
+    padding:13px 15px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.ayse-info{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.ayse-photo{
+    width:50px;
+    height:50px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:2px solid white;
+}
+
+.ayse-info h3{
+    margin:0;
+}
+
+.ayse-online{
+    color:#86efac;
+    font-size:12px;
+}
+
+.ayse-close{
+    background:none;
+    border:0;
+    color:white;
+    font-size:28px;
+    cursor:pointer;
+}
+
+.chat-area{
+    flex:1;
+
+    overflow-y:auto;
+
+    padding:16px;
+
+    background:#f8fafc;
+}
+
+.message{
+    max-width:82%;
+
+    padding:11px 13px;
+
+    border-radius:14px;
+
+    margin-bottom:11px;
+
+    font-size:14px;
+
+    line-height:1.5;
+}
+
+.message.ayse{
+    background:#e2e8f0;
+    color:#172033;
+    border-bottom-left-radius:4px;
+}
+
+.message.user{
+    margin-left:auto;
+
+    background:var(--lacivert);
+    color:white;
+
+    border-bottom-right-radius:4px;
+}
+
+.typing{
+    display:none;
+
+    width:max-content;
+
+    background:#e2e8f0;
+
+    padding:9px 13px;
+
+    border-radius:14px;
+
+    color:#64748b;
+
+    font-size:12px;
+
+    margin-bottom:10px;
+}
+
+.typing.show{
+    display:block;
+}
+
+.typing span{
+    animation:dotBlink 1.2s infinite;
+}
+
+.typing span:nth-child(2){
+    animation-delay:.2s;
+}
+
+.typing span:nth-child(3){
+    animation-delay:.4s;
+}
+
+@keyframes dotBlink{
+
+    0%,100%{
+        opacity:.25;
+    }
+
+    50%{
+        opacity:1;
+    }
+
+}
+
+.chat-form{
+    display:flex;
+    gap:8px;
+
+    padding:12px;
+
+    border-top:1px solid #e2e8f0;
+
+    background:white;
+}
+
+.chat-form input{
+    flex:1;
+
+    min-width:0;
+
+    border:1px solid #cbd5e1;
+
+    border-radius:25px;
+
+    padding:11px 15px;
+
+    outline:none;
+}
+
+.chat-form input:focus{
+    border-color:#168cff;
+}
+
+.chat-form button{
+    width:45px;
+    height:45px;
+
+    border:0;
+
+    border-radius:50%;
+
+    background:var(--lacivert);
+
+    color:white;
+
+    cursor:pointer;
+}
+
+
+/* =====================================================
+   YETKİLİ GİRİŞ
+   HAZIR AMA ŞİMDİLİK PASİF
+===================================================== */
+
+#yetkiFormu{
+    display:none;
+}
+
+body.auth-active #yetkiFormu{
+    display:flex;
+}
+
+.auth-overlay{
+    position:fixed;
+
+    inset:0;
+
+    z-index:500;
+
+    background:rgba(3,12,25,.72);
+
+    backdrop-filter:blur(4px);
+
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+}
+
+.auth-box{
+    width:500px;
+    max-width:100%;
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:30px;
+
+    box-shadow:
+        0 25px 80px rgba(0,0,0,.3);
+}
+
+.auth-box h2{
+    color:var(--lacivert);
+    margin-top:0;
+}
+
+.auth-box p{
+    color:#64748b;
+    line-height:1.6;
+}
+
+.auth-input{
+    width:100%;
+
+    padding:13px;
+
+    margin-bottom:12px;
+
+    border:1px solid #cbd5e1;
+
+    border-radius:8px;
+
+    outline:none;
+}
+
+.auth-input:focus{
+    border-color:#168cff;
+}
+
+.auth-button{
+    width:100%;
+
+    border:0;
+
+    padding:13px;
+
+    border-radius:8px;
+
+    background:var(--lacivert);
+
+    color:white;
+
+    font-weight:800;
+
+    cursor:pointer;
+}
+
+
+/* =====================================================
    FOOTER
-========================================================= */
+===================================================== */
 
-.site-footer{
-  background:#0c0f14;
-  border-top:1px solid var(--border);
-  padding:34px 40px;
+footer{
+    background:var(--lacivert);
+    color:white;
+
+    padding:45px 24px;
+}
+
+.footer-inner{
+    max-width:1280px;
+    margin:auto;
+
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:30px;
+}
+
+footer h3{
+    margin-top:0;
+}
+
+footer p,
+footer li{
+    color:#cbd5e1;
+    line-height:1.7;
+}
+
+footer ul{
+    list-style:none;
+    padding:0;
 }
 
 .footer-bottom{
-  max-width:760px;
-  margin:0 auto;
-  text-align:center;
-}
+    max-width:1280px;
+    margin:30px auto 0;
 
-.footer-bottom p{
-  margin:8px 0;
-  font-size:12.5px;
-  color:var(--muted);
-  line-height:1.6;
-}
+    border-top:1px solid rgba(255,255,255,.15);
 
-.footer-bottom p:first-child{
-  font-weight:700;
-  color:var(--gold);
-  letter-spacing:.5px;
+    padding-top:18px;
+
+    text-align:center;
+
+    color:#94a3b8;
+
+    font-size:13px;
 }
 
 
-/* =========================================================
-   ASİSTAN KUTUSU
-========================================================= */
-
-.assistant-button{
-  position:fixed;
-  right:25px;
-  bottom:25px;
-  background:linear-gradient(135deg,#1554a0,#2563eb);
-  color:white;
-  padding:14px 20px;
-  border-radius:50px;
-  font-weight:700;
-  font-size:14px;
-  text-align:center;
-  cursor:pointer;
-  border:1px solid rgba(255,255,255,.2);
-  box-shadow:0 8px 22px rgba(37,99,235,.35);
-  z-index:999;
-  display:flex;
-  align-items:center;
-  gap:8px;
-  transition:box-shadow .3s ease, background .3s ease;
-}
-
-.assistant-button:hover{
-  box-shadow:0 10px 28px rgba(37,99,235,.5);
-  background:linear-gradient(135deg,#1d4ed8,#2563eb);
-}
-
-.assistant-box{
-  display:none;
-  position:fixed;
-  right:25px;
-  bottom:95px;
-  width:300px;
-  background:var(--panel);
-  border:1px solid #2563eb;
-  padding:20px;
-  border-radius:14px;
-  z-index:999;
-  box-shadow:0 20px 50px rgba(0,0,0,.6);
-}
-
-.assistant-box h3{
-  margin:0 0 4px;
-  font-size:15px;
-}
-
-.assistant-box .assistant-sub{
-  font-size:11.5px;
-  color:var(--muted);
-  margin:0 0 10px;
-}
-
-.assistant-box input{
-  width:100%;
-  padding:10px;
-  margin:10px 0;
-  border-radius:6px;
-  border:1px solid var(--border);
-  background:#10141b;
-  color:#fff;
-}
-
-.assistant-box button{
-  background:#2563eb;
-  color:white;
-  border:0;
-  padding:10px 20px;
-  border-radius:6px;
-  cursor:pointer;
-}
-
-.assistant-reply{
-  margin-top:10px;
-  font-size:12.5px;
-  color:var(--muted);
-  min-height:16px;
-}
-
-
-/* =========================================================
+/* =====================================================
    MOBİL
-========================================================= */
+===================================================== */
 
 @media(max-width:900px){
 
-  .feature-grid,
-  .institution-grid,
-  .process-grid{
-    grid-template-columns:1fr;
-  }
+    .main-nav{
+        display:none;
+    }
 
-  .site-nav{
-    gap:12px;
-    flex-wrap:wrap;
-  }
+    .hero{
+        height:650px;
+    }
 
-  .hero h1{
-    font-size:32px;
-  }
+    .hero h2{
+        font-size:42px;
+    }
+
+    .area-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .research-grid{
+        grid-template-columns:1fr;
+    }
+
+    .process-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .footer-inner{
+        grid-template-columns:1fr;
+    }
+
 }
 
-@media(max-width:480px){
+@media(max-width:600px){
 
-  .site-header{
-    padding:15px;
-  }
+    .header-inner{
+        justify-content:center;
+    }
 
-  .turkish-flag{
-    width:120px;
-    height:74px;
-  }
+    .logo-text{
+        text-align:center;
+    }
 
-  .brand{
-    font-size:21px;
-  }
+    .logo-text .isim-alani{
+        justify-content:center;
+    }
 
-  .hero h1{
-    font-size:29px;
-  }
+    .hero{
+        height:650px;
+    }
 
-  .feature-grid{
-    padding:0 20px;
-  }
+    .hero-content{
+        padding:100px 18px 30px;
+    }
 
-  .section{
-    padding:50px 20px;
-  }
+    .hero h2{
+        font-size:34px;
+    }
 
-  .assistant-button{
-    right:15px;
-    bottom:15px;
-  }
+    .hero p{
+        font-size:16px;
+    }
 
-  .assistant-box{
-    right:15px;
-    bottom:88px;
-    width:calc(100% - 30px);
-  }
+    .section{
+        padding:60px 17px;
+    }
+
+    .section-title h2{
+        font-size:28px;
+    }
+
+    .area-grid{
+        grid-template-columns:1fr;
+    }
+
+    .process-grid{
+        grid-template-columns:1fr;
+    }
+
+    .approach-grid{
+        grid-template-columns:1fr;
+    }
+
+    .visit-card{
+        width:300px;
+    }
+
+    .ayse-launcher-text{
+        display:none;
+    }
+
+    .ayse-panel{
+        right:10px;
+        bottom:88px;
+        width:calc(100vw - 20px);
+        height:520px;
+    }
+
+    .ayse-launcher{
+        right:12px;
+        bottom:12px;
+    }
+
+}
+
+
+/* =====================================================
+   HAREKET AZALTMA
+===================================================== */
+
+@media(prefers-reduced-motion:reduce){
+
+    *,
+    *::before,
+    *::after{
+        animation-duration:.01ms !important;
+        animation-iteration-count:1 !important;
+        scroll-behavior:auto !important;
+    }
+
 }
 
 </style>
 
 </head>
 
-
-<body class="locked">
-
-
-<!-- =========================================================
-     GİRİŞ EKRANI
-========================================================= -->
-
-<div class="gate" id="gateScreen">
-
-  <div class="gate-box">
-
-    <h2>Özel Erişim</h2>
-
-    <p>
-      Bu sayfa yalnızca erişim bilgisi paylaşılan kişiler
-      içindir. Devam etmek için parolayı girin.
-    </p>
-
-    <input
-      type="password"
-      id="gateInput"
-      placeholder="Parola"
-      autocomplete="off"
-    >
-
-    <button onclick="gateCheck()">Devam Et</button>
-
-    <div class="gate-error" id="gateError"></div>
-
-  </div>
-
-</div>
+<body>
 
 
-<!-- =========================================================
-     HEADER
-========================================================= -->
+<!-- =====================================================
+     ÜST MENÜ
+===================================================== -->
 
 <header class="site-header">
 
-  <div class="flag-center">
+<div class="header-inner">
 
-    <div class="turkish-flag">
+<a href="#anasayfa" class="logo-text">
 
-      <svg viewBox="0 0 150 92" xmlns="http://www.w3.org/2000/svg">
+<div class="isim-alani">
 
-        <defs>
+<h1 class="mustafa">MUSTAFA</h1>
 
-          <filter id="clothWave" x="-20%" y="-20%" width="140%" height="140%">
+<h1 class="yilmaz">YILMAZ</h1>
 
-            <feTurbulence
-              type="turbulence"
-              baseFrequency="0.015 0.06"
-              numOctaves="2"
-              seed="4"
-              result="turb">
+</div>
 
-              <animate
-                attributeName="baseFrequency"
-                dur="6s"
-                values="0.015 0.06;0.02 0.05;0.015 0.06"
-                repeatCount="indefinite" />
+<p>
+Kamu Politikaları • Kamu Hizmetleri
+</p>
 
-            </feTurbulence>
-
-            <feDisplacementMap
-              in="SourceGraphic"
-              in2="turb"
-              scale="9"
-              xChannelSelector="R"
-              yChannelSelector="G" />
-
-          </filter>
-
-        </defs>
-
-        <g filter="url(#clothWave)">
-
-          <rect
-            x="0"
-            y="0"
-            width="150"
-            height="92"
-            fill="#c81414"/>
-
-          <circle
-            cx="60"
-            cy="46"
-            r="19"
-            fill="#ffffff"/>
-
-          <circle
-            cx="65.5"
-            cy="46"
-            r="15.5"
-            fill="#c81414"/>
-
-          <polygon
-            points="93,46 78,51 82.5,46 78,41"
-            fill="#ffffff"/>
-
-        </g>
-
-      </svg>
-
-    </div>
-
-    <div class="flag-motto">
-      GÖREV VE ÇALIŞMA GÜNLÜĞÜM
-    </div>
-
-    <div class="brand">
-      Şahin UYMAZ
-      <span>Kişisel Çalışmalarım • Notlarım • Kayıtlarım</span>
-    </div>
-
-  </div>
+</a>
 
 
-  <nav class="site-nav">
+<nav class="main-nav">
 
-    <a href="https://mustafayilmazgithup.io/" class="active">
-      Ana Sayfa
-    </a>
+<a href="#anasayfa">Ana Sayfa</a>
 
-    <a href="https://mustafayilmazgithup.io/hakkimda.html">
-      Hakkımda
-    </a>
+<a href="#alanlar">Çalışma Alanları</a>
 
-    <a href="https://mustafayilmazgithup.io/calismalarim.html">
-      Çalışmalarım
-    </a>
+<a href="#calismalar">Çalışmalar</a>
 
-    <a href="https://mustafayilmazgithup.io/saha-ziyaretlerim.html">
-      Saha Notlarım
-    </a>
+<a href="#arastirmalar">Araştırmalar</a>
 
-    <a href="https://mustafayilmazgithup.io/iletisim.html">
-      İletişim
-    </a>
+<a href="#ziyaretler">Saha Ziyaretleri</a>
 
-  </nav>
+</nav>
+
+</div>
 
 </header>
 
 
-<!-- =========================================================
-     HERO
-========================================================= -->
+<!-- =====================================================
+     ANA SLIDER
+===================================================== -->
 
-<section class="hero">
+<section id="anasayfa" class="hero">
 
-  <div class="logo-area">
-
-    <img
-      src="logo.png"
-      alt="Şahin UYMAZ Logo">
-
-  </div>
-
-  <h1>Şahin UYMAZ</h1>
-
-  <div class="welcome-text">
-    Görevlerimi ve çalışmalarımı bu sayfada paylaşıyorum.
-  </div>
-
-</section>
+<div class="hero-slide"></div>
+<div class="hero-slide"></div>
+<div class="hero-slide"></div>
 
 
-<!-- =========================================================
-     ANA KUTULAR
-========================================================= -->
+<div class="hero-content">
 
-<section class="feature-grid">
+<div class="hero-inner">
 
-  <div class="feature-card">
+<div class="hero-label">
+ARAŞTIRMA • İZLEME • DEĞERLENDİRME
+</div>
 
-    <div class="feature-icon">📋</div>
+<h2>
+Kamu Politikalarını Araştırıyor,
+Kamu Hizmetlerini İzliyoruz
+</h2>
 
-    <h3>ÇALIŞMALARIM</h3>
-
-    <p>
-      Üzerinde çalıştığım konular ve görevlerin
-      özeti burada yer alır.
-    </p>
-
-  </div>
-
-
-  <div class="feature-card">
-
-    <div class="feature-icon">📊</div>
-
-    <h3>NOTLARIM</h3>
-
-    <p>
-      Takip ettiğim süreçlere dair kişisel notlar
-      ve gözlemler.
-    </p>
-
-  </div>
+<p>
+Kamu politikaları, kamu kurumları ve kamu hizmetleri
+üzerine araştırma, izleme, değerlendirme ve
+bilgilendirme çalışmaları yürütüyoruz.
+</p>
 
 
-  <div class="feature-card">
+<div class="hero-buttons">
 
-    <div class="feature-icon">🗒️</div>
+<a href="#alanlar" class="btn-primary">
+Çalışma Alanlarımız
+</a>
 
-    <h3>KAYITLARIM</h3>
+<a href="#arastirmalar" class="btn-outline">
+Araştırmalar
+</a>
 
-    <p>
-      Zaman içinde topladığım bilgiler ve saha
-      kayıtları.
-    </p>
+</div>
 
-  </div>
+</div>
+
+</div>
 
 </section>
 
 
-<!-- =========================================================
+<!-- =====================================================
+     KURUMSAL TANITIM
+===================================================== -->
+
+<section class="section intro">
+
+<div class="section-inner">
+
+<div class="section-title center">
+
+<h2>
+Bağımsız Araştırma ve İzleme Çalışmaları
+</h2>
+
+</div>
+
+<div class="intro-text">
+
+Kamu politikalarının uygulanmasını, kamu hizmetlerinin
+işleyişini ve toplumsal ihtiyaçları inceleyen;
+araştırma, izleme, değerlendirme ve raporlama
+çalışmaları yürütüyoruz.
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
      ÇALIŞMA ALANLARI
-     MAKALE SAYFALARINA BAĞLANDI
-========================================================= -->
+===================================================== -->
 
-<section class="section">
+<section id="alanlar" class="section areas">
 
-  <h2 class="section-title">
-    Çalışma Alanlarım
-  </h2>
+<div class="section-inner">
 
+<div class="section-title center">
 
-  <div class="institution-grid">
+<h2>
+Görev ve Çalışma Alanlarımız
+</h2>
 
+<p>
+Araştırma • İzleme • Değerlendirme • Bilgilendirme
+</p>
 
-    <!-- 01 -->
+</div>
 
-    <div class="institution-card">
 
-      <h3>Kamu Politikaları</h3>
+<div class="area-grid">
 
-      <p>
-        Kamu politikalarını ve uygulamalarını
-        araştırmak, izlemek ve değerlendirmek.
-      </p>
 
-      <a
-        class="detail-button"
-        href="https://sahinuymazgithub.io/kamu-politikalari.html">
+<!-- 01 -->
 
-        Detaylar →
+<article class="area-card">
 
-      </a>
+<div class="area-number">01</div>
 
+<div class="area-icon">
+<i class="fa-solid fa-landmark"></i>
+</div>
 
-    </div>
+<h3>
+Kamu Politikaları
+</h3>
 
+<p>
+Kamu politikalarını ve uygulamalarını araştırmak,
+izlemek ve değerlendirmek.
+</p>
 
-    <!-- 02 -->
+<a href="https://sahinuymazgithub.io/kamu-politikalari.html" class="detail-link">
+Detaylar →
+</a>
 
-    <div class="institution-card">
+</article>
 
-      <h3>Bilgilendirme ve İletişim</h3>
 
-      <p>
-        Tespit edilen konuları ilgili kişi ve
-        kurumlara aktarmak.
-      </p>
+<!-- 02 -->
 
-      <a
-        class="detail-button"
-        href="https://sahinuymazgithub.io/bilgilendirme-ve-iletisim.html">
+<article class="area-card">
 
-        Detaylar →
-      
+<div class="area-number">02</div>
 
-      </a>
+<div class="area-icon">
+<i class="fa-solid fa-building-columns"></i>
+</div>
 
-    </div>
+<h3>
+Kamu Kurumları ve Hizmetleri
+</h3>
 
+<p>
+Kamu kurumlarının işleyişini ve sunduğu hizmetleri
+takip etmek.
+</p>
 
-    <!-- 03 -->
+<a href="https://sahinuymazgithub.io/kamu-kurumlari.html" class="detail-link">
+Detaylar →
+</a>
 
-    <div class="institution-card">
+</article>
 
-      <h3>Takip ve Raporlama</h3>
 
-      <p>
-        İncelenen konuların gelişimini takip etmek
-        ve elde edilen sonuçları düzenlemek.
-      </p>
+<!-- 03 -->
 
-      <a
-        class="detail-button"
-        href="https://sahinuymazgithub.io/takip-ve-raporlama.html">
+<article class="area-card">
 
-        Detaylar →
+<div class="area-number">03</div>
 
-      </a>
+<div class="area-icon">
+<i class="fa-solid fa-chart-line"></i>
+</div>
 
-    </div>
+<h3>
+Kamu Hizmetlerinde İzleme
+</h3>
 
+<p>
+Aksayan veya geliştirilmesi gereken hizmet alanlarını
+belirlemek.
+</p>
 
-    <!-- 04 -->
+<a href="https://sahinuymazgithub.io/kamu-hizmetleri-izleme.html" class="detail-link">
+Detaylar →
+</a>
 
-    <div class="institution-card">
+</article>
 
-      <h3>Kurum İncelemeleri</h3>
 
-      <p>
-        Kamu hizmetlerinin işleyişi üzerine yapılan
-        inceleme çalışmaları.
-      </p>
+<!-- 04 -->
 
-      <a
-        class="detail-button"
-        href="https://sahinuymazgithub.io/kurum-incelemeleri.html">
+<article class="area-card">
 
-        Detaylar →
+<div class="area-number">04</div>
 
-      </a>
+<div class="area-icon">
+<i class="fa-solid fa-magnifying-glass-chart"></i>
+</div>
 
-    </div>
+<h3>
+Araştırma ve Değerlendirme
+</h3>
 
+<p>
+Elde edilen bilgileri incelemek ve değerlendirmek.
+</p>
 
-    <!-- 05 -->
+<a href="https://sahinuymazgithub.io/arastirma-degerlendirme.html" class="detail-link">
+Detaylar →
+</a>
 
-    <div class="institution-card">
+</article>
 
-      <h3>Toplumsal Araştırmalar</h3>
 
-      <p>
-        Saha verileri ve vatandaş deneyimleri
-        üzerine araştırmalar.
-      </p>
+<!-- 05 -->
 
-      <a
-        class="detail-button"
-        href="https://sahinuymazgithub.io/toplumsal-arastirmalar.html">
+<article class="area-card">
 
-        Detaylar →
+<div class="area-number">05</div>
 
-      </a>
+<div class="area-icon">
+<i class="fa-solid fa-comments"></i>
+</div>
 
-    </div>
+<h3>
+Bilgilendirme ve İletişim
+</h3>
 
+<p>
+Tespit edilen konuları ilgili kişi ve kurumlara
+aktarmak.
+</p>
 
-    <!-- 06 -->
+<a href="https://sahinuymazgithub.io/bilgilendirme-iletisim.html" class="detail-link">
+Detaylar →
+</a>
 
-    <div class="institution-card">
+</article>
 
-      <h3>Kamu Hizmetlerinde Etkinlik</h3>
 
-      <p>
-        Kamu hizmetlerinin vatandaşlara ulaşma
-        süreçlerinin değerlendirilmesi.
-      </p>
+<!-- 06 -->
 
-      <a
-        class="detail-button"
-        href="https://sahinuymazgithub.io/kamu-hizmetlerinde-etkinlik.html">
+<article class="area-card">
 
-        Detaylar →
+<div class="area-number">06</div>
 
-      </a>
+<div class="area-icon">
+<i class="fa-solid fa-file-lines"></i>
+</div>
 
-    </div>
+<h3>
+Takip ve Raporlama
+</h3>
 
+<p>
+İncelenen konuların gelişimini takip etmek ve
+elde edilen sonuçları düzenlemek.
+</p>
 
-    <!-- 07 -->
+<a href="https://sahinuymazgithub.io/takip-raporlama.html" class="detail-link">
+Detaylar →
+</a>
 
-    <div class="institution-card">
+</article>
 
-      <h3>Saha Gözlemleri</h3>
 
-      <p>
-        Yerinde inceleme ve saha verilerinin
-        analiz edilmesi.
-      </p>
+</div>
 
-      <a
-        class="detail-button"
-        href="https://sahinuymazgithub.io/saha-gozlemleri.html">
-
-        Detaylar →
-
-      </a>
-
-    </div>
-
-
-    <!-- 08 -->
-
-    <div class="institution-card">
-
-      <h3>Politika Değerlendirmeleri</h3>
-
-      <p>
-        Uygulanan politikaların sonuçlarının
-        incelenmesi.
-      </p>
-
-      <a
-        class="detail-button"
-        href="https://sahinuymazgithub.io/politika-degerlendirmeleri.html">
-
-        Detaylar →
-
-      </a>
-
-    </div>
-
-
-  </div>
+</div>
 
 </section>
 
 
-<!-- =========================================================
-     BİR KONU NASIL İNCELENİR?
-========================================================= -->
+<!-- =====================================================
+     ÖNE ÇIKAN ÇALIŞMALAR
+===================================================== -->
 
-<section class="section">
+<section id="calismalar" class="section featured">
 
-  <h2 class="section-title">
-    Bir Konuyu Nasıl İnceliyorum
-  </h2>
+<div class="section-inner">
 
-  <div class="process-grid">
+<div class="section-title">
 
+<h2>
+Öne Çıkan Çalışmalar
+</h2>
 
-    <div class="process-card">
+<p>
+Araştırma ve saha çalışmalarından seçilmiş başlıklar
+</p>
 
-      <div class="process-logo"></div>
-
-      <h3>Not Alma</h3>
-
-      <p>
-        İlgilendiğim konuyu ilk fark ettiğimde
-        kısa notlar alırım.
-      </p>
-
-    </div>
+</div>
 
 
-    <div class="process-card">
-
-      <div class="process-logo"></div>
-
-      <h3>İnceleme</h3>
-
-      <p>
-        Konuyla ilgili mevcut bilgileri
-        gözden geçiririm.
-      </p>
-
-    </div>
+<div class="horizontal-scroll">
 
 
-    <div class="process-card">
+<article class="work-card">
 
-      <div class="process-logo"></div>
+<img src="calisma1.jpg"
+alt="Kamu politikaları çalışması">
 
-      <h3>Araştırma</h3>
+<div class="work-content">
 
-      <p>
-        Gerektiğinde daha derin araştırma
-        yaparım.
-      </p>
+<h3>
+Kamu Politikaları Analizi
+</h3>
 
-    </div>
+<p>
+Politika uygulamalarının etkileri ve geliştirilmesi
+gereken alanlar üzerine inceleme.
+</p>
 
+<a href="https://sahinuymazgithub.io/kamu-politikalari.html"
+class="detail-link">
+Detaylar →
+</a>
 
-    <div class="process-card">
+</div>
 
-      <div class="process-logo"></div>
-
-      <h3>Özetleme</h3>
-
-      <p>
-        Sonuçları kendi notlarım için
-        özetlerim.
-      </p>
-
-    </div>
+</article>
 
 
-  </div>
+<article class="work-card">
+
+<img src="calisma2.jpg"
+alt="Kurum incelemeleri">
+
+<div class="work-content">
+
+<h3>
+Kurum İncelemeleri
+</h3>
+
+<p>
+Kamu hizmetlerinin işleyişi üzerine yapılan
+inceleme çalışmaları.
+</p>
+
+<a href="https://sahinuymazgithub.io/kamu-kurumlari.html"
+class="detail-link">
+Detaylar →
+</a>
+
+</div>
+
+</article>
+
+
+<article class="work-card">
+
+<img src="calisma3.jpg"
+alt="Toplumsal araştırmalar">
+
+<div class="work-content">
+
+<h3>
+Toplumsal Araştırmalar
+</h3>
+
+<p>
+Saha verileri ve vatandaş deneyimleri üzerine
+araştırmalar.
+</p>
+
+<a href="https://sahinuymazgithub.io/arastirma-degerlendirme.html"
+class="detail-link">
+Detaylar →
+</a>
+
+</div>
+
+</article>
+
+
+</div>
+
+</div>
 
 </section>
 
 
-<!-- =========================================================
+<!-- =====================================================
+     GÜNCEL ARAŞTIRMALAR
+===================================================== -->
+
+<section id="arastirmalar" class="section research">
+
+<div class="section-inner">
+
+<div class="section-title">
+
+<h2>
+Güncel Araştırmalar
+</h2>
+
+<p>
+Devam eden araştırma ve değerlendirme çalışmaları
+</p>
+
+</div>
+
+
+<div class="research-grid">
+
+
+<article class="research-card">
+
+<h3>
+Kamu Hizmetlerinde Etkinlik
+</h3>
+
+<p>
+Kamu hizmetlerinin vatandaşlara ulaşma süreçlerinin
+değerlendirilmesi.
+</p>
+
+<a href="https://sahinuymazgithub.io/kamu-hizmetleri-izleme.html"
+class="detail-link">
+Detaylar →
+</a>
+
+</article>
+
+
+<article class="research-card">
+
+<h3>
+Saha Gözlemleri
+</h3>
+
+<p>
+Yerinde inceleme ve saha verilerinin analiz edilmesi.
+</p>
+
+<a href="https://sahinuymazgithub.io/arastirma-degerlendirme.html"
+class="detail-link">
+Detaylar →
+</a>
+
+</article>
+
+
+<article class="research-card">
+
+<h3>
+Politika Değerlendirmeleri
+</h3>
+
+<p>
+Uygulanan politikaların sonuçlarının incelenmesi.
+</p>
+
+<a href="https://sahinuymazgithub.io/kamu-politikalari.html"
+class="detail-link">
+Detaylar →
+</a>
+
+</article>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     ÇALIŞMA SÜRECİ
+===================================================== -->
+
+<section class="section process">
+
+<div class="section-inner">
+
+<div class="section-title center">
+
+<h2>
+Çalışma Sürecimiz
+</h2>
+
+<p>
+Bir konunun araştırılmasından raporlanmasına kadar
+izlenen temel süreç.
+</p>
+
+</div>
+
+
+<div class="process-grid">
+
+
+<div class="process-item">
+
+<div class="process-number">
+01
+</div>
+
+<h3>
+Konunun Belirlenmesi
+</h3>
+
+<p>
+Sorun ve araştırma alanı belirlenir.
+</p>
+
+</div>
+
+
+<div class="process-item">
+
+<div class="process-number">
+02
+</div>
+
+<h3>
+Araştırma ve İnceleme
+</h3>
+
+<p>
+Bilgi, belge ve uygulamalar incelenir.
+</p>
+
+</div>
+
+
+<div class="process-item">
+
+<div class="process-number">
+03
+</div>
+
+<h3>
+Görüşme ve Yazışma
+</h3>
+
+<p>
+Gerekli kişi ve kurumlarla iletişim kurulur.
+</p>
+
+</div>
+
+
+<div class="process-item">
+
+<div class="process-number">
+04
+</div>
+
+<h3>
+Değerlendirme
+</h3>
+
+<p>
+Elde edilen bilgiler analiz edilir.
+</p>
+
+</div>
+
+
+<div class="process-item">
+
+<div class="process-number">
+05
+</div>
+
+<h3>
+Raporlama
+</h3>
+
+<p>
+Sonuçlar düzenlenerek rapor haline getirilir.
+</p>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     ARAŞTIR - İZLE - DEĞERLENDİR
+===================================================== -->
+
+<section class="section approach">
+
+<div class="section-inner">
+
+<div class="section-title center">
+
+<h2>
+Çalışma Yaklaşımımız
+</h2>
+
+<p>
+Bilgiye ulaşma, sahayı izleme ve sonuçları değerlendirme.
+</p>
+
+</div>
+
+
+<div class="approach-grid">
+
+
+<div class="approach-card">
+
+<strong>
+ARAŞTIR
+</strong>
+
+<span>
+Kamu politikaları ve kamu hizmetleri hakkında
+bilgi toplamak ve incelemek.
+</span>
+
+</div>
+
+
+<div class="approach-card">
+
+<strong>
+İZLE
+</strong>
+
+<span>
+Uygulamaları, hizmetleri ve ortaya çıkan sorunları
+takip etmek.
+</span>
+
+</div>
+
+
+<div class="approach-card">
+
+<strong>
+DEĞERLENDİR
+</strong>
+
+<span>
+Elde edilen bilgileri incelemek ve değerlendirmek.
+</span>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     SAHA ZİYARETLERİ
+===================================================== -->
+
+<section id="ziyaretler" class="section visits">
+
+<div class="section-inner">
+
+<div class="section-title">
+
+<h2>
+Saha Ziyaretleri ve Çalışmalar
+</h2>
+
+<p>
+Gerçekleştirilen ziyaretler ve inceleme çalışmalarından
+görüntüler.
+</p>
+
+</div>
+
+
+<div class="visit-window">
+
+<div class="visit-track">
+
+
+<!-- SET 1 -->
+
+<article class="visit-card">
+
+<img src="ziyaret1.jpg"
+alt="Kurum ziyareti">
+
+<div class="visit-content">
+
+<h3>
+Kurum Ziyareti
+</h3>
+
+<div class="visit-date">
+15 Ağustos 2026
+</div>
+
+<p>
+Kamu hizmetlerinin yerinde incelenmesi,
+görüşmeler ve değerlendirmeler.
+</p>
+
+</div>
+
+</article>
+
+
+<article class="visit-card">
+
+<img src="ziyaret2.jpg"
+alt="Saha araştırması">
+
+<div class="visit-content">
+
+<h3>
+Saha Araştırması
+</h3>
+
+<div class="visit-date">
+02 Eylül 2026
+</div>
+
+<p>
+Toplumsal ihtiyaçların belirlenmesi amacıyla
+gerçekleştirilen saha çalışması.
+</p>
+
+</div>
+
+</article>
+
+
+<article class="visit-card">
+
+<img src="ziyaret3.jpg"
+alt="Değerlendirme toplantısı">
+
+<div class="visit-content">
+
+<h3>
+Değerlendirme Toplantısı
+</h3>
+
+<div class="visit-date">
+20 Eylül 2026
+</div>
+
+<p>
+Uzman görüşleri ve değerlendirme toplantısı.
+</p>
+
+</div>
+
+</article>
+
+
+<article class="visit-card">
+
+<img src="ziyaret4.jpg"
+alt="Yeni ziyaret">
+
+<div class="visit-content">
+
+<h3>
+Yeni Ziyaret
+</h3>
+
+<div class="visit-date">
+Yeni Tarih
+</div>
+
+<p>
+Yeni saha çalışması ve ziyaret açıklaması
+buraya eklenebilir.
+</p>
+
+</div>
+
+</article>
+
+
+<!-- SET 2
+     AKIŞIN KESİLMEMESİ İÇİN TEKRAR -->
+
+<article class="visit-card">
+
+<img src="ziyaret1.jpg"
+alt="Kurum ziyareti">
+
+<div class="visit-content">
+
+<h3>
+Kurum Ziyareti
+</h3>
+
+<div class="visit-date">
+15 Ağustos 2026
+</div>
+
+<p>
+Kamu hizmetlerinin yerinde incelenmesi,
+görüşmeler ve değerlendirmeler.
+</p>
+
+</div>
+
+</article>
+
+
+<article class="visit-card">
+
+<img src="ziyaret2.jpg"
+alt="Saha araştırması">
+
+<div class="visit-content">
+
+<h3>
+Saha Araştırması
+</h3>
+
+<div class="visit-date">
+02 Eylül 2026
+</div>
+
+<p>
+Toplumsal ihtiyaçların belirlenmesi amacıyla
+gerçekleştirilen saha çalışması.
+</p>
+
+</div>
+
+</article>
+
+
+<article class="visit-card">
+
+<img src="ziyaret3.jpg"
+alt="Değerlendirme toplantısı">
+
+<div class="visit-content">
+
+<h3>
+Değerlendirme Toplantısı
+</h3>
+
+<div class="visit-date">
+20 Eylül 2026
+</div>
+
+<p>
+Uzman görüşleri ve değerlendirme toplantısı.
+</p>
+
+</div>
+
+</article>
+
+
+<article class="visit-card">
+
+<img src="ziyaret4.jpg"
+alt="Yeni ziyaret">
+
+<div class="visit-content">
+
+<h3>
+Yeni Ziyaret
+</h3>
+
+<div class="visit-date">
+Yeni Tarih
+</div>
+
+<p>
+Yeni saha çalışması ve ziyaret açıklaması
+buraya eklenebilir.
+</p>
+
+</div>
+
+</article>
+
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     AYŞE CANLI ASİSTAN
+===================================================== -->
+
+<div
+id="aysePanel"
+class="ayse-panel"
+aria-hidden="true">
+
+
+<div class="ayse-header">
+
+<div class="ayse-info">
+
+<img src="ayse.jpg"
+class="ayse-photo"
+alt="Ayşe canlı asistan">
+
+<div>
+
+<h3>
+Ayşe
+</h3>
+
+<div class="ayse-online">
+● Çevrimiçi
+</div>
+
+</div>
+
+</div>
+
+
+<button
+class="ayse-close"
+onclick="ayseKapat()"
+aria-label="Sohbeti kapat">
+
+×
+
+</button>
+
+</div>
+
+
+<div
+id="chatArea"
+class="chat-area">
+
+
+<div class="message ayse">
+
+Merhaba, ben Ayşe.
+<br><br>
+Size nasıl yardımcı olabilirim?
+
+</div>
+
+
+<div
+id="typing"
+class="typing">
+
+Ayşe yazıyor
+<span>●</span>
+<span>●</span>
+<span>●</span>
+
+</div>
+
+
+</div>
+
+
+<form
+class="chat-form"
+onsubmit="mesajGonder(event)">
+
+<input
+id="chatInput"
+type="text"
+autocomplete="off"
+placeholder="Ayşe'ye mesaj yazın...">
+
+<button
+type="submit"
+aria-label="Mesaj gönder">
+
+<i class="fa-solid fa-paper-plane"></i>
+
+</button>
+
+</form>
+
+</div>
+
+
+<!-- AYŞE AÇMA BUTONU -->
+
+<button
+class="ayse-launcher"
+onclick="ayseAc()"
+aria-label="Ayşe canlı asistanı aç">
+
+
+<img
+src="ayse.jpg"
+class="ayse-photo-small"
+alt="Ayşe">
+
+
+<div class="ayse-launcher-text">
+
+<strong>
+Ayşe
+</strong>
+
+<small>
+Canlı Asistan
+</small>
+
+</div>
+
+</button>
+
+
+<!-- =====================================================
+     YETKİLİ GİRİŞ FORMU
+     
+     ŞİMDİLİK AKTİF DEĞİL.
+===================================================== -->
+
+<div
+id="yetkiFormu"
+class="auth-overlay">
+
+
+<div class="auth-box">
+
+<h2>
+Özel Site Girişi
+</h2>
+
+<p>
+Bu site özel bir çalışma alanıdır.
+Siteye giriş yetkisi bulunan ziyaretçilerimiz
+giriş yapabilir.
+</p>
+
+
+<form onsubmit="basvuruGonder(event)">
+
+
+<input
+class="auth-input"
+id="adSoyad"
+type="text"
+placeholder="Ad Soyad"
+required>
+
+
+<input
+class="auth-input"
+id="email"
+type="email"
+placeholder="Gerçek e-posta adresiniz"
+required>
+
+
+<input
+class="auth-input"
+id="telefon"
+type="tel"
+placeholder="Telefon numaranız"
+required>
+
+
+<button
+class="auth-button"
+type="submit">
+
+Giriş Yap
+
+</button>
+
+</form>
+
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
      FOOTER
-========================================================= -->
+===================================================== -->
 
-<footer class="site-footer">
+<footer>
 
-  <div class="footer-bottom">
+<div class="footer-inner">
 
-    <p>KİŞİSEL SAYFA</p>
 
-    <p>
-      Bu sayfadaki içerikler kişisel notlarımdır,
-      başka platformlarda izinsiz kullanılmamasını rica ederim.
-    </p>
+<div>
 
-    <p>
-      ©2001 Şahin UYMAZ· Kişisel Çalışma Günlüğü
-    </p>
+<h3>
+Mustafa Yılmaz
+</h3>
 
-  </div>
+<p>
+Kamu Politikaları • Kamu Hizmetleri
+<br>
+Araştırma ve İzleme
+</p>
+
+</div>
+
+
+<div>
+
+<h3>
+Çalışma Alanları
+</h3>
+
+<ul>
+
+<li>Kamu Politikaları</li>
+
+<li>Kamu Kurumları ve Hizmetleri</li>
+
+<li>Kamu Hizmetlerinde İzleme</li>
+
+<li>Araştırma ve Değerlendirme</li>
+
+</ul>
+
+</div>
+
+
+<div>
+
+<h3>
+Bilgilendirme
+</h3>
+
+<ul>
+
+<li>Gizlilik Politikası</li>
+
+<li>KVKK</li>
+
+<li>Telif Hakları</li>
+
+</ul>
+
+</div>
+
+
+</div>
+
+
+<div class="footer-bottom">
+
+© 2026 Mustafa Yılmaz.
+Tüm hakları saklıdır.
+
+</div>
 
 </footer>
 
 
-<!-- =========================================================
-     SOHBET ASİSTANI
-========================================================= -->
-
-<div
-  class="assistant-button"
-  onclick="assistantOpen()">
-
-  💬 Sohbet Asistanı
-
-</div>
-
-
-<div
-  class="assistant-box"
-  id="assistantBox">
-
-  <h3>Sohbet Asistanı</h3>
-
-  <p class="assistant-sub">
-    Otomatik yanıt verir, mesajınızı iletir.
-  </p>
-
-  <input
-    type="text"
-    id="assistantInput"
-    placeholder="Mesajınızı yazın">
-
-  <button onclick="assistantSend()">
-    Gönder
-  </button>
-
-  <div
-    class="assistant-reply"
-    id="assistantReply">
-  </div>
-
-</div>
-
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
 
 <script>
 
-/* =========================================================
-   BASİT ERİŞİM KAPISI
-========================================================= */
 
-const SITE_PASSWORD = "yaallahbismillah";
+/* =====================================================
+   AYŞE
+===================================================== */
 
-function gateCheck(){
+function ayseAc(){
 
-  const input =
-    document.getElementById("gateInput");
+    const panel =
+        document.getElementById("aysePanel");
 
-  const error =
-    document.getElementById("gateError");
+    panel.classList.add("open");
 
-  if(input.value === SITE_PASSWORD){
-
-    document.body.classList.remove("locked");
-
-    document.getElementById("gateScreen")
-      .style.display = "none";
-
-    sessionStorage.setItem(
-      "site_unlocked",
-      "1"
+    panel.setAttribute(
+        "aria-hidden",
+        "false"
     );
 
-  }else{
+    setTimeout(() => {
 
-    error.textContent =
-      "Parola hatalı, tekrar deneyin.";
+        document
+        .getElementById("chatInput")
+        .focus();
 
-  }
-
-}
-
-
-if(
-  sessionStorage.getItem("site_unlocked") === "1"
-){
-
-  document.body.classList.remove("locked");
-
-  document.getElementById("gateScreen")
-    .style.display = "none";
+    },250);
 
 }
 
 
-document
-  .getElementById("gateInput")
-  .addEventListener("keydown",function(e){
+function ayseKapat(){
 
-    if(e.key === "Enter"){
-      gateCheck();
+    const panel =
+        document.getElementById("aysePanel");
+
+    panel.classList.remove("open");
+
+    panel.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+}
+
+
+/* =====================================================
+   AYŞE - ŞİMDİLİK YEREL DEMO CEVAP SİSTEMİ
+   GERÇEK YAPAY ZEKA BAĞLANTISI DAHA SONRA EKLENECEK
+===================================================== */
+
+function ayseCevapla(mesaj){
+
+    const m =
+        mesaj.toLocaleLowerCase("tr-TR");
+
+
+    if(
+        m.includes("merhaba") ||
+        m.includes("selam") ||
+        m.includes("iyi günler")
+    ){
+
+        return "Merhaba, hoş geldiniz. Ben Ayşe. Size nasıl yardımcı olabilirim?";
+
     }
 
-  });
+
+    if(
+        m.includes("kamu politik") ||
+        m.includes("politika")
+    ){
+
+        return "Kamu politikaları ve uygulamaları üzerine araştırma, izleme ve değerlendirme çalışmaları yürütüyoruz. Dilerseniz bu alandaki çalışmalarımızı inceleyebilirsiniz.";
+
+    }
 
 
-/* =========================================================
-   SOHBET ASİSTANI
-========================================================= */
+    if(
+        m.includes("kamu hizmet") ||
+        m.includes("hizmet")
+    ){
 
-function assistantOpen(){
+        return "Kamu hizmetlerinin uygulanma süreçlerini, vatandaşlara ulaşmasını ve geliştirilmesi gereken alanları izliyoruz.";
 
-  var box =
-    document.getElementById("assistantBox");
+    }
 
-  box.style.display =
-    (box.style.display === "block")
-      ? "none"
-      : "block";
+
+    if(
+        m.includes("araştırma") ||
+        m.includes("inceleme")
+    ){
+
+        return "Araştırmalarımızda bilgi ve belgeleri inceliyor, gerektiğinde saha çalışmaları ve görüşmeler gerçekleştiriyor ve elde edilen bilgileri değerlendiriyoruz.";
+
+    }
+
+
+    if(
+        m.includes("ziyaret") ||
+        m.includes("saha")
+    ){
+
+        return "Saha ziyaretleri ve yerinde incelemeler, çalışmalarımızın önemli bir bölümünü oluşturuyor. Saha çalışmalarımızı ilgili bölümden takip edebilirsiniz.";
+
+    }
+
+
+    if(
+        m.includes("makale") ||
+        m.includes("çalışma")
+    ){
+
+        return "Çalışma alanlarımızın her biri için ayrıntılı makaleler hazırlıyoruz. İlgilendiğiniz konunun üzerindeki “Detaylar” bağlantısından ilgili makaleye ulaşabilirsiniz.";
+
+    }
+
+
+    if(
+        m.includes("kim") ||
+        m.includes("mustafa")
+    ){
+
+        return "Mustafa Yılmaz'ın çalışma alanları; kamu politikaları, kamu hizmetleri, araştırma, izleme, değerlendirme ve raporlama çalışmalarından oluşmaktadır.";
+
+    }
+
+
+    return "Mesajınızı aldım. Konuyu daha iyi anlayabilmem için biraz daha ayrıntı verebilir misiniz? Size yardımcı olmaya çalışacağım.";
 
 }
 
 
-function assistantSend(){
+function mesajGonder(event){
 
-  var input =
-    document.getElementById("assistantInput");
-
-  var reply =
-    document.getElementById("assistantReply");
+    event.preventDefault();
 
 
-  if(input.value.trim() === ""){
+    const input =
+        document.getElementById("chatInput");
 
-    reply.textContent =
-      "Lütfen bir mesaj yazın.";
+    const chat =
+        document.getElementById("chatArea");
 
-    return;
+    const typing =
+        document.getElementById("typing");
 
-  }
+
+    const mesaj =
+        input.value.trim();
 
 
-  reply.textContent =
-    "Mesajınız alındı, teşekkürler.";
+    if(!mesaj)
+        return;
 
-  input.value = "";
+
+    const userMessage =
+        document.createElement("div");
+
+    userMessage.className =
+        "message user";
+
+    userMessage.textContent =
+        mesaj;
+
+
+    chat.insertBefore(
+        userMessage,
+        typing
+    );
+
+
+    input.value="";
+
+
+    typing.classList.add("show");
+
+
+    chat.scrollTop =
+        chat.scrollHeight;
+
+
+    const cevap =
+        ayseCevapla(mesaj);
+
+
+    const bekleme =
+        1200 +
+        Math.floor(Math.random()*1000);
+
+
+    setTimeout(() => {
+
+
+        typing.classList.remove("show");
+
+
+        const ayseMessage =
+            document.createElement("div");
+
+
+        ayseMessage.className =
+            "message ayse";
+
+
+        ayseMessage.textContent =
+            cevap;
+
+
+        chat.insertBefore(
+            ayseMessage,
+            typing
+        );
+
+
+        chat.scrollTop =
+            chat.scrollHeight;
+
+
+    },bekleme);
 
 }
+
+
+/* =====================================================
+   YETKİLİ GİRİŞ
+===================================================== */
+
+/*
+   ÇOK ÖNEMLİ:
+
+   false = sistem pasif
+   true  = sistem aktif
+
+   Site geliştirme süresince FALSE kalacak.
+*/
+
+const AUTH_ACTIVE = false;
+
+
+function basvuruGonder(event){
+
+    event.preventDefault();
+
+
+    /*
+       SMS VE E-POSTA BAĞLANTISI
+       SİTE TAMAMLANDIKTAN SONRA EKLENECEK.
+
+       Burada gerçek doğrulama yapılmıyor.
+    */
+
+
+    alert(
+        "Giriş sistemi şu anda geliştirme aşamasında."
+    );
+
+}
+
+
+/* =====================================================
+   YETKİ SİSTEMİ KONTROLÜ
+===================================================== */
+
+if(AUTH_ACTIVE){
+
+    document
+    .body
+    .classList
+    .add("auth-active");
+
+}
+
+
+/* =====================================================
+   ENTER İLE AYŞE MESAJI
+===================================================== */
+
+document
+.getElementById("chatInput")
+.addEventListener("keydown",function(event){
+
+    if(
+        event.key === "Enter" &&
+        !event.shiftKey
+    ){
+
+        event.preventDefault();
+
+        this
+        .closest("form")
+        .requestSubmit();
+
+    }
+
+});
+
 
 </script>
-
 
 </body>
 </html>
