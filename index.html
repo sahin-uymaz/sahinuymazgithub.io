@@ -189,9 +189,10 @@ body{
     background-size: cover;
     background-position: center;
     opacity: 0;
-    animation: heroFade 35s infinite;
+    animation: heroFade 42s infinite;
 }
 
+/* Görseller ve Gecikme Süreleri (42s Toplam Süre / 7s Slayt Başı) */
 .hero-slide:nth-child(1) {
     background-image: linear-gradient(rgba(4,20,38,.73), rgba(4,20,38,.78)), url("games/kamu.jpg");
     animation-delay: 0s;
@@ -199,33 +200,35 @@ body{
 
 .hero-slide:nth-child(2) {
     background-image: linear-gradient(rgba(4,20,38,.73), rgba(4,20,38,.78)), url("games/resim2.jpg");
-    animation-delay: 0s;
+    animation-delay: 7s;
 }
 
 .hero-slide:nth-child(3) {
     background-image: linear-gradient(rgba(4,20,38,.73), rgba(4,20,38,.78)), url("games/resim4.jpg");
-    animation-delay: 0s;
+    animation-delay: 14s;
 }
 
 .hero-slide:nth-child(4) {
     background-image: linear-gradient(rgba(4,20,38,.73), rgba(4,20,38,.78)), url("games/resim6.jpg");
-    animation-delay: 0s;
+    animation-delay: 21s;
 }
 
 .hero-slide:nth-child(5) {
     background-image: linear-gradient(rgba(4,20,38,.73), rgba(4,20,38,.78)), url("games/resim1.jpg");
-    animation-delay: 0s;
-}
-     .hero-slide:nth-child(6) {
-    background-image: linear-gradient(rgba(4,20,38,.73), rgba(4,20,38,.78)), url("games/resim5.jpg");
-    animation-delay: 0s;
+    animation-delay: 28s;
 }
 
+.hero-slide:nth-child(6) {
+    background-image: linear-gradient(rgba(4,20,38,.73), rgba(4,20,38,.78)), url("games/resim5.jpg");
+    animation-delay: 35s;
+}
+
+/* Arka Plan Görsel Geçişi (6 Slayt İçin Hesaplandı) */
 @keyframes heroFade {
     0% { opacity: 0; transform: scale(1.02); }
-    3% { opacity: 1; }
-    26% { opacity: 1; transform: scale(1.05); }
-    29% { opacity: 0; }
+    2.5% { opacity: 1; }
+    14% { opacity: 1; transform: scale(1.05); }
+    16.5% { opacity: 0; }
     100% { opacity: 0; }
 }
 
@@ -254,20 +257,23 @@ body{
     width: 100%;
     color: white;
     opacity: 0;
-    animation: contentFade 35s infinite;
+    animation: contentFade 42s infinite;
 }
 
+/* Metin Geçiş Gecikmeleri */
 .hero-inner:nth-child(1) { animation-delay: 0s; }
 .hero-inner:nth-child(2) { animation-delay: 7s; }
 .hero-inner:nth-child(3) { animation-delay: 14s; }
 .hero-inner:nth-child(4) { animation-delay: 21s; }
 .hero-inner:nth-child(5) { animation-delay: 28s; }
+.hero-inner:nth-child(6) { animation-delay: 35s; }
 
+/* Metin Geçiş Efekti (6 Slayt İçin Hesaplandı) */
 @keyframes contentFade {
     0% { opacity: 0; transform: translateY(15px); }
-    4% { opacity: 1; transform: translateY(0); }
-    16% { opacity: 1; transform: translateY(0); }
-    20% { opacity: 0; transform: translateY(-10px); }
+    3% { opacity: 1; transform: translateY(0); }
+    13.5% { opacity: 1; transform: translateY(0); }
+    16.5% { opacity: 0; transform: translateY(-10px); }
     100% { opacity: 0; }
 }
 
@@ -1066,16 +1072,16 @@ footer ul{
 <!-- =====================================================
      ANA SLIDER
 ===================================================== -->
-
 <section id="anasayfa" class="hero">
 
+  <!-- 6 Adet Arka Plan Slayt Görseli -->
   <div class="hero-slide"></div>
   <div class="hero-slide"></div>
   <div class="hero-slide"></div>
   <div class="hero-slide"></div>
   <div class="hero-slide"></div>
-  
-  <section class="hero">
+  <div class="hero-slide"></div>
+
   <div class="hero-content">
     <div class="hero-inner-wrapper">
 
@@ -1134,7 +1140,7 @@ footer ul{
         </div>
       </div>
 
-      <!-- Slayt 6 (Düzeltildi: Artık wrapper içinde) -->
+      <!-- Slayt 6 -->
       <div class="hero-inner">
         <div class="hero-label">ÖĞRENCİLERİN SORUNLARI VE BEKLENTİLERİ</div>
         <h2>Kamu ve Öğrenci Arasında Köprü</h2>
@@ -1145,9 +1151,11 @@ footer ul{
         </div>
       </div>
 
-    </div> <!-- .hero-inner-wrapper Sonu -->
-  </div> <!-- .hero-content Sonu -->
+    </div> <!-- .hero-inner-wrapper -->
+  </div> <!-- .hero-content -->
 </section>
+
+
         
 
 
