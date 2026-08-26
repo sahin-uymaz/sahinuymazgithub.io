@@ -1,17 +1,15 @@
 <!doctype html>
 <html lang="tr">
 <head>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <meta name="robots" content="noindex, nofollow, noarchive">
-
 <meta name="description" content="Kamu Hizmetleri - Şahin UYMAZ">
 
 <title>Kamu Hizmetleri | Şahin UYMAZ</title>
 
 <style>
-
 :root{
   --bg:#14181f;
   --panel:#1b212b;
@@ -20,6 +18,7 @@
   --muted:#b8bdc5;
   --gold:#c9a227;
   --red:#9e1c1c;
+  --blue:#2563eb;
   --border:rgba(255,255,255,.10);
 }
 
@@ -40,89 +39,118 @@ a{
   text-decoration:none;
 }
 
-
 /* =========================
-   HEADER
+   HEADER (ÜST ALAN)
 ========================= */
 
-.site-header{
-  background:#0c0f14;
-  border-bottom:1px solid var(--border);
-  padding:20px 30px;
-  text-align:center;
-  position:sticky;
-  top:0;
-  z-index:100;
+.site-header {
+  background: #0c0f14;
+  border-bottom: 1px solid var(--border);
+  padding: 12px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
-.brand{
-  font-size:24px;
-  font-weight:800;
-  color:#fff;
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
-.brand span{
-  display:block;
-  margin-top:5px;
-  color:var(--muted);
-  font-size:12px;
-  font-weight:400;
+.site-logo {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  margin: 0;
+  border-radius: 50%;
 }
 
-.site-nav{
-  display:flex;
-  justify-content:center;
-  gap:25px;
-  margin-top:15px;
-  flex-wrap:wrap;
+/* LOGO YANINDAKİ YANIP SÖNEN İSİM */
+.brand-title-animated {
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: 1px;
 }
 
-.site-nav a{
-  font-size:14px;
-  color:#ddd;
-  padding-bottom:4px;
-  border-bottom:2px solid transparent;
+.brand-title-animated .sahin {
+  color: #168cff;
+  animation: sahinMavi 2s ease-in-out infinite;
 }
 
-.site-nav a:hover,
-.site-nav a.active{
-  color:#fff;
-  border-bottom-color:var(--red);
+.brand-title-animated .uymaz {
+  color: #ffffff;
+  animation: uymazBeyaz 2s ease-in-out infinite;
 }
 
+@keyframes sahinMavi {
+  0%, 100% { color: #168cff; opacity: .45; text-shadow: 0 0 4px rgba(22,140,255,.3); }
+  50% { color: #168cff; opacity: 1; text-shadow: 0 0 8px rgba(22,140,255,.9), 0 0 18px rgba(22,140,255,.6); }
+}
+
+@keyframes uymazBeyaz {
+  0%, 100% { color: #ffffff; opacity: 1; text-shadow: 0 0 8px rgba(255,255,255,.8), 0 0 18px rgba(255,255,255,.4); }
+  50% { color: #ffffff; opacity: .45; text-shadow: 0 0 4px rgba(255,255,255,.25); }
+}
+
+/* ANA SAYFAYA DÖN BUTONU */
+.btn-home {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  padding: 8px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  border: 1px solid var(--border);
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-home:hover {
+  background: var(--red);
+  border-color: var(--red);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(158, 28, 28, 0.4);
+}
 
 /* =========================
-   ANA İÇERİK
+   MAKALE ALANI
 ========================= */
 
 .article-container{
   width:100%;
   max-width:900px;
   margin:0 auto;
-  padding:60px 25px 80px;
+  padding:40px 25px 50px;
 }
 
 .article-header{
   text-align:center;
-  margin-bottom:45px;
+  margin-bottom:35px;
 }
 
 .article-header h1{
   margin:0;
-  font-size:38px;
+  font-size:36px;
   color:#fff;
   line-height:1.25;
 }
 
 .article-header .subtitle{
-  margin-top:15px;
+  margin:15px auto 0;
+  max-width:720px;
   color:var(--muted);
   font-size:15px;
+  line-height:1.7;
 }
 
-
 /* =========================
-   MAKALE
+   MAKALE İÇERİĞİ
 ========================= */
 
 .article{
@@ -133,16 +161,14 @@ a{
   box-shadow:0 15px 35px rgba(0,0,0,.25);
 }
 
-.article h2{
-  color:#fff;
-  font-size:24px;
-  margin:0 0 18px;
-}
-
 .article h3{
   color:#fff;
   font-size:19px;
   margin:32px 0 12px;
+}
+
+.article h3:first-of-type {
+  margin-top: 10px;
 }
 
 .article p{
@@ -161,26 +187,15 @@ a{
   margin-bottom:10px;
 }
 
-
 /* =========================
-   ALT BİLGİ
+   SAYFA ALTI VE YASAL UYARI KART
 ========================= */
 
-.article-bottom{
-  margin-top:45px;
-  padding-top:25px;
-  border-top:1px solid var(--border);
-}
-
-.publication-date{
-  font-size:16px;
-  font-weight:700;
-  color:#fff;
-  margin-bottom:20px;
-}
-
-.publication-date strong{
-  color:var(--gold);
+.site-bottom-section {
+  width: 100%;
+  max-width: 900px;
+  margin: 30px auto 0;
+  padding: 0 25px;
 }
 
 .legal-warning{
@@ -188,154 +203,116 @@ a{
   border:1px solid rgba(201,162,39,.45);
   border-left:5px solid var(--gold);
   border-radius:10px;
-  padding:20px 22px;
+  padding:18px 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,.2);
 }
 
 .legal-warning-title{
-  font-size:16px;
+  font-size:15px;
   font-weight:800;
   color:#fff;
-  margin-bottom:8px;
+  margin-bottom:6px;
 }
 
 .legal-warning p{
   margin:0;
   color:#e3e3e3;
-  font-size:15px;
-  line-height:1.7;
+  font-size:14px;
+  line-height:1.6;
 }
 
+/* FOOTER YAZILARI VE YAYIN TARİHİ */
+.site-footer {
+  text-align: center;
+  padding: 25px 15px;
+  margin-top: 40px;
+  background: #0c0f14;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+}
+
+.publication-date-footer {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.publication-date-footer strong {
+  color: var(--gold);
+}
+
+.footer-copyright {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
 
 /* =========================
-   FOOTER
-========================= */
-
-.site-footer{
-  background:#0c0f14;
-  border-top:1px solid var(--border);
-  padding:30px 20px;
-  text-align:center;
-}
-
-.site-footer p{
-  margin:5px 0;
-  color:var(--muted);
-  font-size:12.5px;
-}
-
-.site-footer p:first-child{
-  color:var(--gold);
-  font-weight:700;
-}
-
-
-/* =========================
-   MOBİL
+   MOBİL UYUM
 ========================= */
 
 @media(max-width:600px){
-
-  .site-header{
-    padding:16px 15px;
+  .site-header {
+    padding: 12px 15px;
   }
-
-  .brand{
-    font-size:21px;
+  .brand-title-animated {
+    font-size: 15px;
   }
-
-  .site-nav{
-    gap:14px;
+  .btn-home {
+    padding: 6px 12px;
+    font-size: 12px;
   }
-
-  .site-nav a{
-    font-size:13px;
-  }
-
   .article-container{
-    padding:40px 15px 60px;
+    padding:25px 15px 30px;
   }
-
   .article-header h1{
-    font-size:29px;
+    font-size:26px;
   }
-
   .article{
-    padding:25px 20px;
+    padding:25px 18px;
   }
-
-  .article h2{
-    font-size:21px;
+  .site-bottom-section {
+    padding: 0 15px;
   }
-
-  .article h3{
-    font-size:18px;
-  }
-
-  .article p,
-  .article ul{
-    font-size:15px;
-  }
-
-  .publication-date{
-    font-size:15px;
-  }
-
-  .legal-warning{
-    padding:17px 18px;
-  }
-
-  .legal-warning p{
-    font-size:14px;
-  }
-
 }
-
 </style>
-</head>
 
+</head>
 <body>
 
-
-<!-- =========================
-     HEADER
-========================= -->
-
+<!-- HEADER -->
 <header class="site-header">
+  
+  <!-- LOGO VE YANIP SÖNEN İSİM -->
+  <a href="index.html" class="brand-area" aria-label="Ana Sayfa">
+    <img src="games/logo5.png" alt="Kamu Politikaları Mührü" class="site-logo">
+    <div class="brand-title-animated">
+      <span class="sahin">ŞAHİN</span>
+      <span class="uymaz">UYMAZ</span>
+    </div>
+  </a>
 
-  <div class="brand">
-    Mustafa YILMAZ
-    <span>Kamu Politikaları • Kamu Hizmetleri • Araştırma ve İzleme</span>
-  </div>
-
-  <nav class="site-nav">
-    <a href="index.html">Ana Sayfa</a>
-    <a href="kamu-politikalari.html">Kamu Politikaları</a>
-    <a href="kamu-hizmetleri.html" class="active">Kamu Hizmetleri</a>
-  </nav>
+  <!-- ANA SAYFAYA DÖN BUTONU -->
+  <a href="index.html" class="btn-home">
+    ← Ana Sayfa
+  </a>
 
 </header>
 
-
-<!-- =========================
-     MAKALE
-========================= -->
-
+<!-- ANA İÇERİK -->
 <main class="article-container">
-
+  
   <header class="article-header">
-
     <h1>Kamu Hizmetleri</h1>
-
     <div class="subtitle">
       Kamu hizmetlerinin işleyişi, uygulanması ve vatandaşlara yansıyan yönleri üzerine araştırma ve değerlendirmeler.
     </div>
-
   </header>
 
-
   <article class="article">
-
-    <h2>Kamu Hizmetleri</h2>
 
     <p>
       Kamu hizmetleri, toplumun ortak ihtiyaçlarının karşılanması amacıyla
@@ -351,26 +328,22 @@ a{
     </p>
 
     <h3>Kamu Hizmetlerinin Temel Amacı</h3>
-
     <p>
       Kamu hizmetlerinin temel amacı, toplumun ihtiyaçlarını karşılamak,
       vatandaşların yaşam koşullarını geliştirmek ve kamu kaynaklarının
       toplum yararına kullanılmasını sağlamaktır.
     </p>
-
     <p>
       Bu nedenle hizmetlerin erişilebilir, düzenli, şeffaf ve ihtiyaçlara
       cevap verebilir nitelikte olması önem taşır.
     </p>
 
     <h3>Hizmetlerin Uygulanması</h3>
-
     <p>
       Kamu hizmetlerinin uygulanmasında kurumların görev ve sorumlulukları,
       mevcut kaynaklar, mevzuat, personel yapısı ve vatandaşların ihtiyaçları
       birlikte değerlendirilmelidir.
     </p>
-
     <p>
       Sahadaki uygulamalar ile hizmetlerin planlanma biçimi arasında
       farklılıklar ortaya çıkabileceğinden, uygulamaların izlenmesi ve
@@ -379,7 +352,6 @@ a{
     </p>
 
     <h3>Vatandaş Açısından Kamu Hizmetleri</h3>
-
     <p>
       Bir kamu hizmetinin başarısı yalnızca kurum açısından değil,
       hizmetten yararlanan vatandaş açısından da değerlendirilmelidir.
@@ -387,62 +359,37 @@ a{
       vatandaşların karşılaştığı sorunlar bu değerlendirmelerin önemli
       unsurlarıdır.
     </p>
-
     <p>
       Bu çalışma alanında kamu hizmetlerinin vatandaşlara yansıyan
       yönlerinin araştırılması, sahadaki uygulamaların izlenmesi ve
       tespit edilen konuların değerlendirilmesi amaçlanmaktadır.
     </p>
 
-
-    <!-- =========================
-         ALT BİLGİ
-    ========================= -->
-
-    <div class="article-bottom">
-
-      <div class="publication-date">
-        <strong>Yayın Tarihi:</strong> 15 Nisan 2003
-      </div>
-
-      <div class="legal-warning">
-
-        <div class="legal-warning-title">
-          YASAL UYARI
-        </div>
-
-        <p>
-          Bu sayfada yer alan içeriklerin izinsiz olarak kopyalanması,
-          çoğaltılması veya paylaşılması hukuki sorumluluk doğurabilir.
-          İçeriklerin izinsiz kullanılması halinde ilgili mevzuat kapsamında
-          yasal haklarımız saklıdır.
-        </p>
-
-      </div>
-
-    </div>
-
   </article>
 
 </main>
 
+<!-- SAYFA ALTI YASAL UYARI KARTI -->
+<div class="site-bottom-section">
+  <div class="legal-warning">
+    <div class="legal-warning-title">YASAL UYARI</div>
+    <p>
+      Bu sayfada yer alan içeriklerin izinsiz olarak kopyalanması,
+      çoğaltılması veya paylaşılması hukuki sorumluluk doğurabilir.
+      İçeriklerin izinsiz kullanılması halinde ilgili mevzuat kapsamında
+      yasal haklarımız saklıdır.
+    </p>
+  </div>
+</div>
 
-<!-- =========================
-     FOOTER
-========================= -->
-
+<!-- FOOTER BÖLÜMÜ -->
 <footer class="site-footer">
-
-  <p>Şahin UYMAZ</p>
-
-  <p>
-    Kamu Politikaları • Kamu Hizmetleri • Araştırma ve İzleme
-  </p>
-
-  <p>
-    © Şahin UYMAZ
-  </p>
-
+  <div class="publication-date-footer">
+    <strong>Yayın Tarihi:</strong> 15 Nisan 2003
+  </div>
+  <div class="footer-copyright">
+    @ Kamu Politikaları Hizmet Araştırmaları
+  </div>
 </footer>
 
 </body>
