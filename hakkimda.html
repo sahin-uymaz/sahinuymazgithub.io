@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Hakkımda | Şahin Uymaz</title>
+
+<meta name="description" content="Şahin Uymaz hakkında bilgiler, çalışma alanları, mesleki geçmişi, araştırma ve izleme çalışmaları.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:"Inter",sans-serif;
+    background:#f5f7fa;
+    color:#172033;
+    line-height:1.7;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.site-header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:rgba(255,255,255,.94);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid rgba(15,23,42,.08);
+}
+
+.header-inner{
+    max-width:1180px;
+    margin:auto;
+    padding:16px 25px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.site-logo{
+    font-size:25px;
+    font-weight:800;
+    letter-spacing:2px;
+    color:#163a70;
+}
+
+.site-logo span{
+    color:#d39b28;
+}
+
+.site-nav{
+    display:flex;
+    gap:25px;
+    align-items:center;
+}
+
+.site-nav a{
+    text-decoration:none;
+    color:#26344d;
+    font-size:14px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.site-nav a:hover{
+    color:#2563eb;
+}
+
+.home-btn{
+    padding:9px 17px;
+    border-radius:30px;
+    background:#163a70;
+    color:white !important;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.about-hero{
+    position:relative;
+    min-height:650px;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 80% 20%,rgba(37,99,235,.20),transparent 30%),
+        radial-gradient(circle at 10% 80%,rgba(211,155,40,.14),transparent 30%),
+        linear-gradient(135deg,#07182e,#102e55 55%,#07182e);
+    color:white;
+}
+
+.hero-grid{
+    position:absolute;
+    inset:0;
+    background-image:
+        linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+    background-size:55px 55px;
+    mask-image:linear-gradient(to bottom,black,transparent);
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+    max-width:1180px;
+    margin:auto;
+    min-height:650px;
+    padding:90px 25px;
+    display:grid;
+    grid-template-columns:1.2fr .8fr;
+    gap:60px;
+    align-items:center;
+}
+
+.hero-small{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    font-size:12px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    color:#e7bd62;
+    font-weight:700;
+    margin-bottom:22px;
+}
+
+.hero-small::before{
+    content:"";
+    width:35px;
+    height:2px;
+    background:#e7bd62;
+}
+
+.hero-content h1{
+    font-family:"Playfair Display",serif;
+    font-size:clamp(48px,7vw,82px);
+    line-height:1.05;
+    margin-bottom:25px;
+}
+
+.hero-content h1 span{
+    color:#e7bd62;
+}
+
+.hero-description{
+    max-width:700px;
+    font-size:18px;
+    color:#d9e2ef;
+}
+
+.hero-card{
+    position:relative;
+    min-height:390px;
+    border:1px solid rgba(255,255,255,.16);
+    border-radius:30px;
+    background:rgba(255,255,255,.07);
+    backdrop-filter:blur(15px);
+    padding:35px;
+    box-shadow:0 30px 80px rgba(0,0,0,.25);
+    overflow:hidden;
+}
+
+.hero-card::before{
+    content:"";
+    position:absolute;
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    background:rgba(211,155,40,.13);
+    top:-70px;
+    right:-60px;
+}
+
+.profile-placeholder{
+    width:145px;
+    height:145px;
+    border-radius:50%;
+    margin:0 auto 30px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    border:2px solid rgba(231,189,98,.7);
+    background:rgba(255,255,255,.06);
+    color:#d9e2ef;
+    font-size:12px;
+    padding:20px;
+}
+
+.hero-card h3{
+    text-align:center;
+    font-size:23px;
+    margin-bottom:8px;
+}
+
+.hero-card .hero-role{
+    text-align:center;
+    color:#e7bd62;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:1px;
+}
+
+/* =========================
+   GENERAL
+========================= */
+
+.section{
+    padding:100px 25px;
+}
+
+.section-inner{
+    max-width:1100px;
+    margin:auto;
+}
+
+.section-title{
+    margin-bottom:55px;
+}
+
+.section-title .number{
+    font-size:12px;
+    font-weight:800;
+    color:#2563eb;
+    letter-spacing:3px;
+}
+
+.section-title h2{
+    margin-top:8px;
+    font-family:"Playfair Display",serif;
+    font-size:45px;
+    color:#13233d;
+}
+
+.section-title p{
+    max-width:650px;
+    color:#68758a;
+    margin-top:10px;
+}
+
+/* =========================
+   STORY
+========================= */
+
+.story{
+    background:white;
+}
+
+.story-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:70px;
+}
+
+.story-text{
+    font-size:16px;
+    color:#4b586d;
+}
+
+.story-text p{
+    margin-bottom:20px;
+}
+
+.dropcap:first-letter{
+    float:left;
+    font-family:"Playfair Display",serif;
+    font-size:65px;
+    line-height:.8;
+    padding:8px 12px 0 0;
+    color:#163a70;
+}
+
+.personal-data{
+    border-left:3px solid #e7bd62;
+    padding-left:28px;
+}
+
+.data-item{
+    padding:18px 0;
+    border-bottom:1px solid #e8ebf0;
+}
+
+.data-item:last-child{
+    border-bottom:none;
+}
+
+.data-label{
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    color:#8a95a7;
+    font-weight:700;
+}
+
+.data-value{
+    font-size:16px;
+    font-weight:600;
+    color:#172033;
+    margin-top:3px;
+}
+
+/* =========================
+   TIMELINE
+========================= */
+
+.timeline-section{
+    background:#f5f7fa;
+}
+
+.timeline{
+    position:relative;
+    max-width:900px;
+    margin:auto;
+}
+
+.timeline::before{
+    content:"";
+    position:absolute;
+    left:50%;
+    top:0;
+    bottom:0;
+    width:2px;
+    background:linear-gradient(to bottom,#2563eb,#d39b28,#2563eb);
+    transform:translateX(-50%);
+}
+
+.timeline-item{
+    position:relative;
+    width:50%;
+    padding:25px 45px;
+}
+
+.timeline-item:nth-child(odd){
+    left:0;
+    text-align:right;
+}
+
+.timeline-item:nth-child(even){
+    left:50%;
+}
+
+.timeline-dot{
+    position:absolute;
+    width:14px;
+    height:14px;
+    border-radius:50%;
+    background:#d39b28;
+    border:3px solid white;
+    box-shadow:0 0 0 3px #d39b28;
+    top:38px;
+}
+
+.timeline-item:nth-child(odd) .timeline-dot{
+    right:-7px;
+}
+
+.timeline-item:nth-child(even) .timeline-dot{
+    left:-7px;
+}
+
+.timeline-year{
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:2px;
+    color:#2563eb;
+}
+
+.timeline-item h3{
+    margin:5px 0 8px;
+    color:#172033;
+}
+
+.timeline-item p{
+    color:#68758a;
+    font-size:14px;
+}
+
+/* =========================
+   WORK AREAS
+========================= */
+
+.work-section{
+    background:#0b1d36;
+    color:white;
+}
+
+.work-section .section-title h2{
+    color:white;
+}
+
+.work-section .section-title p{
+    color:#aebbd0;
+}
+
+.work-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+}
+
+.work-card{
+    position:relative;
+    min-height:220px;
+    padding:32px;
+    border-radius:22px;
+    border:1px solid rgba(255,255,255,.09);
+    background:linear-gradient(145deg,rgba(255,255,255,.09),rgba(255,255,255,.025));
+    overflow:hidden;
+    transition:.4s;
+}
+
+.work-card::after{
+    content:"";
+    position:absolute;
+    width:130px;
+    height:130px;
+    border-radius:50%;
+    background:rgba(37,99,235,.10);
+    right:-50px;
+    bottom:-50px;
+    transition:.4s;
+}
+
+.work-card:hover{
+    transform:translateY(-8px);
+    border-color:rgba(231,189,98,.5);
+    box-shadow:0 20px 50px rgba(0,0,0,.25);
+}
+
+.work-card:hover::after{
+    transform:scale(1.5);
+}
+
+.work-number{
+    font-size:12px;
+    color:#e7bd62;
+    font-weight:800;
+    letter-spacing:2px;
+}
+
+.work-card h3{
+    font-size:22px;
+    margin:12px 0;
+}
+
+.work-card p{
+    color:#b9c5d6;
+    font-size:14px;
+}
+
+/* =========================
+   APPROACH
+========================= */
+
+.approach{
+    background:white;
+}
+
+.approach-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.approach-card{
+    padding:35px 28px;
+    border-radius:20px;
+    background:#f7f8fa;
+    border:1px solid #e6eaf0;
+    position:relative;
+}
+
+.approach-card::before{
+    content:"";
+    display:block;
+    width:35px;
+    height:3px;
+    background:#2563eb;
+    margin-bottom:25px;
+}
+
+.approach-card h3{
+    margin-bottom:12px;
+}
+
+.approach-card p{
+    font-size:14px;
+    color:#667388;
+}
+
+/* =========================
+   VALUES
+========================= */
+
+.values-section{
+    background:
+        linear-gradient(135deg,#eef3f9,#ffffff);
+}
+
+.values{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+}
+
+.value{
+    text-align:center;
+    padding:30px 15px;
+}
+
+.value strong{
+    display:block;
+    font-size:17px;
+    color:#163a70;
+    margin-bottom:7px;
+}
+
+.value span{
+    font-size:12px;
+    color:#778398;
+}
+
+/* =========================
+   NOTE
+========================= */
+
+.note{
+    max-width:900px;
+    margin:auto;
+    padding:40px;
+    border-radius:25px;
+    background:#0b1d36;
+    color:white;
+    text-align:center;
+    box-shadow:0 20px 60px rgba(11,29,54,.18);
+}
+
+.note-mark{
+    font-family:"Playfair Display",serif;
+    font-size:60px;
+    color:#e7bd62;
+    line-height:.7;
+}
+
+.note p{
+    font-size:18px;
+    color:#d7e0ec;
+    margin:20px auto;
+    max-width:720px;
+}
+
+.note strong{
+    color:#e7bd62;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.site-footer{
+    background:#071426;
+    color:#8998ae;
+    text-align:center;
+    padding:35px 20px;
+    font-size:12px;
+}
+
+.site-footer strong{
+    color:white;
+}
+
+/* =========================
+   ANIMATION
+========================= */
+
+.reveal{
+    opacity:0;
+    transform:translateY(30px);
+    transition:opacity .8s ease,transform .8s ease;
+}
+
+.reveal.visible{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* =========================
+   MOBİL
+========================= */
+
+@media(max-width:800px){
+
+    .header-inner{
+        flex-direction:column;
+        gap:14px;
+    }
+
+    .site-nav{
+        gap:14px;
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    .hero-content{
+        grid-template-columns:1fr;
+        padding:70px 20px;
+    }
+
+    .about-hero{
+        min-height:auto;
+    }
+
+    .hero-content{
+        min-height:auto;
+    }
+
+    .hero-card{
+        min-height:auto;
+    }
+
+    .story-grid{
+        grid-template-columns:1fr;
+        gap:40px;
+    }
+
+    .timeline::before{
+        left:10px;
+    }
+
+    .timeline-item{
+        width:100%;
+        left:0 !important;
+        text-align:left !important;
+        padding:25px 20px 25px 40px;
+    }
+
+    .timeline-item:nth-child(odd) .timeline-dot,
+    .timeline-item:nth-child(even) .timeline-dot{
+        left:3px;
+        right:auto;
+    }
+
+    .work-grid{
+        grid-template-columns:1fr;
+    }
+
+    .approach-grid{
+        grid-template-columns:1fr;
+    }
+
+    .values{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .section{
+        padding:75px 20px;
+    }
+
+    .section-title h2{
+        font-size:36px;
+    }
+
+}
+
+@media(max-width:480px){
+
+    .hero-content h1{
+        font-size:46px;
+    }
+
+    .hero-description{
+        font-size:16px;
+    }
+
+    .values{
+        grid-template-columns:1fr;
+    }
+
+    .note{
+        padding:30px 20px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="site-header">
+
+    <div class="header-inner">
+
+        <div class="site-logo">
+            ESER<span>KON</span>
+        </div>
+
+        <nav class="site-nav">
+
+            <a href="index.html">Ana Sayfa</a>
+
+            <a href="#hikaye">Hakkımda</a>
+
+            <a href="#gecmis">Geçmiş</a>
+
+            <a href="#calisma">Çalışma Alanları</a>
+
+            <a href="#yaklasim">Yaklaşım</a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="about-hero">
+
+    <div class="hero-grid"></div>
+
+    <div class="hero-content">
+
+        <div class="reveal">
+
+            <div class="hero-small">
+                Kişisel Çalışma Alanı
+            </div>
+
+            <h1>
+                Hakkımda<br>
+                <span>Ben Kimim?</span>
+            </h1>
+
+            <p class="hero-description">
+                Kamu politikaları, kamu hizmetleri ve toplumsal gelişmeler
+                üzerine araştıran, izleyen, değerlendiren ve sahadan elde
+                edilen bilgileri anlamlandırmaya çalışan bağımsız bir çalışma
+                yaklaşımı.
+            </p>
+
+        </div>
+
+
+        <div class="hero-card reveal">
+
+            <div class="profile-placeholder">
+                FOTOĞRAF<br>
+                BURAYA GELECEK
+            </div>
+
+            <h3>Şahin Uymaz</h3>
+
+            <div class="hero-role">
+                KAMU POLİTİKALARI • KAMU HİZMETLERİ
+            </div>
+
+            <div class="hero-role" style="margin-top:8px;">
+                ARAŞTIRMA VE İZLEME
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     HİKAYEM
+========================= -->
+
+<section class="section story" id="hikaye">
+
+    <div class="section-inner">
+
+        <div class="section-title reveal">
+
+            <div class="number">01 — HİKÂYEM</div>
+
+            <h2>Bir hayat,<br>biriken deneyimler.</h2>
+
+            <p>
+                Bu bölüm yalnızca bir özgeçmiş değil;
+                bugün yaptığım çalışmaların nasıl oluştuğunu anlatan
+                kişisel bir yolculuktur.
+            </p>
+
+        </div>
+
+
+        <div class="story-grid">
+
+            <div class="story-text reveal">
+
+                <p class="dropcap">
+                    19... yılında Denizli'de dünyaya geldim.
+                    Çocukluk yıllarım, eğitim hayatım ve çalışma yaşamım
+                    boyunca farklı insanları, farklı kurumları ve farklı
+                    hayatları tanıma fırsatı buldum.
+                </p>
+
+                <p>
+                    Bugün yaptığım çalışmaların temelinde yalnızca
+                    akademik veya mesleki bilgiler değil; yıllar içerisinde
+                    edinilmiş gözlemler, deneyimler, görüşmeler ve
+                    insanlarla kurulan iletişim bulunmaktadır.
+                </p>
+
+                <p>
+                    Kamu hizmetlerinin vatandaşın günlük hayatındaki
+                    karşılığını anlamanın, yalnızca masa başında yapılan
+                    değerlendirmelerle mümkün olmadığına inanıyorum.
+                    Bu nedenle araştırma ve izlemenin önemli bir bölümünü
+                    yerinde gözlem, bilgi toplama ve değerlendirme
+                    oluşturmaktadır.
+                </p>
+
+                <p>
+                    Amacım herhangi bir kişi veya kurumu hedef göstermek
+                    değil; tespit edilen sorunları anlamak, nedenlerini
+                    araştırmak ve mümkün olduğunda çözüm odaklı bir bakış
+                    ortaya koymaktır.
+                </p>
+
+            </div>
+
+
+            <div class="personal-data reveal">
+
+                <div class="data-item">
+                    <div class="data-label">Doğum</div>
+                    <div class="data-value">19... — Denizli</div>
+                </div>
+
+                <div class="data-item">
+                    <div class="data-label">İlkokul</div>
+                    <div class="data-value">[BURAYA EKLE]</div>
+                </div>
+
+                <div class="data-item">
+                    <div class="data-label">Ortaokul</div>
+                    <div class="data-value">[BURAYA EKLE]</div>
+                </div>
+
+                <div class="data-item">
+                    <div class="data-label">Lise</div>
+                    <div class="data-value">[BURAYA EKLE]</div>
+                </div>
+
+                <div class="data-item">
+                    <div class="data-label">Üniversite</div>
+                    <div class="data-value">[BURAYA EKLE]</div>
+                </div>
+
+                <div class="data-item">
+                    <div class="data-label">Mesleki Yaşam</div>
+                    <div class="data-value">[BURAYA EKLE]</div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     ZAMAN ÇİZELGESİ
+========================= -->
+
+<section class="section timeline-section" id="gecmis">
+
+    <div class="section-inner">
+
+        <div class="section-title reveal">
+
+            <div class="number">02 — ZAMAN ÇİZELGESİ</div>
+
+            <h2>Hayatımın dönüm noktaları.</h2>
+
+            <p>
+                Eğitim, çalışma hayatı ve kişisel gelişim sürecimde
+                önemli gördüğüm dönemler.
+            </p>
+
+        </div>
+
+
+        <div class="timeline">
+
+
+            <div class="timeline-item reveal">
+
+                <div class="timeline-dot"></div>
+
+                <div class="timeline-year">19...</div>
+
+                <h3>Doğum ve Çocukluk</h3>
+
+                <p>
+                    [BURAYA ÇOCUKLUK VE AİLE HAYATINLA İLGİLİ
+                    YAZMAK İSTEDİĞİN BİLGİLERİ EKLE]
+                </p>
+
+            </div>
+
+
+            <div class="timeline-item reveal">
+
+                <div class="timeline-dot"></div>
+
+                <div class="timeline-year">19...</div>
+
+                <h3>Eğitim Hayatı</h3>
+
+                <p>
+                    [BURAYA İLKOKUL / ORTAOKUL / LİSE BİLGİLERİNİ EKLE]
+                </p>
+
+            </div>
+
+
+            <div class="timeline-item reveal">
+
+                <div class="timeline-dot"></div>
+
+                <div class="timeline-year">19...</div>
+
+                <h3>Üniversite</h3>
+
+                <p>
+                    [ÜNİVERSİTE, BÖLÜM VE EĞİTİM SÜRECİ]
+                </p>
+
+            </div>
+
+
+            <div class="timeline-item reveal">
+
+                <div class="timeline-dot"></div>
+
+                <div class="timeline-year">19...</div>
+
+                <h3>Çalışma Hayatının Başlangıcı</h3>
+
+                <p>
+                    [İLK ÇALIŞMA DÖNEMİ VE ÖNEMLİ DENEYİMLER]
+                </p>
+
+            </div>
+
+
+            <div class="timeline-item reveal">
+
+                <div class="timeline-dot"></div>
+
+                <div class="timeline-year">20...</div>
+
+                <h3>Yeni Bir Dönem</h3>
+
+                <p>
+                    [BURAYA ÖNEMLİ ÇALIŞMALARINI VE DÖNÜM NOKTALARINI EKLE]
+                </p>
+
+            </div>
+
+
+            <div class="timeline-item reveal">
+
+                <div class="timeline-dot"></div>
+
+                <div class="timeline-year">BUGÜN</div>
+
+                <h3>Araştırma ve İzleme</h3>
+
+                <p>
+                    Kamu politikaları, kamu kurumları, kamu hizmetleri
+                    ve toplumsal gelişmeler üzerine araştırma ve izleme
+                    çalışmalarını sürdürmektedir.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     ÇALIŞMA ALANLARI
+========================= -->
+
+<section class="section work-section" id="calisma">
+
+    <div class="section-inner">
+
+        <div class="section-title reveal">
+
+            <div class="number">03 — ÇALIŞMA ALANLARI</div>
+
+            <h2>Bugün ne yapıyorum?</h2>
+
+            <p>
+                Çalışmalarım dört temel alanda şekillenmektedir.
+            </p>
+
+        </div>
+
+
+        <div class="work-grid">
+
+
+            <div class="work-card reveal">
+
+                <div class="work-number">01</div>
+
+                <h3>Kamu Politikaları</h3>
+
+                <p>
+                    Kamu politikalarını ve uygulamalarını araştırmak,
+                    izlemek ve değerlendirmek.
+                </p>
+
+            </div>
+
+
+            <div class="work-card reveal">
+
+                <div class="work-number">02</div>
+
+                <h3>Kamu Kurumları ve Hizmetleri</h3>
+
+                <p>
+                    Kamu kurumlarının işleyişini ve sunduğu hizmetleri
+                    takip etmek, aksayan yönleri tespit etmek.
+                </p>
+
+            </div>
+
+
+            <div class="work-card reveal">
+
+                <div class="work-number">03</div>
+
+                <h3>Sivil Toplum İlişkileri</h3>
+
+                <p>
+                    Sivil toplum kuruluşları ve toplumsal aktörlerle
+                    ilgili gelişmeleri takip etmek ve ilişkileri araştırmak.
+                </p>
+
+            </div>
+
+
+            <div class="work-card reveal">
+
+                <div class="work-number">04</div>
+
+                <h3>Araştırma ve İzleme</h3>
+
+                <p>
+                    Sahadan bilgi ve tespit toplamak, gelişmeleri izlemek,
+                    elde edilen bilgileri değerlendirmek ve raporlamak.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     ÇALIŞMA YAKLAŞIMI
+========================= -->
+
+<section class="section approach" id="yaklasim">
+
+    <div class="section-inner">
+
+        <div class="section-title reveal">
+
+            <div class="number">04 — ÇALIŞMA YAKLAŞIMI</div>
+
+            <h2>Araştır → İzle → Değerlendir</h2>
+
+            <p>
+                Çalışmalarımın temelini üç aşamalı bir yaklaşım oluşturur.
+            </p>
+
+        </div>
+
+
+        <div class="approach-grid">
+
+
+            <div class="approach-card reveal">
+
+                <h3>Araştır</h3>
+
+                <p>
+                    Konuyu farklı kaynaklardan incelemek, bilgi ve
+                    belgeleri değerlendirmek, mümkün olduğunca farklı
+                    bakış açılarını ortaya koymak.
+                </p>
+
+            </div>
+
+
+            <div class="approach-card reveal">
+
+                <h3>İzle</h3>
+
+                <p>
+                    Gelişmeleri zaman içerisinde takip etmek, saha
+                    gözlemleri yapmak ve değişimleri kayıt altına almak.
+                </p>
+
+            </div>
+
+
+            <div class="approach-card reveal">
+
+                <h3>Değerlendir</h3>
+
+                <p>
+                    Elde edilen bilgileri karşılaştırmak, sorunları ve
+                    gelişme alanlarını belirlemek ve sonuçları
+                    değerlendirmek.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     İLKELER
+========================= -->
+
+<section class="section values-section">
+
+    <div class="section-inner">
+
+        <div class="section-title reveal">
+
+            <div class="number">05 — İLKELER</div>
+
+            <h2>Çalışmalarımın temelinde.</h2>
+
+        </div>
+
+
+        <div class="values">
+
+            <div class="value reveal">
+                <strong>Tarafsızlık</strong>
+                <span>Bilgiye mümkün olduğunca objektif yaklaşmak.</span>
+            </div>
+
+            <div class="value reveal">
+                <strong>Şeffaflık</strong>
+                <span>Bilginin kaynağına ve niteliğine önem vermek.</span>
+            </div>
+
+            <div class="value reveal">
+                <strong>Kamu Yararı</strong>
+                <span>Çalışmaları toplumsal fayda perspektifiyle yürütmek.</span>
+            </div>
+
+            <div class="value reveal">
+                <strong>Gizlilik</strong>
+                <span>Kişisel ve özel bilgilerin korunmasına dikkat etmek.</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     KİŞİSEL YAKLAŞIM
+========================= -->
+
+<section class="section">
+
+    <div class="section-inner">
+
+        <div class="note reveal">
+
+            <div class="note-mark">“</div>
+
+            <p>
+                Benim için araştırma yalnızca bilgi toplamak,
+                izlemek yalnızca gelişmeleri takip etmek değildir.
+                Asıl önemli olan; <strong>bilgiyi anlamak,
+                doğru değerlendirmek ve gerektiğinde doğru yere
+                aktarabilmektir.</strong>
+            </p>
+
+            <div class="note-mark">”</div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer class="site-footer">
+
+    <p>
+        <strong>Şahin Uymaz</strong>
+    </p>
+
+    <p>
+        Kamu Politikaları • Kamu Hizmetleri • Araştırma ve İzleme
+    </p>
+
+    <p style="margin-top:10px;">
+        © 2026 Tüm hakları saklıdır.
+    </p>
+
+</footer>
+
+
+
+<script>
+
+/* =========================
+   SCROLL REVEAL
+========================= */
+
+const revealElements =
+document.querySelectorAll(".reveal");
+
+const observer =
+new IntersectionObserver((entries)=>{
+
+    entries.forEach(entry=>{
+
+        if(entry.isIntersecting){
+
+            entry.target.classList.add("visible");
+
+            observer.unobserve(entry.target);
+
+        }
+
+    });
+
+},{
+    threshold:.12
+});
+
+
+revealElements.forEach(el=>{
+    observer.observe(el);
+});
+
+</script>
+
+
+</body>
+</html>
