@@ -4,15 +4,12 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <meta name="robots" content="noindex, nofollow, noarchive">
-
 <meta name="description" content="Bilgilendirme ve İletişim - Şahin UYMAZ">
 
 <title>Bilgilendirme ve İletişim | Şahin UYMAZ</title>
 
 <style>
-
 :root{
   --bg:#14181f;
   --panel:#1b212b;
@@ -41,55 +38,61 @@ a{
   text-decoration:none;
 }
 
-
 /* =========================
-   HEADER
+   HEADER (YENİ YATAY DÜZEN)
 ========================= */
 
-.site-header{
-  background:#0c0f14;
-  border-bottom:1px solid var(--border);
-  padding:20px 30px;
-  text-align:center;
-  position:sticky;
-  top:0;
-  z-index:100;
+.site-header {
+  background: #0c0f14;
+  border-bottom: 1px solid var(--border);
+  padding: 12px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
-/* LOGO */
-.site-logo{
-  width:120px;
-  height:120px;
-  object-fit:contain;
-  display:block;
-  margin:0 auto;
-  border-radius:50%;
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
-/* ANA SAYFA VE MENÜ */
-
-.site-nav{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:25px;
-  margin-top:18px;
-  flex-wrap:wrap;
+.site-logo {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  margin: 0;
+  border-radius: 50%;
 }
 
-.site-nav a{
-  font-size:14px;
-  color:#ddd;
-  padding-bottom:4px;
-  border-bottom:2px solid transparent;
+.site-title-text {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.5px;
+}
+
+.site-nav {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+}
+
+.site-nav a {
+  font-size: 14px;
+  color: #ddd;
+  padding-bottom: 4px;
+  border-bottom: 2px solid transparent;
 }
 
 .site-nav a:hover,
-.site-nav a.active{
-  color:#fff;
-  border-bottom-color:var(--red);
+.site-nav a.active {
+  color: #fff;
+  border-bottom-color: var(--red);
 }
-
 
 /* =========================
    MAKALE ALANI
@@ -99,7 +102,7 @@ a{
   width:100%;
   max-width:900px;
   margin:0 auto;
-  padding:60px 25px 80px;
+  padding:50px 25px 80px;
 }
 
 .article-header{
@@ -122,9 +125,8 @@ a{
   line-height:1.7;
 }
 
-
 /* =========================
-   MAKALE
+   MAKALE İÇERİĞİ
 ========================= */
 
 .article{
@@ -133,12 +135,6 @@ a{
   border-radius:14px;
   padding:40px;
   box-shadow:0 15px 35px rgba(0,0,0,.25);
-}
-
-.article h2{
-  color:#fff;
-  font-size:24px;
-  margin:0 0 18px;
 }
 
 .article h3{
@@ -153,9 +149,8 @@ a{
   margin:0 0 20px;
 }
 
-
 /* =========================
-   ALT BİLGİ
+   ALT BİLGİ & FOOTER
 ========================= */
 
 .article-bottom{
@@ -197,11 +192,6 @@ a{
   line-height:1.7;
 }
 
-
-/* =========================
-   FOOTER
-========================= */
-
 .sahin-footer {
   text-align: center;
   font-weight: 800;
@@ -223,166 +213,73 @@ a{
 }
 
 @keyframes sahinMavi {
-  0%, 100% {
-    color: #168cff;
-    opacity: .45;
-    text-shadow: 0 0 4px rgba(22,140,255,.3);
-  }
-
-  50% {
-    color: #168cff;
-    opacity: 1;
-    text-shadow:
-      0 0 8px rgba(22,140,255,.9),
-      0 0 18px rgba(22,140,255,.6);
-  }
+  0%, 100% { color: #168cff; opacity: .45; text-shadow: 0 0 4px rgba(22,140,255,.3); }
+  50% { color: #168cff; opacity: 1; text-shadow: 0 0 8px rgba(22,140,255,.9), 0 0 18px rgba(22,140,255,.6); }
 }
 
 @keyframes uymazBeyaz {
-  0%, 100% {
-    color: #ffffff;
-    opacity: 1;
-    text-shadow:
-      0 0 8px rgba(255,255,255,.8),
-      0 0 18px rgba(255,255,255,.4);
-  }
-
-  50% {
-    color: #ffffff;
-    opacity: .45;
-    text-shadow: 0 0 4px rgba(255,255,255,.25);
-  }
+  0%, 100% { color: #ffffff; opacity: 1; text-shadow: 0 0 8px rgba(255,255,255,.8), 0 0 18px rgba(255,255,255,.4); }
+  50% { color: #ffffff; opacity: .45; text-shadow: 0 0 4px rgba(255,255,255,.25); }
 }
 
-
 /* =========================
-   MOBİL
+   MOBİL UYUM
 ========================= */
 
-@media(max-width:600px){
-
-  .site-header{
-    padding:16px 15px;
+@media(max-width:768px){
+  .site-header {
+    flex-direction: column;
+    padding: 15px;
+    gap: 15px;
   }
-
-  .site-logo{
-    width:100px;
-    height:100px;
+  .site-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
   }
-
-  .site-nav{
-    gap:14px;
-    margin-top:15px;
-  }
-
-  .site-nav a{
-    font-size:13px;
-  }
-
   .article-container{
-    padding:40px 15px 60px;
+    padding:30px 15px 50px;
   }
-
   .article-header h1{
     font-size:29px;
   }
-
-  .article-header .subtitle{
-    font-size:14px;
-  }
-
   .article{
     padding:25px 20px;
   }
-
-  .article h2{
-    font-size:21px;
-  }
-
-  .article h3{
-    font-size:18px;
-  }
-
-  .article p{
-    font-size:15px;
-  }
-
-  .publication-date{
-    font-size:15px;
-  }
-
-  .legal-warning{
-    padding:17px 18px;
-  }
-
-  .legal-warning p{
-    font-size:14px;
-  }
-
-  .sahin-footer{
-    font-size:17px;
-  }
-
 }
-
 </style>
 
 </head>
-
 <body>
 
-
 <header class="site-header">
-
-  <!-- LOGO -->
-  <a href="index.html" aria-label="Ana Sayfa">
+  <!-- YENİ LOGO VE MARKA ALANI -->
+  <a href="index.html" class="brand-area" aria-label="Ana Sayfa">
     <img src="games/logo5.png" alt="Kamu Politikaları Mührü" class="site-logo">
+    <span class="site-title-text">ŞAHİN UYMAZ</span>
   </a>
 
   <!-- NAVİGASYON -->
   <nav class="site-nav">
-
-    <a href="index.html">
-      Ana Sayfa
-    </a>
-
-    <a href="kamu-politikalari.html">
-      Kamu Politikaları
-    </a>
-
-    <a href="kamu-hizmetleri.html">
-      Kamu Hizmetleri
-    </a>
-
-    <a href="bilgilendirme-iletisim.html" class="active">
-      Bilgilendirme ve İletişim
-    </a>
-
+    <a href="index.html">Ana Sayfa</a>
+    <a href="kamu-politikalari.html">Kamu Politikaları</a>
+    <a href="kamu-hizmetleri.html">Kamu Hizmetleri</a>
+    <a href="bilgilendirme-iletisim.html" class="active">Bilgilendirme ve İletişim</a>
   </nav>
-
 </header>
 
-
 <main class="article-container">
-
+  
   <header class="article-header">
-
-    <h1>
-      Bilgilendirme ve İletişim
-    </h1>
-
+    <h1>Bilgilendirme ve İletişim</h1>
     <div class="subtitle">
       Kamu hizmetleri, uygulamalar ve çalışma alanları hakkında doğru bilginin paylaşılması ve gerekli iletişim kanallarının takip edilmesi.
     </div>
-
   </header>
 
   <article class="article">
-
-    <h2>
-      Bilgilendirme ve İletişim
-    </h2>
-
+    
+    <!-- Tekrar eden <h2> başlığı görsel kargaşayı önlemek için kaldırıldı -->
     <p>
       Bilgilendirme ve iletişim, kamu hizmetlerinin vatandaşlara
       doğru ve anlaşılır şekilde aktarılması açısından önemli bir
@@ -396,10 +293,7 @@ a{
       bilginin bulunması önem taşır.
     </p>
 
-    <h3>
-      Doğru Bilginin Önemi
-    </h3>
-
+    <h3>Doğru Bilginin Önemi</h3>
     <p>
       Vatandaşların kamu hizmetlerinden yararlanabilmesi için ihtiyaç
       duydukları bilgiye zamanında ulaşabilmeleri gerekir. Eksik,
@@ -407,27 +301,20 @@ a{
       çeşitli sorunlara neden olabilir.
     </p>
 
-    <h3>
-      İletişim Kanallarının Takibi
-    </h3>
-
+    <h3>İletişim Kanallarının Takibi</h3>
     <p>
       Kurumlar ile vatandaşlar arasındaki iletişim farklı kanallar
       üzerinden gerçekleştirilebilir. Yazılı başvurular, elektronik
       iletisim, doğrudan görüşmeler ve diğer resmî iletişim yolları
       bu sürecin parçalarıdır.
     </p>
-
     <p>
       İletişim süreçlerinin düzenli şekilde takip edilmesi, ortaya
       çıkan sorunların daha kolay belirlenmesine ve ilgili konuların
       doğru mercilere aktarılmasına katkı sağlayabilir.
     </p>
 
-    <h3>
-      Bilginin Aktarılması
-    </h3>
-
+    <h3>Bilginin Aktarılması</h3>
     <p>
       Elde edilen bilgilerin açık, anlaşılır ve mümkün olduğunca
       doğrulanabilir biçimde aktarılması önemlidir. Bilgilendirme
@@ -435,10 +322,7 @@ a{
       birbirinden ayrılması gerekir.
     </p>
 
-    <h3>
-      Geri Bildirim
-    </h3>
-
+    <h3>Geri Bildirim</h3>
     <p>
       Vatandaşlardan ve sahadaki uygulamalardan gelen geri bildirimler,
       kamu hizmetlerinin değerlendirilmesine yardımcı olabilir.
@@ -447,33 +331,24 @@ a{
     </p>
 
     <div class="article-bottom">
-
       <div class="publication-date">
         <strong>Yayın Tarihi:</strong> 15 Nisan 2003
       </div>
-
       <div class="legal-warning">
-
-        <div class="legal-warning-title">
-          YASAL UYARI
-        </div>
-
+        <div class="legal-warning-title">YASAL UYARI</div>
         <p>
           Bu sayfada yer alan içeriklerin izinsiz olarak kopyalanması,
           çoğaltılması veya paylaşılması hukuki sorumluluk doğurabilir.
           İçeriklerin izinsiz kullanılması halinde ilgili mevzuat kapsamında
           yasal haklarımız saklıdır.
         </p>
-
       </div>
-
     </div>
 
   </article>
 
 </main>
 
-<!-- FOOTER BÖLÜMÜ -->
 <footer class="sahin-footer">
   <span class="sahin">ŞAHİN</span>
   <span class="uymaz">UYMAZ</span>
