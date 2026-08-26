@@ -83,11 +83,9 @@ body{
 }
 
 .kvkk-link:hover {
-
   color: #60a5fa;
   text-decoration: underline;
 }
-     
 
 /* =====================================================
    ŞAHİN UYMAZ IŞIKLI İSİM
@@ -141,7 +139,7 @@ body{
 
 
 /* =====================================================
-   ÜST MENÜ
+   ÜST MENÜ & DROPDOWN ALT MENÜ STİLLERİ
 ===================================================== */
 
 .site-header{
@@ -192,6 +190,9 @@ body{
     display:flex;
     align-items:center;
     gap:25px;
+    list-style:none;
+    margin:0;
+    padding:0;
 }
 
 .main-nav a{
@@ -204,6 +205,68 @@ body{
 
 .main-nav a:hover{
     color:#facc15;
+}
+
+/* Açılır Menü (Dropdown) Yapısı */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+}
+
+.dropdown-toggle .arrow {
+    font-size: 11px;
+    transition: transform 0.3s ease;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 230px;
+    background: #0b2948;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+    padding: 8px 0;
+    margin-top: 10px;
+    list-style: none;
+    z-index: 1000;
+}
+
+.dropdown-menu li a {
+    display: block;
+    padding: 10px 18px;
+    color: #e2e8f0;
+    font-size: 13.5px;
+    transition: all 0.2s ease;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+    animation: fadeIn 0.25s ease-in-out;
+}
+
+.dropdown:hover .dropdown-toggle .arrow {
+    transform: rotate(180deg);
+}
+
+.dropdown-menu li a:hover {
+    background: rgba(22, 140, 255, 0.2);
+    color: #facc15;
+    padding-left: 22px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 
@@ -227,7 +290,6 @@ body{
     animation: heroFade 42s infinite;
 }
 
-/* Görseller ve Gecikme Süreleri (42s Toplam Süre / 7s Slayt Başı) */
 .hero-slide:nth-child(1) {
     background-image: linear-gradient(rgba(4,20,38,.73), rgba(4,20,38,.78)), url("games/kamu.jpg");
     animation-delay: 0s;
@@ -258,7 +320,6 @@ body{
     animation-delay: 35s;
 }
 
-/* Arka Plan Görsel Geçişi (6 Slayt İçin Hesaplandı) */
 @keyframes heroFade {
     0% { opacity: 0; transform: scale(1.02); }
     2.5% { opacity: 1; }
@@ -295,7 +356,6 @@ body{
     animation: contentFade 42s infinite;
 }
 
-/* Metin Geçiş Gecikmeleri */
 .hero-inner:nth-child(1) { animation-delay: 0s; }
 .hero-inner:nth-child(2) { animation-delay: 7s; }
 .hero-inner:nth-child(3) { animation-delay: 14s; }
@@ -303,7 +363,6 @@ body{
 .hero-inner:nth-child(5) { animation-delay: 28s; }
 .hero-inner:nth-child(6) { animation-delay: 35s; }
 
-/* Metin Geçiş Efekti (6 Slayt İçin Hesaplandı) */
 @keyframes contentFade {
     0% { opacity: 0; transform: translateY(15px); }
     3% { opacity: 1; transform: translateY(0); }
@@ -648,7 +707,7 @@ body{
 
 
 /* =====================================================
-   ARAŞTIR → İZLE → DEĞERLENDİR
+   ARAŞTIR → İZLE → DEĞERLENDİR (CANLI KART DÜZENİ)
 ===================================================== */
 
 .approach{
@@ -658,27 +717,68 @@ body{
 .approach-grid{
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:25px;
+    gap:24px;
+    margin-top:36px;
 }
 
 .approach-card{
-    text-align:center;
-    padding:32px 25px;
-    border:1px solid #e2e8f0;
-    border-radius:14px;
-    background:#fff;
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 32px 24px;
+    text-align: center;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.approach-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #168cff, #2563eb);
+    opacity: 0.85;
+    transition: opacity 0.3s ease;
+}
+
+.card-icon {
+    font-size: 32px;
+    margin-bottom: 14px;
+    line-height: 1;
 }
 
 .approach-card strong{
-    display:block;
-    font-size:21px;
-    color:var(--lacivert);
-    margin-bottom:12px;
+    display: block;
+    font-size: 19px;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
 }
 
 .approach-card span{
-    color:#64748b;
-    line-height:1.6;
+    display: block;
+    font-size: 14.5px;
+    color: #475569;
+    line-height: 1.6;
+}
+
+.approach-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 30px -10px rgba(37, 99, 235, 0.18);
+    border-color: #2563eb;
+}
+
+.approach-card:hover::before {
+    opacity: 1;
 }
 
 
@@ -1019,7 +1119,7 @@ footer ul{
 
 
 /* =====================================================
-   MOBİL
+   MOBİL UYUM
 ===================================================== */
 
 @media(max-width:900px){
@@ -1044,7 +1144,7 @@ footer ul{
     .section-title h2{ font-size:28px; }
     .area-grid{ grid-template-columns:1fr; }
     .process-grid{ grid-template-columns:1fr; }
-    .approach-grid{ grid-template-columns:1fr; }
+    .approach-grid{ grid-template-columns:1fr; gap: 16px; }
     .visit-card{ width:300px; }
     .support-panel{
         right:10px;
@@ -1080,7 +1180,7 @@ footer ul{
 
 
 <!-- =====================================================
-     ÜST MENÜ
+     ÜST MENÜ (ALT MENÜ DESTEKLİ)
 ===================================================== -->
 
 <header class="site-header">
@@ -1093,13 +1193,25 @@ footer ul{
       <p>Kamu Politikaları • Kamu Hizmetleri</p>
     </a>
 
-    <nav class="main-nav">
-      <a href="#anasayfa">Ana Sayfa</a>
-      <a href="#alanlar">Çalışma Alanları</a>
-      <a href="#calismalar">Çalışmalar</a>
-      <a href="#arastirmalar">Araştırmalar</a>
-      <a href="#ziyaretler">Saha Ziyaretleri</a>
-    </nav>
+    <ul class="main-nav">
+      <li><a href="#anasayfa">Ana Sayfa</a></li>
+      <li><a href="#alanlar">Çalışma Alanları</a></li>
+      <li><a href="#calismalar">Çalışmalar</a></li>
+      <li><a href="#arastirmalar">Araştırmalar</a></li>
+      
+      <!-- ALT MENÜLÜ SAHA ZİYARETLERİ MENÜSÜ -->
+      <li class="dropdown">
+        <a href="#ziyaretler" class="dropdown-toggle">
+          Saha Ziyaretleri <span class="arrow">▾</span>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="kamu-politikalari-analizi.html">Kamu Politikaları Analizi</a></li>
+          <li><a href="kurum-incelemeleri.html">Kurum İncelemeleri</a></li>
+          <li><a href="toplumsal-arastirmalar.html">Toplumsal Araştırmalar</a></li>
+          <!-- İleride yeni menüler eklemek isterseniz bu alana <li><a href="...">Yeni Başlık</a></li> şeklinde ekleyebilirsiniz -->
+        </ul>
+      </li>
+    </ul>
   </div>
 </header>
 
@@ -1189,9 +1301,6 @@ footer ul{
     </div> <!-- .hero-inner-wrapper -->
   </div> <!-- .hero-content -->
 </section>
-
-
-        
 
 
 <!-- =====================================================
@@ -1398,10 +1507,9 @@ footer ul{
 
 
 <!-- =====================================================
-     ARAŞTIR - İZLE - DEĞERLENDİR
+     ARAŞTIR - İZLE - DEĞERLENDİR (GÜNCELLENMİŞ CANLI BÖLÜM)
 ===================================================== -->
 
-<!-- CANLI VE MODERN ÇALIŞMA YAKLAŞIMIMIZ BÖLÜMÜ -->
 <section class="section approach">
   <div class="section-inner">
     <div class="section-title center">
@@ -1429,522 +1537,7 @@ footer ul{
       </div>
     </div>
   </div>
-
-  <style>
-    /* Izgara Yapısı */
-    .approach-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      margin-top: 36px;
-    }
-
-    /* Canlı, Gölgeli ve Belirgin Kartlar */
-    .approach-card {
-      background: #ffffff;
-      border-radius: 14px;
-      padding: 32px 24px;
-      text-align: center;
-      border: 1px solid #e2e8f0;
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /* Kart Üstündeki Renkli Vurgu Çizgisi */
-    .approach-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 4px;
-      background: linear-gradient(90deg, #168cff, #2563eb);
-      opacity: 0.85;
-      transition: opacity 0.3s ease;
-    }
-
-    /* İkon Stili */
-    .card-icon {
-      font-size: 32px;
-      margin-bottom: 14px;
-      line-height: 1;
-    }
-
-    /* Başlıklar (ARAŞTIR, İZLE, DEĞERLENDİR) */
-    .approach-card strong {
-      display: block;
-      font-size: 19px;
-      font-weight: 800;
-      color: #0f172a;
-      letter-spacing: 1px;
-      margin-bottom: 12px;
-    }
-
-    /* Açıklama Metinleri */
-    .approach-card span {
-      display: block;
-      font-size: 14.5px;
-      color: #475569;
-      line-height: 1.6;
-    }
-
-    /* Üzerine Gelince (Hover) Yükselme & Gölge Efekti */
-    .approach-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 30px -10px rgba(37, 99, 235, 0.18);
-      border-color: #2563eb;
-    }
-
-    .approach-card:hover::before {
-      opacity: 1;
-    }
-
-    /* Mobil Uyum (Ekran küçülünce alt alta sıralanma) */
-    @media (max-width: 768px) {
-      .approach-grid {
-        grid-template-columns: 1fr;
-        gap: 16px;
-      }
-    }
-  </style>
 </section>
-
-
-
-<!-- =====================================================
-     SAHA ZİYARETLERİ
-===================================================== -->
-
-<section id="ziyaretler" class="section visits">
-  <div class="section-inner">
-    <div class="section-title">
-      <h2>Saha Ziyaretleri ve Çalışmalar</h2>
-      <p>Gerçekleştirilen ziyaretler ve inceleme çalışmalarından görüntüler.</p>
-    </div>
-<div class="visit-window">
-  <div class="visit-track">
-
- <div class="visit-window">
-  <div class="visit-track">
-
-    <!-- MAYIS 2003 -->
-    <article class="visit-card">
-      <img src="games/logo5.png" alt="Kurum Ziyaretleri">
-      <div class="visit-content">
-        <h3>Kurum Ziyaretleri</h3>
-        <div class="visit-date">5 Mayıs 2003</div>
-        <p>Saha ziyaretlerim KVKK maddesi gereği gizli tutulmaktadır.</p>
-      </div>
-    </article>
-
-    <article class="visit-card">
-      <img src="games/logo5.png" alt="Kurumiçi Denetleme">
-      <div class="visit-content">
-        <h3>Kurumiçi Denetleme</h3>
-        <div class="visit-date">14 Mayıs 2003</div>
-        <p>Saha ziyaretlerim KVKK maddesi gereği gizli tutulmaktadır.</p>
-      </div>
-    </article>
-
-    <article class="visit-card">
-      <img src="games/logo5.png" alt="Kamu Hizmetleri İncelemesi">
-      <div class="visit-content">
-        <h3>Kamu Hizmetleri İncelemesi</h3>
-        <div class="visit-date">22 Mayıs 2003</div>
-        <p>Saha ziyaretlerim KVKK maddesi gereği gizli tutulmaktadır.</p>
-      </div>
-    </article>
-
-    <article class="visit-card">
-      <img src="games/logo5.png" alt="Kurum Personel Çalışmaları">
-      <div class="visit-content">
-        <h3>Kurum Personel Çalışmaları</h3>
-        <div class="visit-date">27 Mayıs 2003</div>
-        <p>Saha ziyaretlerim KVKK maddesi gereği gizli tutulmaktadır.</p>
-      </div>
-    </article>
-
-
-    <!-- HAZİRAN 2003 -->
-    <article class="visit-card">
-      <img src="games/logo5.png" alt="Saha Araştırması ve Tespitler">
-      <div class="visit-content">
-        <h3>Saha Araştırması ve Tespitler</h3>
-        <div class="visit-date">4 Haziran 2003</div>
-        <p>Saha ziyaretlerim KVKK maddesi gereği gizli tutulmaktadır.</p>
-      </div>
-    </article>
-
-    <article class="visit-card">
-      <img src="games/logo5.png" alt="Vatandaş Buluşmaları">
-      <div class="visit-content">
-        <h3>Vatandaş Buluşmaları</h3>
-        <div class="visit-date">12 Haziran 2003</div>
-        <p>Saha ziyaretlerim KVKK maddesi gereği gizli tutulmaktadır.</p>
-      </div>
-    </article>
-
-    <article class="visit-card">
-      <img src="games/logo5.png" alt="Hizmet Kalitesi Değerlendirmesi">
-      <div class="visit-content">
-        <h3>Hizmet Kalitesi Değerlendirmesi</h3>
-        <div class="visit-date">17 Haziran 2003</div>
-        <p>Saha ziyaretlerim KVKK maddesi gereği gizli tutulmaktadır.</p>
-      </div>
-    </article>
-
-    <article class="visit-card">
-      <img src="games/logo5.png" alt="Yerel İhtiyaç Analizi">
-      <div class="visit-content">
-        <h3>Yerel İhtiyaç Analizi</h3>
-        <div class="visit-date">25 Haziran 2003</div>
-        <p>Saha ziyaretlerim KVKK maddesi gereği gizli tutulmaktadır.</p>
-      </div>
-    </article>
-
-
-    <!-- TEMMUZ 2003 -->
-    <article class="visit-card">
-      <img src="games/logo5.png" alt="Kamu Düzeni İncelemesi">
-      <div class="visit-content">
-        <h3>Kamu Düzeni İncelemesi</h3>
-        <div class="visit-date">3 Temmuz 2003</div>
-        <p>Saha ziyaretlerim KVKK maddesi gereği gizli tutulmaktadır.</p>
-      </div>
-    </article>
-
-    <article class="visit-card">
-      <img src="games/logo5.png" alt="Şeffaflık ve Yönetişim Toplantısı">
-      <div class="visit-content">
-        <h3>Şeffaflık ve Yönetişim Toplantısı</h3>
-        <div class="visit-date">11 Temmuz 2003</div>
-        <p>Saha ziyaretlerim KVKK maddesi gereği gizli tutulmaktadır.</p>
-      </div>
-    </article>
-
-    <article class="visit-card">
-      <img src="games/logo5.png" alt="Bölgesel Saha Taraması">
-      <div class="visit-content">
-        <h3>Bölgesel Saha Taraması</h3>
-        <div class="visit-date">21 Temmuz 2003</div>
-        <p>Saha ziyaretlerim KVKK maddesi gereği gizli tutulmaktadır.</p>
-      </div>
-    </article>
-
-    <article class="visit-card">
-      <img src="games/logo5.png" alt="Altyapı ve Hizmet Denetimi">
-      <div class="visit-content">
-        <h3>Altyapı ve Hizmet Denetimi</h3>
-        <div class="visit-date">29 Temmuz 2003</div>
-        <p>Saha ziyaretlerim KVKK maddesi gereği gizli tutulmaktadır.</p>
-      </div>
-    </article>
-
-
-    <!-- AĞUSTOS 2003 -->
-    <article class="visit-card">
-      <img src="games/logo5.png" alt="Sosyal Politika Görüşmeleri">
-      <div class="visit-content">
-        <h3>Sosyal Politika Görüşmeleri</h3>
-        <div class="visit-date">6 Ağustos 2003</div>
-        <p>Saha ziyaretlerim KVKK maddesi gereği gizli tutulmaktadır.</p>
-      </div>
-    </article>
-
-    <article class="visit-card">
-      <img src="games/logo5.png" alt="Talep ve Şikayet Değerlendirmesi">
-      <div class="visit-content">
-        <h3>Talep ve Şikayet Değerlendirmesi</h3>
-        <div class="visit-date">15 Ağustos 2003</div>
-        <p>Saha ziyaretlerim KVKK maddesi gereği gizli tutulmaktadır.</p>
-      </div>
-    </article>
-
-    <article class="visit-card">
-      <img src="games/logo5.png" alt="İdari Kapasite Analizi">
-      <div class="visit-content">
-        <h3>İdari Kapasite Analizi</h3>
-        <div class="visit-date">19 Ağustos 2003</div>
-        <p>Saha ziyaretlerim KVKK maddesi gereği gizli tutulmaktadır.</p>
-      </div>
-    </article>
-
-    <article class="visit-card">
-      <img src="games/logo5.png" alt="Kamusal İşleyiş Takibi">
-      <div class="visit-content">
-        <h3>Kamusal İşleyiş Takibi</h3>
-        <div class="visit-date">28 Ağustos 2003</div>
-        <p>Saha ziyaretlerim KVKK maddesi gereği gizli tutulmaktadır.</p>
-      </div>
-    </article>
-
-
-    <!-- EYLÜL 2003 -->
-    <article class="visit-card">
-      <img src="games/logo5.png" alt="Toplumsal Sorunlar Tespiti">
-      <div class="visit-content">
-        <h3>Toplumsal Sorunlar Tespiti</h3>
-        <div class="visit-date">8 Eylül 2003</div>
-        <p>Saha ziyaretlerim KVKK maddesi gereği gizli tutulmaktadır.</p>
-      </div>
-    </article>
-
-    <article class="visit-card">
-      <img src="games/logo5.png" alt="Kurumlar Arası Koordinasyon">
-      <div class="visit-content">
-        <h3>Kurumlar Arası Koordinasyon</h3>
-        <div class="visit-date">17 Eylül 2003</div>
-        <p>Saha ziyaretlerim KVKK maddesi gereği gizli tutulmaktadır.</p>
-      </div>
-    </article>
-
-    <article class="visit-card">
-      <img src="games/logo5.png" alt="Hizmet Standartları Kontrolü">
-      <div class="visit-content">
-        <h3>Hizmet Standartları Kontrolü</h3>
-        <div class="visit-date">23 Eylül 2003</div>
-        <p>Saha ziyaretlerim KVKK maddesi gereği gizli tutulmaktadır.</p>
-      </div>
-    </article>
-
-    <article class="visit-card">
-      <img src="games/logo5.png" alt="Kamuoyu Beklenti Araştırması">
-      <div class="visit-content">
-        <h3>Kamuoyu Beklenti Araştırması</h3>
-        <div class="visit-date">26 Eylül 2003</div>
-        <p>Saha ziyaretlerim KVKK maddesi gereği gizli tutulmaktadır.</p>
-      </div>
-    </article>
-  </div>
-</div>
-  </div>
-</section>
-
-
-<!-- =====================================================
-     RESMİ CANLI DESTEK MERKEZİ (GERÇEK PERSONEL MODELİ)
-===================================================== -->
-
-<!-- 1. Sağ Alt Açma Butonu -->
-<div class="support-launcher" onclick="destekAc()">
-  <div class="support-icon-circle">
-    <i class="fa-solid fa-headset"></i>
-  </div>
-  <div class="support-launcher-text">
-    <strong>Canlı Destek</strong>
-    <small><i class="fa-solid fa-circle" style="font-size:8px;"></i> Personel Çevrimiçi</small>
-  </div>
-</div>
-
-<!-- 2. Canlı Destek Paneli -->
-<div id="supportPanel" class="support-panel" aria-hidden="true">
-  <div class="support-header">
-    <div class="support-info">
-      <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=150&auto=format&fit=crop" class="support-photo" alt="Canlı Destek Personeli">
-      <div>
-        <h3>Kurumsal Canlı Destek</h3>
-        <div class="support-online">● Temsilci Çevrimiçi</div>
-      </div>
-    </div>
-    <button class="support-close" onclick="destekKapat()" aria-label="Kapat"><i class="fa-solid fa-xmark"></i></button>
-  </div>
-
-  <div id="chatArea" class="chat-area">
-    <div class="message agent">
-      <strong>Hoş Geldiniz.</strong><br>
-      Kamu Politikaları ve Kamu Hizmetleri Dijital Destek Masasına ulaştınız. Size nasıl yardımcı olabiliriz?
-    </div>
-    <div id="typing" class="typing">
-      Canlı destek personeli yazıyor <span>.</span><span>.</span><span>.</span>
-    </div>
-  </div>
-
-  <form class="chat-form" onsubmit="mesajGonder(event)">
-    <input id="chatInput" type="text" autocomplete="off" placeholder="Sorunuzu veya mesajınızı buraya yazın...">
-    <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
-  </form>
-</div>
-
-
-<!-- =====================================================
-     FOOTER
-===================================================== -->
-
-<footer>
-  <div class="footer-inner">
-    <div>
-      <h3>ŞAHİN UYMAZ</h3>
-      <p>Kamu politikaları, kamu kurumları ve kamu hizmetleri üzerine araştırma, izleme, değerlendirme ve bilgilendirme çalışmaları yürütülmektedir.</p>
-    </div>
-    <div>
-      <h3>Hızlı Bağlantılar</h3>
-      <ul>
-        <li><a href="#anasayfa" style="color:#cbd5e1; text-decoration:none;">Ana Sayfa</a></li>
-        <li><a href="#alanlar" style="color:#cbd5e1; text-decoration:none;">Çalışma Alanları</a></li>
-        <li><a href="#calismalar" style="color:#cbd5e1; text-decoration:none;">Çalışmalar</a></li>
-        <li><a href="#arastirmalar" style="color:#cbd5e1; text-decoration:none;">Araştırmalar</a></li>
-      </ul>
-    </div>
-    <div>
-      <h3>İletişim</h3>
-      <p>İnceleme, araştırma ve bilgilendirme talepleriniz için iletişime geçebilirsiniz.</p>
-      
-         <!-- YASAL UYARI VE TCK MADDESİ -->
-      <div class="footer-legal-notice">
-        <strong>YASAL UYARI:</strong> Bu sitede yer alan tüm görsel, yazılı ve özgün içeriklerin izinsiz kopyalanması, çoğaltılması veya dağıtılması; <strong>5846 sayılı Fikir ve Sanat Eserleri Kanunu</strong> ve <strong>5237 sayılı Türk Ceza Kanunu'nun (TCK) 135-138. ve ilgili telif maddeleri</strong> uyarınca hukuki ve cezai sorumluluk doğurur.
-      </div>
-
-      <!-- KVKK VE YASAL LİNKLER -->
-      <div class="footer-legal-links">
-        <a href="kvkk.html" class="kvkk-link" target="_blank">📋 KVKK Aydınlatma Metni</a>
-      </div>
-    </div>
-   
-  <div class="footer-bottom">
-    &copy; 2003 ŞAHİN UYMAZ. Tüm hakları saklıdır.
-  </div>
-</footer>
-
-
-<!-- =====================================================
-     CANLI DESTEK SERVİS KODLARI
-===================================================== -->
-
-<script>
-
-/* ====================================================================
-   1. API ANAHTARI AYARI
-   API Anahtarınızı Google AI Studio üzerinden alıp aşağıdaki tırnakların içine yapıştırın:
-   ==================================================================== */
-const GEMINI_API_KEY = "BURAYA_API_KEYINIZI_YAZIN"; 
-
-
-/* ====================================================================
-   2. PERSONEL SİSTEM TALİMATI (SYSTEM PROMPT)
-   Yapay zeka ibareleri kaldırılmış, tamamen canlı destek personeli rolü.
-   ==================================================================== */
-const SYSTEM_PROMPT = `
-Sen Şahin Uymaz Kamu Politikaları ve Kamu Hizmetleri Dijital Destek Masasında görevli resmi bir Canlı Destek Personelisin.
-
-KURALLAR VE TALİMATLAR:
-1. KESİNLİKLE VE ASLA yapay zeka, bot, otomasyon, dil modeli veya algoritmik bir sistem olduğundan BAHSETME.
-2. Kendini her zaman canlı bir insan destek personeli olarak konumlandır.
-3. Sorulara son derece resmi, nazik, kurumsal ve bilgili bir dille cevap ver.
-4. Karşılama, yönlendirme ve bilgilendirmelerde Şahin Uymaz'ın Kamu Politikaları, Kamu Hizmetleri, Araştırma, İzleme, Değerlendirme ve Saha Ziyaretleri kapsamındaki resmi faaliyetlerine odaklan.
-5. Konu dışı veya uygunsuz sorularda nazikçe "Anlayışınız için teşekkür ederim, ben sadece kurumumuzun kamu politikaları, araştırmaları ve hizmetleri kapsamındaki konularla ilgili sizlere yardımcı olabiliyorum." şeklinde yanıt ver.
-6. Yanıtların kısa, öz, net ve kurumsal bir sohbet tonunda olsun.
-`;
-
-// Geçmiş konuşmaları tutmak için dizi
-let chatHistory = [];
-
-function destekAc() {
-    var panel = document.getElementById('supportPanel');
-    panel.classList.add('open');
-    panel.setAttribute('aria-hidden', 'false');
-}
-
-function destekKapat() {
-    var panel = document.getElementById('supportPanel');
-    panel.classList.remove('open');
-    panel.setAttribute('aria-hidden', 'true');
-}
-
-/* ====================================================================
-   3. CANLI BAGLANTI FONKSIYONU
-   ==================================================================== */
-async function fetchGeminiResponse(userMessage) {
-    if (!GEMINI_API_KEY || GEMINI_API_KEY === "BURAYA_API_KEYINIZI_YAZIN") {
-        return "Sistemimiz şu anda güncelleme aşamasındadır. En kısa sürede canlı destek temsilcimiz sizlere hizmet vermeye devam edecektir.";
-    }
-
-    const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
-
-    chatHistory.push({
-        role: "user",
-        parts: [{ text: userMessage }]
-    });
-
-    const payload = {
-        system_instruction: {
-            parts: [{ text: SYSTEM_PROMPT }]
-        },
-        contents: chatHistory
-    };
-
-    try {
-        const response = await fetch(API_URL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload)
-        });
-
-        if (!response.ok) {
-            throw new Error("Bağlantı Hatası: " + response.statusText);
-        }
-
-        const data = await response.json();
-        const aiReply = data.candidates[0].content.parts[0].text;
-
-        chatHistory.push({
-            role: "model",
-            parts: [{ text: aiReply }]
-        });
-
-        return aiReply;
-
-    } catch (error) {
-        console.error("Destek Masası Hatası:", error);
-        return "Şu anda hatlarımızda geçici bir yoğunluk bulunmaktadır. Lütfen birkaç dakika sonra tekrar deneyiniz.";
-    }
-}
-
-/* ====================================================================
-   4. MESAJ GÖNDERME VE YAZIYOR EFEKTİ SÜRECİ
-   ==================================================================== */
-async function mesajGonder(e) {
-    e.preventDefault();
-    var input = document.getElementById('chatInput');
-    var txt = input.value.trim();
-    if(!txt) return;
-
-    var chatArea = document.getElementById('chatArea');
-    var typing = document.getElementById('typing');
-
-    // Kullanıcı Mesajını Ekrana Ekle
-    var uDiv = document.createElement('div');
-    uDiv.className = 'message user';
-    uDiv.textContent = txt;
-    chatArea.insertBefore(uDiv, typing);
-
-    input.value = '';
-    chatArea.scrollTop = chatArea.scrollHeight;
-
-    // "Canlı destek personeli yazıyor..." Efektini Aç
-    typing.classList.add('show');
-    chatArea.scrollTop = chatArea.scrollHeight;
-
-    // Temsilciden Yanıtı Al
-    const responseText = await fetchGeminiResponse(txt);
-
-    // Yazıyor Efektini Kapat ve Yanıtı Ekrana Ekle
-    typing.classList.remove('show');
-
-    var aDiv = document.createElement('div');
-    aDiv.className = 'message agent';
-    aDiv.innerHTML = responseText.replace(/\n/g, '<br>'); // Satır başlarını HTML'e çevir
-    
-    chatArea.insertBefore(aDiv, typing);
-    chatArea.scrollTop = chatArea.scrollHeight;
-}
-
-</script>
 
 </body>
 </html>
