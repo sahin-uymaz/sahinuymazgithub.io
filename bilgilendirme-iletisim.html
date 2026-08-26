@@ -177,7 +177,7 @@ a{
 }
 
 /* =========================
-   EN ALT ALAN & YASAL UYARI KART
+   SAYFA ALTI VE YASAL UYARI KART
 ========================= */
 
 .site-bottom-section {
@@ -187,31 +187,13 @@ a{
   padding: 0 25px;
 }
 
-.bottom-info-card {
-  background: #1b212b;
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 25px 30px;
-  box-shadow: 0 10px 25px rgba(0,0,0,.2);
-}
-
-.publication-date{
-  font-size:15px;
-  font-weight:700;
-  color:#fff;
-  margin-bottom:15px;
-}
-
-.publication-date strong{
-  color:var(--gold);
-}
-
 .legal-warning{
   background:#241919;
   border:1px solid rgba(201,162,39,.45);
   border-left:5px solid var(--gold);
   border-radius:10px;
   padding:18px 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,.2);
 }
 
 .legal-warning-title{
@@ -228,14 +210,30 @@ a{
   line-height:1.6;
 }
 
-/* FOOTER TELİF YAZISI */
+/* FOOTER YAZILARI VE YAYIN TARİHİ */
 .site-footer {
   text-align: center;
-  padding: 25px 0;
+  padding: 25px 15px;
   margin-top: 40px;
   background: #0c0f14;
   border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+}
+
+.publication-date-footer {
+  font-size: 12px;
   color: var(--muted);
+}
+
+.publication-date-footer strong {
+  color: var(--gold);
+}
+
+.footer-copyright {
+  color: #fff;
   font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.5px;
@@ -359,27 +357,27 @@ a{
 
 </main>
 
-<!-- SAYFANIN EN ALTNIDAKİ YASAL UYARI VE YAYIN TARİHİ ALANI -->
+<!-- SAYFA ALTI YASAL UYARI KARTI -->
 <div class="site-bottom-section">
-  <div class="bottom-info-card">
-    <div class="publication-date">
-      <strong>Yayın Tarihi:</strong> 15 Nisan 2003
-    </div>
-    <div class="legal-warning">
-      <div class="legal-warning-title">YASAL UYARI</div>
-      <p>
-        Bu sayfada yer alan içeriklerin izinsiz olarak kopyalanması,
-        çoğaltılması veya paylaşılması hukuki sorumluluk doğurabilir.
-        İçeriklerin izinsiz kullanılması halinde ilgili mevzuat kapsamında
-        yasal haklarımız saklıdır.
-      </p>
-    </div>
+  <div class="legal-warning">
+    <div class="legal-warning-title">YASAL UYARI</div>
+    <p>
+      Bu sayfada yer alan içeriklerin izinsiz olarak kopyalanması,
+      çoğaltılması veya paylaşılması hukuki sorumluluk doğurabilir.
+      İçeriklerin izinsiz kullanılması halinde ilgili mevzuat kapsamında
+      yasal haklarımız saklıdır.
+    </p>
   </div>
 </div>
 
-<!-- FOOTER METNİ -->
+<!-- FOOTER BÖLÜMÜ -->
 <footer class="site-footer">
-  @ Kamu Politikaları Hizmet Araştırmaları
+  <div class="publication-date-footer">
+    <strong>Yayın Tarihi:</strong> 15 Nisan 2003
+  </div>
+  <div class="footer-copyright">
+    @ Kamu Politikaları Hizmet Araştırmaları
+  </div>
 </footer>
 
 </body>
