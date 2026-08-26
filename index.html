@@ -1401,6 +1401,7 @@ footer ul{
      ARAŞTIR - İZLE - DEĞERLENDİR
 ===================================================== -->
 
+<!-- CANLI VE MODERN ÇALIŞMA YAKLAŞIMIMIZ BÖLÜMÜ -->
 <section class="section approach">
   <div class="section-inner">
     <div class="section-title center">
@@ -1410,22 +1411,110 @@ footer ul{
 
     <div class="approach-grid">
       <div class="approach-card">
+        <div class="card-icon">🔍</div>
         <strong>ARAŞTIR</strong>
         <span>Kamu politikaları ve kamu hizmetleri hakkında bilgi toplamak ve incelemek.</span>
       </div>
 
       <div class="approach-card">
+        <div class="card-icon">👁️</div>
         <strong>İZLE</strong>
         <span>Uygulamaları, hizmetleri ve ortaya çıkan sorunları takip etmek.</span>
       </div>
 
       <div class="approach-card">
+        <div class="card-icon">📊</div>
         <strong>DEĞERLENDİR</strong>
         <span>Elde edilen bilgileri incelemek ve değerlendirmek.</span>
       </div>
     </div>
   </div>
+
+  <style>
+    /* Izgara Yapısı */
+    .approach-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 36px;
+    }
+
+    /* Canlı, Gölgeli ve Belirgin Kartlar */
+    .approach-card {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 32px 24px;
+      text-align: center;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Kart Üstündeki Renkli Vurgu Çizgisi */
+    .approach-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #168cff, #2563eb);
+      opacity: 0.85;
+      transition: opacity 0.3s ease;
+    }
+
+    /* İkon Stili */
+    .card-icon {
+      font-size: 32px;
+      margin-bottom: 14px;
+      line-height: 1;
+    }
+
+    /* Başlıklar (ARAŞTIR, İZLE, DEĞERLENDİR) */
+    .approach-card strong {
+      display: block;
+      font-size: 19px;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    /* Açıklama Metinleri */
+    .approach-card span {
+      display: block;
+      font-size: 14.5px;
+      color: #475569;
+      line-height: 1.6;
+    }
+
+    /* Üzerine Gelince (Hover) Yükselme & Gölge Efekti */
+    .approach-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 30px -10px rgba(37, 99, 235, 0.18);
+      border-color: #2563eb;
+    }
+
+    .approach-card:hover::before {
+      opacity: 1;
+    }
+
+    /* Mobil Uyum (Ekran küçülünce alt alta sıralanma) */
+    @media (max-width: 768px) {
+      .approach-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+    }
+  </style>
 </section>
+
 
 
 <!-- =====================================================
