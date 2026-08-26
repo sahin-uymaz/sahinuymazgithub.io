@@ -202,28 +202,56 @@ a{
    FOOTER
 ========================= */
 
-.site-footer{
-  background:#0c0f14;
-  border-top:1px solid var(--border);
-  padding:30px 20px;
-  text-align:center;
+.sahin-footer {
+  text-align: center;
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: 1px;
+  padding: 30px 0;
+  background: #0c0f14;
+  border-top: 1px solid var(--border);
 }
 
-/* MUSTAFA YILMAZ */
-
-.footer-name{
-  margin:0;
-  font-size:18px;
-  font-weight:800;
-  letter-spacing:.5px;
+.sahin-footer .sahin {
+  color: #168cff;
+  animation: sahinMavi 2s ease-in-out infinite;
 }
 
-.footer-name .mustafa{
-  color:var(--blue);
+.sahin-footer .uymaz {
+  color: #ffffff;
+  animation: uymazBeyaz 2s ease-in-out infinite;
 }
 
-.footer-name .yilmaz{
-  color:#fff;
+@keyframes sahinMavi {
+  0%, 100% {
+    color: #168cff;
+    opacity: .45;
+    text-shadow: 0 0 4px rgba(22,140,255,.3);
+  }
+
+  50% {
+    color: #168cff;
+    opacity: 1;
+    text-shadow:
+      0 0 8px rgba(22,140,255,.9),
+      0 0 18px rgba(22,140,255,.6);
+  }
+}
+
+@keyframes uymazBeyaz {
+  0%, 100% {
+    color: #ffffff;
+    opacity: 1;
+    text-shadow:
+      0 0 8px rgba(255,255,255,.8),
+      0 0 18px rgba(255,255,255,.4);
+  }
+
+  50% {
+    color: #ffffff;
+    opacity: .45;
+    text-shadow: 0 0 4px rgba(255,255,255,.25);
+  }
 }
 
 
@@ -291,7 +319,7 @@ a{
     font-size:14px;
   }
 
-  .footer-name{
+  .sahin-footer{
     font-size:17px;
   }
 
@@ -309,9 +337,7 @@ a{
   <!-- LOGO -->
   <a href="index.html" aria-label="Ana Sayfa">
     <img src="games/logo5.png" alt="Kamu Politikaları Mührü" class="site-logo">
-   
   </a>
-
 
   <!-- NAVİGASYON -->
   <nav class="site-nav">
@@ -339,7 +365,6 @@ a{
 
 <main class="article-container">
 
-
   <header class="article-header">
 
     <h1>
@@ -351,7 +376,6 @@ a{
     </div>
 
   </header>
-
 
   <article class="article">
 
@@ -372,7 +396,6 @@ a{
       bilginin bulunması önem taşır.
     </p>
 
-
     <h3>
       Doğru Bilginin Önemi
     </h3>
@@ -384,7 +407,6 @@ a{
       çeşitli sorunlara neden olabilir.
     </p>
 
-
     <h3>
       İletişim Kanallarının Takibi
     </h3>
@@ -392,7 +414,7 @@ a{
     <p>
       Kurumlar ile vatandaşlar arasındaki iletişim farklı kanallar
       üzerinden gerçekleştirilebilir. Yazılı başvurular, elektronik
-      iletişim, doğrudan görüşmeler ve diğer resmî iletişim yolları
+      iletisim, doğrudan görüşmeler ve diğer resmî iletişim yolları
       bu sürecin parçalarıdır.
     </p>
 
@@ -401,7 +423,6 @@ a{
       çıkan sorunların daha kolay belirlenmesine ve ilgili konuların
       doğru mercilere aktarılmasına katkı sağlayabilir.
     </p>
-
 
     <h3>
       Bilginin Aktarılması
@@ -414,7 +435,6 @@ a{
       birbirinden ayrılması gerekir.
     </p>
 
-
     <h3>
       Geri Bildirim
     </h3>
@@ -425,7 +445,6 @@ a{
       Bu nedenle iletişim yalnızca bilgi aktarmaktan ibaret olmayıp
       karşılıklı bilgi alışverişini de kapsar.
     </p>
-
 
     <div class="article-bottom">
 
@@ -454,16 +473,11 @@ a{
 
 </main>
 
-
-<footer class="site-footer">
-
-  <p class="footer-name">
-    <span class="ŞAHİN">ŞAHİN</span>
-    <span class="ŞAHİN"> UYMAZ</span>
-  </p>
-
+<!-- FOOTER BÖLÜMÜ -->
+<footer class="sahin-footer">
+  <span class="sahin">ŞAHİN</span>
+  <span class="uymaz">UYMAZ</span>
 </footer>
-
 
 </body>
 </html>
