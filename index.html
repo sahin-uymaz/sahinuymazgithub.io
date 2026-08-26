@@ -140,7 +140,7 @@ body{
 
 
 /* =====================================================
-   ÜST MENÜ
+   ÜST MENÜ VE DROPDOWN
 ===================================================== */
 
 .site-header{
@@ -205,6 +205,52 @@ body{
     color:#facc15;
 }
 
+/* Dropdown Açılır Menü */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 220px;
+    background-color: #0b2948;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.3);
+    border-radius: 8px;
+    padding: 8px 0;
+    z-index: 101;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.dropdown-content a {
+    color: #e2e8f0;
+    padding: 10px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 13.5px;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s;
+}
+
+.dropdown-content a:hover {
+    background-color: #168cff;
+    color: #ffffff;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
 
 /* =====================================================
    HERO (DİNAMİK SLIDER & SENKRON YAZILAR)
@@ -226,7 +272,6 @@ body{
     animation: heroFade 42s infinite;
 }
 
-/* Görseller ve Gecikme Süreleri (42s Toplam Süre / 7s Slayt Başı) */
 .hero-slide:nth-child(1) {
     background-image: linear-gradient(rgba(4,20,38,.73), rgba(4,20,38,.78)), url("games/kamu.jpg");
     animation-delay: 0s;
@@ -257,7 +302,6 @@ body{
     animation-delay: 35s;
 }
 
-/* Arka Plan Görsel Geçişi (6 Slayt İçin Hesaplandı) */
 @keyframes heroFade {
     0% { opacity: 0; transform: scale(1.02); }
     2.5% { opacity: 1; }
@@ -294,7 +338,6 @@ body{
     animation: contentFade 42s infinite;
 }
 
-/* Metin Geçiş Gecikmeleri */
 .hero-inner:nth-child(1) { animation-delay: 0s; }
 .hero-inner:nth-child(2) { animation-delay: 7s; }
 .hero-inner:nth-child(3) { animation-delay: 14s; }
@@ -302,7 +345,6 @@ body{
 .hero-inner:nth-child(5) { animation-delay: 28s; }
 .hero-inner:nth-child(6) { animation-delay: 35s; }
 
-/* Metin Geçiş Efekti (6 Slayt İçin Hesaplandı) */
 @keyframes contentFade {
     0% { opacity: 0; transform: translateY(15px); }
     3% { opacity: 1; transform: translateY(0); }
@@ -1089,7 +1131,7 @@ footer a:hover{
 
 
 <!-- =====================================================
-     ÜST MENÜ
+     ÜST MENÜ (4 ALT MENÜLÜ SAHA ZİYARETLERİ EKLEMESİ İLE)
 ===================================================== -->
 
 <header class="site-header">
@@ -1107,7 +1149,19 @@ footer a:hover{
       <a href="#alanlar">Çalışma Alanları</a>
       <a href="#calismalar">Çalışmalar</a>
       <a href="#arastirmalar">Araştırmalar</a>
-      <a href="#ziyaretler">Saha Ziyaretleri</a>
+      
+      <!-- SAHA ZİYARETLERİ + 4 ALT MENÜ -->
+      <div class="dropdown">
+        <a href="#ziyaretler" class="dropdown-btn">
+          Saha Ziyaretleri <i class="fa-solid fa-chevron-down text-[11px] opacity-70"></i>
+        </a>
+        <div class="dropdown-content">
+          <a href="kurum-ziyaretleri.html">Kurum Ziyaretleri</a>
+          <a href="saha-incelemeleri.html">Saha İncelemeleri</a>
+          <a href="vatandas-gorusmeleri.html">Vatandaş Görüşmeleri</a>
+          <a href="ziyaret-raporlari.html">Ziyaret Raporları</a>
+        </div>
+      </div>
     </nav>
   </div>
 </header>
