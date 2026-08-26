@@ -39,7 +39,7 @@ a{
 }
 
 /* =========================
-   HEADER (YENİ YATAY DÜZEN)
+   HEADER (ÜST ALAN)
 ========================= */
 
 .site-header {
@@ -68,30 +68,53 @@ a{
   border-radius: 50%;
 }
 
-.site-title-text {
-  font-size: 16px;
-  font-weight: 700;
+/* LOGO YANINDAKİ YANIP SÖNEN İSİM */
+.brand-title-animated {
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+
+.brand-title-animated .sahin {
+  color: #168cff;
+  animation: sahinMavi 2s ease-in-out infinite;
+}
+
+.brand-title-animated .uymaz {
+  color: #ffffff;
+  animation: uymazBeyaz 2s ease-in-out infinite;
+}
+
+@keyframes sahinMavi {
+  0%, 100% { color: #168cff; opacity: .45; text-shadow: 0 0 4px rgba(22,140,255,.3); }
+  50% { color: #168cff; opacity: 1; text-shadow: 0 0 8px rgba(22,140,255,.9), 0 0 18px rgba(22,140,255,.6); }
+}
+
+@keyframes uymazBeyaz {
+  0%, 100% { color: #ffffff; opacity: 1; text-shadow: 0 0 8px rgba(255,255,255,.8), 0 0 18px rgba(255,255,255,.4); }
+  50% { color: #ffffff; opacity: .45; text-shadow: 0 0 4px rgba(255,255,255,.25); }
+}
+
+/* ANA SAYFAYA DÖN BUTONU */
+.btn-home {
+  background: rgba(255, 255, 255, 0.05);
   color: #fff;
-  letter-spacing: 0.5px;
-}
-
-.site-nav {
-  display: flex;
-  gap: 25px;
-  align-items: center;
-}
-
-.site-nav a {
+  padding: 8px 18px;
+  border-radius: 8px;
   font-size: 14px;
-  color: #ddd;
-  padding-bottom: 4px;
-  border-bottom: 2px solid transparent;
+  font-weight: 600;
+  border: 1px solid var(--border);
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.site-nav a:hover,
-.site-nav a.active {
+.btn-home:hover {
+  background: var(--red);
+  border-color: var(--red);
   color: #fff;
-  border-bottom-color: var(--red);
+  box-shadow: 0 4px 12px rgba(158, 28, 28, 0.4);
 }
 
 /* =========================
@@ -102,17 +125,17 @@ a{
   width:100%;
   max-width:900px;
   margin:0 auto;
-  padding:50px 25px 80px;
+  padding:40px 25px 50px;
 }
 
 .article-header{
   text-align:center;
-  margin-bottom:45px;
+  margin-bottom:35px;
 }
 
 .article-header h1{
   margin:0;
-  font-size:38px;
+  font-size:36px;
   color:#fff;
   line-height:1.25;
 }
@@ -143,6 +166,10 @@ a{
   margin:32px 0 12px;
 }
 
+.article h3:first-of-type {
+  margin-top: 10px;
+}
+
 .article p{
   color:#d2d5da;
   font-size:16px;
@@ -150,20 +177,29 @@ a{
 }
 
 /* =========================
-   ALT BİLGİ & FOOTER
+   EN ALT ALAN & YASAL UYARI KART
 ========================= */
 
-.article-bottom{
-  margin-top:45px;
-  padding-top:25px;
-  border-top:1px solid var(--border);
+.site-bottom-section {
+  width: 100%;
+  max-width: 900px;
+  margin: 30px auto 0;
+  padding: 0 25px;
+}
+
+.bottom-info-card {
+  background: #1b212b;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 25px 30px;
+  box-shadow: 0 10px 25px rgba(0,0,0,.2);
 }
 
 .publication-date{
-  font-size:16px;
+  font-size:15px;
   font-weight:700;
   color:#fff;
-  margin-bottom:20px;
+  margin-bottom:15px;
 }
 
 .publication-date strong{
@@ -175,76 +211,62 @@ a{
   border:1px solid rgba(201,162,39,.45);
   border-left:5px solid var(--gold);
   border-radius:10px;
-  padding:20px 22px;
+  padding:18px 20px;
 }
 
 .legal-warning-title{
-  font-size:16px;
+  font-size:15px;
   font-weight:800;
   color:#fff;
-  margin-bottom:8px;
+  margin-bottom:6px;
 }
 
 .legal-warning p{
   margin:0;
   color:#e3e3e3;
-  font-size:15px;
-  line-height:1.7;
+  font-size:14px;
+  line-height:1.6;
 }
 
-.sahin-footer {
+/* FOOTER TELİF YAZISI */
+.site-footer {
   text-align: center;
-  font-weight: 800;
-  font-size: 20px;
-  letter-spacing: 1px;
-  padding: 30px 0;
+  padding: 25px 0;
+  margin-top: 40px;
   background: #0c0f14;
   border-top: 1px solid var(--border);
-}
-
-.sahin-footer .sahin {
-  color: #168cff;
-  animation: sahinMavi 2s ease-in-out infinite;
-}
-
-.sahin-footer .uymaz {
-  color: #ffffff;
-  animation: uymazBeyaz 2s ease-in-out infinite;
-}
-
-@keyframes sahinMavi {
-  0%, 100% { color: #168cff; opacity: .45; text-shadow: 0 0 4px rgba(22,140,255,.3); }
-  50% { color: #168cff; opacity: 1; text-shadow: 0 0 8px rgba(22,140,255,.9), 0 0 18px rgba(22,140,255,.6); }
-}
-
-@keyframes uymazBeyaz {
-  0%, 100% { color: #ffffff; opacity: 1; text-shadow: 0 0 8px rgba(255,255,255,.8), 0 0 18px rgba(255,255,255,.4); }
-  50% { color: #ffffff; opacity: .45; text-shadow: 0 0 4px rgba(255,255,255,.25); }
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
 }
 
 /* =========================
    MOBİL UYUM
 ========================= */
 
-@media(max-width:768px){
+@media(max-width:600px){
   .site-header {
-    flex-direction: column;
-    padding: 15px;
-    gap: 15px;
+    padding: 12px 15px;
   }
-  .site-nav {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
+  .brand-title-animated {
+    font-size: 15px;
+  }
+  .btn-home {
+    padding: 6px 12px;
+    font-size: 12px;
   }
   .article-container{
-    padding:30px 15px 50px;
+    padding:25px 15px 30px;
   }
   .article-header h1{
-    font-size:29px;
+    font-size:26px;
   }
   .article{
-    padding:25px 20px;
+    padding:25px 18px;
+  }
+  .site-bottom-section {
+    padding: 0 15px;
   }
 }
 </style>
@@ -252,22 +274,26 @@ a{
 </head>
 <body>
 
+<!-- HEADER -->
 <header class="site-header">
-  <!-- YENİ LOGO VE MARKA ALANI -->
+  
+  <!-- LOGO VE YANIP SÖNEN İSİM -->
   <a href="index.html" class="brand-area" aria-label="Ana Sayfa">
     <img src="games/logo5.png" alt="Kamu Politikaları Mührü" class="site-logo">
-    <span class="site-title-text">ŞAHİN UYMAZ</span>
+    <div class="brand-title-animated">
+      <span class="sahin">ŞAHİN</span>
+      <span class="uymaz">UYMAZ</span>
+    </div>
   </a>
 
-  <!-- NAVİGASYON -->
-  <nav class="site-nav">
-    <a href="index.html">Ana Sayfa</a>
-    <a href="kamu-politikalari.html">Kamu Politikaları</a>
-    <a href="kamu-hizmetleri.html">Kamu Hizmetleri</a>
-    <a href="bilgilendirme-iletisim.html" class="active">Bilgilendirme ve İletişim</a>
-  </nav>
+  <!-- ANA SAYFAYA DÖN BUTONU -->
+  <a href="index.html" class="btn-home">
+    ← Ana Sayfa
+  </a>
+
 </header>
 
+<!-- ANA İÇERİK -->
 <main class="article-container">
   
   <header class="article-header">
@@ -279,7 +305,6 @@ a{
 
   <article class="article">
     
-    <!-- Tekrar eden <h2> başlığı görsel kargaşayı önlemek için kaldırıldı -->
     <p>
       Bilgilendirme ve iletişim, kamu hizmetlerinin vatandaşlara
       doğru ve anlaşılır şekilde aktarılması açısından önemli bir
@@ -305,7 +330,7 @@ a{
     <p>
       Kurumlar ile vatandaşlar arasındaki iletişim farklı kanallar
       üzerinden gerçekleştirilebilir. Yazılı başvurular, elektronik
-      iletisim, doğrudan görüşmeler ve diğer resmî iletişim yolları
+      iletişim, doğrudan görüşmeler ve diğer resmî iletişim yolları
       bu sürecin parçalarıdır.
     </p>
     <p>
@@ -330,28 +355,31 @@ a{
       karşılıklı bilgi alışverişini de kapsar.
     </p>
 
-    <div class="article-bottom">
-      <div class="publication-date">
-        <strong>Yayın Tarihi:</strong> 15 Nisan 2003
-      </div>
-      <div class="legal-warning">
-        <div class="legal-warning-title">YASAL UYARI</div>
-        <p>
-          Bu sayfada yer alan içeriklerin izinsiz olarak kopyalanması,
-          çoğaltılması veya paylaşılması hukuki sorumluluk doğurabilir.
-          İçeriklerin izinsiz kullanılması halinde ilgili mevzuat kapsamında
-          yasal haklarımız saklıdır.
-        </p>
-      </div>
-    </div>
-
   </article>
 
 </main>
 
-<footer class="sahin-footer">
-  <span class="sahin">ŞAHİN</span>
-  <span class="uymaz">UYMAZ</span>
+<!-- SAYFANIN EN ALTNIDAKİ YASAL UYARI VE YAYIN TARİHİ ALANI -->
+<div class="site-bottom-section">
+  <div class="bottom-info-card">
+    <div class="publication-date">
+      <strong>Yayın Tarihi:</strong> 15 Nisan 2003
+    </div>
+    <div class="legal-warning">
+      <div class="legal-warning-title">YASAL UYARI</div>
+      <p>
+        Bu sayfada yer alan içeriklerin izinsiz olarak kopyalanması,
+        çoğaltılması veya paylaşılması hukuki sorumluluk doğurabilir.
+        İçeriklerin izinsiz kullanılması halinde ilgili mevzuat kapsamında
+        yasal haklarımız saklıdır.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER METNİ -->
+<footer class="site-footer">
+  @ Kamu Politikaları Hizmet Araştırmaları
 </footer>
 
 </body>
