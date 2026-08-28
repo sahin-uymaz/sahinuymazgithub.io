@@ -364,22 +364,13 @@ body {
 </div>
 
 <script>
-/* =========================================
-   CLOUDFLARE WORKER ADRESİ
-========================================= */
 const WORKER_URL = "https://frosty-scene-b2ed.s-88-mstf.workers.dev/";
 
-/* =========================================
-   ELEMANLAR
-========================================= */
 const chatArea = document.getElementById("chatArea");
 const messageInput = document.getElementById("messageInput");
 const typing = document.getElementById("typing");
 const sendButton = document.getElementById("sendButton");
 
-/* =========================================
-   ENTER İLE GÖNDER
-========================================= */
 messageInput.addEventListener("keydown", function(event) {
     if (event.key === "Enter") {
         event.preventDefault();
@@ -387,14 +378,8 @@ messageInput.addEventListener("keydown", function(event) {
     }
 });
 
-/* =========================================
-   BUTON
-========================================= */
 sendButton.addEventListener("click", sendMessage);
 
-/* =========================================
-   MESAJ GÖNDER
-========================================= */
 async function sendMessage() {
     const message = messageInput.value.trim();
 
@@ -418,30 +403,28 @@ async function sendMessage() {
             body: JSON.stringify({ message: message })
         });
 
-        if (!response.ok) {
-            throw new Error("Worker HTTP " + response.status);
-        }
-
         const data = await response.json();
         typing.classList.remove("active");
 
-        // Worker yanıtında 'reply' veya 'message' alanını oku
+        if (!response.ok) {
+            throw new Error(data.reply || data.error || ("HTTP " + response.status));
+        }
+
         const botReply = data.reply || data.message || "Şu anda cevap oluşturulamadı.";
         addSupportMessage(botReply);
 
     } catch (error) {
         console.error("Canlı destek bağlantı hatası:", error);
         typing.classList.remove("active");
-        addSupportMessage("Canlı destek sunucusuna şu anda bağlanılamıyor. Lütfen birkaç saniye sonra tekrar deneyin.");
+        
+        // Hata durumunda gerçek teknik nedeni ekrana da basar
+        addSupportMessage("Hata: " + (error.message || "Canlı destek sunucusuna bağlanılamıyor."));
     } finally {
         sendButton.disabled = false;
         messageInput.focus();
     }
 }
 
-/* =========================================
-   KULLANICI MESAJI
-========================================= */
 function addUserMessage(message) {
     const row = document.createElement("div");
     row.className = "message-row user";
@@ -455,9 +438,6 @@ function addUserMessage(message) {
     scrollChat();
 }
 
-/* =========================================
-   DESTEK MESAJI (FORMAT DÜZELTME DAHİL)
-========================================= */
 function addSupportMessage(message) {
     const row = document.createElement("div");
     row.className = "message-row";
@@ -469,7 +449,6 @@ function addSupportMessage(message) {
     const bubble = document.createElement("div");
     bubble.className = "message support-message";
 
-    // Yanıttaki alt satırları ve **kalın** yazıları HTML biçimine dönüştürür
     let formattedMessage = message
         .replace(/\n/g, "<br>")
         .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
@@ -482,9 +461,6 @@ function addSupportMessage(message) {
     scrollChat();
 }
 
-/* =========================================
-   KAYDIR
-========================================= */
 function scrollChat() {
     chatArea.scrollTo({
         top: chatArea.scrollHeight,
