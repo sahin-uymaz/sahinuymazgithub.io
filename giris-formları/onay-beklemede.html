@@ -139,7 +139,63 @@ h1{
     }
 
 }
+<script>
+(function () {
 
+    /*
+     * =====================================================
+     * ZİYARETÇİ GİRİŞ / DOĞRULAMA / ONAY KONTROLÜ
+     * =====================================================
+     *
+     * Akış:
+     *
+     * 1. İlk ziyaretçi
+     *    → giris-formları/giris.html
+     *
+     * 2. Bilgilerini girip SMS doğrulamasını tamamlayan
+     *    → giris-formları/onay-beklemede.html
+     *
+     * 3. Yönetici tarafından onaylanan
+     *    → index.html
+     *
+     * Onay yoksa ana site kesinlikle açılmaz.
+     */
+
+    const dogrulamaTamam =
+        localStorage.getItem("sahin_sms_dogrulandi") === "true";
+
+    const onaylandi =
+        localStorage.getItem("sahin_ziyaretci_onaylandi") === "true";
+
+    /*
+     * Yönetici onayı verilmişse ana site açılır.
+     */
+    if (onaylandi) {
+        return;
+    }
+
+    /*
+     * SMS doğrulaması tamamlandıysa fakat yönetici
+     * henüz onaylamadıysa onay bekleme sayfasına gönder.
+     */
+    if (dogrulamaTamam) {
+
+        window.location.replace(
+            "giris-formları/onay-beklemede.html"
+        );
+
+        return;
+    }
+
+    /*
+     * Hiç giriş/doğrulama yapılmadıysa giriş sayfasına gönder.
+     */
+    window.location.replace(
+        "giris-formları/giris.html"
+    );
+
+})();
+</script>
 </style>
 
 </head>
