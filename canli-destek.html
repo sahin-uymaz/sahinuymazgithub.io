@@ -1,12 +1,15 @@
+```html
 <!DOCTYPE html>
 <html lang="tr">
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Canlı Destek</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-    <!-- Font Awesome -->
+    <title>Canlı Destek | ESERKON</title>
+
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
@@ -19,33 +22,43 @@
         }
 
         body{
+
             min-height:100vh;
+
             font-family:Arial, sans-serif;
+
             background:
-                radial-gradient(circle at top left,
-                #18345a 0%,
-                #081522 45%,
-                #03080f 100%);
+                radial-gradient(
+                    circle at top left,
+                    #18345a 0%,
+                    #081522 45%,
+                    #03080f 100%
+                );
 
             color:white;
 
             display:flex;
+
             align-items:center;
+
             justify-content:center;
 
             padding:25px;
         }
 
 
-        /* ANA DESTEK KUTUSU */
-
         .support-container{
+
             width:100%;
+
             max-width:850px;
 
-            background:rgba(255,255,255,.06);
+            background:
+                rgba(255,255,255,.06);
 
-            border:1px solid rgba(255,255,255,.12);
+            border:
+                1px solid
+                rgba(255,255,255,.12);
 
             border-radius:28px;
 
@@ -54,7 +67,8 @@
             backdrop-filter:blur(18px);
 
             box-shadow:
-                0 25px 80px rgba(0,0,0,.45);
+                0 25px 80px
+                rgba(0,0,0,.45);
         }
 
 
@@ -78,13 +92,15 @@
                 );
 
             border-bottom:
-                1px solid rgba(255,255,255,.10);
+                1px solid
+                rgba(255,255,255,.10);
         }
 
 
         .support-icon{
 
             width:60px;
+
             height:60px;
 
             border-radius:18px;
@@ -92,6 +108,7 @@
             display:flex;
 
             align-items:center;
+
             justify-content:center;
 
             font-size:28px;
@@ -104,7 +121,8 @@
                 );
 
             box-shadow:
-                0 0 25px rgba(37,99,235,.35);
+                0 0 25px
+                rgba(37,99,235,.35);
         }
 
 
@@ -123,8 +141,6 @@
             color:#b9c7d9;
         }
 
-
-        /* ÇEVRİMİÇİ DURUMU */
 
         .online-status{
 
@@ -145,6 +161,7 @@
         .online-dot{
 
             width:10px;
+
             height:10px;
 
             border-radius:50%;
@@ -152,7 +169,8 @@
             background:#22c55e;
 
             box-shadow:
-                0 0 12px #22c55e;
+                0 0 12px
+                #22c55e;
         }
 
 
@@ -173,8 +191,6 @@
             gap:18px;
         }
 
-
-        /* KAYDIRMA ÇUBUĞU */
 
         .chat-area::-webkit-scrollbar{
 
@@ -213,6 +229,7 @@
         .avatar{
 
             width:40px;
+
             height:40px;
 
             border-radius:50%;
@@ -220,6 +237,7 @@
             display:flex;
 
             align-items:center;
+
             justify-content:center;
 
             background:
@@ -233,7 +251,7 @@
         }
 
 
-        /* MESAJ BALONU */
+        /* MESAJ */
 
         .message{
 
@@ -246,10 +264,10 @@
             line-height:1.6;
 
             font-size:15px;
+
+            white-space:pre-wrap;
         }
 
-
-        /* DESTEK MESAJI */
 
         .support-message{
 
@@ -257,8 +275,8 @@
                 rgba(255,255,255,.09);
 
             border:
-
-                1px solid rgba(255,255,255,.10);
+                1px solid
+                rgba(255,255,255,.10);
 
             border-bottom-left-radius:6px;
 
@@ -266,12 +284,9 @@
         }
 
 
-        /* KULLANICI MESAJI */
-
         .user-message{
 
             background:
-
                 linear-gradient(
                     135deg,
                     #2563eb,
@@ -284,7 +299,7 @@
         }
 
 
-        /* YAZIYOR ALANI */
+        /* YAZIYOR */
 
         .typing{
 
@@ -298,7 +313,8 @@
 
             color:#9eb0c6;
 
-            padding-left:50px;
+            padding:
+                0 25px 12px 75px;
         }
 
 
@@ -319,6 +335,7 @@
         .typing-dots span{
 
             width:6px;
+
             height:6px;
 
             border-radius:50%;
@@ -364,7 +381,7 @@
         }
 
 
-        /* ALT MESAJ ALANI */
+        /* GİRİŞ */
 
         .chat-input-area{
 
@@ -378,7 +395,8 @@
                 rgba(0,0,0,.18);
 
             border-top:
-                1px solid rgba(255,255,255,.08);
+                1px solid
+                rgba(255,255,255,.08);
         }
 
 
@@ -398,7 +416,8 @@
                 rgba(255,255,255,.08);
 
             border:
-                1px solid rgba(255,255,255,.10);
+                1px solid
+                rgba(255,255,255,.10);
 
             color:white;
 
@@ -427,7 +446,6 @@
             font-size:19px;
 
             background:
-
                 linear-gradient(
                     135deg,
                     #2563eb,
@@ -464,7 +482,8 @@
 
             text-align:center;
 
-            padding:0 20px 18px;
+            padding:
+                0 20px 18px;
 
             font-size:11px;
 
@@ -511,7 +530,7 @@
             .chat-area{
 
                 height:
-                calc(100vh - 210px);
+                    calc(100vh - 210px);
 
                 padding:18px;
             }
@@ -530,9 +549,16 @@
                 padding:14px;
             }
 
+
+            .typing{
+
+                padding-left:50px;
+            }
+
         }
 
     </style>
+
 </head>
 
 
@@ -542,7 +568,7 @@
 <div class="support-container">
 
 
-    <!-- ÜST BAŞLIK -->
+    <!-- BAŞLIK -->
 
     <div class="support-header">
 
@@ -586,8 +612,6 @@
     >
 
 
-        <!-- İLK KARŞILAMA MESAJI -->
-
         <div class="message-row">
 
 
@@ -627,7 +651,6 @@
         id="typing"
     >
 
-
         <span>
             Canlı destek yazıyor
         </span>
@@ -636,13 +659,10 @@
         <div class="typing-dots">
 
             <span></span>
-
             <span></span>
-
             <span></span>
 
         </div>
-
 
     </div>
 
@@ -654,21 +674,16 @@
 
 
         <input
-
             type="text"
-
             id="messageInput"
-
             placeholder="Mesajınızı yazın..."
-
             autocomplete="off"
-
         >
 
 
         <button
             id="sendButton"
-            onclick="sendMessage()"
+            type="button"
         >
 
             <i class="fa-solid fa-paper-plane"></i>
@@ -677,7 +692,6 @@
 
 
     </div>
-
 
 
     <div class="footer-info">
@@ -693,219 +707,203 @@
 
 <script>
 
+    /*
+    =========================================================
+    CLOUDFLARE WORKER
+    =========================================================
+    */
+
+    const WORKER_URL =
+        "https://frosty-scene-b2ed.s-88-mstf.workers.dev/";
+
+
+    /*
+    =========================================================
+    ELEMENTLER
+    =========================================================
+    */
 
     const chatArea =
-        document.getElementById(
-            "chatArea"
-        );
-
+        document.getElementById("chatArea");
 
     const messageInput =
-        document.getElementById(
-            "messageInput"
-        );
-
+        document.getElementById("messageInput");
 
     const typing =
-        document.getElementById(
-            "typing"
-        );
-
+        document.getElementById("typing");
 
     const sendButton =
-        document.getElementById(
-            "sendButton"
-        );
+        document.getElementById("sendButton");
 
 
-
-    /* ENTER İLE GÖNDERME */
+    /*
+    =========================================================
+    ENTER İLE GÖNDER
+    =========================================================
+    */
 
     messageInput.addEventListener(
-
         "keydown",
-
         function(event){
 
-            if(
-                event.key === "Enter"
-            ){
+            if(event.key === "Enter"){
+
+                event.preventDefault();
 
                 sendMessage();
 
             }
 
         }
-
     );
 
 
+    /*
+    =========================================================
+    GÖNDER BUTONU
+    =========================================================
+    */
 
-    /* MESAJ GÖNDER */
+    sendButton.addEventListener(
+        "click",
+        sendMessage
+    );
+
+
+    /*
+    =========================================================
+    MESAJ GÖNDER
+    =========================================================
+    */
 
     async function sendMessage(){
-
 
         const message =
             messageInput.value.trim();
 
 
-
-        if(
-            message === ""
-        ){
+        if(!message){
 
             return;
 
         }
 
 
+        /*
+        KULLANICI MESAJI
+        */
 
-        /* KULLANICI MESAJI */
-
-        addUserMessage(
-            message
-        );
-
+        addUserMessage(message);
 
 
-        /* INPUT TEMİZLE */
+        /*
+        INPUT TEMİZLE
+        */
 
         messageInput.value = "";
 
 
+        /*
+        YAZIYOR
+        */
 
-        /* YAZIYOR GÖSTER */
-
-        typing.classList.add(
-            "active"
-        );
-
+        typing.classList.add("active");
 
 
-        sendButton.disabled =
-            true;
-
+        sendButton.disabled = true;
 
 
         scrollChat();
-
 
 
         try{
 
 
             /*
-            =================================================
-
-            API BAĞLANTISI BURAYA EKLENECEK
-
-            API ANAHTARI BURAYA YAZILMAYACAK.
-
-            Güvenli bir backend üzerinden
-            bağlantı kurulacak.
-
-            =================================================
+            CLOUDFLARE WORKER'A GÖNDER
             */
 
+            const response =
+                await fetch(
+                    WORKER_URL,
+                    {
+                        method:"POST",
 
-            const response = await fetch(
+                        headers:{
+                            "Content-Type":
+                                "application/json"
+                        },
 
-                "/api/chat",
-
-                {
-
-                    method:"POST",
-
-                    headers:{
-
-                        "Content-Type":
-                        "application/json"
-
-                    },
-
-
-                    body:
-
-                    JSON.stringify({
-
-                        message:message
-
-                    })
-
-                }
-
-            );
+                        body:
+                            JSON.stringify({
+                                message:message
+                            })
+                    }
+                );
 
 
+            /*
+            HTTP HATASI
+            */
 
-            if(
-                !response.ok
-            ){
+            if(!response.ok){
 
                 throw new Error(
-                    "Bağlantı hatası"
+                    "Worker HTTP hatası: "
+                    + response.status
                 );
 
             }
 
 
+            /*
+            JSON CEVABI
+            */
 
             const data =
                 await response.json();
 
 
+            /*
+            YAZIYORU KAPAT
+            */
 
-            typing.classList.remove(
-                "active"
-            );
+            typing.classList.remove("active");
 
 
+            /*
+            GERÇEK CEVABI GÖSTER
+            */
 
             addSupportMessage(
 
                 data.reply ||
-                "Üzgünüm, şu anda yanıt oluşturulamadı."
+                "Yanıt alınamadı."
 
             );
 
 
         }
-
-
         catch(error){
 
-
-            typing.classList.remove(
-                "active"
+            console.error(
+                "Canlı destek hatası:",
+                error
             );
 
 
+            typing.classList.remove("active");
+
 
             /*
-            ŞİMDİLİK TEST CEVABI
-
-            BACKEND BAĞLANDIĞINDA
-            BU KISIM GERÇEK YAPAY ZEKA
-            CEVABIYLA DEĞİŞECEK.
+            ARTIK ESKİ SABİT
+            "Mesajınızı aldım..."
+            CEVABI YOK.
             */
 
+            addSupportMessage(
 
-            setTimeout(
-
-                function(){
-
-
-                    addSupportMessage(
-
-                        "Mesajınızı aldım. Size nasıl yardımcı olabilirim?"
-
-                    );
-
-
-                },
-
-                500
+                "Canlı destek sunucusuna şu anda bağlanılamıyor. Lütfen birkaç saniye sonra tekrar deneyin."
 
             );
 
@@ -914,43 +912,36 @@
 
         finally{
 
-
             sendButton.disabled =
                 false;
 
-
             messageInput.focus();
 
+            scrollChat();
 
         }
-
 
     }
 
 
-
-    /* KULLANICI MESAJI */
+    /*
+    =========================================================
+    KULLANICI MESAJI
+    =========================================================
+    */
 
     function addUserMessage(message){
 
-
         const row =
-
-            document.createElement(
-                "div"
-            );
+            document.createElement("div");
 
 
         row.className =
             "message-row user";
 
 
-
         const bubble =
-
-            document.createElement(
-                "div"
-            );
+            document.createElement("div");
 
 
         bubble.className =
@@ -961,11 +952,9 @@
             message;
 
 
-
         row.appendChild(
             bubble
         );
-
 
 
         chatArea.appendChild(
@@ -973,36 +962,29 @@
         );
 
 
-
         scrollChat();
-
 
     }
 
 
-
-    /* CANLI DESTEK MESAJI */
+    /*
+    =========================================================
+    DESTEK MESAJI
+    =========================================================
+    */
 
     function addSupportMessage(message){
 
-
         const row =
-
-            document.createElement(
-                "div"
-            );
+            document.createElement("div");
 
 
         row.className =
             "message-row";
 
 
-
         const avatar =
-
-            document.createElement(
-                "div"
-            );
+            document.createElement("div");
 
 
         avatar.className =
@@ -1010,16 +992,11 @@
 
 
         avatar.innerHTML =
-
             '<i class="fa-solid fa-headset"></i>';
 
 
-
         const bubble =
-
-            document.createElement(
-                "div"
-            );
+            document.createElement("div");
 
 
         bubble.className =
@@ -1028,7 +1005,6 @@
 
         bubble.textContent =
             message;
-
 
 
         row.appendChild(
@@ -1041,24 +1017,23 @@
         );
 
 
-
         chatArea.appendChild(
             row
         );
 
 
-
         scrollChat();
-
 
     }
 
 
-
-    /* EN ALT MESAJI GÖSTER */
+    /*
+    =========================================================
+    EN ALTA KAYDIR
+    =========================================================
+    */
 
     function scrollChat(){
-
 
         chatArea.scrollTo({
 
@@ -1070,62 +1045,12 @@
 
         });
 
-
     }
 
-
 </script>
 
-<script>
-function handleChatSubmit(event) {
-  event.preventDefault();
 
-  const input = document.getElementById("chatInput");
-  const chatArea = document.getElementById("chatArea");
-  const message = input.value.trim();
-
-  if (!message) return;
-
-  const userMessage = document.createElement("div");
-  userMessage.className = "message user";
-  userMessage.textContent = message;
-  chatArea.appendChild(userMessage);
-
-  input.value = "";
-
-  const typing = document.getElementById("typingIndicator");
-  typing.style.display = "block";
-
-  fetch("https://frosty-scene-b2ed.s-88-mstf.workers.dev/", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      message: message
-    })
-  })
-  .then(response => response.json())
-  .then(data => {
-    typing.style.display = "none";
-
-    const reply = document.createElement("div");
-    reply.className = "message agent";
-    reply.textContent = data.reply || "Şu anda cevap veremiyorum.";
-    chatArea.appendChild(reply);
-
-    chatArea.scrollTop = chatArea.scrollHeight;
-  })
-  .catch(error => {
-    typing.style.display = "none";
-
-    const reply = document.createElement("div");
-    reply.className = "message agent";
-    reply.textContent = "Bağlantıda bir sorun oluştu. Lütfen tekrar deneyin.";
-    chatArea.appendChild(reply);
-  });
-}
-</script>
 </body>
 
 </html>
+```
