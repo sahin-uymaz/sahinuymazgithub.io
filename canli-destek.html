@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ayşe Canlı Destek | ESERKON</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <style>
+
+        *{
+            box-sizing:border-box;
+        }
+
+        body{
+            margin:0;
+            min-height:100vh;
+            font-family:Arial,sans-serif;
+            color:#ffffff;
+
+            background:
+                radial-gradient(circle at top,
+                #173763 0%,
+                #07111f 55%,
+                #030914 100%);
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header{
+            background:#ffffff;
+            box-shadow:0 5px 25px rgba(0,0,0,.25);
+            position:sticky;
+            top:0;
+            z-index:100;
+        }
+
+        .header-container{
+            max-width:1200px;
+            margin:auto;
+            padding:18px 24px;
+
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+        }
+
+        .logo-text{
+            font-size:34px;
+            font-weight:800;
+            letter-spacing:-1px;
+        }
+
+        .logo-es{
+            color:#dc2626;
+        }
+
+        .logo-er{
+            color:#2563eb;
+        }
+
+        .logo-kon{
+            color:#16a34a;
+        }
+
+        .home-button{
+            display:flex;
+            align-items:center;
+            gap:9px;
+
+            padding:12px 20px;
+
+            border-radius:30px;
+
+            background:#dc2626;
+            color:white;
+
+            text-decoration:none;
+
+            font-weight:bold;
+
+            transition:.3s;
+        }
+
+        .home-button:hover{
+            background:#991b1b;
+            transform:translateY(-2px);
+        }
+
+
+        /* =========================
+           ANA ALAN
+        ========================= */
+
+        .page-container{
+            width:100%;
+            max-width:1000px;
+
+            margin:auto;
+
+            padding:60px 20px;
+        }
+
+        .page-title{
+            text-align:center;
+            margin-bottom:35px;
+        }
+
+        .page-title h1{
+            margin:0;
+
+            font-size:42px;
+
+            color:#d4af37;
+
+            text-shadow:
+                0 0 10px rgba(212,175,55,.20);
+        }
+
+        .page-title p{
+            margin-top:12px;
+
+            color:#cbd5e1;
+
+            font-size:17px;
+        }
+
+
+        /* =========================
+           CANLI DESTEK KARTI
+        ========================= */
+
+        .chat-wrapper{
+
+            background:
+                rgba(255,255,255,.06);
+
+            backdrop-filter:
+                blur(16px);
+
+            border:
+                1px solid rgba(255,255,255,.14);
+
+            border-radius:28px;
+
+            overflow:hidden;
+
+            box-shadow:
+                0 20px 60px rgba(0,0,0,.35);
+        }
+
+
+        /* =========================
+           AYŞE BAŞLIK
+        ========================= */
+
+        .chat-header{
+
+            display:flex;
+
+            align-items:center;
+
+            gap:16px;
+
+            padding:22px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #991b1b,
+                    #7f1d1d,
+                    #3f0a0a
+                );
+
+            border-bottom:
+                1px solid rgba(255,255,255,.12);
+        }
+
+        .ayse-avatar{
+
+            width:70px;
+            height:70px;
+
+            border-radius:50%;
+
+            object-fit:cover;
+
+            border:
+                3px solid #d4af37;
+
+            background:#ffffff;
+
+            box-shadow:
+                0 0 20px rgba(212,175,55,.35);
+        }
+
+        .ayse-info h2{
+
+            margin:0;
+
+            font-size:23px;
+
+            color:white;
+        }
+
+        .online-status{
+
+            display:flex;
+
+            align-items:center;
+
+            gap:7px;
+
+            margin-top:7px;
+
+            font-size:14px;
+
+            color:#e2e8f0;
+        }
+
+        .online-dot{
+
+            width:10px;
+            height:10px;
+
+            border-radius:50%;
+
+            background:#22c55e;
+
+            box-shadow:
+                0 0 12px #22c55e;
+
+            animation:
+                pulse 1.8s infinite;
+        }
+
+        @keyframes pulse{
+
+            0%{
+                transform:scale(1);
+                opacity:1;
+            }
+
+            50%{
+                transform:scale(1.3);
+                opacity:.6;
+            }
+
+            100%{
+                transform:scale(1);
+                opacity:1;
+            }
+
+        }
+
+
+        /* =========================
+           MESAJ ALANI
+        ========================= */
+
+        .chat-messages{
+
+            height:460px;
+
+            overflow-y:auto;
+
+            padding:25px;
+
+            display:flex;
+
+            flex-direction:column;
+
+            gap:16px;
+
+            background:
+                rgba(0,0,0,.14);
+        }
+
+
+        /* =========================
+           MESAJ BALONLARI
+        ========================= */
+
+        .message{
+
+            max-width:78%;
+
+            padding:14px 17px;
+
+            border-radius:18px;
+
+            line-height:1.55;
+
+            font-size:15px;
+
+            animation:
+                messageAppear .3s ease;
+        }
+
+        @keyframes messageAppear{
+
+            from{
+                opacity:0;
+                transform:translateY(10px);
+            }
+
+            to{
+                opacity:1;
+                transform:translateY(0);
+            }
+
+        }
+
+
+        .ayse-message{
+
+            align-self:flex-start;
+
+            background:
+                rgba(255,255,255,.10);
+
+            border:
+                1px solid rgba(255,255,255,.12);
+
+            border-bottom-left-radius:5px;
+
+            color:#f8fafc;
+        }
+
+
+        .user-message{
+
+            align-self:flex-end;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #dc2626,
+                    #991b1b
+                );
+
+            color:white;
+
+            border-bottom-right-radius:5px;
+        }
+
+
+        /* =========================
+           AYŞE YAZIYOR
+        ========================= */
+
+        .typing{
+
+            display:none;
+
+            align-items:center;
+
+            gap:10px;
+
+            padding:0 25px 15px;
+
+            color:#cbd5e1;
+
+            font-size:14px;
+        }
+
+        .typing.active{
+            display:flex;
+        }
+
+
+        .typing-dots{
+
+            display:flex;
+
+            gap:5px;
+        }
+
+        .typing-dots span{
+
+            width:7px;
+            height:7px;
+
+            border-radius:50%;
+
+            background:#d4af37;
+
+            animation:
+                typingBounce 1.2s infinite;
+        }
+
+        .typing-dots span:nth-child(2){
+            animation-delay:.2s;
+        }
+
+        .typing-dots span:nth-child(3){
+            animation-delay:.4s;
+        }
+
+
+        @keyframes typingBounce{
+
+            0%,60%,100%{
+                transform:translateY(0);
+            }
+
+            30%{
+                transform:translateY(-7px);
+            }
+
+        }
+
+
+        /* =========================
+           MESAJ YAZMA ALANI
+        ========================= */
+
+        .chat-input-area{
+
+            display:flex;
+
+            gap:12px;
+
+            padding:18px;
+
+            background:
+                rgba(255,255,255,.05);
+
+            border-top:
+                1px solid rgba(255,255,255,.10);
+        }
+
+
+        .chat-input{
+
+            flex:1;
+
+            padding:15px 18px;
+
+            border-radius:30px;
+
+            border:
+                1px solid rgba(255,255,255,.18);
+
+            outline:none;
+
+            background:
+                rgba(0,0,0,.25);
+
+            color:white;
+
+            font-size:15px;
+        }
+
+
+        .chat-input::placeholder{
+
+            color:#94a3b8;
+        }
+
+
+        .send-button{
+
+            width:52px;
+            height:52px;
+
+            border:none;
+
+            border-radius:50%;
+
+            cursor:pointer;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #d4af37,
+                    #a67c00
+                );
+
+            color:#07111f;
+
+            font-size:19px;
+
+            transition:.3s;
+        }
+
+
+        .send-button:hover{
+
+            transform:scale(1.08);
+
+            box-shadow:
+                0 0 20px rgba(212,175,55,.45);
+        }
+
+
+        /* =========================
+           BİLGİ ALANI
+        ========================= */
+
+        .chat-footer-info{
+
+            text-align:center;
+
+            padding:18px;
+
+            color:#94a3b8;
+
+            font-size:13px;
+
+            background:
+                rgba(0,0,0,.10);
+        }
+
+
+        /* =========================
+           MOBİL
+        ========================= */
+
+        @media(max-width:600px){
+
+            .header-container{
+
+                padding:15px;
+            }
+
+
+            .logo-text{
+
+                font-size:27px;
+            }
+
+
+            .home-button{
+
+                padding:10px 14px;
+
+                font-size:13px;
+            }
+
+
+            .home-button span{
+
+                display:none;
+            }
+
+
+            .page-container{
+
+                padding:35px 13px;
+            }
+
+
+            .page-title h1{
+
+                font-size:32px;
+            }
+
+
+            .page-title p{
+
+                font-size:15px;
+            }
+
+
+            .chat-header{
+
+                padding:17px;
+            }
+
+
+            .ayse-avatar{
+
+                width:58px;
+                height:58px;
+            }
+
+
+            .ayse-info h2{
+
+                font-size:20px;
+            }
+
+
+            .chat-messages{
+
+                height:430px;
+
+                padding:16px;
+            }
+
+
+            .message{
+
+                max-width:88%;
+
+                font-size:14px;
+            }
+
+
+            .chat-input-area{
+
+                padding:12px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+    <div class="header-container">
+
+
+        <div class="logo-text">
+
+            <span class="logo-es">ES</span>
+            <span class="logo-er">ER</span>
+            <span class="logo-kon">KON</span>
+
+        </div>
+
+
+        <a href="index.html" class="home-button">
+
+            <i class="fa-solid fa-house"></i>
+
+            <span>Ana Sayfa</span>
+
+        </a>
+
+
+    </div>
+
+</header>
+
+
+
+<!-- =========================
+     ANA SAYFA
+========================= -->
+
+<main class="page-container">
+
+
+    <div class="page-title">
+
+        <h1>Ayşe Canlı Destek</h1>
+
+        <p>
+            ESERKON hakkında bilgi almak için Ayşe ile sohbet edebilirsiniz.
+        </p>
+
+    </div>
+
+
+
+    <!-- =========================
+         CHAT
+    ========================= -->
+
+    <div class="chat-wrapper">
+
+
+        <!-- CHAT HEADER -->
+
+        <div class="chat-header">
+
+
+            <!--
+            Ayşe fotoğrafını daha sonra buraya ekleyeceğiz.
+
+            Örnek:
+            images/ayse.jpg
+            -->
+
+            <img
+                src="images/ayse.jpg"
+                alt="Ayşe"
+                class="ayse-avatar"
+            >
+
+
+            <div class="ayse-info">
+
+                <h2>Ayşe</h2>
+
+
+                <div class="online-status">
+
+                    <span class="online-dot"></span>
+
+                    <span>ESERKON Canlı Destek</span>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =========================
+             MESAJLAR
+        ========================= -->
+
+        <div
+            class="chat-messages"
+            id="chatMessages"
+        >
+
+
+            <div class="message ayse-message">
+
+                Merhaba 👋
+
+                <br><br>
+
+                Ben Ayşe.
+
+                <br>
+
+                ESERKON Canlı Destek Asistanıyım.
+
+                <br><br>
+
+                ESERKON hakkında merak ettiğiniz konularda size yardımcı olmaya çalışabilirim.
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =========================
+             AYŞE YAZIYOR
+        ========================= -->
+
+        <div
+            class="typing"
+            id="typingIndicator"
+        >
+
+
+            <div class="typing-dots">
+
+                <span></span>
+
+                <span></span>
+
+                <span></span>
+
+            </div>
+
+
+            <span>Ayşe yazıyor...</span>
+
+
+        </div>
+
+
+
+        <!-- =========================
+             MESAJ YAZMA
+        ========================= -->
+
+        <div class="chat-input-area">
+
+
+            <input
+                type="text"
+                id="messageInput"
+                class="chat-input"
+                placeholder="Mesajınızı yazın..."
+                autocomplete="off"
+            >
+
+
+            <button
+                class="send-button"
+                id="sendButton"
+                aria-label="Mesaj Gönder"
+            >
+
+                <i class="fa-solid fa-paper-plane"></i>
+
+            </button>
+
+
+        </div>
+
+
+
+        <!-- BİLGİ -->
+
+        <div class="chat-footer-info">
+
+            Ayşe, ESERKON Canlı Destek sisteminin dijital asistanıdır.
+
+        </div>
+
+
+    </div>
+
+
+</main>
+
+
+
+<script>
+
+
+    /* =========================
+       ELEMANLAR
+    ========================= */
+
+    const chatMessages =
+        document.getElementById("chatMessages");
+
+
+    const messageInput =
+        document.getElementById("messageInput");
+
+
+    const sendButton =
+        document.getElementById("sendButton");
+
+
+    const typingIndicator =
+        document.getElementById("typingIndicator");
+
+
+
+    /* =========================
+       MESAJ EKLE
+    ========================= */
+
+    function addMessage(text, type) {
+
+
+        const message =
+            document.createElement("div");
+
+
+        message.classList.add(
+            "message"
+        );
+
+
+        if(type === "user"){
+
+            message.classList.add(
+                "user-message"
+            );
+
+        }else{
+
+            message.classList.add(
+                "ayse-message"
+            );
+
+        }
+
+
+        message.innerHTML =
+            text.replace(/\n/g, "<br>");
+
+
+        chatMessages.appendChild(
+            message
+        );
+
+
+        chatMessages.scrollTop =
+            chatMessages.scrollHeight;
+
+    }
+
+
+
+    /* =========================
+       MESAJ GÖNDER
+    ========================= */
+
+    function sendMessage(){
+
+
+        const text =
+            messageInput.value.trim();
+
+
+        if(!text){
+
+            return;
+
+        }
+
+
+        /* Kullanıcı mesajı */
+
+        addMessage(
+            text,
+            "user"
+        );
+
+
+        /* Input temizle */
+
+        messageInput.value = "";
+
+
+        /* Ayşe yazıyor */
+
+        typingIndicator.classList.add(
+            "active"
+        );
+
+
+        chatMessages.scrollTop =
+            chatMessages.scrollHeight;
+
+
+
+        /*
+        =================================
+
+        GEÇİCİ CEVAP
+
+        API bağlantısı sonraki aşamada
+        buraya eklenecek.
+
+        =================================
+        */
+
+
+        setTimeout(function(){
+
+
+            typingIndicator.classList.remove(
+                "active"
+            );
+
+
+            addMessage(
+
+                "Mesajınızı aldım. 😊<br><br>" +
+                "Ayşe canlı destek sistemi şu anda hazırlanıyor. " +
+                "API bağlantısı tamamlandığında sorularınıza daha kapsamlı şekilde cevap verebileceğim.",
+
+                "ayse"
+
+            );
+
+
+        }, 1200);
+
+
+    }
+
+
+
+    /* =========================
+       BUTON
+    ========================= */
+
+    sendButton.addEventListener(
+
+        "click",
+
+        sendMessage
+
+    );
+
+
+
+    /* =========================
+       ENTER
+    ========================= */
+
+    messageInput.addEventListener(
+
+        "keydown",
+
+        function(event){
+
+
+            if(event.key === "Enter"){
+
+                event.preventDefault();
+
+                sendMessage();
+
+            }
+
+
+        }
+
+    );
+
+
+</script>
+
+
+</body>
+</html>
