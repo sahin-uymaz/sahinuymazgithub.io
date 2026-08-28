@@ -1,584 +1,436 @@
-
+```html
 <!DOCTYPE html>
 <html lang="tr">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta charset="UTF-8">
+<title>Canlı Destek</title>
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
-    <title>Canlı Destek | ESERKON</title>
+<style>
 
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-    <style>
+body{
+    min-height:100vh;
+    font-family:Arial,sans-serif;
 
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-        }
+    background:
+    radial-gradient(
+        circle at top left,
+        #18345a 0%,
+        #081522 45%,
+        #03080f 100%
+    );
 
-        body{
+    color:white;
 
-            min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-            font-family:Arial, sans-serif;
+    padding:25px;
+}
 
-            background:
-                radial-gradient(
-                    circle at top left,
-                    #18345a 0%,
-                    #081522 45%,
-                    #03080f 100%
-                );
+.support-container{
+    width:100%;
+    max-width:850px;
 
-            color:white;
+    background:rgba(255,255,255,.06);
 
-            display:flex;
+    border:1px solid rgba(255,255,255,.12);
 
-            align-items:center;
+    border-radius:28px;
 
-            justify-content:center;
+    overflow:hidden;
 
-            padding:25px;
-        }
+    backdrop-filter:blur(18px);
 
+    box-shadow:
+    0 25px 80px rgba(0,0,0,.45);
+}
 
-        .support-container{
+.support-header{
+    padding:25px 30px;
 
-            width:100%;
+    display:flex;
+    align-items:center;
 
-            max-width:850px;
+    gap:18px;
 
-            background:
-                rgba(255,255,255,.06);
+    background:
+    linear-gradient(
+        135deg,
+        rgba(30,64,110,.95),
+        rgba(10,25,45,.95)
+    );
 
-            border:
-                1px solid
-                rgba(255,255,255,.12);
+    border-bottom:
+    1px solid rgba(255,255,255,.10);
+}
 
-            border-radius:28px;
+.support-icon{
+    width:60px;
+    height:60px;
 
-            overflow:hidden;
+    border-radius:18px;
 
-            backdrop-filter:blur(18px);
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-            box-shadow:
-                0 25px 80px
-                rgba(0,0,0,.45);
-        }
+    font-size:28px;
 
+    background:
+    linear-gradient(
+        135deg,
+        #2563eb,
+        #0ea5e9
+    );
 
-        /* ÜST BAŞLIK */
+    box-shadow:
+    0 0 25px rgba(37,99,235,.35);
 
-        .support-header{
+    flex-shrink:0;
+}
 
-            padding:25px 30px;
+.support-title h1{
+    font-size:25px;
+    margin-bottom:6px;
+}
 
-            display:flex;
+.support-title p{
+    font-size:14px;
+    color:#b9c7d9;
+}
 
-            align-items:center;
+.online-status{
+    margin-left:auto;
 
-            gap:18px;
+    display:flex;
+    align-items:center;
 
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(30,64,110,.95),
-                    rgba(10,25,45,.95)
-                );
+    gap:8px;
 
-            border-bottom:
-                1px solid
-                rgba(255,255,255,.10);
-        }
+    font-size:13px;
 
+    color:#b9c7d9;
+}
 
-        .support-icon{
+.online-dot{
+    width:10px;
+    height:10px;
 
-            width:60px;
+    border-radius:50%;
 
-            height:60px;
+    background:#22c55e;
 
-            border-radius:18px;
+    box-shadow:
+    0 0 12px #22c55e;
+}
 
-            display:flex;
+.chat-area{
+    height:480px;
 
-            align-items:center;
+    overflow-y:auto;
 
-            justify-content:center;
+    padding:25px;
 
-            font-size:28px;
+    display:flex;
+    flex-direction:column;
 
-            background:
-                linear-gradient(
-                    135deg,
-                    #2563eb,
-                    #0ea5e9
-                );
+    gap:18px;
+}
 
-            box-shadow:
-                0 0 25px
-                rgba(37,99,235,.35);
-        }
+.chat-area::-webkit-scrollbar{
+    width:7px;
+}
 
+.chat-area::-webkit-scrollbar-thumb{
+    background:#29486d;
+    border-radius:10px;
+}
 
-        .support-title h1{
+.message-row{
+    display:flex;
+    align-items:flex-end;
+    gap:10px;
+}
 
-            font-size:25px;
+.message-row.user{
+    justify-content:flex-end;
+}
 
-            margin-bottom:6px;
-        }
+.avatar{
+    width:40px;
+    height:40px;
 
+    border-radius:50%;
 
-        .support-title p{
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-            font-size:14px;
+    background:
+    linear-gradient(
+        135deg,
+        #2563eb,
+        #06b6d4
+    );
 
-            color:#b9c7d9;
-        }
+    flex-shrink:0;
+}
 
+.message{
+    max-width:75%;
 
-        .online-status{
+    padding:14px 18px;
 
-            margin-left:auto;
+    border-radius:20px;
 
-            display:flex;
+    line-height:1.6;
 
-            align-items:center;
+    font-size:15px;
+}
 
-            gap:8px;
+.support-message{
+    background:rgba(255,255,255,.09);
 
-            font-size:13px;
+    border:
+    1px solid rgba(255,255,255,.10);
 
-            color:#b9c7d9;
-        }
+    border-bottom-left-radius:6px;
 
+    color:#e7edf6;
+}
 
-        .online-dot{
+.user-message{
+    background:
+    linear-gradient(
+        135deg,
+        #2563eb,
+        #0ea5e9
+    );
 
-            width:10px;
+    border-bottom-right-radius:6px;
 
-            height:10px;
+    color:white;
+}
 
-            border-radius:50%;
+.typing{
+    display:none;
 
-            background:#22c55e;
+    align-items:center;
 
-            box-shadow:
-                0 0 12px
-                #22c55e;
-        }
+    gap:8px;
 
+    font-size:13px;
 
-        /* MESAJ ALANI */
+    color:#9eb0c6;
 
-        .chat-area{
+    padding:
+    0 0 12px 50px;
+}
 
-            height:480px;
+.typing.active{
+    display:flex;
+}
 
-            overflow-y:auto;
+.typing-dots{
+    display:flex;
+    gap:4px;
+}
 
-            padding:25px;
+.typing-dots span{
+    width:6px;
+    height:6px;
 
-            display:flex;
+    border-radius:50%;
 
-            flex-direction:column;
+    background:#60a5fa;
 
-            gap:18px;
-        }
+    animation:
+    typingAnimation
+    1.2s
+    infinite;
+}
 
+.typing-dots span:nth-child(2){
+    animation-delay:.2s;
+}
 
-        .chat-area::-webkit-scrollbar{
+.typing-dots span:nth-child(3){
+    animation-delay:.4s;
+}
 
-            width:7px;
-        }
+@keyframes typingAnimation{
 
+    0%{
+        opacity:.3;
+        transform:translateY(0);
+    }
 
-        .chat-area::-webkit-scrollbar-thumb{
+    50%{
+        opacity:1;
+        transform:translateY(-5px);
+    }
 
-            background:#29486d;
+    100%{
+        opacity:.3;
+        transform:translateY(0);
+    }
 
-            border-radius:10px;
-        }
+}
 
+.chat-input-area{
+    padding:20px;
 
-        /* MESAJ SATIRI */
+    display:flex;
 
-        .message-row{
+    gap:12px;
 
-            display:flex;
+    background:
+    rgba(0,0,0,.18);
 
-            align-items:flex-end;
+    border-top:
+    1px solid rgba(255,255,255,.08);
+}
 
-            gap:10px;
-        }
+#messageInput{
+    flex:1;
 
+    padding:16px 20px;
 
-        .message-row.user{
+    border:none;
+    outline:none;
 
-            justify-content:flex-end;
-        }
+    border-radius:15px;
 
+    background:
+    rgba(255,255,255,.08);
 
-        /* AVATAR */
+    border:
+    1px solid rgba(255,255,255,.10);
 
-        .avatar{
+    color:white;
 
-            width:40px;
+    font-size:15px;
+}
 
-            height:40px;
+#messageInput::placeholder{
+    color:#7f91a8;
+}
 
-            border-radius:50%;
+#sendButton{
+    width:55px;
 
-            display:flex;
+    border:none;
 
-            align-items:center;
+    border-radius:15px;
 
-            justify-content:center;
+    cursor:pointer;
 
-            background:
-                linear-gradient(
-                    135deg,
-                    #2563eb,
-                    #06b6d4
-                );
+    color:white;
 
-            flex-shrink:0;
-        }
+    font-size:19px;
 
+    background:
+    linear-gradient(
+        135deg,
+        #2563eb,
+        #0ea5e9
+    );
 
-        /* MESAJ */
+    transition:.3s;
+}
 
-        .message{
+#sendButton:hover{
+    transform:translateY(-3px);
 
-            max-width:75%;
+    box-shadow:
+    0 8px 25px
+    rgba(37,99,235,.35);
+}
 
-            padding:14px 18px;
+#sendButton:disabled{
+    opacity:.5;
 
-            border-radius:20px;
+    cursor:not-allowed;
 
-            line-height:1.6;
+    transform:none;
+}
 
-            font-size:15px;
+.footer-info{
+    text-align:center;
 
-            white-space:pre-wrap;
-        }
+    padding:
+    0 20px 18px;
 
+    font-size:11px;
 
-        .support-message{
+    color:#71839a;
+}
 
-            background:
-                rgba(255,255,255,.09);
+@media(max-width:600px){
 
-            border:
-                1px solid
-                rgba(255,255,255,.10);
+    body{
+        padding:0;
+    }
 
-            border-bottom-left-radius:6px;
+    .support-container{
+        min-height:100vh;
+        border-radius:0;
+    }
 
-            color:#e7edf6;
-        }
+    .support-header{
+        padding:18px;
+    }
 
+    .support-title h1{
+        font-size:20px;
+    }
 
-        .user-message{
+    .online-status{
+        display:none;
+    }
 
-            background:
-                linear-gradient(
-                    135deg,
-                    #2563eb,
-                    #0ea5e9
-                );
+    .chat-area{
+        height:
+        calc(100vh - 210px);
 
-            border-bottom-right-radius:6px;
+        padding:18px;
+    }
 
-            color:white;
-        }
+    .message{
+        max-width:85%;
+        font-size:14px;
+    }
 
+    .chat-input-area{
+        padding:14px;
+    }
 
-        /* YAZIYOR */
+}
 
-        .typing{
-
-            display:none;
-
-            align-items:center;
-
-            gap:8px;
-
-            font-size:13px;
-
-            color:#9eb0c6;
-
-            padding:
-                0 25px 12px 75px;
-        }
-
-
-        .typing.active{
-
-            display:flex;
-        }
-
-
-        .typing-dots{
-
-            display:flex;
-
-            gap:4px;
-        }
-
-
-        .typing-dots span{
-
-            width:6px;
-
-            height:6px;
-
-            border-radius:50%;
-
-            background:#60a5fa;
-
-            animation:
-                typingAnimation
-                1.2s
-                infinite;
-        }
-
-
-        .typing-dots span:nth-child(2){
-
-            animation-delay:.2s;
-        }
-
-
-        .typing-dots span:nth-child(3){
-
-            animation-delay:.4s;
-        }
-
-
-        @keyframes typingAnimation{
-
-            0%{
-                opacity:.3;
-                transform:translateY(0);
-            }
-
-            50%{
-                opacity:1;
-                transform:translateY(-5px);
-            }
-
-            100%{
-                opacity:.3;
-                transform:translateY(0);
-            }
-
-        }
-
-
-        /* GİRİŞ */
-
-        .chat-input-area{
-
-            padding:20px;
-
-            display:flex;
-
-            gap:12px;
-
-            background:
-                rgba(0,0,0,.18);
-
-            border-top:
-                1px solid
-                rgba(255,255,255,.08);
-        }
-
-
-        #messageInput{
-
-            flex:1;
-
-            padding:16px 20px;
-
-            border:none;
-
-            outline:none;
-
-            border-radius:15px;
-
-            background:
-                rgba(255,255,255,.08);
-
-            border:
-                1px solid
-                rgba(255,255,255,.10);
-
-            color:white;
-
-            font-size:15px;
-        }
-
-
-        #messageInput::placeholder{
-
-            color:#7f91a8;
-        }
-
-
-        #sendButton{
-
-            width:55px;
-
-            border:none;
-
-            border-radius:15px;
-
-            cursor:pointer;
-
-            color:white;
-
-            font-size:19px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #2563eb,
-                    #0ea5e9
-                );
-
-            transition:.3s;
-        }
-
-
-        #sendButton:hover{
-
-            transform:translateY(-3px);
-
-            box-shadow:
-                0 8px 25px
-                rgba(37,99,235,.35);
-        }
-
-
-        #sendButton:disabled{
-
-            opacity:.5;
-
-            cursor:not-allowed;
-
-            transform:none;
-        }
-
-
-        /* ALT BİLGİ */
-
-        .footer-info{
-
-            text-align:center;
-
-            padding:
-                0 20px 18px;
-
-            font-size:11px;
-
-            color:#71839a;
-        }
-
-
-        /* MOBİL */
-
-        @media(max-width:600px){
-
-            body{
-
-                padding:0;
-            }
-
-
-            .support-container{
-
-                min-height:100vh;
-
-                border-radius:0;
-            }
-
-
-            .support-header{
-
-                padding:18px;
-            }
-
-
-            .support-title h1{
-
-                font-size:20px;
-            }
-
-
-            .online-status{
-
-                display:none;
-            }
-
-
-            .chat-area{
-
-                height:
-                    calc(100vh - 210px);
-
-                padding:18px;
-            }
-
-
-            .message{
-
-                max-width:85%;
-
-                font-size:14px;
-            }
-
-
-            .chat-input-area{
-
-                padding:14px;
-            }
-
-
-            .typing{
-
-                padding-left:50px;
-            }
-
-        }
-
-    </style>
-
+</style>
 </head>
-
 
 <body>
 
-
 <div class="support-container">
-
-
-    <!-- BAŞLIK -->
 
     <div class="support-header">
 
-
         <div class="support-icon">
-
             <i class="fa-solid fa-headset"></i>
-
         </div>
-
 
         <div class="support-title">
 
@@ -590,7 +442,6 @@
 
         </div>
 
-
         <div class="online-status">
 
             <div class="online-dot"></div>
@@ -599,28 +450,19 @@
 
         </div>
 
-
     </div>
 
-
-
-    <!-- MESAJLAR -->
 
     <div
         class="chat-area"
         id="chatArea"
     >
 
-
         <div class="message-row">
 
-
             <div class="avatar">
-
                 <i class="fa-solid fa-headset"></i>
-
             </div>
-
 
             <div class="message support-message">
 
@@ -636,15 +478,10 @@
 
             </div>
 
-
         </div>
-
 
     </div>
 
-
-
-    <!-- YAZIYOR -->
 
     <div
         class="typing"
@@ -654,7 +491,6 @@
         <span>
             Canlı destek yazıyor
         </span>
-
 
         <div class="typing-dots">
 
@@ -667,11 +503,7 @@
     </div>
 
 
-
-    <!-- MESAJ GİRİŞİ -->
-
     <div class="chat-input-area">
-
 
         <input
             type="text"
@@ -679,7 +511,6 @@
             placeholder="Mesajınızı yazın..."
             autocomplete="off"
         >
-
 
         <button
             id="sendButton"
@@ -690,7 +521,6 @@
 
         </button>
 
-
     </div>
 
 
@@ -700,357 +530,272 @@
 
     </div>
 
-
 </div>
-
 
 
 <script>
 
-    /*
-    =========================================================
-    CLOUDFLARE WORKER
-    =========================================================
-    */
+/* =========================================
+   CLOUDFLARE WORKER ADRESİ
+========================================= */
 
-    const WORKER_URL =
-        "https://frosty-scene-b2ed.s-88-mstf.workers.dev/";
+const WORKER_URL =
+"https://frosty-scene-b2ed.s-88-mstf.workers.dev/";
 
 
-    /*
-    =========================================================
-    ELEMENTLER
-    =========================================================
-    */
+/* =========================================
+   ELEMANLAR
+========================================= */
 
-    const chatArea =
-        document.getElementById("chatArea");
+const chatArea =
+document.getElementById("chatArea");
 
-    const messageInput =
-        document.getElementById("messageInput");
+const messageInput =
+document.getElementById("messageInput");
 
-    const typing =
-        document.getElementById("typing");
+const typing =
+document.getElementById("typing");
 
-    const sendButton =
-        document.getElementById("sendButton");
+const sendButton =
+document.getElementById("sendButton");
 
 
-    /*
-    =========================================================
-    ENTER İLE GÖNDER
-    =========================================================
-    */
+/* =========================================
+   ENTER İLE GÖNDER
+========================================= */
 
-    messageInput.addEventListener(
-        "keydown",
-        function(event){
+messageInput.addEventListener(
+    "keydown",
+    function(event){
 
-            if(event.key === "Enter"){
+        if(event.key === "Enter"){
 
-                event.preventDefault();
+            event.preventDefault();
 
-                sendMessage();
+            sendMessage();
 
+        }
+
+    }
+);
+
+
+/* =========================================
+   BUTON
+========================================= */
+
+sendButton.addEventListener(
+    "click",
+    sendMessage
+);
+
+
+/* =========================================
+   MESAJ GÖNDER
+========================================= */
+
+async function sendMessage(){
+
+    const message =
+    messageInput.value.trim();
+
+
+    if(!message){
+        return;
+    }
+
+
+    addUserMessage(message);
+
+
+    messageInput.value = "";
+
+
+    typing.classList.add("active");
+
+    sendButton.disabled = true;
+
+
+    scrollChat();
+
+
+    try{
+
+        const response =
+        await fetch(
+            WORKER_URL,
+            {
+                method:"POST",
+
+                headers:{
+                    "Content-Type":
+                    "application/json"
+                },
+
+                body:JSON.stringify({
+                    message:message
+                })
             }
-
-        }
-    );
+        );
 
 
-    /*
-    =========================================================
-    GÖNDER BUTONU
-    =========================================================
-    */
+        if(!response.ok){
 
-    sendButton.addEventListener(
-        "click",
-        sendMessage
-    );
-
-
-    /*
-    =========================================================
-    MESAJ GÖNDER
-    =========================================================
-    */
-
-    async function sendMessage(){
-
-        const message =
-            messageInput.value.trim();
-
-
-        if(!message){
-
-            return;
-
-        }
-
-
-        /*
-        KULLANICI MESAJI
-        */
-
-        addUserMessage(message);
-
-
-        /*
-        INPUT TEMİZLE
-        */
-
-        messageInput.value = "";
-
-
-        /*
-        YAZIYOR
-        */
-
-        typing.classList.add("active");
-
-
-        sendButton.disabled = true;
-
-
-        scrollChat();
-
-
-        try{
-
-
-            /*
-            CLOUDFLARE WORKER'A GÖNDER
-            */
-
-            const response =
-                await fetch(
-                    WORKER_URL,
-                    {
-                        method:"POST",
-
-                        headers:{
-                            "Content-Type":
-                                "application/json"
-                        },
-
-                        body:
-                            JSON.stringify({
-                                message:message
-                            })
-                    }
-                );
-
-
-            /*
-            HTTP HATASI
-            */
-
-            if(!response.ok){
-
-                throw new Error(
-                    "Worker HTTP hatası: "
-                    + response.status
-                );
-
-            }
-
-
-            /*
-            JSON CEVABI
-            */
-
-            const data =
-                await response.json();
-
-
-            /*
-            YAZIYORU KAPAT
-            */
-
-            typing.classList.remove("active");
-
-
-            /*
-            GERÇEK CEVABI GÖSTER
-            */
-
-            addSupportMessage(
-
-                data.reply ||
-                "Yanıt alınamadı."
-
-            );
-
-
-        }
-        catch(error){
-
-            console.error(
-                "Canlı destek hatası:",
-                error
-            );
-
-
-            typing.classList.remove("active");
-
-
-            /*
-            ARTIK ESKİ SABİT
-            "Mesajınızı aldım..."
-            CEVABI YOK.
-            */
-
-            addSupportMessage(
-
-                "Canlı destek sunucusuna şu anda bağlanılamıyor. Lütfen birkaç saniye sonra tekrar deneyin."
-
+            throw new Error(
+                "Worker HTTP " +
+                response.status
             );
 
         }
 
 
-        finally{
+        const data =
+        await response.json();
 
-            sendButton.disabled =
-                false;
 
-            messageInput.focus();
+        typing.classList.remove(
+            "active"
+        );
 
-            scrollChat();
 
-        }
+        addSupportMessage(
+            data.reply ||
+            "Şu anda cevap oluşturulamadı."
+        );
 
     }
 
 
-    /*
-    =========================================================
-    KULLANICI MESAJI
-    =========================================================
-    */
+    catch(error){
 
-    function addUserMessage(message){
-
-        const row =
-            document.createElement("div");
-
-
-        row.className =
-            "message-row user";
-
-
-        const bubble =
-            document.createElement("div");
-
-
-        bubble.className =
-            "message user-message";
-
-
-        bubble.textContent =
-            message;
-
-
-        row.appendChild(
-            bubble
+        console.error(
+            "Canlı destek bağlantı hatası:",
+            error
         );
 
 
-        chatArea.appendChild(
-            row
+        typing.classList.remove(
+            "active"
         );
 
 
-        scrollChat();
+        addSupportMessage(
+            "Canlı destek sunucusuna şu anda bağlanılamıyor. Lütfen birkaç saniye sonra tekrar deneyin."
+        );
 
     }
 
 
-    /*
-    =========================================================
-    DESTEK MESAJI
-    =========================================================
-    */
+    finally{
 
-    function addSupportMessage(message){
+        sendButton.disabled =
+        false;
 
-        const row =
-            document.createElement("div");
-
-
-        row.className =
-            "message-row";
-
-
-        const avatar =
-            document.createElement("div");
-
-
-        avatar.className =
-            "avatar";
-
-
-        avatar.innerHTML =
-            '<i class="fa-solid fa-headset"></i>';
-
-
-        const bubble =
-            document.createElement("div");
-
-
-        bubble.className =
-            "message support-message";
-
-
-        bubble.textContent =
-            message;
-
-
-        row.appendChild(
-            avatar
-        );
-
-
-        row.appendChild(
-            bubble
-        );
-
-
-        chatArea.appendChild(
-            row
-        );
-
-
-        scrollChat();
+        messageInput.focus();
 
     }
 
+}
 
-    /*
-    =========================================================
-    EN ALTA KAYDIR
-    =========================================================
-    */
 
-    function scrollChat(){
+/* =========================================
+   KULLANICI MESAJI
+========================================= */
 
-        chatArea.scrollTo({
+function addUserMessage(message){
 
-            top:
-                chatArea.scrollHeight,
+    const row =
+    document.createElement("div");
 
-            behavior:
-                "smooth"
+    row.className =
+    "message-row user";
 
-        });
 
-    }
+    const bubble =
+    document.createElement("div");
+
+    bubble.className =
+    "message user-message";
+
+    bubble.textContent =
+    message;
+
+
+    row.appendChild(bubble);
+
+    chatArea.appendChild(row);
+
+
+    scrollChat();
+
+}
+
+
+/* =========================================
+   DESTEK MESAJI
+========================================= */
+
+function addSupportMessage(message){
+
+    const row =
+    document.createElement("div");
+
+    row.className =
+    "message-row";
+
+
+    const avatar =
+    document.createElement("div");
+
+    avatar.className =
+    "avatar";
+
+    avatar.innerHTML =
+    '<i class="fa-solid fa-headset"></i>';
+
+
+    const bubble =
+    document.createElement("div");
+
+    bubble.className =
+    "message support-message";
+
+    bubble.textContent =
+    message;
+
+
+    row.appendChild(avatar);
+
+    row.appendChild(bubble);
+
+    chatArea.appendChild(row);
+
+
+    scrollChat();
+
+}
+
+
+/* =========================================
+   KAYDIR
+========================================= */
+
+function scrollChat(){
+
+    chatArea.scrollTo({
+
+        top:
+        chatArea.scrollHeight,
+
+        behavior:
+        "smooth"
+
+    });
+
+}
 
 </script>
 
-
 </body>
-
 </html>
 ```
