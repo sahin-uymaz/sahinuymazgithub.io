@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kamu Politikaları & Hizmetleri Canlı Destek</title>
+<title>Kamu Politikaları & Hizmet Araştırmaları Canlı Destek</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
@@ -61,9 +61,9 @@ body {
     border-radius: 50%;
     overflow: hidden;
     border: 2px solid rgba(212, 175, 55, 0.6);
-    box-shadow: 0 0 20px rgba(30, 58, 138, 0.5);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.25);
     flex-shrink: 0;
-    position: relative;
+    background: #000;
 }
 
 .support-icon img {
@@ -147,7 +147,7 @@ body {
     flex-direction: row-reverse;
 }
 
-/* Gerçek Resimli Avatarlar */
+/* Logo Avatarları */
 .avatar {
     width: 44px;
     height: 44px;
@@ -157,6 +157,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    background: #000;
 }
 
 .avatar.support-avatar {
@@ -312,15 +313,15 @@ body {
 
 <div class="support-container">
 
-    <!-- Üst Başlık ve Temsilci Fotoğrafı -->
+    <!-- Üst Başlık ve Amblem -->
     <div class="support-header">
         <div class="support-icon">
-            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80" alt="Kamu Temsilcisi">
+            <img src="images/logo5.png" alt="Kamu Politikaları Hizmet Araştırmaları Logo">
         </div>
         <div class="support-title">
-            <span class="badge-tag">Kamu Politikaları & Hizmetleri Masası</span>
-            <h1>Selin Yılmaz</h1>
-            <p>Kamu Hizmetleri Danışmanı / Çevrimiçi</p>
+            <span class="badge-tag">Kamu Politikaları & Hizmet Araştırmaları</span>
+            <h1>Canlı Destek Masası</h1>
+            <p>Çevrimiçi Danışma Merkezi</p>
         </div>
         <div class="online-status">
             <div class="online-dot"></div>
@@ -332,19 +333,19 @@ body {
     <div class="chat-area" id="chatArea">
         <div class="message-row">
             <div class="avatar support-avatar">
-                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80" alt="Temsilci">
+                <img src="images/logo5.png" alt="Logo">
             </div>
             <div class="message support-message">
-                Merhaba, ben Selin. 👋<br><br>
-                Kamu Politikaları ve Hizmetleri Masasına hoş geldiniz.<br><br>
-                Size ve sorularınıza yardımcı olmak için buradayım. Konu hakkında bilgi almak istediğiniz detayı iletebilirsiniz.
+                Merhaba. 👋<br><br>
+                Kamu Politikaları ve Hizmet Araştırmaları Canlı Destek Masasına hoş geldiniz.<br><br>
+                Size nasıl yardımcı olabilirim? Sorularınızı veya iletilerinizi buradan paylaşabilirsiniz.
             </div>
         </div>
     </div>
 
     <!-- Yazıyor Görseli -->
     <div class="typing" id="typing">
-        <span>Selin Yılmaz yazıyor</span>
+        <span>Canlı Destek Masası yazıyor</span>
         <div class="typing-dots">
             <span></span>
             <span></span>
@@ -374,7 +375,7 @@ body {
 <script>
 const WORKER_URL = "https://frosty-scene-b2ed.s-88-mstf.workers.dev/";
 const FORMSPREE_URL = "https://formspree.io/f/mljeegek";
-const TEMSILCI_FOTO_URL = "https://images/logo5.png";
+const LOGO_URL = "images/logo5.png";
 
 const chatArea = document.getElementById("chatArea");
 const messageInput = document.getElementById("messageInput");
@@ -400,11 +401,10 @@ async function sendLogToEmail(userMessage, aiReply) {
                 "Accept": "application/json"
             },
             body: JSON.stringify({
-                _subject: "s-uymaz.org.tr - Kamu Destek Masası Görüşme Kaydı",
+                _subject: "s-uymaz.org.tr - Kamu Hizmet Araştırmaları Destek Kaydı",
                 Tarih: new Date().toLocaleString("tr-TR"),
-                Gorusulen_Temsilci: "Selin Yılmaz (Kamu Hizmetleri Danışmanı)",
                 Kullanici_Mesaji: userMessage,
-                Temsilci_Yaniti: aiReply
+                Destek_Yaniti: aiReply
             })
         });
     } catch (err) {
@@ -490,7 +490,7 @@ function addSupportMessage(message) {
 
     const avatar = document.createElement("div");
     avatar.className = "avatar support-avatar";
-    avatar.innerHTML = `<img src="${TEMSILCI_FOTO_URL}" alt="Temsilci">`;
+    avatar.innerHTML = `<img src="${LOGO_URL}" alt="Logo">`;
 
     const bubble = document.createElement("div");
     bubble.className = "message support-message";
