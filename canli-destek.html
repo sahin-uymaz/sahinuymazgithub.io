@@ -1096,17 +1096,34 @@ function handleChatSubmit(event) {
   const typing = document.getElementById("typingIndicator");
   typing.style.display = "block";
 
-  setTimeout(() => {
+  fetch("https://frosty-scene-b2ed.s-88-mstf.workers.dev/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      message: message
+    })
+  })
+  .then(response => response.json())
+  .then(data => {
     typing.style.display = "none";
 
     const reply = document.createElement("div");
     reply.className = "message agent";
-    reply.textContent =
-      "Mesajınızı aldım. Kamu politikaları ve çalışmalarımızla ilgili konularda size yardımcı olmaya çalışacağım.";
+    reply.textContent = data.reply || "Şu anda cevap veremiyorum.";
     chatArea.appendChild(reply);
 
     chatArea.scrollTop = chatArea.scrollHeight;
-  }, 1000);
+  })
+  .catch(error => {
+    typing.style.display = "none";
+
+    const reply = document.createElement("div");
+    reply.className = "message agent";
+    reply.textContent = "Bağlantıda bir sorun oluştu. Lütfen tekrar deneyin.";
+    chatArea.appendChild(reply);
+  });
 }
 </script>
 </body>
