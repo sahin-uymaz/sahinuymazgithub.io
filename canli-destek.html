@@ -394,14 +394,19 @@ async function sendMessage() {
     sendButton.disabled = true;
     scrollChat();
 
+    // 2.5 saniyelik doğal yazıyor gecikmesi
+    const delayPromise = new Promise(resolve => setTimeout(resolve, 2500));
+
     try {
-        const response = await fetch(WORKER_URL, {
+        const fetchPromise = fetch(WORKER_URL, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({ message: message })
         });
+
+        const [response] = await Promise.all([fetchPromise, delayPromise]);
 
         const data = await response.json();
         typing.classList.remove("active");
@@ -414,10 +419,10 @@ async function sendMessage() {
         addSupportMessage(botReply);
 
     } catch (error) {
+        await delayPromise;
         console.error("Canlı destek bağlantı hatası:", error);
         typing.classList.remove("active");
         
-        // Hata durumunda gerçek teknik nedeni ekrana da basar
         addSupportMessage("Hata: " + (error.message || "Canlı destek sunucusuna bağlanılamıyor."));
     } finally {
         sendButton.disabled = false;
