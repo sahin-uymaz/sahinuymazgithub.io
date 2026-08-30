@@ -1,1129 +1,1069 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Eserkon — Güvenli Erişim Paneli</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-
-<style>
-
-:root{
-  --bg-deep:#0a0f2b;
-  --violet:#7c3aed;
-  --cyan:#06e0e0;
-  --magenta:#e0069e;
-  --amber:#f5a623;
-  --text-light:#f4f2ff;
-  --text-dim:#b9b3d9;
-  --glass:rgba(255,255,255,0.055);
-  --glass-border:rgba(255,255,255,0.14);
-}
-
-*{
-  box-sizing:border-box;
-}
-
-html,
-body{
-  margin:0;
-  padding:0;
-}
-
-body{
-  font-family:'Inter',sans-serif;
-  background:#05061a;
-  color:var(--text-light);
-  min-height:100vh;
-}
-
-/* ÜST MENÜ */
-
-.site-header{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:22px 48px;
-  background:#0a0f2b;
-  border-bottom:1px solid rgba(255,255,255,0.08);
-}
-
-.logo{
-  font-family:'Space Grotesk',sans-serif;
-  font-weight:700;
-  font-size:22px;
-  color:#fff;
-}
-
-.logo span{
-  color:var(--cyan);
-}
-
-nav.main-menu{
-  display:flex;
-  gap:36px;
-}
-
-nav.main-menu > .menu-item{
-  position:relative;
-}
-
-nav.main-menu a{
-  color:var(--text-dim);
-  text-decoration:none;
-  font-weight:500;
-  font-size:15px;
-  padding:8px 2px;
-  cursor:pointer;
-}
-
-nav.main-menu a:hover{
-  color:#fff;
-}
-
-.menu-item.has-sub{
-  padding-bottom:10px;
-}
-
-.submenu{
-  position:absolute;
-  top:36px;
-  left:0;
-  background:#10163a;
-  border:1px solid rgba(255,255,255,0.1);
-  border-radius:10px;
-  min-width:190px;
-  padding:8px;
-  display:none;
-  z-index:50;
-}
-
-.menu-item.has-sub:hover .submenu{
-  display:block;
-}
-
-.submenu a{
-  display:block;
-  padding:10px 12px;
-}
-
-.page-hint{
-  max-width:640px;
-  margin:120px auto;
-  text-align:center;
-  color:var(--text-dim);
-  padding:0 24px;
-  line-height:1.7;
-}
-
-/* OVERLAY */
-
-.overlay{
-  position:fixed;
-  inset:0;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  z-index:1000;
-  padding:24px;
-}
-
-.overlay.open{
-  display:flex;
-}
-
-.overlay-bg{
-  position:absolute;
-  inset:0;
-  background:#05061a;
-}
-
-/* ANA SAYFAYA DÖN */
-
-.home-return-btn{
-  position:fixed;
-  top:22px;
-  left:22px;
-  z-index:1001;
-  display:none;
-  align-items:center;
-  gap:9px;
-  padding:11px 18px;
-  border-radius:999px;
-  text-decoration:none;
-  font-family:'Space Grotesk',sans-serif;
-  font-weight:600;
-  font-size:13.5px;
-  color:#fff;
-  background:rgba(255,255,255,0.07);
-  border:1px solid rgba(255,255,255,0.18);
-}
-
-.home-return-btn.show{
-  display:inline-flex;
-}
-
-/* ANA PANEL */
-
-.panel{
-  position:relative;
-  width:100%;
-  max-width:980px;
-  max-height:92vh;
-  overflow:hidden;
-  border-radius:22px;
-
-  display:grid;
-  grid-template-columns:1fr 1.15fr;
-
-  background:var(--bg-deep);
-
-  border:1px solid rgba(255,255,255,0.12);
-
-  box-shadow:
-    0 40px 120px
-    rgba(0,0,0,.55);
-}
-
-/* PANEL ARKA PLAN */
-
-.panel::before{
-  content:"";
-  position:absolute;
-  inset:0;
-
-  background:
-
-  radial-gradient(
-    480px 380px at 8% 12%,
-    rgba(124,58,237,.55),
-    transparent 60%
-  ),
-
-  radial-gradient(
-    420px 360px at 95% 85%,
-    rgba(6,224,224,.4),
-    transparent 60%
-  ),
-
-  radial-gradient(
-    360px 300px at 90% 10%,
-    rgba(224,6,158,.35),
-    transparent 60%
-  );
-
-  z-index:0;
-}
-
-/* SOL TARAF */
-
-.panel-left{
-  position:relative;
-  z-index:1;
-
-  padding:36px 38px;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  border-right:
-    1px solid
-    rgba(255,255,255,0.09);
+  <meta name="robots" content="noindex, nofollow, noimageindex">
 
-  background:
-
-  linear-gradient(
-    180deg,
-    rgba(124,58,237,.14),
-    rgba(6,224,224,.05) 60%,
-    transparent
-  );
+  <title>Özel Erişim Paneli</title>
 
-  display:flex;
-  flex-direction:column;
-  gap:22px;
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  overflow-y:auto;
-}
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-.badge-eyebrow{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-  font-family:
-    'JetBrains Mono',
-    monospace;
+  <style>
 
-  font-size:11.5px;
-  letter-spacing:2px;
-  color:var(--amber);
-  text-transform:uppercase;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Inter", sans-serif;
+    }
 
-.badge-eyebrow::before{
-  content:"";
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(37, 99, 235, 0.25), transparent 30%),
+        radial-gradient(circle at 90% 90%, rgba(124, 58, 237, 0.22), transparent 35%),
+        #07111f;
 
-  width:7px;
-  height:7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-  border-radius:50%;
+      padding: 20px;
 
-  background:var(--amber);
+      color: white;
+    }
 
-  box-shadow:
-    0 0 10px var(--amber);
-}
 
-.id-card{
-  display:flex;
-  align-items:center;
-  gap:16px;
+    /* ANA PANEL */
 
-  padding:16px;
+    .login-container {
 
-  border-radius:16px;
+      width: 100%;
+      max-width: 1100px;
 
-  background:var(--glass);
+      min-height: 620px;
 
-  border:
-    1px solid
-    var(--glass-border);
-}
+      display: flex;
 
-.avatar-ring{
-  width:74px;
-  height:74px;
+      border-radius: 28px;
 
-  flex:0 0 auto;
+      overflow: hidden;
 
-  border-radius:50%;
+      background: rgba(10, 18, 33, 0.95);
 
-  padding:3px;
+      border: 1px solid rgba(255,255,255,0.08);
 
-  background:
+      box-shadow:
+        0 30px 80px rgba(0,0,0,0.55);
 
-  conic-gradient(
-    var(--cyan),
-    var(--violet),
-    var(--magenta),
-    var(--cyan)
-  );
-}
+    }
 
-.avatar-inner{
-  width:100%;
-  height:100%;
 
-  border-radius:50%;
+    /* SOL TARAF */
 
-  background:#0a0f2b;
+    .left-panel {
 
-  display:flex;
+      width: 42%;
 
-  align-items:center;
+      padding: 45px 35px;
 
-  justify-content:center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
 
-  overflow:hidden;
-}
+      text-align: center;
 
-.avatar-inner img{
-  width:100%;
-  height:100%;
+      background:
 
-  object-fit:cover;
+        linear-gradient(
+          145deg,
+          #172554,
+          #1e1b4b,
+          #0f172a
+        );
 
-  border-radius:50%;
-}
+      position: relative;
 
-.avatar-fallback{
-  font-family:
-    'Space Grotesk',
-    sans-serif;
+      overflow: hidden;
 
-  font-weight:700;
+    }
 
-  font-size:22px;
 
-  color:#fff;
-}
+    .left-panel::before {
 
-.id-name{
-  font-family:
-    'Space Grotesk',
-    sans-serif;
+      content: "";
 
-  font-size:17px;
+      position: absolute;
 
-  font-weight:700;
+      width: 300px;
+      height: 300px;
 
-  color:#fff;
-}
+      border-radius: 50%;
 
-.id-role{
-  font-size:12.5px;
+      background:
 
-  color:var(--text-dim);
+        radial-gradient(
+          circle,
+          rgba(59,130,246,0.28),
+          transparent 70%
+        );
 
-  margin-top:3px;
-}
+      top: -100px;
+      right: -100px;
 
-.clearance-title{
-  font-family:
-    'Space Grotesk',
-    sans-serif;
+    }
 
-  font-size:14px;
 
-  font-weight:600;
+    .left-panel::after {
 
-  color:#fff;
-}
+      content: "";
 
-.clearance-list{
-  list-style:none;
+      position: absolute;
 
-  margin:0;
-  padding:0;
+      width: 250px;
+      height: 250px;
 
-  display:flex;
+      border-radius: 50%;
 
-  flex-direction:column;
+      background:
 
-  gap:4px;
-}
+        radial-gradient(
+          circle,
+          rgba(139,92,246,0.25),
+          transparent 70%
+        );
 
-.clearance-list li{
-  display:flex;
+      bottom: -100px;
+      left: -100px;
 
-  align-items:center;
+    }
 
-  gap:11px;
 
-  padding:10px;
+    /* GÜVENLİ ERİŞİM */
 
-  border-radius:10px;
+    .secure-badge {
 
-  font-size:13.5px;
+      position: relative;
 
-  color:var(--text-dim);
-}
+      z-index: 2;
 
-.lock-ic{
-  width:26px;
-  height:26px;
+      display: flex;
 
-  flex:0 0 auto;
+      align-items: center;
 
-  border-radius:7px;
+      gap: 8px;
 
-  background:
-    rgba(245,166,35,0.12);
+      padding: 8px 16px;
 
-  border:
-    1px solid
-    rgba(245,166,35,0.35);
+      border-radius: 30px;
 
-  display:flex;
+      background: rgba(255,255,255,0.08);
 
-  align-items:center;
+      border: 1px solid rgba(255,255,255,0.12);
 
-  justify-content:center;
-}
+      color: #93c5fd;
 
-.lock-ic svg{
-  width:13px;
-  height:13px;
-}
+      font-size: 11px;
 
-.left-footer{
-  margin-top:auto;
+      font-weight: 700;
 
-  padding-top:16px;
+      letter-spacing: 0.8px;
 
-  border-top:
-    1px dashed
-    rgba(255,255,255,0.14);
+      margin-bottom: 28px;
 
-  font-family:
-    'JetBrains Mono',
-    monospace;
+    }
 
-  font-size:10.5px;
 
-  color:
-    rgba(185,179,217,.65);
+    /* PROFİL RESMİ */
 
-  display:flex;
+    .profile-border {
 
-  justify-content:space-between;
-}
+      position: relative;
 
-/* SAĞ TARAF */
+      z-index: 2;
 
-.panel-right{
-  position:relative;
-  z-index:1;
+      width: 155px;
+      height: 155px;
 
-  padding:32px 42px;
+      border-radius: 50%;
 
-  overflow-y:auto;
+      padding: 5px;
 
-  min-height:0;
+      margin-bottom: 22px;
 
-  background:
-    rgba(255,255,255,0.015);
-}
+      background:
 
-.right-eyebrow{
-  display:inline-block;
+        linear-gradient(
+          135deg,
+          #60a5fa,
+          #8b5cf6,
+          #38bdf8
+        );
 
-  font-family:
-    'JetBrains Mono',
-    monospace;
+      box-shadow:
 
-  font-size:11px;
+        0 0 40px rgba(96,165,250,0.35);
 
-  letter-spacing:2px;
+    }
 
-  color:var(--cyan);
 
-  text-transform:uppercase;
+    .profile-image {
 
-  margin-bottom:12px;
-}
+      width: 100%;
+      height: 100%;
 
-.right-title{
-  font-family:
-    'Space Grotesk',
-    sans-serif;
+      border-radius: 50%;
 
-  font-size:30px;
+      overflow: hidden;
 
-  font-weight:700;
+      border: 4px solid #111827;
 
-  color:#fff;
+      background: #111827;
 
-  margin:0 0 12px;
+    }
 
-  background:
 
-  linear-gradient(
-    90deg,
-    #fff,
-    #d9d3ff 60%,
-    var(--cyan)
-  );
+    .profile-image img {
 
-  -webkit-background-clip:text;
+      width: 100%;
 
-  background-clip:text;
+      height: 100%;
 
-  -webkit-text-fill-color:transparent;
-}
+      display: block;
 
-.right-desc{
-  font-size:14px;
+      object-fit: cover;
 
-  line-height:1.6;
+    }
 
-  color:var(--text-dim);
 
-  margin:0 0 20px;
+    /* İSİM */
 
-  max-width:480px;
-}
+    .profile-name {
 
-/* FORM */
+      position: relative;
 
-form{
-  display:flex;
+      z-index: 2;
 
-  flex-direction:column;
+      font-size: 24px;
 
-  gap:14px;
+      font-weight: 800;
 
-  max-width:480px;
+      margin-bottom: 8px;
 
-  padding-bottom:20px;
-}
+    }
 
-.field{
-  display:flex;
 
-  flex-direction:column;
+    .profile-role {
 
-  gap:7px;
-}
+      position: relative;
 
-.field label{
-  font-size:12px;
+      z-index: 2;
 
-  font-weight:600;
+      font-size: 13px;
 
-  color:var(--text-dim);
-}
+      color: #7dd3fc;
 
-.field input{
-  width:100%;
+      line-height: 1.6;
 
-  background:
-    rgba(255,255,255,0.055);
+      font-weight: 600;
 
-  border:
-    1px solid
-    rgba(255,255,255,0.16);
+      max-width: 280px;
 
-  border-radius:11px;
+    }
 
-  padding:13px 14px;
 
-  font-size:14px;
+    /* BİLGİLER */
 
-  color:#fff;
+    .info-list {
 
-  font-family:
-    'Inter',
-    sans-serif;
+      position: relative;
 
-  outline:none;
-}
+      z-index: 2;
 
-.field input:focus{
-  border-color:var(--cyan);
+      width: 100%;
 
-  box-shadow:
-    0 0 0 3px
-    rgba(6,224,224,0.15);
-}
+      margin-top: 35px;
 
-.field input::placeholder{
-  color:
-    rgba(244,242,255,0.32);
-}
+      display: flex;
 
-/* BUTON */
+      flex-direction: column;
 
-.submit-btn{
-  margin-top:4px;
+      gap: 10px;
 
-  border:none;
+    }
 
-  cursor:pointer;
 
-  padding:15px 22px;
+    .info-item {
 
-  border-radius:12px;
+      display: flex;
 
-  font-family:
-    'Space Grotesk',
-    sans-serif;
+      align-items: center;
 
-  font-weight:600;
+      gap: 12px;
 
-  font-size:14.5px;
+      padding: 12px 14px;
 
-  color:#0a0f2b;
+      border-radius: 12px;
 
-  background:
+      background: rgba(255,255,255,0.05);
 
-  linear-gradient(
-    90deg,
-    var(--cyan),
-    var(--amber)
-  );
+      border: 1px solid rgba(255,255,255,0.07);
 
-  display:flex;
+      font-size: 12px;
 
-  align-items:center;
+      color: #dbeafe;
 
-  justify-content:center;
+      text-align: left;
 
-  gap:9px;
-}
+      transition: 0.25s;
 
-/* BİLGİ NOTU */
+    }
 
-.form-note{
-  font-size:11.5px;
 
-  color:
-    rgba(185,179,217,.6);
+    .info-item:hover {
 
-  line-height:1.6;
-}
+      transform: translateX(5px);
 
-/* BAŞARI MESAJI */
+      background: rgba(255,255,255,0.09);
 
-.success-box{
-  display:none;
+    }
 
-  max-width:480px;
 
-  padding:22px;
+    .info-icon {
 
-  border-radius:14px;
+      width: 32px;
 
-  background:
-    rgba(6,224,224,0.08);
+      height: 32px;
 
-  border:
-    1px solid
-    rgba(6,224,224,0.35);
-}
+      min-width: 32px;
 
-.success-box.show{
-  display:block;
-}
+      border-radius: 9px;
 
-.success-box h4{
-  margin:0 0 6px;
+      display: flex;
 
-  color:#fff;
+      align-items: center;
 
-  font-size:16px;
-}
+      justify-content: center;
 
-.success-box p{
-  margin:0;
+      background: rgba(59,130,246,0.18);
 
-  font-size:13px;
+      color: #60a5fa;
 
-  color:var(--text-dim);
+    }
 
-  line-height:1.6;
-}
 
-/* MOBİL */
+    /* SAĞ TARAF */
 
-@media (max-width:760px){
+    .right-panel {
 
-  .overlay{
-    padding:12px;
-  }
+      width: 58%;
 
-  .panel{
-    grid-template-columns:1fr;
+      padding: 55px;
 
-    max-height:94vh;
+      display: flex;
 
-    overflow-y:auto;
-  }
+      align-items: center;
 
-  .panel-left{
-    padding:28px 22px;
+      justify-content: center;
 
-    border-right:none;
+      background:
 
-    border-bottom:
-      1px solid
-      rgba(255,255,255,0.09);
+        linear-gradient(
+          180deg,
+          #111a2b,
+          #08111f
+        );
 
-    overflow:visible;
-  }
+    }
 
-  .panel-right{
-    padding:28px 22px 40px;
 
-    overflow:visible;
-  }
+    .form-container {
 
-}
+      width: 100%;
 
-@media (max-width:600px){
+      max-width: 450px;
 
-  .site-header{
-    padding:18px 20px;
-  }
+    }
 
-  nav.main-menu{
-    gap:12px;
 
-    flex-wrap:wrap;
-  }
+    /* LOGO */
 
-  nav.main-menu a{
-    font-size:12px;
-  }
+    .form-icon {
 
-  .overlay{
-    padding:8px;
-  }
+      width: 55px;
 
-  .panel{
-    max-height:96vh;
+      height: 55px;
 
-    border-radius:18px;
-  }
+      border-radius: 16px;
 
-  .panel-left{
-    padding:25px 18px;
-  }
+      display: flex;
 
-  .panel-right{
-    padding:25px 18px 40px;
-  }
+      align-items: center;
 
-  .right-title{
-    font-size:26px;
-  }
+      justify-content: center;
 
-}
+      margin-bottom: 25px;
 
-</style>
+      font-size: 22px;
+
+      background:
+
+        linear-gradient(
+          135deg,
+          #2563eb,
+          #7c3aed
+        );
+
+      box-shadow:
+
+        0 10px 25px rgba(37,99,235,0.30);
+
+    }
+
+
+    /* BAŞLIK */
+
+    .form-container h1 {
+
+      font-size: 30px;
+
+      font-weight: 800;
+
+      margin-bottom: 10px;
+
+    }
+
+
+    .form-description {
+
+      color: #94a3b8;
+
+      font-size: 14px;
+
+      line-height: 1.7;
+
+      margin-bottom: 30px;
+
+    }
+
+
+    /* FORM */
+
+    .form-group {
+
+      margin-bottom: 18px;
+
+    }
+
+
+    .form-group label {
+
+      display: block;
+
+      margin-bottom: 8px;
+
+      color: #cbd5e1;
+
+      font-size: 12px;
+
+      font-weight: 700;
+
+    }
+
+
+    .input-box {
+
+      position: relative;
+
+    }
+
+
+    .input-box i {
+
+      position: absolute;
+
+      left: 17px;
+
+      top: 50%;
+
+      transform: translateY(-50%);
+
+      color: #64748b;
+
+      font-size: 15px;
+
+    }
+
+
+    .input-box input {
+
+      width: 100%;
+
+      height: 54px;
+
+      border-radius: 13px;
+
+      border: 1px solid #263247;
+
+      background: #111a2b;
+
+      color: white;
+
+      padding-left: 50px;
+
+      padding-right: 15px;
+
+      font-size: 14px;
+
+      outline: none;
+
+      transition: 0.25s;
+
+    }
+
+
+    .input-box input::placeholder {
+
+      color: #64748b;
+
+    }
+
+
+    .input-box input:focus {
+
+      border-color: #3b82f6;
+
+      box-shadow:
+
+        0 0 0 4px rgba(59,130,246,0.10);
+
+    }
+
+
+    /* BUTON */
+
+    .submit-button {
+
+      width: 100%;
+
+      height: 55px;
+
+      border: none;
+
+      border-radius: 14px;
+
+      cursor: pointer;
+
+      color: white;
+
+      font-size: 14px;
+
+      font-weight: 800;
+
+      margin-top: 5px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      gap: 10px;
+
+      background:
+
+        linear-gradient(
+          135deg,
+          #2563eb,
+          #4f46e5
+        );
+
+      box-shadow:
+
+        0 15px 30px rgba(37,99,235,0.25);
+
+      transition: 0.25s;
+
+    }
+
+
+    .submit-button:hover {
+
+      transform: translateY(-2px);
+
+      box-shadow:
+
+        0 20px 40px rgba(37,99,235,0.35);
+
+    }
+
+
+    /* ALT GÜVENLİK */
+
+    .security-text {
+
+      margin-top: 25px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      gap: 8px;
+
+      color: #64748b;
+
+      font-size: 11px;
+
+      text-align: center;
+
+    }
+
+
+    .security-text i {
+
+      color: #22c55e;
+
+    }
+
+
+    /* BAŞARILI MESAJ */
+
+    .success-box {
+
+      display: none;
+
+      width: 100%;
+
+      max-width: 450px;
+
+      text-align: center;
+
+      padding: 35px 25px;
+
+      border-radius: 20px;
+
+      background: rgba(34,197,94,0.05);
+
+      border: 1px solid rgba(34,197,94,0.20);
+
+    }
+
+
+    .success-icon {
+
+      width: 75px;
+
+      height: 75px;
+
+      margin: 0 auto 22px;
+
+      border-radius: 50%;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      font-size: 30px;
+
+      background:
+
+        linear-gradient(
+          135deg,
+          #22c55e,
+          #16a34a
+        );
+
+      box-shadow:
+
+        0 15px 35px rgba(34,197,94,0.25);
+
+    }
+
+
+    .success-box h2 {
+
+      color: #86efac;
+
+      margin-bottom: 15px;
+
+    }
+
+
+    .success-box p {
+
+      color: #cbd5e1;
+
+      font-size: 14px;
+
+      line-height: 1.8;
+
+    }
+
+
+    /* MOBİL */
+
+    @media (max-width: 800px) {
+
+      body {
+
+        padding: 12px;
+
+      }
+
+
+      .login-container {
+
+        flex-direction: column;
+
+      }
+
+
+      .left-panel,
+      .right-panel {
+
+        width: 100%;
+
+      }
+
+
+      .left-panel {
+
+        padding: 35px 25px;
+
+      }
+
+
+      .right-panel {
+
+        padding: 40px 25px;
+
+      }
+
+
+      .info-list {
+
+        max-width: 450px;
+
+      }
+
+    }
+
+
+    @media (max-width: 480px) {
+
+      .right-panel {
+
+        padding: 35px 20px;
+
+      }
+
+
+      .form-container h1 {
+
+        font-size: 25px;
+
+      }
+
+
+      .profile-border {
+
+        width: 130px;
+
+        height: 130px;
+
+      }
+
+    }
+
+  </style>
+
 </head>
+
 
 <body>
 
-<header class="site-header">
 
-  <div class="logo">
-    Eser<span>kon</span>
-  </div>
+  <div class="login-container">
 
-  <nav class="main-menu">
 
-    <div class="menu-item">
-      <a href="#">Ana Sayfa</a>
-    </div>
+    <!-- SOL PANEL -->
 
-    <div class="menu-item">
-      <a href="#">Kurumsal</a>
-    </div>
+    <div class="left-panel">
 
-    <div class="menu-item has-sub">
 
-      <a id="baskan-menu-link">
-        Başkan
-      </a>
+      <div class="secure-badge">
 
-      <div class="submenu">
+        <i class="fa-solid fa-shield-halved"></i>
 
-        <a id="ozgecmis-link">
-          Özgeçmiş
-        </a>
+        GÜVENLİ ÖZEL ERİŞİM
 
       </div>
 
+
+      <!-- PROFİL RESMİ -->
+
+      <div class="profile-border">
+
+        <div class="profile-image">
+
+          <img src="images/dede.png" alt="Rema Al Zahrani">
+
+        </div>
+
+      </div>
+
+
+      <div class="profile-name">
+
+        Rema Al Zahrani
+
+      </div>
+
+
+      <div class="profile-role">
+
+        Sekreter ve Dış İlişkiler Koordinatörü
+
+      </div>
+
+
+      <div class="info-list">
+
+
+        <div class="info-item">
+
+          <div class="info-icon">
+
+            <i class="fa-solid fa-user-tie"></i>
+
+          </div>
+
+          Eserkon Başkanı Hakkında Bilgiler
+
+        </div>
+
+
+        <div class="info-item">
+
+          <div class="info-icon">
+
+            <i class="fa-solid fa-book-open"></i>
+
+          </div>
+
+          Özgeçmiş ve Eğitim Hayatı
+
+        </div>
+
+
+        <div class="info-item">
+
+          <div class="info-icon">
+
+            <i class="fa-solid fa-briefcase"></i>
+
+          </div>
+
+          Mesleki ve Çalışma Hayatı
+
+        </div>
+
+
+        <div class="info-item">
+
+          <div class="info-icon">
+
+            <i class="fa-solid fa-lock"></i>
+
+          </div>
+
+          Kontrollü ve Güvenli Bilgi Erişimi
+
+        </div>
+
+
+      </div>
+
+
     </div>
 
-    <div class="menu-item">
-      <a href="#">Projeler</a>
-    </div>
-
-    <div class="menu-item">
-      <a href="#">İletişim</a>
-    </div>
-
-  </nav>
-
-</header>
 
 
-<p class="page-hint">
+    <!-- SAĞ PANEL -->
 
-  Bu, menü davranışını gösteren bir demo sayfasıdır.
-  Ziyaretçi site içinde diğer tüm menülerde ve sayfalarda
-  serbestçe dolaşabilir.
-
-  Yalnızca <b>“Başkan”</b> veya
-  <b>“Özgeçmiş”</b> bağlantısına tıklandığında
-  güvenli erişim paneli açılır.
-
-</p>
+    <div class="right-panel">
 
 
-<a
-href="index.html"
-class="home-return-btn"
-id="homeReturnBtn">
-
-  Ana Sayfaya Dön
-
-</a>
+      <div class="form-container" id="formContainer">
 
 
-<div
-class="overlay"
-id="accessOverlay">
+        <div class="form-icon">
 
-  <div
-  class="overlay-bg"
-  id="overlayBg">
-  </div>
+          <i class="fa-solid fa-key"></i>
+
+        </div>
 
 
-  <div class="panel">
+        <h1>Özel Erişim</h1>
 
 
-    <!-- SOL TARAF -->
+        <p class="form-description">
 
-    <div class="panel-left">
+          Bu bölümde yer alan özel içeriklere erişebilmek için
+          bilgilerinizi girerek erişim talebinde bulunabilirsiniz.
 
-
-      <span class="badge-eyebrow">
-        Güvenli Özel Erişim
-      </span>
+        </p>
 
 
-      <div class="id-card">
+        <form id="loginForm">
 
 
-        <div class="avatar-ring">
+          <div class="form-group">
 
-          <div class="avatar-inner">
+            <label for="fullName">
 
-            <img
-            src="games/dur30.png"
-            alt="Rema Al Zahrani"
+              Adınız Soyadınız
 
-            onerror="
-            this.style.display='none';
-            this.parentElement
-            .querySelector('.avatar-fallback')
-            .style.display='flex';
-            ">
+            </label>
 
-            <div
-            class="avatar-fallback"
-            style="display:none;">
 
-              RZ
+            <div class="input-box">
+
+              <i class="fa-solid fa-user"></i>
+
+              <input
+                type="text"
+                id="fullName"
+                placeholder="Adınızı ve soyadınızı giriniz"
+                required
+              >
 
             </div>
 
           </div>
 
-        </div>
 
 
-        <div>
+          <div class="form-group">
 
-          <div class="id-name">
-            Rema Al Zahrani
+            <label for="email">
+
+              E-posta Adresiniz
+
+            </label>
+
+
+            <div class="input-box">
+
+              <i class="fa-solid fa-envelope"></i>
+
+              <input
+                type="email"
+                id="email"
+                placeholder="ornek@email.com"
+                required
+              >
+
+            </div>
+
           </div>
 
-          <div class="id-role">
 
-            Sekreter ve Dış İlişkiler
-            <br>
-            Koordinatörü
+
+          <div class="form-group">
+
+            <label for="phone">
+
+              Telefon Numaranız
+
+            </label>
+
+
+            <div class="input-box">
+
+              <i class="fa-solid fa-phone"></i>
+
+              <input
+                type="tel"
+                id="phone"
+                placeholder="05XX XXX XX XX"
+                required
+              >
+
+            </div>
 
           </div>
 
+
+
+          <button
+            type="submit"
+            class="submit-button"
+          >
+
+            Erişim Talebi Gönder
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+          </button>
+
+
+        </form>
+
+
+
+        <div class="security-text">
+
+          <i class="fa-solid fa-circle-check"></i>
+
+          Bilgileriniz güvenli erişim sistemi kapsamında korunmaktadır.
+
         </div>
+
 
       </div>
 
 
-      <div class="clearance-title">
 
-        Eserkon Başkanı Hakkında Bilgiler
-
-      </div>
-
-
-      <ul class="clearance-list">
-
-
-        <li>
-
-          <span class="lock-ic">
-            🔒
-          </span>
-
-          Eserkon Başkanı Kimdir?
-
-        </li>
-
-
-        <li>
-
-          <span class="lock-ic">
-            🔒
-          </span>
-
-          Başkanın Özgeçmişi
-
-        </li>
-
-
-        <li>
-
-          <span class="lock-ic">
-            🔒
-          </span>
-
-          Başkanın Görevleri
-
-        </li>
-
-
-        <li>
-
-          <span class="lock-ic">
-            🔒
-          </span>
-
-          Çalışma Hayatı
-
-        </li>
-
-
-      </ul>
-
-
-      <div class="left-footer">
-
-        <span>
-          ESK-ACCESS-2026
-        </span>
-
-        <span>
-          ŞİFRELİ BAĞLANTI
-        </span>
-
-      </div>
-
-
-    </div>
-
-
-    <!-- SAĞ TARAF -->
-
-    <div class="panel-right">
-
-
-      <span class="right-eyebrow">
-
-        Kısıtlı İçerik
-
-      </span>
-
-
-      <h2 class="right-title">
-
-        Özel Erişim
-
-      </h2>
-
-
-      <p class="right-desc">
-
-        Bu bölümde Eserkon Yönetim Kurulu Başkanı'nın
-        özgeçmişi, çalışma hayatı ve kurumsal
-        faaliyetlerine ilişkin özel bilgiler yer almaktadır.
-
-        <br><br>
-
-        Bu içeriklere erişebilmek için erişim talebinde
-        bulunabilirsiniz. Talebiniz incelenip
-        onaylandıktan sonra bilgilere kolayca
-        erişim sağlayabilirsiniz.
-
-      </p>
-
-
-      <form id="accessForm">
-
-
-        <!-- 1. INPUT -->
-
-        <div class="field">
-
-          <label for="fullname">
-
-            Adınız Soyadınız
-
-          </label>
-
-          <input
-          type="text"
-          id="fullname"
-          name="fullname"
-          placeholder="Adınızı ve soyadınızı yazın"
-          required>
-
-        </div>
-
-
-        <!-- 2. INPUT -->
-
-        <div class="field">
-
-          <label for="email">
-
-            E-mail Adresiniz
-
-          </label>
-
-          <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="ornek@eposta.com"
-          required>
-
-        </div>
-
-
-        <!-- 3. INPUT -->
-
-        <div class="field">
-
-          <label for="phone">
-
-            Telefon Numaranız
-
-          </label>
-
-          <input
-          type="tel"
-          id="phone"
-          name="phone"
-          placeholder="05xx xxx xx xx"
-          required>
-
-        </div>
-
-
-        <button
-        type="submit"
-        class="submit-btn">
-
-          Erişim Talebinde Bulun
-
-        </button>
-
-
-        <div class="form-note">
-
-          Bilgileriniz yalnızca erişim talebinizi
-          değerlendirmek amacıyla kullanılır ve
-          üçüncü kişilerle paylaşılmaz.
-
-        </div>
-
-
-      </form>
+      <!-- BAŞARILI MESAJ -->
 
 
       <div
-      class="success-box"
-      id="successBox">
+        class="success-box"
+        id="successBox"
+      >
 
-        <h4>
-          Talebiniz alındı
-        </h4>
+
+        <div class="success-icon">
+
+          <i class="fa-solid fa-check"></i>
+
+        </div>
+
+
+        <h2>Talebiniz Alındı</h2>
+
 
         <p>
 
-          Erişim talebiniz incelemeye alınmıştır.
-          Onaylandığında belirttiğiniz e-mail
-          adresine bilgilendirme yapılacaktır.
+          Giriş talebiniz başarıyla alınmıştır.
+          Talebiniz değerlendirme sürecinden geçirildikten sonra
+          gerekli erişim bilgileri tarafınıza iletilecektir.
 
         </p>
+
 
       </div>
 
@@ -1134,65 +1074,39 @@ id="accessOverlay">
   </div>
 
 
-</div>
+
+  <script>
+
+    const loginForm =
+      document.getElementById("loginForm");
 
 
-<script>
-
-const overlay =
-document.getElementById('accessOverlay');
+    const formContainer =
+      document.getElementById("formContainer");
 
 
-const openTriggers = [
-
-  document.getElementById('baskan-menu-link'),
-
-  document.getElementById('ozgecmis-link')
-
-];
+    const successBox =
+      document.getElementById("successBox");
 
 
-const homeReturnBtn =
-document.getElementById('homeReturnBtn');
+    loginForm.addEventListener(
+      "submit",
+      function(event) {
+
+        event.preventDefault();
 
 
-openTriggers.forEach(el => {
-
-  if(!el) return;
+        formContainer.style.display = "none";
 
 
-  el.addEventListener('click', function(e){
+        successBox.style.display = "block";
 
-    e.preventDefault();
+      }
+    );
 
-    overlay.classList.add('open');
+  </script>
 
-    homeReturnBtn.classList.add('show');
-
-    document.body.style.overflow =
-    'hidden';
-
-  });
-
-
-});
-
-
-document
-.getElementById('accessForm')
-.addEventListener('submit', function(e){
-
-  e.preventDefault();
-
-  this.style.display = 'none';
-
-  document
-  .getElementById('successBox')
-  .classList.add('show');
-
-});
-
-</script>
 
 </body>
+
 </html>
