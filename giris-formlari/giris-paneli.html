@@ -30,8 +30,49 @@
       justify-content: center;
       padding: 20px;
       color: white;
+      overflow: hidden; /* Sayfa kaydırmayı engelle */
     }
 
+    /* --- YENİ: YÜKLENİYOR EKRANI STİLLERİ --- */
+    #loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #07111f;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease, visibility 0.5s;
+    }
+
+    .spinner {
+      width: 60px;
+      height: 60px;
+      border: 5px solid rgba(37, 99, 235, 0.2);
+      border-top: 5px solid #2563eb;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 20px;
+    }
+
+    .loading-text {
+      color: #94a3b8;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* --- GİRİŞ PANELİ STİLLERİ --- */
     .login-container {
       width: 100%;
       max-width: 1100px;
@@ -42,6 +83,19 @@
       background: rgba(10, 18, 33, 0.95);
       border: 1px solid rgba(255,255,255,0.08);
       box-shadow: 0 30px 80px rgba(0,0,0,0.55);
+      
+      /* Başlangıçta görünmez ve tıklanamaz */
+      opacity: 0;
+      transform: scale(0.95);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      pointer-events: none;
+    }
+
+    /* JavaScript ile eklenecek sınıf */
+    .login-container.visible {
+      opacity: 1;
+      transform: scale(1);
+      pointer-events: all;
     }
 
     /* SOL PANEL */
@@ -454,7 +508,13 @@
 
 <body>
 
-  <div class="login-container">
+  <!-- YENİ: YÜKLENİYOR EKRANI -->
+  <div id="loading-screen">
+    <div class="spinner"></div>
+    <div class="loading-text">Yükleniyor...</div>
+  </div>
+
+  <div class="login-container" id="loginContainer">
 
     <!-- SOL PANEL -->
     <div class="left-panel">
@@ -532,7 +592,7 @@
 
           <div class="form-description">
             <p style="color: #ffffff; margin-bottom: 12px;">
-              Bu bölümde Eserkon Yönetim Kurulu Başkanı’nın özgeçmişi, çalışma hayatı ve kurumsal faaliyetlerine ilişkin özel bilgiler yer almaktadır.
+              Bu bölümde Eserkon Yönetim Kurulu Başkanı'nın özgeçmişi, çalışma hayatı ve kurumsal faaliyetlerine ilişkin özel bilgiler yer almaktadır.
             </p>
             <p style="color: #ffffff;">
               Bu içeriklere erişebilmek için erişim talebinde bulunabilirsiniz. Talebiniz tarafımdan incelenip onaylandıktan sonra bilgilere kolayca erişim sağlayabilirsiniz.
@@ -633,6 +693,22 @@ Erişiminiz onaylandıktan sonraki girişlerinizde yeniden başvuru yapmanıza g
   </div>
 
   <script>
+    // --- YENİ: SAYFA YÜKLENDİĞİNDE ÇALIŞACAK KOD ---
+    document.addEventListener("DOMContentLoaded", function() {
+      const loadingScreen = document.getElementById("loading-screen");
+      const loginContainer = document.getElementById("loginContainer");
+
+      // 2 saniye (2000 milisaniye) bekle
+      setTimeout(function() {
+        // Yükleme ekranını kaybet
+        loadingScreen.style.opacity = "0";
+        loadingScreen.style.visibility = "hidden";
+
+        // Giriş panelini göster
+        loginContainer.classList.add("visible");
+      }, 2000);
+    });
+
     function switchTab(tabId, btn) {
       const tabs = document.querySelectorAll('.tab-content');
       tabs.forEach(tab => tab.classList.remove('active'));
