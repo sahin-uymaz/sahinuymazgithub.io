@@ -1,86 +1,595 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Eserkon Başkanı - Özel Erişim</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eserkon — Güvenli Erişim Paneli</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #f4f6f9;
-      color: #333;
-    }
-    header {
-      background: #003366;
-      color: white;
-      padding: 20px;
-      text-align: center;
-      font-size: 24px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-    nav {
-      background: #001f3f;
-      padding: 15px;
-      text-align: center;
-    }
-    nav a {
-      color: white;
-      margin: 0 15px;
-      text-decoration: none;
-      font-weight: 500;
-    }
-    nav a:hover {
-      text-decoration: underline;
-    }
-  </style>
+  :root{
+    --bg-deep:#0a0f2b;
+    --bg-deep-2:#140b33;
+    --violet:#7c3aed;
+    --cyan:#06e0e0;
+    --magenta:#e0069e;
+    --amber:#f5a623;
+    --text-light:#f4f2ff;
+    --text-dim:#b9b3d9;
+    --glass:rgba(255,255,255,0.055);
+    --glass-border:rgba(255,255,255,0.14);
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'Inter',sans-serif;
+    background:#05061a;
+    color:var(--text-light);
+    min-height:100vh;
+  }
+
+  /* ---------- DEMO SITE CHROME (siz bunu kendi sitenizin yapısıyla değiştirebilirsiniz) ---------- */
+  .site-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:22px 48px;
+    background:#0a0f2b;
+    border-bottom:1px solid rgba(255,255,255,0.08);
+  }
+  .logo{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    font-size:22px;
+    letter-spacing:0.5px;
+    color:#fff;
+  }
+  .logo span{color:var(--cyan);}
+  nav.main-menu{display:flex;gap:36px;}
+  nav.main-menu > .menu-item{position:relative;}
+  nav.main-menu a{
+    color:var(--text-dim);
+    text-decoration:none;
+    font-weight:500;
+    font-size:15px;
+    padding:8px 2px;
+    cursor:pointer;
+    transition:color .2s ease;
+  }
+  nav.main-menu a:hover{color:#fff;}
+  .menu-item.has-sub{padding-bottom:10px;}
+  .submenu{
+    position:absolute;
+    top:36px;
+    left:0;
+    background:#10163a;
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:10px;
+    min-width:190px;
+    padding:8px;
+    display:none;
+    box-shadow:0 20px 40px rgba(0,0,0,.4);
+    z-index:50;
+  }
+  .menu-item.has-sub:hover .submenu{display:block;}
+  .submenu a{
+    display:block;
+    padding:10px 12px;
+    border-radius:7px;
+    font-size:14px;
+  }
+  .submenu a:hover{background:rgba(255,255,255,0.06);color:#fff;}
+
+  .page-hint{
+    max-width:640px;
+    margin:120px auto;
+    text-align:center;
+    color:var(--text-dim);
+    padding:0 24px;
+    line-height:1.7;
+  }
+  .page-hint b{color:#fff;}
+
+  /* ---------- OVERLAY ---------- */
+  .overlay{
+    position:fixed;
+    inset:0;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:1000;
+    padding:24px;
+  }
+  .overlay.open{display:flex;}
+  .overlay-bg{
+    position:absolute;
+    inset:0;
+    background:#05061a;
+  }
+
+  /* ---------- Panelin dışında, köşede duran tek çıkış yolu ---------- */
+  .home-return-btn{
+    position:fixed;
+    top:22px;
+    left:22px;
+    z-index:1001;
+    display:none;
+    align-items:center;
+    gap:9px;
+    padding:11px 18px 11px 14px;
+    border-radius:999px;
+    text-decoration:none;
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;
+    font-size:13.5px;
+    color:#fff;
+    background:rgba(255,255,255,0.07);
+    border:1px solid rgba(255,255,255,0.18);
+    backdrop-filter:blur(8px);
+    transition:background .2s ease, transform .2s ease;
+  }
+  .home-return-btn.show{display:inline-flex;}
+  .home-return-btn:hover{
+    background:rgba(255,255,255,0.14);
+    transform:translateX(-2px);
+  }
+  .home-return-btn svg{width:15px;height:15px;flex:0 0 auto;}
+
+  /* ---------- PANEL ---------- */
+  .panel{
+    position:relative;
+    width:100%;
+    max-width:980px;
+    max-height:88vh;
+    overflow:hidden;
+    border-radius:22px;
+    display:grid;
+    grid-template-columns:1fr 1.15fr;
+    background:var(--bg-deep);
+    border:1px solid rgba(255,255,255,0.12);
+    box-shadow:0 40px 120px rgba(0,0,0,.55);
+    animation:panelIn .45s cubic-bezier(.2,.9,.25,1);
+  }
+  @keyframes panelIn{
+    from{opacity:0;transform:translateY(24px) scale(.97);}
+    to{opacity:1;transform:translateY(0) scale(1);}
+  }
+
+  /* glow mesh background, shared but positioned differently per side */
+  .panel::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      radial-gradient(480px 380px at 8% 12%, rgba(124,58,237,.55), transparent 60%),
+      radial-gradient(420px 360px at 95% 85%, rgba(6,224,224,.4), transparent 60%),
+      radial-gradient(360px 300px at 90% 10%, rgba(224,6,158,.35), transparent 60%);
+    filter:blur(4px);
+    z-index:0;
+    animation:drift 14s ease-in-out infinite alternate;
+  }
+  @keyframes drift{
+    from{transform:translate(0,0) scale(1);}
+    to{transform:translate(-10px,10px) scale(1.04);}
+  }
+
+  /* ---------- LEFT: kimlik / güvenlik bölümü ---------- */
+  .panel-left{
+    position:relative;
+    z-index:1;
+    padding:44px 38px;
+    border-right:1px solid rgba(255,255,255,0.09);
+    background:linear-gradient(180deg, rgba(124,58,237,.14), rgba(6,224,224,.05) 60%, transparent);
+    display:flex;
+    flex-direction:column;
+    gap:26px;
+  }
+
+  .badge-eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11.5px;
+    letter-spacing:2.2px;
+    color:var(--amber);
+    text-transform:uppercase;
+  }
+  .badge-eyebrow::before{
+    content:"";
+    width:7px;height:7px;
+    border-radius:50%;
+    background:var(--amber);
+    box-shadow:0 0 10px var(--amber), 0 0 22px var(--amber);
+    animation:pulse 1.6s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{opacity:1;}
+    50%{opacity:.35;}
+  }
+
+  .id-card{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    padding:16px;
+    border-radius:16px;
+    background:var(--glass);
+    border:1px solid var(--glass-border);
+  }
+  .avatar-ring{
+    position:relative;
+    width:74px;height:74px;
+    flex:0 0 auto;
+    border-radius:50%;
+    padding:3px;
+    background:conic-gradient(from 0deg, var(--cyan), var(--violet), var(--magenta), var(--cyan));
+    animation:spin 6s linear infinite;
+  }
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .avatar-ring .avatar-inner{
+    width:100%;height:100%;
+    border-radius:50%;
+    background:#0a0f2b;
+    display:flex;align-items:center;justify-content:center;
+    overflow:hidden;
+  }
+  .avatar-inner img{
+    width:100%;height:100%;
+    object-fit:cover;
+    border-radius:50%;
+    display:block;
+  }
+  .avatar-fallback{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    font-size:22px;
+    color:#fff;
+  }
+  .id-name{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:17px;
+    font-weight:700;
+    color:#fff;
+    line-height:1.3;
+  }
+  .id-role{
+    font-size:12.5px;
+    color:var(--text-dim);
+    margin-top:3px;
+    line-height:1.4;
+  }
+
+  .clearance-title{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:14px;
+    font-weight:600;
+    color:#fff;
+    margin:4px 0 -6px;
+  }
+  .clearance-list{
+    list-style:none;
+    margin:0;padding:0;
+    display:flex;flex-direction:column;
+    gap:2px;
+  }
+  .clearance-list li{
+    display:flex;
+    align-items:center;
+    gap:11px;
+    padding:11px 10px;
+    border-radius:10px;
+    font-size:13.5px;
+    color:var(--text-dim);
+    transition:background .2s ease, color .2s ease;
+  }
+  .clearance-list li:hover{
+    background:rgba(255,255,255,0.05);
+    color:#fff;
+  }
+  .lock-ic{
+    width:26px;height:26px;
+    flex:0 0 auto;
+    border-radius:7px;
+    background:rgba(245,166,35,0.12);
+    border:1px solid rgba(245,166,35,0.35);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .lock-ic svg{width:13px;height:13px;}
+
+  .left-footer{
+    margin-top:auto;
+    padding-top:16px;
+    border-top:1px dashed rgba(255,255,255,0.14);
+    font-family:'JetBrains Mono',monospace;
+    font-size:10.5px;
+    letter-spacing:1px;
+    color:rgba(185,179,217,.65);
+    display:flex;
+    justify-content:space-between;
+  }
+
+  /* ---------- RIGHT: erişim talebi ---------- */
+  .panel-right{
+    position:relative;
+    z-index:1;
+    padding:44px 42px;
+    overflow-y:auto;
+    background:rgba(255,255,255,0.015);
+  }
+  .right-eyebrow{
+    display:inline-block;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    letter-spacing:2px;
+    color:var(--cyan);
+    text-transform:uppercase;
+    margin-bottom:14px;
+  }
+  .right-title{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:30px;
+    font-weight:700;
+    color:#fff;
+    margin:0 0 14px;
+    background:linear-gradient(90deg,#fff, #d9d3ff 60%, var(--cyan));
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+  }
+  .right-desc{
+    font-size:14.5px;
+    line-height:1.75;
+    color:var(--text-dim);
+    margin:0 0 30px;
+    max-width:480px;
+  }
+
+  form{display:flex;flex-direction:column;gap:16px;max-width:480px;}
+  .field{display:flex;flex-direction:column;gap:7px;}
+  .field label{
+    font-size:12px;
+    font-weight:600;
+    color:var(--text-dim);
+    letter-spacing:.3px;
+  }
+  .field input{
+    background:rgba(255,255,255,0.055);
+    border:1px solid rgba(255,255,255,0.16);
+    border-radius:11px;
+    padding:13px 14px;
+    font-size:14px;
+    color:#fff;
+    font-family:'Inter',sans-serif;
+    outline:none;
+    transition:border-color .2s ease, background .2s ease, box-shadow .2s ease;
+  }
+  .field input::placeholder{color:rgba(244,242,255,0.32);}
+  .field input:focus{
+    border-color:var(--cyan);
+    background:rgba(6,224,224,0.06);
+    box-shadow:0 0 0 3px rgba(6,224,224,0.15);
+  }
+
+  .submit-btn{
+    margin-top:8px;
+    border:none;
+    cursor:pointer;
+    padding:15px 22px;
+    border-radius:12px;
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;
+    font-size:14.5px;
+    letter-spacing:.2px;
+    color:#0a0f2b;
+    background:linear-gradient(90deg, var(--cyan), var(--amber));
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:9px;
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .submit-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 12px 30px rgba(6,224,224,.28);
+  }
+  .submit-btn:active{transform:translateY(0);}
+
+  .form-note{
+    margin-top:14px;
+    font-size:11.5px;
+    color:rgba(185,179,217,.6);
+    line-height:1.6;
+  }
+
+  .success-box{
+    display:none;
+    max-width:480px;
+    padding:22px;
+    border-radius:14px;
+    background:rgba(6,224,224,0.08);
+    border:1px solid rgba(6,224,224,0.35);
+  }
+  .success-box.show{display:block;}
+  .success-box h4{
+    margin:0 0 6px;
+    font-family:'Space Grotesk',sans-serif;
+    color:#fff;
+    font-size:16px;
+  }
+  .success-box p{
+    margin:0;
+    font-size:13px;
+    color:var(--text-dim);
+    line-height:1.6;
+  }
+
+  @media (max-width:760px){
+    .panel{grid-template-columns:1fr;max-height:92vh;overflow-y:auto;}
+    .panel-left{border-right:none;border-bottom:1px solid rgba(255,255,255,0.09);}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .avatar-ring, .panel::before, .badge-eyebrow::before{animation:none;}
+  }
+</style>
 </head>
 <body>
-<!-- Menü -->
-<header>Eserkon</header>
-<nav>
-<a href="index.html">Anasayfa</a>
-<a href="hakkimizda.html">Hakkımızda</a>
-<a href="faaliyetler.html">Faaliyetler</a>
-<a href="iletisim.html">İletişim</a>
-</nav>
-<!-- Özel Erişim Paneli -->
-<div id="accessModal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; z-index: 9999; font-family: 'Arial', sans-serif;">
-<div style="display: flex; width: 90%; max-width: 1000px; height: 600px; background: linear-gradient(135deg, #001f3f, #003366); border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-<!-- SOL KOLON: Sekreter & Bilgiler -->
-<div style="flex: 1; background: #ffffff; padding: 30px; display: flex; flex-direction: column; justify-content: center; color: #003366; text-align: center; border-right: 3px dashed #0074D9;">
-<img src="images/dede.png" alt="Rema Al Zahrani" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 5px solid #0074D9; margin: 0 auto 20px;">
-<h3 style="margin: 0 0 10px; font-size: 22px; color: #001f3f;">Rema Al Zahrani</h3>
-<p style="margin: 0 0 20px; font-size: 16px; color: #666;">Sekreter ve Dış İlişkiler Koordinatörü</p>
-<div style="background: #f8f9fa; padding: 20px; border-radius: 12px; font-size: 15px; line-height: 1.6; text-align: left;">
-<h4 style="margin: 0 0 10px; color: #001f3f;">Eserkon Başkanı Hakkında</h4>
-<ul style="padding-left: 20px; margin: 10px 0;">
-<li><strong>Eserkon Başkanı Kimdir?</strong></li>
-<li><strong>Başkanın Özgeçmişi</strong></li>
-<li><strong>Çalışma Hayatı</strong></li>
-<li><strong>Görevleri ve Faaliyetleri</strong></li>
-</ul>
+
+<!-- ============== DEMO SİTE ÜST MENÜSÜ (kendi menü yapınızla değiştirin) ============== -->
+<header class="site-header">
+  <div class="logo">Eser<span>kon</span></div>
+  <nav class="main-menu">
+    <div class="menu-item"><a href="#">Ana Sayfa</a></div>
+    <div class="menu-item"><a href="#">Kurumsal</a></div>
+    <div class="menu-item has-sub">
+      <a id="baskan-menu-link">Başkan</a>
+      <div class="submenu">
+        <a id="ozgecmis-link">Özgeçmiş</a>
+      </div>
+    </div>
+    <div class="menu-item"><a href="#">Projeler</a></div>
+    <div class="menu-item"><a href="#">İletişim</a></div>
+  </nav>
+</header>
+
+<p class="page-hint">
+  Bu, menü davranışını gösteren bir demo sayfasıdır. Ziyaretçi site içinde diğer tüm menülerde
+  ve sayfalarda serbestçe dolaşabilir. Yalnızca <b>“Başkan”</b> yazısına veya alt menüdeki
+  <b>“Özgeçmiş”</b> bağlantısına tıkladığında karşısına <b>sadece</b> güvenli erişim paneli çıkar;
+  panel X ile veya dışarı tıklayarak kapatılamaz — tek çıkış yolu sol üstteki
+  <b>“Ana Sayfaya Dön”</b> butonudur.
+</p>
+
+<!-- Panelin dışında, köşede duran tek çıkış yolu: Ana Sayfaya Dön -->
+<a href="index.html" class="home-return-btn" id="homeReturnBtn">
+  <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-5h2v5a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1V10"/></svg>
+  Ana Sayfaya Dön
+</a>
+
+<!-- ============== GİRİŞ PANELİ (OVERLAY) ============== -->
+<div class="overlay" id="accessOverlay">
+  <div class="overlay-bg" id="overlayBg"></div>
+  <div class="panel">
+    <!-- SOL: Güvenli erişim / kimlik bölümü -->
+    <div class="panel-left">
+      <span class="badge-eyebrow">Güvenli Özel Erişim</span>
+
+      <div class="id-card">
+        <div class="avatar-ring">
+          <div class="avatar-inner">
+            <!-- Kendi fotoğrafınızı eklemek için aşağıdaki img src'yi değiştirin,
+                 örn: src="images/rema-al-zahrani.jpg"
+                 Fotoğraf yoksa bu img satırını silin, baş harfler otomatik görünür. -->
+            <img src="games/rema1.png" alt="Rema Al Zahrani" onerror="this.style.display='none'; this.parentElement.querySelector('.avatar-fallback').style.display='flex';">
+            <div class="avatar-fallback" style="display:none;">RZ</div>
+          </div>
+        </div>
+        <div>
+          <div class="id-name">Rema Al Zahrani</div>
+          <div class="id-role">Sekreter ve Dış İlişkiler<br>Koordinatörü</div>
+        </div>
+      </div>
+
+      <div class="clearance-title">Eserkon Başkanı Hakkında Bilgiler</div>
+      <ul class="clearance-list">
+        <li>
+          <span class="lock-ic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#f5a623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+          </span>
+          Eserkon Başkanı Kimdir?
+        </li>
+        <li>
+          <span class="lock-ic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#f5a623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+          </span>
+          Başkanın Özgeçmişi
+        </li>
+        <li>
+          <span class="lock-ic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#f5a623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+          </span>
+          Başkanın Görevleri
+        </li>
+        <li>
+          <span class="lock-ic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#f5a623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+          </span>
+          Çalışma Hayatı
+        </li>
+      </ul>
+
+      <div class="left-footer">
+        <span>ESK-ACCESS-2026</span>
+        <span>ŞİFRELİ BAĞLANTI</span>
+      </div>
+    </div>
+
+    <!-- SAĞ: Erişim talebi formu -->
+    <div class="panel-right">
+      <span class="right-eyebrow">Kısıtlı İçerik</span>
+      <h2 class="right-title">Özel Erişim</h2>
+      <p class="right-desc">
+        Bu bölümde Eserkon Yönetim Kurulu Başkanı'nın özgeçmişi, çalışma hayatı ve kurumsal
+        faaliyetlerine ilişkin özel bilgiler yer almaktadır.<br><br>
+        Bu içeriklere erişebilmek için erişim talebinde bulunabilirsiniz. Talebiniz tarafımdan
+        incelenip onaylandıktan sonra bilgilere kolayca erişim sağlayabilirsiniz.
+      </p>
+
+      <form id="accessForm">
+        <div class="field">
+          <label for="fullname">Adınız Soyadınız</label>
+          <input type="text" id="fullname" name="fullname" placeholder="Adınızı ve soyadınızı yazın" required>
+        </div>
+        <div class="field">
+          <label for="email">E-mail Adresiniz</label>
+          <input type="email" id="email" name="email" placeholder="ornek@eposta.com" required>
+        </div>
+        <div class="field">
+          <label for="phone">Telefon Numaranız</label>
+          <input type="tel" id="phone" name="phone" placeholder="05xx xxx xx xx" required>
+        </div>
+        <button type="submit" class="submit-btn">
+          Erişim Talebinde Bulun
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#0a0f2b" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
+        </button>
+        <div class="form-note">Bilgileriniz yalnızca erişim talebinizi değerlendirmek amacıyla kullanılır ve üçüncü kişilerle paylaşılmaz.</div>
+      </form>
+
+      <div class="success-box" id="successBox">
+        <h4>Talebiniz alındı</h4>
+        <p>Erişim talebiniz incelemeye alınmıştır. Onaylandığında belirttiğiniz e-mail adresine bilgilendirme yapılacaktır.</p>
+      </div>
+    </div>
+  </div>
 </div>
-</div>
-<!-- SAĞ KOLON: Erişim Formu -->
-<div style="flex: 1; padding: 40px; background: #001f3f; color: white; display: flex; flex-direction: column; justify-content: center;">
-<h2 style="margin: 0 0 20px; font-size: 28px; color: #00c9ff; text-shadow: 0 0 10px rgba(0,200,255,0.5);">ÖZEL ERİŞİM</h2>
-<p style="font-size: 15px; line-height: 1.6; margin-bottom: 25px; color: #ccc;">
-Bu bölümde Eserkon Yönetim Kurulu Başkanı’nın özgeçmişi, çalışma hayatı ve kurumsal faaliyetlerine ilişkin özel bilgiler yer almaktadır.
-          <br><br>
-Bu içeriklere erişebilmek için erişim talebinde bulunabilirsiniz. Talebiniz tarafımdan incelenip onaylandıktan sonra bilgilere kolayca erişim sağlayabilirsiniz.
-        </p>
-<form action="https://api.web3forms.com/submit" method="POST" style="display: flex; flex-direction: column; gap: 15px;">
-<input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY">
-<input type="text" name="name" placeholder="Adınız Soyadınız" required style="padding: 12px; border: none; border-radius: 8px; font-size: 15px;">
-<input type="email" name="email" placeholder="E-posta Adresiniz" required style="padding: 12px; border: none; border-radius: 8px; font-size: 15px;">
-<input type="tel" name="phone" placeholder="Telefon Numaranız" required style="padding: 12px; border: none; border-radius: 8px; font-size: 15px;">
-<button type="submit" style="padding: 14px; background: #00c9ff; color: #001f3f; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,200,255,0.3);">
-Erişim Talep Et
-          </button>
-</form>
-</div>
-</div>
-</div>
+
+<script>
+  const overlay = document.getElementById('accessOverlay');
+  const openTriggers = [document.getElementById('baskan-menu-link'), document.getElementById('ozgecmis-link')];
+  const homeReturnBtn = document.getElementById('homeReturnBtn');
+
+  // Başkan menüsüne (veya Özgeçmiş alt menüsüne) tıklanınca SADECE panel görünür.
+  // Panel; X ile, dışarı tıklayarak veya ESC ile kapatılamaz.
+  // Ziyaretçinin tek çıkış yolu, sol üstteki "Ana Sayfaya Dön" butonudur.
+  openTriggers.forEach(el => {
+    if(!el) return;
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      overlay.classList.add('open');
+      homeReturnBtn.classList.add('show');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  document.getElementById('accessForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    // Burada kendi backend/formspree/e-posta entegrasyonunuzu bağlayabilirsiniz.
+    this.style.display = 'none';
+    document.getElementById('successBox').classList.add('show');
+  });
+</script>
+
 </body>
 </html>
