@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Eserkon | Güvenli Özel Erişim</title>
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link
+href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+rel="stylesheet">
+
+
+<style>
+
+/* =========================
+   GENEL
+========================= */
+
+:root{
+
+  --lacivert:#080d25;
+
+  --mor:#7c3aed;
+
+  --turkuaz:#06e0e0;
+
+  --pembe:#e0069e;
+
+  --sari:#f5a623;
+
+  --beyaz:#ffffff;
+
+  --soluk:#b9b3d9;
+
+}
+
+
+*{
+
+  box-sizing:border-box;
+
+}
+
+
+body{
+
+  margin:0;
+
+  font-family:'Inter',sans-serif;
+
+  background:#05061a;
+
+  color:white;
+
+}
+
+
+/* =========================
+   ÖRNEK MENÜ
+   KENDİ MENÜNÜZE
+   BAŞKAN KODUNU
+   EKLEYEBİLİRSİNİZ
+========================= */
+
+.site-header{
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  padding:20px 50px;
+
+  background:#0a0f2b;
+
+}
+
+
+.logo{
+
+  font-family:'Space Grotesk',sans-serif;
+
+  font-size:24px;
+
+  font-weight:700;
+
+}
+
+
+.logo span{
+
+  color:var(--turkuaz);
+
+}
+
+
+.menu{
+
+  display:flex;
+
+  gap:30px;
+
+}
+
+
+.menu a{
+
+  color:white;
+
+  text-decoration:none;
+
+  cursor:pointer;
+
+  font-size:15px;
+
+}
+
+
+.menu a:hover{
+
+  color:var(--turkuaz);
+
+}
+
+
+/* =========================
+   OVERLAY
+========================= */
+
+.access-overlay{
+
+  position:fixed;
+
+  inset:0;
+
+  display:none;
+
+  align-items:center;
+
+  justify-content:center;
+
+  padding:25px;
+
+  z-index:9999;
+
+  background:
+
+  radial-gradient(
+    circle at 15% 20%,
+    rgba(124,58,237,.25),
+    transparent 30%
+  ),
+
+  radial-gradient(
+    circle at 85% 80%,
+    rgba(6,224,224,.20),
+    transparent 35%
+  ),
+
+  #05061a;
+
+}
+
+
+.access-overlay.active{
+
+  display:flex;
+
+}
+
+
+/* =========================
+   ANA PANEL
+========================= */
+
+.access-panel{
+
+  width:100%;
+
+  max-width:1100px;
+
+  max-height:92vh;
+
+  display:grid;
+
+  grid-template-columns:42% 58%;
+
+  border-radius:26px;
+
+  overflow:hidden;
+
+  position:relative;
+
+  border:
+
+  1px solid
+  rgba(255,255,255,.15);
+
+  box-shadow:
+
+  0 30px 100px
+  rgba(0,0,0,.7);
+
+}
+
+
+/* FOSFORLU ARKA PLAN */
+
+.access-panel::before{
+
+  content:"";
+
+  position:absolute;
+
+  inset:0;
+
+  background:
+
+  radial-gradient(
+    500px 400px at 0% 0%,
+    rgba(124,58,237,.55),
+    transparent 60%
+  ),
+
+  radial-gradient(
+    500px 400px at 100% 100%,
+    rgba(6,224,224,.40),
+    transparent 60%
+  ),
+
+  radial-gradient(
+    400px 300px at 100% 0%,
+    rgba(224,6,158,.30),
+    transparent 60%
+  );
+
+  filter:blur(8px);
+
+  z-index:0;
+
+}
+
+
+/* =========================
+   SOL PANEL
+========================= */
+
+.access-left{
+
+  position:relative;
+
+  z-index:2;
+
+  padding:45px 40px;
+
+  background:
+
+  linear-gradient(
+    180deg,
+    rgba(124,58,237,.20),
+    rgba(6,224,224,.05)
+  );
+
+  border-right:
+
+  1px solid
+  rgba(255,255,255,.10);
+
+  overflow-y:auto;
+
+}
+
+
+.security-title{
+
+  color:var(--sari);
+
+  font-size:12px;
+
+  letter-spacing:3px;
+
+  font-weight:700;
+
+  margin-bottom:30px;
+
+}
+
+
+/* =========================
+   PROFİL
+========================= */
+
+.profile-card{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:16px;
+
+  padding:16px;
+
+  border-radius:18px;
+
+  background:
+
+  rgba(255,255,255,.06);
+
+  border:
+
+  1px solid
+  rgba(255,255,255,.15);
+
+}
+
+
+.profile-photo{
+
+  width:80px;
+
+  height:80px;
+
+  flex-shrink:0;
+
+  border-radius:50%;
+
+  padding:3px;
+
+  background:
+
+  linear-gradient(
+    135deg,
+    var(--turkuaz),
+    var(--mor),
+    var(--pembe)
+  );
+
+}
+
+
+.profile-photo img{
+
+  width:100%;
+
+  height:100%;
+
+  border-radius:50%;
+
+  object-fit:cover;
+
+  display:block;
+
+}
+
+
+.profile-info h3{
+
+  margin:0 0 5px;
+
+  font-size:17px;
+
+}
+
+
+.profile-info p{
+
+  margin:0;
+
+  font-size:12px;
+
+  line-height:1.5;
+
+  color:var(--soluk);
+
+}
+
+
+/* =========================
+   BİLGİLER
+========================= */
+
+.info-title{
+
+  margin-top:35px;
+
+  margin-bottom:15px;
+
+  font-size:15px;
+
+}
+
+
+.info-list{
+
+  list-style:none;
+
+  padding:0;
+
+  margin:0;
+
+}
+
+
+.info-list li{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+
+  padding:13px;
+
+  margin-bottom:7px;
+
+  border-radius:12px;
+
+  color:var(--soluk);
+
+  background:
+
+  rgba(255,255,255,.03);
+
+  transition:.25s;
+
+}
+
+
+.info-list li:hover{
+
+  background:
+
+  rgba(255,255,255,.08);
+
+  color:white;
+
+  transform:
+
+  translateX(4px);
+
+}
+
+
+.lock{
+
+  width:28px;
+
+  height:28px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  border-radius:8px;
+
+  background:
+
+  rgba(245,166,35,.12);
+
+  border:
+
+  1px solid
+  rgba(245,166,35,.30);
+
+}
+
+
+/* =========================
+   SAĞ PANEL
+========================= */
+
+.access-right{
+
+  position:relative;
+
+  z-index:2;
+
+  padding:50px;
+
+  background:
+
+  rgba(5,6,26,.55);
+
+  overflow-y:auto;
+
+  min-height:0;
+
+}
+
+
+.access-label{
+
+  color:var(--turkuaz);
+
+  font-size:12px;
+
+  letter-spacing:3px;
+
+  font-weight:700;
+
+}
+
+
+.access-title{
+
+  font-family:
+
+  'Space Grotesk',
+  sans-serif;
+
+  font-size:38px;
+
+  margin:
+
+  15px 0 20px;
+
+  background:
+
+  linear-gradient(
+    90deg,
+    white,
+    #d9d3ff,
+    var(--turkuaz)
+  );
+
+  -webkit-background-clip:text;
+
+  -webkit-text-fill-color:transparent;
+
+}
+
+
+.access-description{
+
+  color:var(--soluk);
+
+  line-height:1.8;
+
+  font-size:15px;
+
+  margin-bottom:30px;
+
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+.access-form{
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:18px;
+
+}
+
+
+.input-group{
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:8px;
+
+}
+
+
+.input-group label{
+
+  color:var(--soluk);
+
+  font-size:13px;
+
+  font-weight:600;
+
+}
+
+
+.input-group input{
+
+  width:100%;
+
+  padding:15px;
+
+  border-radius:12px;
+
+  border:
+
+  1px solid
+  rgba(255,255,255,.15);
+
+  background:
+
+  rgba(255,255,255,.06);
+
+  color:white;
+
+  font-size:14px;
+
+  outline:none;
+
+  transition:.25s;
+
+}
+
+
+.input-group input:focus{
+
+  border-color:
+
+  var(--turkuaz);
+
+  box-shadow:
+
+  0 0 0 3px
+  rgba(6,224,224,.15);
+
+}
+
+
+/* =========================
+   BUTON
+========================= */
+
+.access-button{
+
+  margin-top:10px;
+
+  padding:16px;
+
+  border:none;
+
+  border-radius:13px;
+
+  cursor:pointer;
+
+  font-size:15px;
+
+  font-weight:700;
+
+  color:#071022;
+
+  background:
+
+  linear-gradient(
+    90deg,
+    var(--turkuaz),
+    var(--sari)
+  );
+
+  transition:.25s;
+
+}
+
+
+.access-button:hover{
+
+  transform:
+
+  translateY(-2px);
+
+  box-shadow:
+
+  0 15px 35px
+  rgba(6,224,224,.25);
+
+}
+
+
+/* =========================
+   MOBİL
+========================= */
+
+@media(max-width:800px){
+
+  .access-panel{
+
+    grid-template-columns:1fr;
+
+    max-height:94vh;
+
+    overflow-y:auto;
+
+  }
+
+
+  .access-left{
+
+    border-right:none;
+
+    border-bottom:
+
+    1px solid
+    rgba(255,255,255,.10);
+
+    padding:30px;
+
+  }
+
+
+  .access-right{
+
+    padding:30px;
+
+    overflow:visible;
+
+  }
+
+
+  .access-title{
+
+    font-size:30px;
+
+  }
+
+}
+
+
+@media(max-width:500px){
+
+  .site-header{
+
+    padding:18px 20px;
+
+  }
+
+
+  .menu{
+
+    gap:15px;
+
+  }
+
+
+  .access-overlay{
+
+    padding:10px;
+
+  }
+
+
+  .access-left{
+
+    padding:25px 20px;
+
+  }
+
+
+  .access-right{
+
+    padding:25px 20px 40px;
+
+  }
+
+
+  .profile-card{
+
+    align-items:flex-start;
+
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     ÖRNEK MENÜ
+========================= -->
+
+<header class="site-header">
+
+
+  <div class="logo">
+
+    Eser<span>kon</span>
+
+  </div>
+
+
+  <nav class="menu">
+
+
+    <a href="#">
+
+      Ana Sayfa
+
+    </a>
+
+
+    <a href="#">
+
+      Kurumsal
+
+    </a>
+
+
+    <!-- BAŞKAN MENÜSÜ -->
+
+    <a id="baskanButton">
+
+      Başkan
+
+    </a>
+
+
+    <a href="#">
+
+      Projeler
+
+    </a>
+
+
+    <a href="#">
+
+      İletişim
+
+    </a>
+
+
+  </nav>
+
+
+</header>
+
+
+
+<!-- =========================
+     GİRİŞ PANELİ
+========================= -->
+
+<div
+class="access-overlay"
+id="accessOverlay">
+
+
+  <div class="access-panel">
+
+
+    <!-- =========================
+         SOL BÖLÜM
+    ========================= -->
+
+    <div class="access-left">
+
+
+      <div class="security-title">
+
+        GÜVENLİ ÖZEL ERİŞİM
+
+      </div>
+
+
+
+      <!-- PROFİL KARTI -->
+
+      <div class="profile-card">
+
+
+        <!-- FOTOĞRAF ALANI -->
+
+        <div class="profile-photo">
+
+
+          <img
+
+          src="images/rema-al-zahrani.jpg"
+
+          alt="Rema Al Zahrani"
+
+
+          onerror="
+          this.style.display='none';
+          "
+
+
+          >
+
+
+        </div>
+
+
+
+        <div class="profile-info">
+
+
+          <h3>
+
+            Rema Al Zahrani
+
+          </h3>
+
+
+          <p>
+
+            Sekreter ve Dış İlişkiler
+            <br>
+            Koordinatörü
+
+          </p>
+
+
+        </div>
+
+
+      </div>
+
+
+
+      <div class="info-title">
+
+        Eserkon Başkanı Hakkında Bilgiler
+
+      </div>
+
+
+
+      <ul class="info-list">
+
+
+        <li>
+
+          <div class="lock">
+
+            🔒
+
+          </div>
+
+          Eserkon Başkanı Kimdir?
+
+        </li>
+
+
+
+        <li>
+
+          <div class="lock">
+
+            🔒
+
+          </div>
+
+          Başkanın Özgeçmişi
+
+        </li>
+
+
+
+        <li>
+
+          <div class="lock">
+
+            🔒
+
+          </div>
+
+          Başkanın Görevleri
+
+        </li>
+
+
+
+        <li>
+
+          <div class="lock">
+
+            🔒
+
+          </div>
+
+          Çalışma Hayatı
+
+        </li>
+
+
+      </ul>
+
+
+    </div>
+
+
+
+    <!-- =========================
+         SAĞ BÖLÜM
+    ========================= -->
+
+    <div class="access-right">
+
+
+      <div class="access-label">
+
+        KISITLI İÇERİK
+
+      </div>
+
+
+
+      <h1 class="access-title">
+
+        Özel Erişim
+
+      </h1>
+
+
+
+      <div class="access-description">
+
+
+        Bu bölümde Eserkon Yönetim Kurulu Başkanı’nın
+        özgeçmişi, çalışma hayatı ve kurumsal faaliyetlerine
+        ilişkin özel bilgiler yer almaktadır.
+
+
+        <br><br>
+
+
+        Bu içeriklere erişebilmek için erişim talebinde
+        bulunabilirsiniz. Talebiniz tarafımdan incelenip
+        onaylandıktan sonra bilgilere kolayca erişim
+        sağlayabilirsiniz.
+
+
+      </div>
+
+
+
+      <!-- FORM -->
+
+      <form
+      class="access-form"
+      id="accessForm">
+
+
+        <!-- AD SOYAD -->
+
+        <div class="input-group">
+
+
+          <label>
+
+            Adınız Soyadınız
+
+          </label>
+
+
+          <input
+
+          type="text"
+
+          placeholder="Adınızı ve soyadınızı yazın"
+
+          required
+
+          >
+
+
+        </div>
+
+
+
+        <!-- EMAIL -->
+
+        <div class="input-group">
+
+
+          <label>
+
+            E-mail Adresiniz
+
+          </label>
+
+
+          <input
+
+          type="email"
+
+          placeholder="ornek@email.com"
+
+          required
+
+          >
+
+
+        </div>
+
+
+
+        <!-- TELEFON -->
+
+        <div class="input-group">
+
+
+          <label>
+
+            Telefon Numaranız
+
+          </label>
+
+
+          <input
+
+          type="tel"
+
+          placeholder="05xx xxx xx xx"
+
+          required
+
+          >
+
+
+        </div>
+
+
+
+        <!-- BUTON -->
+
+        <button
+        class="access-button"
+        type="submit">
+
+
+          Erişim Talebinde Bulun
+
+
+        </button>
+
+
+      </form>
+
+
+    </div>
+
+
+  </div>
+
+
+</div>
+
+
+
+<script>
+
+
+/* =========================
+   BAŞKAN MENÜSÜ
+========================= */
+
+const baskanButton =
+document.getElementById(
+  "baskanButton"
+);
+
+
+const accessOverlay =
+document.getElementById(
+  "accessOverlay"
+);
+
+
+
+/* BAŞKAN TIKLANINCA PANELİ AÇ */
+
+baskanButton.addEventListener(
+  "click",
+  function(){
+
+
+    accessOverlay.classList.add(
+      "active"
+    );
+
+
+  }
+);
+
+
+
+/* FORM GÖNDERİMİ */
+
+document
+.getElementById("accessForm")
+.addEventListener(
+  "submit",
+  function(event){
+
+
+    event.preventDefault();
+
+
+    alert(
+      "Erişim talebiniz alınmıştır."
+    );
+
+
+  }
+);
+
+
+</script>
+
+
+</body>
+
+</html>
