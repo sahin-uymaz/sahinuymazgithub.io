@@ -1,398 +1,86 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kamu Politikaları Portalı - Giriş ve Erişim Talebi</title>
-    
-    <!-- Google Fonts ve FontAwesome İkon Kütüphanesi -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <style>
-        /* --- GENEL TASARIM VE ARKA PLAN --- */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        .auth-wrapper {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #0f172a;
-            position: relative;
-            padding: 20px;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            overflow: hidden;
-        }
-
-        /* Arka Plan Işık Efektleri */
-        .glow-1, .glow-2 {
-            position: fixed;
-            width: 400px;
-            height: 400px;
-            border-radius: 50%;
-            filter: blur(120px);
-            z-index: 0;
-            opacity: 0.5;
-            animation: pulse 8s infinite alternate;
-            pointer-events: none;
-        }
-        .glow-1 {
-            background: linear-gradient(135deg, #6366f1, #3b82f6);
-            top: -10%; left: -10%;
-        }
-        .glow-2 {
-            background: linear-gradient(135deg, #ec4899, #8b5cf6);
-            bottom: -10%; right: -10%;
-            animation-delay: -4s;
-        }
-        @keyframes pulse {
-            0% { transform: scale(1) translate(0, 0); }
-            100% { transform: scale(1.2) translate(50px, 30px); }
-        }
-
-        /* Ana Kapsayıcı Kart */
-        .auth-container {
-            position: relative;
-            z-index: 1;
-            width: 100%;
-            max-width: 960px;
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            overflow: hidden;
-        }
-
-        /* --- SOL TARAF: BANNER VE TANITIM --- */
-        .hero-banner {
-            position: relative;
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(139, 92, 246, 0.2)),
-                        url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000&auto=format&fit=crop') center/cover;
-            padding: 40px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            gap: 24px;
-        }
-        .hero-banner::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.4));
-        }
-        .brand-logo-wrapper {
-            position: relative;
-            z-index: 2;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .logo-box {
-            width: 48px;
-            height: 48px;
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-size: 22px;
-            box-shadow: 0 8px 16px rgba(99, 102, 241, 0.4);
-        }
-        .brand-title {
-            color: #ffffff;
-            font-weight: 700;
-            font-size: 1.25rem;
-            letter-spacing: 0.5px;
-        }
-        .hero-text {
-            position: relative;
-            z-index: 2;
-            color: #ffffff;
-        }
-        .hero-text h2 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 12px;
-            background: linear-gradient(to right, #fff, #cbd5e1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .hero-text p {
-            color: #cbd5e1;
-            font-size: 0.9rem;
-            line-height: 1.6;
-            margin-bottom: 12px;
-        }
-        
-        /* Sol Tarafa Eklenen Yeni Liste Stilleri */
-        .hero-features {
-            list-style: none;
-            margin-top: 16px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        .hero-features li {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: #94a3b8;
-            font-size: 0.85rem;
-        }
-        .hero-features li i {
-            color: #38bdf8;
-            font-size: 0.9rem;
-        }
-
-        /* --- SAĞ TARAF: FORM ALANI --- */
-        .form-section {
-            padding: 48px 40px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        .form-header {
-            margin-bottom: 28px;
-        }
-        .form-header h3 {
-            color: #f8fafc;
-            font-size: 1.75rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-        .form-header p {
-            color: #94a3b8;
-            font-size: 0.9rem;
-        }
-        .input-group {
-            margin-bottom: 20px;
-        }
-        .input-group label {
-            display: block;
-            color: #cbd5e1;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-        .input-wrapper {
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
-        .input-wrapper i {
-            position: absolute;
-            left: 16px;
-            color: #64748b;
-        }
-        .input-wrapper input {
-            width: 100%;
-            padding: 14px 16px 14px 44px;
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            color: #f8fafc;
-            font-size: 0.95rem;
-            outline: none;
-            transition: all 0.3s ease;
-        }
-        .input-wrapper input:focus {
-            border-color: #6366f1;
-            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
-        }
-        .code-input-style {
-            letter-spacing: 8px;
-            font-size: 1.3rem !important;
-            text-align: center;
-            padding-left: 16px !important;
-        }
-        .submit-btn {
-            width: 100%;
-            padding: 14px;
-            margin-top: 10px;
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            border: none;
-            border-radius: 12px;
-            color: #ffffff;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 25px rgba(99, 102, 241, 0.4);
-        }
-
-        /* --- AŞAMA 3: BAŞARI KUTUSU --- */
-        .success-box {
-            background: rgba(16, 185, 129, 0.1);
-            border: 1px solid rgba(16, 185, 129, 0.3);
-            border-radius: 16px;
-            padding: 24px;
-            text-align: center;
-            color: #f8fafc;
-        }
-        .success-box i {
-            font-size: 48px;
-            color: #10b981;
-            margin-bottom: 16px;
-        }
-        .success-box h4 {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-            color: #34d399;
-        }
-        .success-box p {
-            font-size: 0.95rem;
-            color: #cbd5e1;
-            line-height: 1.6;
-            margin-bottom: 16px;
-        }
-
-        /* Mobil Uyum Sınırlandırması */
-        @media(max-width: 900px) {
-            .auth-container { grid-template-columns: 1fr; }
-            .hero-banner { min-height: 220px; padding: 24px; }
-            .form-section { padding: 32px 24px; }
-        }
-    </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Eserkon Başkanı - Özel Erişim</title>
+<style>
+body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f6f9;
+      color: #333;
+    }
+    header {
+      background: #003366;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 24px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    nav {
+      background: #001f3f;
+      padding: 15px;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
-
-    <div class="auth-wrapper">
-        <!-- Arka Plan Işıma Efektleri -->
-        <div class="glow-1"></div>
-        <div class="glow-2"></div>
-
-        <div class="auth-container">
-            <!-- SOL TARAF: EK YAZILAR EKLENMİŞ GÖRSEL BANNER -->
-            <div class="hero-banner">
-                <div class="brand-logo-wrapper">
-                    <div class="logo-box"><i class="fa-solid fa-shield-halved"></i></div>
-					<span class="brand-title">  SELİN YILMAZER</span>
-				    </div>
-                    <div class="hero-text">
-					<span class="brand-title">Asistan ve Medya Koordinatörü</span>
-                    
-                                     
-
-
-                    <!-- EK MADDELİ ÖZELLİK LİSTESİ -->
-                    <ul class="hero-features">
-                        <li><i class="fa-solid fa-circle-check"></i>Şahin Uymaz Kimdir?</li>
-                        <li><i class="fa-solid fa-circle-check"></i>Şahin Uymaz özgeçmişi</li>
-                        <li><i class="fa-solid fa-circle-check"></i>Şahin Uymaz görevleri</li>
-						<li><i class="fa-solid fa-circle-check"></i>Yıllara Yayılan Çalışmaların Ardındaki Hikâye </li>
-
-                    </ul>
-                </div>
-            </div>
-
-            <!-- SAĞ TARAF: FORM ALANI -->
-            <div class="form-section">
-                <!-- AŞAMA 1: BİLGİ GİRİŞİ (AD SOYAD & TELEFON) -->
-                <div id="step1">
-                    <div class="form-header">
-                        <h3>Erişim Talebi Formu</h3>
-                        <p>Aşağıdaki bilgileri doldurarak doğrulama kodu talep ediniz</p>
-                    </div>
-                    <form onsubmit="handleSendCode(event)">
-                        <div class="input-group">
-                            <label for="fullname">Adınız Soyadınız</label>
-                            <div class="input-wrapper">
-                                <input type="text" id="fullname" placeholder="Adınızı ve soyadınızı giriniz" required autocomplete="off">
-                                <i class="fa-solid fa-user"></i>
-                            </div>
-                        </div>
-                        <div class="input-group">
-                            <label for="phone">Telefon Numaranız</label>
-                            <div class="input-wrapper">
-                                <input type="tel" id="phone" placeholder="05XX XXX XX XX" required autocomplete="off">
-                                <i class="fa-solid fa-phone"></i>
-                            </div>
-                        </div>
-                        <button type="submit" class="submit-btn">
-                            <span>Doğrulama Kodu Gönder</span>
-                            <i class="fa-solid fa-paper-plane"></i>
-                        </button>
-                    </form>
-                </div>
-
-                <!-- AŞAMA 2: SMS KODU DOĞRULAMA -->
-                <div id="step2" style="display: none;">
-                    <div class="form-header">
-                        <h3>SMS Doğrulama</h3>
-                        <p id="smsSentText">Telefonunuza gönderilen 4 haneli doğrulama kodunu giriniz</p>
-                    </div>
-                    <form onsubmit="handleVerifyCode(event)">
-                        <div class="input-group">
-                            <label for="smsCode">Doğrulama Kodu</label>
-                            <div class="input-wrapper">
-                                <input type="text" id="smsCode" class="code-input-style" maxlength="4" placeholder="• • • •" required autocomplete="off">
-                                <i class="fa-solid fa-key"></i>
-                            </div>
-                        </div>
-                        <button type="submit" class="submit-btn">
-                            <span>Kodu Onayla ve Giriş Yap</span>
-                            <i class="fa-solid fa-circle-check"></i>
-                        </button>
-                    </form>
-                </div>
-
-                <!-- AŞAMA 3: BAŞARI VE ŞİFRE BİLGİLENDİRME MESAJI -->
-                <div id="step3" style="display: none;">
-                    <div class="success-box">
-                        <i class="fa-solid fa-circle-check"></i>
-                        <h4>Merhaba, ben Selin Yılmazer.</h4>
-                        <p>
-                            Giriş talebiniz başarılı bir şekilde alınmıştır. Talebiniz tarafımca değerlendirildikten sonra <strong>size özel Giriş </strong> Şifreniz gönderilecektir.
-                        </p>
-                        <p style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 0;">
-                            size gönderilen  şifre ile siteye sürekli  adınızı soyadınızı  yazmadan telefon kodu onaylamadan sorunsuz giriş yapabilirsiniz.
-							Bu site özel kamusal bilgiler içermektedir. Bu nedenle siteye erişim talepleri değerlendirme sürecinden geçirilmektedir.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- JAVASCRIPT KODLARI -->
-    <script>
-        function handleSendCode(event) {
-            event.preventDefault();
-            const phone = document.getElementById('phone').value;
-            
-            document.getElementById('step1').style.display = 'none';
-            document.getElementById('step2').style.display = 'block';
-            document.getElementById('smsSentText').textContent = phone + " numarasına gönderilen 4 haneli doğrulama kodunu giriniz.";
-        }
-
-        function handleVerifyCode(event) {
-            event.preventDefault();
-            
-            document.getElementById('step2').style.display = 'none';
-            document.getElementById('step3').style.display = 'block';
-        }
-    </script>
+<!-- Menü -->
+<header>Eserkon</header>
+<nav>
+<a href="index.html">Anasayfa</a>
+<a href="hakkimizda.html">Hakkımızda</a>
+<a href="faaliyetler.html">Faaliyetler</a>
+<a href="iletisim.html">İletişim</a>
+</nav>
+<!-- Özel Erişim Paneli -->
+<div id="accessModal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; z-index: 9999; font-family: 'Arial', sans-serif;">
+<div style="display: flex; width: 90%; max-width: 1000px; height: 600px; background: linear-gradient(135deg, #001f3f, #003366); border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+<!-- SOL KOLON: Sekreter & Bilgiler -->
+<div style="flex: 1; background: #ffffff; padding: 30px; display: flex; flex-direction: column; justify-content: center; color: #003366; text-align: center; border-right: 3px dashed #0074D9;">
+<img src="images/rema1.png" alt="Rema Al Zahrani" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 5px solid #0074D9; margin: 0 auto 20px;">
+<h3 style="margin: 0 0 10px; font-size: 22px; color: #001f3f;">Rema Al Zahrani</h3>
+<p style="margin: 0 0 20px; font-size: 16px; color: #666;">Sekreter ve Dış İlişkiler Koordinatörü</p>
+<div style="background: #f8f9fa; padding: 20px; border-radius: 12px; font-size: 15px; line-height: 1.6; text-align: left;">
+<h4 style="margin: 0 0 10px; color: #001f3f;">Eserkon Başkanı Hakkında</h4>
+<ul style="padding-left: 20px; margin: 10px 0;">
+<li><strong>Eserkon Başkanı Kimdir?</strong></li>
+<li><strong>Başkanın Özgeçmişi</strong></li>
+<li><strong>Çalışma Hayatı</strong></li>
+<li><strong>Görevleri ve Faaliyetleri</strong></li>
+</ul>
+</div>
+</div>
+<!-- SAĞ KOLON: Erişim Formu -->
+<div style="flex: 1; padding: 40px; background: #001f3f; color: white; display: flex; flex-direction: column; justify-content: center;">
+<h2 style="margin: 0 0 20px; font-size: 28px; color: #00c9ff; text-shadow: 0 0 10px rgba(0,200,255,0.5);">ÖZEL ERİŞİM</h2>
+<p style="font-size: 15px; line-height: 1.6; margin-bottom: 25px; color: #ccc;">
+Bu bölümde Eserkon Yönetim Kurulu Başkanı’nın özgeçmişi, çalışma hayatı ve kurumsal faaliyetlerine ilişkin özel bilgiler yer almaktadır.
+          <br><br>
+Bu içeriklere erişebilmek için erişim talebinde bulunabilirsiniz. Talebiniz tarafımdan incelenip onaylandıktan sonra bilgilere kolayca erişim sağlayabilirsiniz.
+        </p>
+<form action="https://api.web3forms.com/submit" method="POST" style="display: flex; flex-direction: column; gap: 15px;">
+<input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY">
+<input type="text" name="name" placeholder="Adınız Soyadınız" required style="padding: 12px; border: none; border-radius: 8px; font-size: 15px;">
+<input type="email" name="email" placeholder="E-posta Adresiniz" required style="padding: 12px; border: none; border-radius: 8px; font-size: 15px;">
+<input type="tel" name="phone" placeholder="Telefon Numaranız" required style="padding: 12px; border: none; border-radius: 8px; font-size: 15px;">
+<button type="submit" style="padding: 14px; background: #00c9ff; color: #001f3f; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,200,255,0.3);">
+Erişim Talep Et
+          </button>
+</form>
+</div>
+</div>
+</div>
 </body>
 </html>
