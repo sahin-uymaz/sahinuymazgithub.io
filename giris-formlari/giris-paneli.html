@@ -3,21 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <meta name="robots" content="noindex, nofollow, noimageindex">
-
   <title>Özel Erişim Paneli</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
   <style>
-
     * {
       margin: 0;
       padding: 0;
@@ -27,18 +21,14 @@
 
     body {
       min-height: 100vh;
-
       background:
         radial-gradient(circle at 10% 10%, rgba(37, 99, 235, 0.25), transparent 30%),
         radial-gradient(circle at 90% 90%, rgba(124, 58, 237, 0.22), transparent 35%),
         #07111f;
-
       display: flex;
       align-items: center;
       justify-content: center;
-
       padding: 20px;
-
       color: white;
     }
 
@@ -46,83 +36,45 @@
       width: 100%;
       max-width: 1100px;
       min-height: 620px;
-
       display: flex;
-
       border-radius: 28px;
-
       overflow: hidden;
-
       background: rgba(10, 18, 33, 0.95);
-
       border: 1px solid rgba(255,255,255,0.08);
-
-      box-shadow:
-        0 30px 80px rgba(0,0,0,0.55);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.55);
     }
 
+    /* SOL PANEL */
     .left-panel {
       width: 42%;
-
       padding: 45px 35px;
-
       display: flex;
       flex-direction: column;
       align-items: center;
-
       text-align: center;
-
-      background:
-        linear-gradient(
-          145deg,
-          #172554,
-          #1e1b4b,
-          #0f172a
-        );
-
+      background: linear-gradient(145deg, #172554, #1e1b4b, #0f172a);
       position: relative;
-
       overflow: hidden;
     }
 
     .left-panel::before {
       content: "";
-
       position: absolute;
-
       width: 300px;
       height: 300px;
-
       border-radius: 50%;
-
-      background:
-        radial-gradient(
-          circle,
-          rgba(59,130,246,0.28),
-          transparent 70%
-        );
-
+      background: radial-gradient(circle, rgba(59,130,246,0.28), transparent 70%);
       top: -100px;
       right: -100px;
     }
 
     .left-panel::after {
       content: "";
-
       position: absolute;
-
       width: 250px;
       height: 250px;
-
       border-radius: 50%;
-
-      background:
-        radial-gradient(
-          circle,
-          rgba(139,92,246,0.25),
-          transparent 70%
-        );
-
+      background: radial-gradient(circle, rgba(139,92,246,0.25), transparent 70%);
       bottom: -100px;
       left: -100px;
     }
@@ -130,237 +82,180 @@
     .secure-badge {
       position: relative;
       z-index: 2;
-
       display: flex;
-
       align-items: center;
-
       gap: 8px;
-
       padding: 8px 16px;
-
       border-radius: 30px;
-
       background: rgba(255,255,255,0.08);
-
       border: 1px solid rgba(255,255,255,0.12);
-
       color: #93c5fd;
-
       font-size: 11px;
-
       font-weight: 700;
-
       letter-spacing: 0.8px;
-
       margin-bottom: 28px;
     }
 
     .profile-border {
       position: relative;
       z-index: 2;
-
       width: 155px;
       height: 155px;
-
       border-radius: 50%;
-
       padding: 5px;
-
       margin-bottom: 22px;
-
-      background:
-        linear-gradient(
-          135deg,
-          #60a5fa,
-          #8b5cf6,
-          #38bdf8
-        );
-
-      box-shadow:
-        0 0 40px rgba(96,165,250,0.35);
+      background: linear-gradient(135deg, #60a5fa, #8b5cf6, #38bdf8);
+      box-shadow: 0 0 40px rgba(96,165,250,0.35);
     }
 
     .profile-image {
       width: 100%;
       height: 100%;
-
       border-radius: 50%;
-
       overflow: hidden;
-
       border: 4px solid #111827;
-
       background: #111827;
     }
 
     .profile-image img {
       width: 100%;
       height: 100%;
-
       display: block;
-
       object-fit: cover;
     }
 
     .profile-name {
       position: relative;
       z-index: 2;
-
       font-size: 24px;
-
       font-weight: 800;
-
       margin-bottom: 8px;
     }
 
     .profile-role {
       position: relative;
       z-index: 2;
-
       font-size: 13px;
-
       color: #7dd3fc;
-
       line-height: 1.6;
-
       font-weight: 600;
-
       max-width: 280px;
     }
 
     .info-list {
       position: relative;
       z-index: 2;
-
       width: 100%;
-
       margin-top: 35px;
-
       display: flex;
-
       flex-direction: column;
-
       gap: 10px;
     }
 
     .info-item {
       display: flex;
-
       align-items: center;
-
       gap: 12px;
-
       padding: 12px 14px;
-
       border-radius: 12px;
-
       background: rgba(255,255,255,0.05);
-
       border: 1px solid rgba(255,255,255,0.07);
-
       font-size: 12px;
-
       color: #dbeafe;
-
       text-align: left;
-
       transition: 0.25s;
     }
 
     .info-item:hover {
       transform: translateX(5px);
-
       background: rgba(255,255,255,0.09);
     }
 
     .info-icon {
       width: 32px;
       height: 32px;
-
       min-width: 32px;
-
       border-radius: 9px;
-
       display: flex;
-
       align-items: center;
-
       justify-content: center;
-
       background: rgba(59,130,246,0.18);
-
       color: #60a5fa;
     }
 
+    /* SAĞ PANEL */
     .right-panel {
       width: 58%;
-
-      padding: 55px;
-
+      padding: 45px 55px;
       display: flex;
-
       align-items: center;
-
       justify-content: center;
-
-      background:
-        linear-gradient(
-          180deg,
-          #111a2b,
-          #08111f
-        );
+      background: linear-gradient(180deg, #111a2b, #08111f);
     }
 
     .form-container {
       width: 100%;
-
       max-width: 450px;
+    }
+
+    /* PANEL SEÇİM BUTONLARI (TABLAR) */
+    .tab-buttons {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 25px;
+      background: #0d1526;
+      padding: 5px;
+      border-radius: 14px;
+      border: 1px solid #263247;
+    }
+
+    .tab-btn {
+      flex: 1;
+      padding: 12px;
+      border: none;
+      background: transparent;
+      color: #94a3b8;
+      font-size: 13px;
+      font-weight: 700;
+      border-radius: 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: 0.3s;
+    }
+
+    .tab-btn.active {
+      background: linear-gradient(135deg, #2563eb, #4f46e5);
+      color: white;
+      box-shadow: 0 4px 15px rgba(37,99,235,0.3);
     }
 
     .form-icon {
       width: 55px;
       height: 55px;
-
       border-radius: 16px;
-
       display: flex;
-
       align-items: center;
-
       justify-content: center;
-
-      margin-bottom: 25px;
-
+      margin-bottom: 20px;
       font-size: 22px;
-
-      background:
-        linear-gradient(
-          135deg,
-          #2563eb,
-          #7c3aed
-        );
-
-      box-shadow:
-        0 10px 25px rgba(37,99,235,0.30);
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      box-shadow: 0 10px 25px rgba(37,99,235,0.30);
     }
 
     .form-container h1 {
-      font-size: 30px;
-
+      font-size: 28px;
       font-weight: 800;
-
       margin-bottom: 10px;
     }
 
     .form-description {
       color: #ffffff;
-
-      font-size: 14px;
-
-      line-height: 1.7;
-
-      margin-bottom: 30px;
+      font-size: 13.5px;
+      line-height: 1.6;
+      margin-bottom: 25px;
     }
 
     .form-group {
@@ -369,13 +264,9 @@
 
     .form-group label {
       display: block;
-
       margin-bottom: 8px;
-
       color: #cbd5e1;
-
       font-size: 12px;
-
       font-weight: 700;
     }
 
@@ -385,115 +276,81 @@
 
     .input-box i {
       position: absolute;
-
       left: 17px;
-
       top: 50%;
-
       transform: translateY(-50%);
-
       color: #64748b;
-
       font-size: 15px;
     }
 
     .input-box input {
       width: 100%;
-
       height: 54px;
-
       border-radius: 13px;
-
       border: 1px solid #263247;
-
       background: #111a2b;
-
       color: white;
-
       padding-left: 50px;
-
       padding-right: 15px;
-
       font-size: 14px;
-
       outline: none;
-
       transition: 0.25s;
+    }
+
+    /* 6 HANELİ KOD ÖZEL INPUT STİLİ */
+    .code-input-box input {
+      letter-spacing: 8px;
+      font-size: 20px;
+      font-weight: 800;
+      text-align: center;
+      padding-left: 45px;
+      color: #60a5fa;
     }
 
     .input-box input::placeholder {
       color: #64748b;
+      letter-spacing: normal;
+      font-size: 14px;
+      font-weight: normal;
     }
 
     .input-box input:focus {
       border-color: #3b82f6;
-
-      box-shadow:
-        0 0 0 4px rgba(59,130,246,0.10);
+      box-shadow: 0 0 0 4px rgba(59,130,246,0.10);
     }
 
     .submit-button {
       width: 100%;
-
       height: 55px;
-
       border: none;
-
       border-radius: 14px;
-
       cursor: pointer;
-
       color: white;
-
       font-size: 14px;
-
       font-weight: 800;
-
       margin-top: 5px;
-
       display: flex;
-
       align-items: center;
-
       justify-content: center;
-
       gap: 10px;
-
-      background:
-        linear-gradient(
-          135deg,
-          #2563eb,
-          #4f46e5
-        );
-
-      box-shadow:
-        0 15px 30px rgba(37,99,235,0.25);
-
+      background: linear-gradient(135deg, #2563eb, #4f46e5);
+      box-shadow: 0 15px 30px rgba(37,99,235,0.25);
       transition: 0.25s;
     }
 
     .submit-button:hover {
       transform: translateY(-2px);
-
-      box-shadow:
-        0 20px 40px rgba(37,99,235,0.35);
+      box-shadow: 0 20px 40px rgba(37,99,235,0.35);
     }
 
     .security-text {
       margin-top: 25px;
-
       display: flex;
-
       align-items: center;
-
       justify-content: center;
-
       gap: 8px;
-
       color: #64748b;
-
       font-size: 11px;
-
       text-align: center;
     }
 
@@ -501,69 +358,52 @@
       color: #22c55e;
     }
 
+    /* GİZLENEBİLİR PANELLER */
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
     .success-box {
       display: none;
-
       width: 100%;
-
       max-width: 450px;
-
       text-align: center;
-
       padding: 35px 25px;
-
       border-radius: 20px;
-
       background: rgba(34,197,94,0.05);
-
       border: 1px solid rgba(34,197,94,0.20);
     }
 
     .success-icon {
       width: 75px;
       height: 75px;
-
       margin: 0 auto 22px;
-
       border-radius: 50%;
-
       display: flex;
-
       align-items: center;
-
       justify-content: center;
-
       font-size: 30px;
-
-      background:
-        linear-gradient(
-          135deg,
-          #22c55e,
-          #16a34a
-        );
-
-      box-shadow:
-        0 15px 35px rgba(34,197,94,0.25);
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      box-shadow: 0 15px 35px rgba(34,197,94,0.25);
     }
 
     .success-box h2 {
       color: #86efac;
-
       margin-bottom: 15px;
     }
 
     .success-box p {
       color: #cbd5e1;
-
       font-size: 14px;
-
       line-height: 1.8;
-
       white-space: pre-line;
     }
 
     @media (max-width: 800px) {
-
       body {
         padding: 12px;
       }
@@ -591,7 +431,6 @@
     }
 
     @media (max-width: 480px) {
-
       .right-panel {
         padding: 35px 20px;
       }
@@ -604,10 +443,13 @@
         width: 130px;
         height: 130px;
       }
+
+      .tab-btn {
+        font-size: 11.5px;
+        padding: 10px 5px;
+      }
     }
-
   </style>
-
 </head>
 
 <body>
@@ -615,239 +457,168 @@
   <div class="login-container">
 
     <!-- SOL PANEL -->
-
     <div class="left-panel">
-
       <div class="secure-badge">
-
-        <i class="fa-solid fa-shield-halved"></i>
-
-        GÜVENLİ ÖZEL ERİŞİM
-
+        <i class="fa-solid fa-shield-halved"></i> GÜVENLİ ÖZEL ERİŞİM
       </div>
 
-      <!-- PROFİL RESMİ -->
-
       <div class="profile-border">
-
         <div class="profile-image">
-
-          <!-- KIZIN RESMİ -->
           <img src="../images/logo5.png" alt="Selin YILMAZER">
-
         </div>
-
       </div>
 
       <div class="profile-name">
-
         Selin YILMAZER
-
       </div>
 
       <div class="profile-role">
-
         Asistan ve Medya Koordinatörü
-
       </div>
 
       <div class="info-list">
-
         <div class="info-item">
-
           <div class="info-icon">
-
             <i class="fa-solid fa-user-tie"></i>
-
           </div>
-
           Şahin UYMAZ kimdir?
-
         </div>
 
         <div class="info-item">
-
           <div class="info-icon">
-
             <i class="fa-solid fa-user-tie"></i>
-
           </div>
-
           Şahin UYMAZ'ın Özgeçmişi
-
         </div>
 
         <div class="info-item">
-
           <div class="info-icon">
-
             <i class="fa-solid fa-book-open"></i>
-
           </div>
-
           Şahin UYMAZ'ın görevi
-
         </div>
 
         <div class="info-item">
-
           <div class="info-icon">
-
             <i class="fa-solid fa-lock"></i>
-
           </div>
-
           Şahin UYMAZ'ın Çalışma Hayatı
-
         </div>
-
       </div>
-
     </div>
 
     <!-- SAĞ PANEL -->
-
     <div class="right-panel">
 
       <div class="form-container" id="formContainer">
-
-        <div class="form-icon">
-
-          <i class="fa-solid fa-key"></i>
-
-        </div>
-
-        <h1>Özel Erişim</h1>
-
-        <div class="form-description">
-
-          <p style="color: #ffffff; margin-bottom: 12px;">
-
-            Bu bölümde Eserkon Yönetim Kurulu Başkanı’nın özgeçmişi, çalışma hayatı ve kurumsal faaliyetlerine ilişkin özel bilgiler yer almaktadır.
-
-          </p>
-
-          <p style="color: #ffffff;">
-
-            Bu içeriklere erişebilmek için erişim talebinde bulunabilirsiniz. Talebiniz tarafımdan incelenip onaylandıktan sonra bilgilere kolayca erişim sağlayabilirsiniz.
-
-          </p>
-
-        </div>
-
-        <form id="loginForm">
-
-          <div class="form-group">
-
-            <label for="fullName">
-
-              Adınız Soyadınız
-
-            </label>
-
-            <div class="input-box">
-
-              <i class="fa-solid fa-user"></i>
-
-              <input
-                type="text"
-                id="fullName"
-                placeholder="Adınızı ve soyadınızı giriniz"
-                required
-              >
-
-            </div>
-
-          </div>
-
-          <div class="form-group">
-
-            <label for="email">
-
-              E-posta Adresiniz
-
-            </label>
-
-            <div class="input-box">
-
-              <i class="fa-solid fa-envelope"></i>
-
-              <input
-                type="email"
-                id="email"
-                placeholder="ornek@email.com"
-                required
-              >
-
-            </div>
-
-          </div>
-
-          <div class="form-group">
-
-            <label for="phone">
-
-              Telefon Numaranız
-
-            </label>
-
-            <div class="input-box">
-
-              <i class="fa-solid fa-phone"></i>
-
-              <input
-                type="tel"
-                id="phone"
-                placeholder="05XX XXX XX XX"
-                required
-              >
-
-            </div>
-
-          </div>
-
-          <button
-            type="submit"
-            class="submit-button"
-          >
-
-            Erişim Talebi Gönder
-
-            <i class="fa-solid fa-arrow-right"></i>
-
+        
+        <!-- PANEL SEÇİM BUTONLARI (TABLAR) -->
+        <div class="tab-buttons">
+          <button class="tab-btn active" onclick="switchTab('requestTab', this)">
+            <i class="fa-solid fa-paper-plane"></i> Erişim Talebi
           </button>
+          <button class="tab-btn" onclick="switchTab('loginTab', this)">
+            <i class="fa-solid fa-key"></i> Kullanıcı Girişi
+          </button>
+        </div>
 
-        </form>
+        <!-- 1. TAB: ERİŞİM TALEBİ GÖNDER -->
+        <div id="requestTab" class="tab-content active">
+          <div class="form-icon">
+            <i class="fa-solid fa-paper-plane"></i>
+          </div>
 
-        <div class="security-text">
+          <h1>Erişim Talebi</h1>
 
-          <i class="fa-solid fa-circle-check"></i>
+          <div class="form-description">
+            <p style="color: #ffffff; margin-bottom: 12px;">
+              Bu bölümde Eserkon Yönetim Kurulu Başkanı’nın özgeçmişi, çalışma hayatı ve kurumsal faaliyetlerine ilişkin özel bilgiler yer almaktadır.
+            </p>
+            <p style="color: #ffffff;">
+              Bu içeriklere erişebilmek için erişim talebinde bulunabilirsiniz. Talebiniz tarafımdan incelenip onaylandıktan sonra bilgilere kolayca erişim sağlayabilirsiniz.
+            </p>
+          </div>
 
-          Bilgileriniz asla kayıt edilmemektedir.
+          <form id="loginForm">
+            <div class="form-group">
+              <label for="fullName">Adınız Soyadınız</label>
+              <div class="input-box">
+                <i class="fa-solid fa-user"></i>
+                <input type="text" id="fullName" placeholder="Adınızı ve soyadınızı giriniz" required>
+              </div>
+            </div>
 
+            <div class="form-group">
+              <label for="email">E-posta Adresiniz</label>
+              <div class="input-box">
+                <i class="fa-solid fa-envelope"></i>
+                <input type="email" id="email" placeholder="ornek@email.com" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Telefon Numaranız</label>
+              <div class="input-box">
+                <i class="fa-solid fa-phone"></i>
+                <input type="tel" id="phone" placeholder="05XX XXX XX XX" required>
+              </div>
+            </div>
+
+            <button type="submit" class="submit-button">
+              Erişim Talebi Gönder <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </form>
+
+          <div class="security-text">
+            <i class="fa-solid fa-circle-check"></i> Bilgileriniz asla kayıt edilmemektedir.
+          </div>
+        </div>
+
+        <!-- 2. TAB: KULLANICI GİRİŞİ (6 HANELİ KOD) -->
+        <div id="loginTab" class="tab-content">
+          <div class="form-icon">
+            <i class="fa-solid fa-lock"></i>
+          </div>
+
+          <h1>Kullanıcı Girişi</h1>
+
+          <div class="form-description">
+            <p style="color: #ffffff; margin-bottom: 12px;">
+              Daha önce tarafınıza tanımlanmış ve onaylanmış 6 haneli erişim kodunuzu girerek sisteme anında erişebilirsiniz.
+            </p>
+          </div>
+
+          <form id="userLoginForm" onsubmit="handleUserLogin(event)">
+            <div class="form-group">
+              <label for="accessCode">6 Haneli Özel Erişim Kodu</label>
+              <div class="input-box code-input-box">
+                <i class="fa-solid fa-shield"></i>
+                <input type="text" id="accessCode" placeholder="******" maxlength="6" required pattern="[A-Za-z0-9]{6}">
+              </div>
+            </div>
+
+            <button type="submit" class="submit-button">
+              Sisteme Giriş Yap <i class="fa-solid fa-right-to-bracket"></i>
+            </button>
+          </form>
+
+          <div class="security-text">
+            <i class="fa-solid fa-shield-halved"></i> Güvenli uçtan uca doğrulanmış portal.
+          </div>
         </div>
 
       </div>
 
-      <!-- BAŞARILI MESAJ -->
-
-      <div
-        class="success-box"
-        id="successBox"
-      >
-
+      <!-- BAŞARILI MESAJ (TALEBİNİZ ALINDI) -->
+      <div class="success-box" id="successBox">
         <div class="success-icon">
-
           <i class="fa-solid fa-check"></i>
-
         </div>
-
         <h2>Talebiniz Alındı</h2>
-
         <p>
 Merhaba,
 
-Ben Rema Al Zahrani.
+Ben Selin YILMAZER.
 
 Giriş talebiniz başarıyla alınmıştır.
 
@@ -855,7 +626,6 @@ Talebiniz tarafımdan değerlendirildikten sonra onay durumu tarafınıza iletil
 
 Erişiminiz onaylandıktan sonraki girişlerinizde yeniden başvuru yapmanıza gerek kalmadan sisteme dilediğiniz zaman erişebilirsiniz.
         </p>
-
       </div>
 
     </div>
@@ -863,31 +633,39 @@ Erişiminiz onaylandıktan sonraki girişlerinizde yeniden başvuru yapmanıza g
   </div>
 
   <script>
+    function switchTab(tabId, btn) {
+      const tabs = document.querySelectorAll('.tab-content');
+      tabs.forEach(tab => tab.classList.remove('active'));
 
-    const loginForm =
-      document.getElementById("loginForm");
+      const buttons = document.querySelectorAll('.tab-btn');
+      buttons.forEach(b => b.classList.remove('active'));
 
-    const formContainer =
-      document.getElementById("formContainer");
+      document.getElementById(tabId).classList.add('active');
+      btn.classList.add('active');
+    }
 
-    const successBox =
-      document.getElementById("successBox");
+    const loginForm = document.getElementById("loginForm");
+    const formContainer = document.getElementById("formContainer");
+    const successBox = document.getElementById("successBox");
 
-    loginForm.addEventListener(
-      "submit",
-      function(event) {
+    loginForm.addEventListener("submit", function(event) {
+      event.preventDefault();
+      formContainer.style.display = "none";
+      successBox.style.display = "block";
+    });
 
-        event.preventDefault();
-
-        formContainer.style.display = "none";
-
-        successBox.style.display = "block";
-
+    function handleUserLogin(event) {
+      event.preventDefault();
+      const code = document.getElementById("accessCode").value;
+      
+      if (code.length === 6) {
+        alert("Giriş başarılı! Ana sayfaya yönlendiriliyorsunuz...");
+        window.location.href = "../index.htm"; 
+      } else {
+        alert("Lütfen 6 haneli kodunuzu eksiksiz giriniz.");
       }
-    );
-
+    }
   </script>
 
 </body>
-
 </html>
