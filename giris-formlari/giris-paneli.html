@@ -633,7 +633,49 @@ Erişiminiz onaylandıktan sonraki girişlerinizde yeniden başvuru yapmanıza g
     </div>
 
   </div>
-   
+    <script>
+    // TAB DEĞİŞTİRME FONKSİYONU
+    function switchTab(tabId, btn) {
+      const tabs = document.querySelectorAll(".tab-content");
+      tabs.forEach(function(tab) {
+        tab.classList.remove("active");
+      });
+
+      const buttons = document.querySelectorAll(".tab-btn");
+      buttons.forEach(function(button) {
+        button.classList.remove("active");
+      });
+
+      document.getElementById(tabId).classList.add("active");
+      btn.classList.add("active");
+    }
+
+    // 1. ERİŞİM TALEBİ FORMU İŞLEMLERİ
+    const loginForm = document.getElementById("loginForm");
+    const formContainer = document.getElementById("formContainer");
+    const successBox = document.getElementById("successBox");
+
+    loginForm.addEventListener("submit", function(event) {
+      event.preventDefault(); // Sayfanın aniden yenilenmesini engeller
+      
+      formContainer.style.display = "none";
+      successBox.style.display = "block";
+    });
+
+    // 2. KULLANICI GİRİŞİ (6 HANELİ KOD) İŞLEMLERİ
+    function handleUserLogin(event) {
+      event.preventDefault(); // Sayfanın aniden yenilenmesini engeller
+
+      const code = document.getElementById("accessCode").value;
+
+      if (code.length === 6) {
+        // 6 haneli kod doğru girildiyse index.html sayfasına yönlendir
+        window.location.href = "index.html"; 
+      } else {
+        alert("Lütfen 6 haneli kodunuzu eksiksiz giriniz.");
+      }
+    }
+  </script> 
 
 </body>
 </html>
