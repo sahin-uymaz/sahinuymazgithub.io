@@ -1,5 +1,5 @@
-
 <!DOCTYPE html>
+
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
@@ -33,6 +33,7 @@
       color: white;
     }
 
+    /* GİRİŞ PANELİ */
     .login-container {
       width: 100%;
       max-width: 1100px;
@@ -199,7 +200,7 @@
       max-width: 450px;
     }
 
-    /* PANEL SEÇİM BUTONLARI (TABLAR) */
+    /* TABLAR */
     .tab-buttons {
       display: flex;
       gap: 10px;
@@ -253,7 +254,7 @@
     }
 
     .form-description {
-      color: #ffffff;
+      color: white;
       font-size: 13.5px;
       line-height: 1.6;
       margin-bottom: 25px;
@@ -298,7 +299,6 @@
       transition: 0.25s;
     }
 
-    /* 6 HANELİ KOD ÖZEL INPUT STİLİ */
     .code-input-box input {
       letter-spacing: 8px;
       font-size: 20px;
@@ -359,7 +359,6 @@
       color: #22c55e;
     }
 
-    /* GİZLENEBİLİR PANELLER */
     .tab-content {
       display: none;
     }
@@ -451,13 +450,15 @@
       }
     }
   </style>
+
 </head>
 
 <body>
 
   <div class="login-container">
 
-    <!-- SOL PANEL -->
+```
+ <!-- SOL PANEL -->
     <div class="left-panel">
       <div class="secure-badge">
         <i class="fa-solid fa-shield-halved"></i> GÜVENLİ ÖZEL ERİŞİM
@@ -533,7 +534,7 @@
 
           <div class="form-description">
             <p style="color: #ffffff; margin-bottom: 12px;">
-              Bu bölümde Eserkon Yönetim Kurulu Başkanı’nın özgeçmişi, çalışma hayatı ve kurumsal faaliyetlerine ilişkin özel bilgiler yer almaktadır.
+              Bu bölümde Eserkon Yönetim Kurulu Başkanı'nın özgeçmişi, çalışma hayatı ve kurumsal faaliyetlerine ilişkin özel bilgiler yer almaktadır.
             </p>
             <p style="color: #ffffff;">
               Bu içeriklere erişebilmek için erişim talebinde bulunabilirsiniz. Talebiniz tarafımdan incelenip onaylandıktan sonra bilgilere kolayca erişim sağlayabilirsiniz.
@@ -632,6 +633,64 @@ Erişiminiz onaylandıktan sonraki girişlerinizde yeniden başvuru yapmanıza g
     </div>
 
   </div>
+    <script>
+
+
+    function switchTab(tabId, btn) {
+
+      const tabs = document.querySelectorAll(".tab-content");
+
+      tabs.forEach(function(tab) {
+        tab.classList.remove("active");
+      });
+
+      const buttons = document.querySelectorAll(".tab-btn");
+
+      buttons.forEach(function(button) {
+        button.classList.remove("active");
+      });
+
+      document.getElementById(tabId).classList.add("active");
+
+      btn.classList.add("active");
+
+    }
+
+    const loginForm = document.getElementById("loginForm");
+    const formContainer = document.getElementById("formContainer");
+    const successBox = document.getElementById("successBox");
+
+    loginForm.addEventListener("submit", function(event) {
+
+      event.preventDefault();
+
+      formContainer.style.display = "none";
+
+      successBox.style.display = "block";
+
+    });
+
+    function handleUserLogin(event) {
+
+      event.preventDefault();
+
+      const code = document.getElementById("accessCode").value;
+
+      if (code.length === 6) {
+
+        alert("Giriş başarılı! Ana sayfaya yönlendiriliyorsunuz...");
+
+        window.location.href = "";
+
+      } else {
+
+        alert("Lütfen 6 haneli kodunuzu eksiksiz giriniz.");
+
+      }
+
+    }
+
+  </script>
 
 </body>
 </html>
