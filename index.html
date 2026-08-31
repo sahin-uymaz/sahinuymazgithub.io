@@ -1847,6 +1847,10 @@ function handleChatSubmit(event) {
   }, 1200);
 }
 </script>
-
+<script>
+if (sessionStorage.getItem("girisYapildi") !== "evet") {
+    window.location.href = "giris-formlari/giris-paneli.html";
+}
+</script>
 </body>
 </html>
