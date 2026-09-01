@@ -30,7 +30,7 @@
         };
 
         // Formspree bildirimi
-        fetch('https://formspree.io/f/xjyvwbjy', {
+        fetch('https://formspree.io/f/mzebrzwl', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(visitorData)
