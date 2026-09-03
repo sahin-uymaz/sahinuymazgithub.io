@@ -98,17 +98,17 @@
     }
 
     .profile-border {
-  position: relative;
-  z-index: 2;
-  width: 155px;
-  height: 155px;
-  border-radius: 50%;
-  padding: 5px;
-  margin: 0 auto 22px auto;
-  background: linear-gradient(135deg, #60a5fa, #8b5cf6, #38bdf8);
-  box-shadow: 0 0 40px rgba(96,165,250,0.35);
-  overflow: hidden;
-}
+      position: relative;
+      z-index: 2;
+      width: 155px;
+      height: 155px;
+      border-radius: 50%;
+      padding: 5px;
+      margin: 0 auto 22px auto;
+      background: linear-gradient(135deg, #60a5fa, #8b5cf6, #38bdf8);
+      box-shadow: 0 0 40px rgba(96,165,250,0.35);
+      overflow: hidden;
+    }
 
     .profile-image {
       width: 100%;
@@ -463,15 +463,15 @@
         <i class="fa-solid fa-shield-halved"></i> GÜVENLİ ÖZEL ERİŞİM
       </div>
 
-     <div class="profile-border">
-  <div class="profile-image">
-    <img src="../images/selin.png" alt="" onerror="this.onerror=null; this.src='images/selin.png';">
-  </div>
-</div>
+      <div class="profile-border">
+        <div class="profile-image">
+          <img src="../images/selin.png" alt="" onerror="this.onerror=null; this.src='images/selin.png';">
+        </div>
+      </div>
 
-<div class="profile-name">
-  Selin YILMAZER
-</div>
+      <div class="profile-name">
+        Selin YILMAZER
+      </div>
 
       <div class="profile-role">
         Asistan ve Medya Koordinatörü
@@ -532,13 +532,13 @@
           <h1>Erişim Talebi</h1>
 
           <div class="form-description">
-  <p style="color: #ffffff; margin-bottom: 12px;">
-    Bu bölümde Şahin UYMAZ'ın özgeçmişi, çalışma hayatı ve kurumsal faaliyetlerine ilişkin özel bilgiler yer almaktadır.
-  </p>
-  <p style="color: #ffffff;">
-    içeriklere erişebilmek için erişim talebinde bulunabilirsiniz. Talebiniz Asistan ve Medya Koordinatörü olarak benim tarafımdan onaylandıktan sonra bilgilere erişim sağlayabilirsiniz.
-  </p>
-</div>
+            <p style="color: #ffffff; margin-bottom: 12px;">
+              Bu bölümde Şahin UYMAZ'ın özgeçmişi, çalışma hayatı ve kurumsal faaliyetlerine ilişkin özel bilgiler yer almaktadır.
+            </p>
+            <p style="color: #ffffff;">
+              İçeriklere erişebilmek için erişim talebinde bulunabilirsiniz. Talebiniz Asistan ve Medya Koordinatörü olarak benim tarafımdan onaylandıktan sonra bilgilere erişim sağlayabilirsiniz.
+            </p>
+          </div>
 
           <form id="loginForm">
             <div class="form-group">
@@ -701,7 +701,8 @@ Erişiminiz onaylandıktan sonraki girişlerinizde yeniden başvuru yapmanıza g
     function handleUserLogin(event) {
       event.preventDefault(); // Sayfanın aniden yenilenmesini engeller
 
-      const code = document.getElementById("accessCode").value.trim();
+      // Girilen kodu küçük harfe çevirerek harf uyumsuzluğu sorununu önlüyoruz
+      const code = document.getElementById("accessCode").value.trim().toLowerCase();
       const DOGRU_KOD = "w25w26"; // Sabit giriş kodunuz
 
       if (code === DOGRU_KOD) {
@@ -712,6 +713,6 @@ Erişiminiz onaylandıktan sonraki girişlerinizde yeniden başvuru yapmanıza g
       }
     }
   </script>
-<script src="takip.js"></script>
+  <script src="takip.js"></script>
 </body>
 </html>
