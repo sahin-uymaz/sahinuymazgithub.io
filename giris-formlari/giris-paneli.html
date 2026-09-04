@@ -650,7 +650,7 @@ Erişiminiz onaylandıktan sonraki girişlerinizde yeniden başvuru yapmanıza g
       btn.classList.add("active");
     }
 
-    // 1. ERİŞİM TALEBİ FORMU İŞLEMLERİ (Formspree Entegreli)
+    // 1. ERİŞİM TALEBİ FORMU İŞLEMLERİ (FormSubmit Entegreli)
     const loginForm = document.getElementById("loginForm");
     const formContainer = document.getElementById("formContainer");
     const successBox = document.getElementById("successBox");
@@ -666,13 +666,14 @@ Erişiminiz onaylandıktan sonraki girişlerinizde yeniden başvuru yapmanıza g
       submitBtn.innerHTML = 'Gönderiliyor... <i class="fa-solid fa-spinner fa-spin"></i>';
 
       const formData = {
-        ad_soyad: document.getElementById("fullName").value,
+        name: document.getElementById("fullName").value,
         email: document.getElementById("email").value,
-        telefon: document.getElementById("phone").value
+        phone: document.getElementById("phone").value,
+        _subject: "Yeni Özel Erişim Talebi"
       };
 
       try {
-        const response = await fetch("https://formspree.io/f/mzebrzwl", {
+        const response = await fetch("https://formsubmit.co/ajax/eserkonm@protonmail.com", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
