@@ -540,75 +540,61 @@
             </p>
           </div>
 
-          <form id="loginForm">
-            <div class="form-group">
-              <label for="fullName">Adınız Soyadınız</label>
-              <div class="input-box">
-                <i class="fa-solid fa-user"></i>
-                <input type="text" id="fullName" placeholder="Adınızı ve soyadınızı giriniz" required>
-              </div>
-            </div>
+          <form id="loginForm"
+      action="https://formsubmit.co/s.uymaz@protonmail.com"
+      method="POST">
 
-            <div class="form-group">
-              <label for="email">E-posta Adresiniz</label>
-              <div class="input-box">
-                <i class="fa-solid fa-envelope"></i>
-                <input type="email" id="email" placeholder="ornek@email.com" required>
-              </div>
-            </div>
+  <input type="hidden" name="_subject" value="ESERKON Özel Erişim Talebi">
+  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="_template" value="table">
 
-            <div class="form-group">
-              <label for="phone">Telefon Numaranız</label>
-              <div class="input-box">
-                <i class="fa-solid fa-phone"></i>
-                <input type="tel" id="phone" placeholder="05XX XXX XX XX" required>
-              </div>
-            </div>
+  <div class="form-group">
+    <label for="fullName">Adınız Soyadınız</label>
+    <div class="input-box">
+      <i class="fa-solid fa-user"></i>
+      <input type="text"
+             id="fullName"
+             name="Ad Soyad"
+             placeholder="Adınızı ve soyadınızı giriniz"
+             required>
+    </div>
+  </div>
 
-            <button type="submit" class="submit-button">
-              Erişim Talebi Gönder <i class="fa-solid fa-arrow-right"></i>
-            </button>
-          </form>
+  <div class="form-group">
+    <label for="email">E-posta Adresiniz</label>
+    <div class="input-box">
+      <i class="fa-solid fa-envelope"></i>
+      <input type="email"
+             id="email"
+             name="E-posta"
+             placeholder="ornek@email.com"
+             required>
+    </div>
+  </div>
 
-          <div class="security-text">
-            <i class="fa-solid fa-circle-check"></i> Bilgileriniz asla kayıt edilmemektedir.
-          </div>
-        </div>
+  <div class="form-group">
+    <label for="phone">Telefon Numaranız</label>
+    <div class="input-box">
+      <i class="fa-solid fa-phone"></i>
+      <input type="tel"
+             id="phone"
+             name="Telefon"
+             placeholder="05XX XXX XX XX"
+             required>
+    </div>
+  </div>
 
-        <!-- 2. TAB: KULLANICI GİRİŞİ (6 HANELİ KOD) -->
-        <div id="loginTab" class="tab-content">
-          <div class="form-icon">
-            <i class="fa-solid fa-lock"></i>
-          </div>
+  <button type="submit" class="submit-button">
+    Erişim Talebi Gönder
+    <i class="fa-solid fa-arrow-right"></i>
+  </button>
 
-          <h1>Kullanıcı Girişi</h1>
+</form>
 
-          <div class="form-description">
-            <p style="color: #ffffff; margin-bottom: 12px;">
-              Daha önce tarafınıza tanımlanmış ve onaylanmış 6 haneli erişim kodunuzu girerek sisteme anında erişebilirsiniz.
-            </p>
-          </div>
-
-          <form id="userLoginForm" onsubmit="handleUserLogin(event)">
-            <div class="form-group">
-              <label for="accessCode">6 Haneli Özel Erişim Kodu</label>
-              <div class="input-box code-input-box">
-                <i class="fa-solid fa-shield"></i>
-                <input type="text" id="accessCode" placeholder="******" maxlength="6" required pattern="[A-Za-z0-9]{6}">
-              </div>
-            </div>
-
-            <button type="submit" class="submit-button">
-              Sisteme Giriş Yap <i class="fa-solid fa-right-to-bracket"></i>
-            </button>
-          </form>
-
-          <div class="security-text">
-            <i class="fa-solid fa-shield-halved"></i> Güvenli uçtan uca doğrulanmış portal.
-          </div>
-        </div>
-
-      </div>
+<div class="security-text">
+  <i class="fa-solid fa-circle-check"></i>
+  Bilgileriniz asla kayıt edilmemektedir.
+</div>
 
       <!-- BAŞARILI MESAJ (TALEBİNİZ ALINDI) -->
       <div class="success-box" id="successBox">
