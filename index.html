@@ -2152,7 +2152,15 @@ footer a:hover{
 }
 
 </style>
+<script>
+(function () {
+  const girisYapildi = sessionStorage.getItem("girisYapildi");
 
+  if (girisYapildi !== "evet") {
+    window.location.replace("giris-paneli.html");
+  }
+})();
+</script>
 </head>
 
 <body>
