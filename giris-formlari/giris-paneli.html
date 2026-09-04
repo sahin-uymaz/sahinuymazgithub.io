@@ -707,12 +707,12 @@ Erişiminiz onaylandıktan sonraki girişlerinizde yeniden başvuru yapmanıza g
       const DOGRU_KOD = "w25w26"; // Sabit giriş kodunuz
 
       if (code === DOGRU_KOD) {
-        sessionStorage.setItem("girisYapildi", "evet");
-        window.location.href = "../index.html";
-      } else {
-        alert("Hatalı kod! Lütfen 6 haneli erişim kodunuzu kontrol ediniz.");
-      }
-    }
+    sessionStorage.setItem("girisYapildi", "evet");
+    window.location.href = "index.html";
+  } else {
+    alert("Hatalı kod! Lütfen erişim kodunuzu kontrol ediniz.");
+  }
+}
   </script>
   <script src="takip.js"></script>
 </body>
