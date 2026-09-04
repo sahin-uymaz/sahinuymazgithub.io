@@ -1,6 +1,23 @@
 <!doctype html>
 <html lang="tr">
 <head>
+<!-- =====================================================
+     24 SAATLİK ERİŞİM VE KİLİTLEME KONTROLÜ (En Üstte)
+===================================================== -->
+<script>
+  (function() {
+    const girisZamani = localStorage.getItem("siteErisimZamani");
+    const SIMDI = new Date().getTime();
+    const YIRMI_DORT_SAAT = 24 * 60 * 60 * 1000; // 24 Saat (Milisaniye)
+
+    // Eğer giriş yapılmamışsa VEYA 24 saatlik süre dolmuşsa giriş paneline yönlendir
+    if (!girisZamani || (SIMDI - parseInt(girisZamani)) > YIRMI_DORT_SAAT) {
+      localStorage.removeItem("siteErisimZamani"); // Süresi dolmuşsa temizle
+      window.location.href = "giris.paneli.html";  // Giriş paneline yönlendir
+    }
+  })();
+</script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -43,7 +60,7 @@ body{
   border-radius: 50%;   /* Dışındaki siyah köşeleri tamamen yok eder */
   background-color: #ffffff;
   padding: 5px;         /* Etrafında beyaz bir halka oluşturur */
-  box-sizing: border-border;
+  box-sizing: border-box;
 }
 
 /* =====================================================
@@ -1019,6 +1036,7 @@ body{
 .chat-form button:hover{
     background:#168cff;
 }
+
 
 
 /* =====================================================
