@@ -6,11 +6,21 @@
 ===================================================== -->
 <script>
   (function() {
-    const girisZamani = localStorage.getItem("siteErisimZamani");
+    const urlParams = new URLSearchParams(window.location.search);
     const SIMDI = new Date().getTime();
     const YIRMI_DORT_SAAT = 24 * 60 * 60 * 1000; // 24 Saat (Milisaniye)
 
-    // Eğer giriş yapılmamışsa VEYA 24 saatlik süre dolmuşsa giriş paneline yönlendir
+    // 1. E-postadaki Logo Linkinden Erişim Tespiti (?access=granted)
+    if (urlParams.get("access") === "granted") {
+      localStorage.setItem("siteErisimZamani", SIMDI.toString());
+      // Temiz bir görünüm için adres çubuğundaki parametreyi temizler
+      window.history.replaceState({}, document.title, window.location.pathname);
+      return; // Erişime doğrudan izin ver
+    }
+
+    // 2. Mevcut Oturum / Süre Kontrolü
+    const girisZamani = localStorage.getItem("siteErisimZamani");
+
     if (!girisZamani || (SIMDI - parseInt(girisZamani)) > YIRMI_DORT_SAAT) {
       localStorage.removeItem("siteErisimZamani"); // Süresi dolmuşsa temizle
       window.location.href = "giris.paneli.html";  // Giriş paneline yönlendir
@@ -55,11 +65,11 @@ body{
     box-sizing:border-box;
 }
 .logo-img {
-  width: 200px;         /* İsteğinize göre boyutlandırın */
+  width: 200px;
   height: 200px;
-  border-radius: 50%;   /* Dışındaki siyah köşeleri tamamen yok eder */
+  border-radius: 50%;
   background-color: #ffffff;
-  padding: 5px;         /* Etrafında beyaz bir halka oluşturur */
+  padding: 5px;
   box-sizing: border-box;
 }
 
