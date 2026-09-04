@@ -2176,7 +2176,22 @@ footer a:hover{
   }
 
 })();
+   (function() {
+    // 1. Sekme/Tarayıcı ilk açıldığında çalışır
+    const sessionActive = sessionStorage.getItem('uymaz_oturum_aktif');
+
+    if (!sessionActive) {
+      // 2. Kişi siteye ilk defa girdi: Oturumu başlat
+      sessionStorage.setItem('uymaz_oturum_aktif', 'true');
+    } else {
+      // 3. Kullanıcı sekmeden çıkış yaptı ve e-postadaki logoya REAKTOR olarak tekrar tıkladı
+      // Erişim hakkı bittiği için form/giriş paneline yönlendir
+      alert("Giriş hakkınız sona ermiştir. Lütfen bilgilerinizi tekrar doldurun.");
+      window.location.href = "https://www.s-uymaz.org.tr/giris-paneli.html"; // Kendi form/panel adresiniz
+    }
+  })();
 </script>
+      
 </head>
 
 <body>
