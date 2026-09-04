@@ -2154,11 +2154,27 @@ footer a:hover{
 </style>
 <script>
 (function () {
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const access = urlParams.get("access");
+
+  if (access === "approved") {
+
+    sessionStorage.setItem("girisYapildi", "evet");
+
+    window.history.replaceState(
+      {},
+      document.title,
+      window.location.pathname
+    );
+  }
+
   const girisYapildi = sessionStorage.getItem("girisYapildi");
 
   if (girisYapildi !== "evet") {
     window.location.replace("giris-formlari/giris-paneli.html");
   }
+
 })();
 </script>
 </head>
