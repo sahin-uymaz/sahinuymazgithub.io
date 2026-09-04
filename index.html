@@ -2176,26 +2176,34 @@ footer a:hover{
   }
 
 })();
-   (function() {
-    // 1. Sekme/Tarayıcı ilk açıldığında çalışır
-    const sessionActive = sessionStorage.getItem('uymaz_oturum_aktif');
+   <script>
+(function () {
+  const urlParams = new URLSearchParams(window.location.search);
+  const access = urlParams.get("access");
 
-    if (!sessionActive) {
-      // 2. Kişi siteye ilk defa girdi: Oturumu başlat
-      sessionStorage.setItem('uymaz_oturum_aktif', 'true');
-    } else {
-      // 3. Kullanıcı sekmeden çıkış yaptı ve e-postadaki logoya REAKTOR olarak tekrar tıkladı
-      // Erişim hakkı bittiği için form/giriş paneline yönlendir
-      alert("Giriş hakkınız sona ermiştir. Lütfen bilgilerinizi tekrar doldurun.");
-      window.location.href = "https://www.s-uymaz.org.tr/giris-paneli.html"; // Kendi form/panel adresiniz
-    }
-  })();
+  // 1. Kullanıcı maildeki logodan (?access=approved) ilk kez geldiyse
+  if (access === "approved") {
+    // Oturumu başlat
+    sessionStorage.setItem("girisYapildi", "evet");
+
+    // Adres çubuğundaki ?access=approved kısmını temizle (linkin kopyalanmasını önler)
+    window.history.replaceState({}, document.title, window.location.pathname);
+    return; // Sayfada kalmasına izin ver
+  }
+
+  // 2. Sayfa içi gezinmelerde oturum kontrolü yap
+  const girisYapildi = sessionStorage.getItem("girisYapildi");
+
+  // Eğer oturum açılmamışsa veya sekme kapatılıp tekrar maildeki linke tıklanmadan gelindiyse
+  if (girisYapildi !== "evet") {
+    alert("Giriş hakkınız sona ermiştir. Lütfen bilgilerinizi tekrar doldurun.");
+    window.location.replace("giris-formlari/giris-paneli.html");
+  }
+})();
 </script>
-      
+
 </head>
-
 <body>
-
 
 <!-- =====================================================
      ÜST MENÜ (4 ALT MENÜLÜ SAHA ZİYARETLERİ EKLEMESİ İLE)
