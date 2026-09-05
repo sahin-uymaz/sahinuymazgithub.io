@@ -281,25 +281,36 @@
             };
 
             // FormSubmit AJAX Endpoint'ine JSON olarak İstek Atma
-            fetch("https://formsubmit.co/ajax/S.uymaz@protonmail.com", {
-                method: "POST",
-                headers: { 
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify(data)
+            fetch("https://formsubmit.co/ajax/1105f5e9d984e569c0f43fd519e5cab5", {
+            method: "POST",
+            headers: { 
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                "Ad Soyad": document.getElementById('user_fullname').value,
+                "E-posta": document.getElementById('user_email').value,
+                "Telefon": document.getElementById('user_phone').value,
+                "_captcha": "false",
+                "_subject": "Yeni Özel Erişim Talebi - s-uymaz.org.tr"
             })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success === "true" || data.success === true) {
-                    formSection.classList.add('hidden');
-                    successSection.classList.remove('hidden');
-                } else {
-                    alert("Talebiniz iletilirken bir hata oluştu. Lütfen bilgilerinizi kontrol edip tekrar deneyiniz.");
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = `<span>Erişim Talebini Asistan ve Medya Koordinatörüne İlet</span> <i class="fa-solid fa-arrow-right"></i>`;
-                }
-            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success === "true" || data.success === true) {
+                formSection.classList.add('hidden');
+                successSection.classList.remove('hidden');
+            } else {
+                alert("Talebiniz iletilirken bir hata oluştu. Lütfen tekrar deneyiniz.");
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = `<span>Erişim Talebini Asistan ve Medya Koordinatörüne İlet</span> <i class="fa-solid fa-arrow-right"></i>`;
+            }
+        })
+        .catch(error => {
+            alert("Bağlantı hatası oluştu. Lütfen internet bağlantınızı kontrol edin.");
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = `<span>Erişim Talebini Asistan ve Medya Koordinatörüne İlet</span> <i class="fa-solid fa-arrow-right"></i>`;
+        });
             .catch(error => {
                 alert("Bağlantı hatası oluştu. Lütfen internet bağlantınızı kontrol edin.");
                 submitBtn.disabled = false;
