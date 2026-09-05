@@ -6,6 +6,34 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- =====================================================
+     GÜVENLİK VE OTURUM KONTROLÜ (GİRİŞ YÖNLENDİRMESİ)
+===================================================== -->
+<script>
+    (function checkSecurity() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const accessGrant = urlParams.get('access');
+
+        // 1. E-postadaki logoya tıklayarak geldiyse:
+        if (accessGrant === 'granted') {
+            // Sadece bu sekme/oturum açık kaldığı sürece geçerli olan geçici onay tanımlanır
+            sessionStorage.setItem('temp_site_access', 'active');
+            
+            // Temiz bir URL görünümü için ?access=granted parametresi adresten kaldırılır
+            window.history.replaceState({}, document.title, window.location.pathname);
+            return;
+        }
+
+        // 2. Sekme önceden açık değilse veya kullanıcı siteyi kapatıp tekrar geldiyse:
+        const hasActiveSession = sessionStorage.getItem('temp_site_access');
+        
+        if (!hasActiveSession || hasActiveSession !== 'active') {
+            // Oturum yoksa veya kapatıldıysa doğrudan Giriş Paneline yönlendir
+            window.location.href = "giris-paneli.htm";
+        }
+    })();
+</script>
+
+<!-- =====================================================
      GOOGLE GÖRÜNÜRLÜĞÜ ŞİMDİLİK KAPALI
 ===================================================== -->
 
@@ -1124,7 +1152,6 @@ footer a:hover{
 }
 
 </style>
-
 </head>
 
 <body>
