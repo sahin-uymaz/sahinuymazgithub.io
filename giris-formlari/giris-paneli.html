@@ -257,7 +257,6 @@
 
             if (isApprovedByMail || hasSessionAccess) {
                 sessionStorage.setItem('site_access_approved', 'true');
-                window.location.href = "/index.html";
             }
         });
 
@@ -271,46 +270,32 @@
             submitBtn.disabled = true;
             submitBtn.innerHTML = `<i class="fa-solid fa-circle-notch animate-spin"></i> <span>Selin YILMAZER'e İletiliyor...</span>`;
 
-            // Verileri JSON Formatına Getirme
-            const data = {
-                "Ad Soyad": document.getElementById('user_fullname').value,
-                "E-posta": document.getElementById('user_email').value,
-                "Telefon": document.getElementById('user_phone').value,
-                "_captcha": "false",
-                "_subject": "Yeni Özel Erişim Talebi - s-uymaz.org.tr"
-            };
-
-            // FormSubmit AJAX Endpoint'ine JSON olarak İstek Atma
+            // FormSubmit AJAX Endpoint
             fetch("https://formsubmit.co/ajax/1105f5e9d984e569c0f43fd519e5cab5", {
-            method: "POST",
-            headers: { 
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify({
-                "Ad Soyad": document.getElementById('user_fullname').value,
-                "E-posta": document.getElementById('user_email').value,
-                "Telefon": document.getElementById('user_phone').value,
-                "_captcha": "false",
-                "_subject": "Yeni Özel Erişim Talebi - s-uymaz.org.tr"
+                method: "POST",
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    "Ad Soyad": document.getElementById('user_fullname').value,
+                    "E-posta": document.getElementById('user_email').value,
+                    "Telefon": document.getElementById('user_phone').value,
+                    "_captcha": "false",
+                    "_subject": "Yeni Özel Erişim Talebi - s-uymaz.org.tr"
+                })
             })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success === "true" || data.success === true) {
-                formSection.classList.add('hidden');
-                successSection.classList.remove('hidden');
-            } else {
-                alert("Talebiniz iletilirken bir hata oluştu. Lütfen tekrar deneyiniz.");
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = `<span>Erişim Talebini Asistan ve Medya Koordinatörüne İlet</span> <i class="fa-solid fa-arrow-right"></i>`;
-            }
-        })
-        .catch(error => {
-            alert("Bağlantı hatası oluştu. Lütfen internet bağlantınızı kontrol edin.");
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = `<span>Erişim Talebini Asistan ve Medya Koordinatörüne İlet</span> <i class="fa-solid fa-arrow-right"></i>`;
-        });
+            .then(response => response.json())
+            .then(data => {
+                if (data.success === "true" || data.success === true) {
+                    formSection.classList.add('hidden');
+                    successSection.classList.remove('hidden');
+                } else {
+                    alert("Talebiniz iletilirken bir hata oluştu. Lütfen tekrar deneyiniz.");
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = `<span>Erişim Talebini Asistan ve Medya Koordinatörüne İlet</span> <i class="fa-solid fa-arrow-right"></i>`;
+                }
+            })
             .catch(error => {
                 alert("Bağlantı hatası oluştu. Lütfen internet bağlantınızı kontrol edin.");
                 submitBtn.disabled = false;
