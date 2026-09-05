@@ -8,29 +8,30 @@
 <!-- =====================================================
      GÜVENLİK VE OTURUM KONTROLÜ (GİRİŞ YÖNLENDİRMESİ - DÜZELTİLDİ)
 ===================================================== -->
+<!-- =====================================================
+     GÜVENLİK VE OTURUM KONTROLÜ (DÜZELTİLDİ)
+===================================================== -->
 <script>
     (function checkSecurity() {
         const urlParams = new URLSearchParams(window.location.search);
         const accessGrant = urlParams.get('access');
 
-        // 1. E-postadaki logoya tıklandığında (?access=granted ile geldiyse):
-        if (accessGrant === 'granted') {
-            // Hem sekme hem de cihaz hafızasına izin bilgisini kaydet (Yeni sekme engelini aşar)
+        // Hem 'approved' hem 'granted' parametresini geçerli kabul et
+        if (accessGrant === 'approved' || accessGrant === 'granted') {
             sessionStorage.setItem('temp_site_access', 'active');
             sessionStorage.setItem('site_access_approved', 'true');
             localStorage.setItem('mail_access_approved', 'true');
             
-            // Adres çubuğundaki ?access=granted kısmını temizle ama SAYFADA KAL
+            // URL'deki parametreyi temizle ama Ana Sayfada kal
             window.history.replaceState({}, document.title, window.location.pathname);
-            return; // Yönlendirmeyi durdur, Ana Sayfayı yükle
+            return; // Yönlendirme yapma, sayfayı aç
         }
 
-        // 2. Geçerli bir oturum veya cihaz izni var mı kontrol et:
+        // Oturum kontrolü
         const hasSession = sessionStorage.getItem('temp_site_access') === 'active' || 
                            sessionStorage.getItem('site_access_approved') === 'true' ||
                            localStorage.getItem('mail_access_approved') === 'true';
 
-        // 3. Hiçbir onay yoksa Giriş Paneline yönlendir:
         if (!hasSession) {
             window.location.href = "giris-formlari/giris-paneli.html";
         }
