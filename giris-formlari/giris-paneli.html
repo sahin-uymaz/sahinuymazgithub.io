@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="tr" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resmi Özel Erişim Portalı | Şahin UYMAZ</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome İkon Seti -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] },
+                    colors: {
+                        navy: {
+                            800: '#0f172a',
+                            900: '#090d16',
+                            950: '#05070c',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background: radial-gradient(circle at top left, #1e293b, #090d16 80%);
+            min-height: 100vh;
+        }
+
+        /* Kurumsal Cam Kart Efekti */
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.8);
+        }
+
+        .glow-avatar {
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.35);
+        }
+
+        .input-glow:focus-within {
+            border-color: #3b82f6;
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center p-4 sm:p-6 lg:p-8 text-slate-100 selection:bg-blue-600 selection:text-white">
+
+    <!-- Ana Panel Konteyneri -->
+    <div class="w-full max-w-5xl glass-panel rounded-3xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 shadow-2xl my-auto border border-slate-700/50">
+        
+        <!-- ================= SOL PANEL: SELİN YILMAZER & RESMİ BİLGİLENDİRME ================= -->
+        <div class="lg:col-span-5 bg-gradient-to-b from-slate-900/95 via-slate-900/90 to-slate-950/95 p-8 sm:p-10 border-b lg:border-b-0 lg:border-r border-slate-700/60 flex flex-col justify-between relative">
+            
+            <div>
+                <!-- Güvenlik Rozeti -->
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/15 border border-blue-400/30 text-blue-300 text-xs font-bold uppercase tracking-wider mb-6">
+                    <i class="fa-solid fa-shield-halved text-blue-400"></i> Kısıtlı & Özel Erişim Portalı
+                </div>
+
+                <!-- Sekreter / Asistan Profil Bölümü -->
+                <div class="text-center mb-6">
+                    <div class="relative inline-block mb-3">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&auto=format&fit=crop" 
+                             alt="Selin YILMAZER" 
+                             class="w-28 h-28 sm:w-32 sm:h-32 rounded-full object-cover border-2 border-blue-400 p-1 glow-avatar mx-auto">
+                        <span class="absolute bottom-1 right-2 w-4 h-4 bg-emerald-500 border-2 border-slate-900 rounded-full" title="Yetkili Aktif"></span>
+                    </div>
+                    
+                    <h2 class="text-xl font-extrabold text-white tracking-wide">Selin YILMAZER</h2>
+                    <p class="text-xs font-bold text-blue-400 uppercase tracking-widest mt-1">
+                        Asistan ve Medya Koordinatörü
+                    </p>
+                    <span class="inline-block mt-2 px-3 py-1 bg-amber-500/10 border border-amber-500/30 text-amber-300 text-[11px] font-semibold rounded-lg">
+                        <i class="fa-solid fa-user-check mr-1"></i> Tek Yetkili Onay Makamı
+                    </span>
+                </div>
+
+                <!-- Resmi Açıklama / Bilgilendirme Metni -->
+                <div class="bg-slate-950/80 border border-slate-800 rounded-2xl p-4 text-xs text-slate-200 leading-relaxed space-y-2 mb-6">
+                    <p class="font-bold text-white flex items-center gap-1.5">
+                        <i class="fa-solid fa-lock text-amber-400"></i> <strong>Özel Erişim Protokolü:</strong>
+                    </p>
+                    <p class="text-slate-300">
+                        Bu portal; Şahin UYMAZ'ın kurum ve kuruluşlarla olan özel temaslarını, basına kapalı arşiv görsellerini ve kurumsal faaliyet belgelerini barındırmaktadır.
+                    </p>
+                    <p class="text-slate-300">
+                        Gizlilik ilkesi uyarınca tüm başvuru ve bilgilendirme süreçleri, <strong> bizzat Asistan ve Medya Koordinatörü Selin YILMAZER</strong> Tarafından yürütülmektedir.
+                    </p>
+                </div>
+
+                <!-- Bilgilendirme Alanları / İnceleme Başlıkları -->
+                <div class="space-y-2.5">
+                    <div class="w-full px-4 py-2.5 bg-slate-800/80 border border-slate-700/80 rounded-xl text-xs font-bold text-slate-100 flex items-center justify-between">
+                        <span class="flex items-center gap-2.5">
+                            <i class="fa-solid fa-user-tie text-blue-400"></i> Şahin UYMAZ Kimdir?
+                        </span>
+                        <i class="fa-solid fa-lock text-[10px] text-slate-400"></i>
+                    </div>
+                    <div class="w-full px-4 py-2.5 bg-slate-800/80 border border-slate-700/80 rounded-xl text-xs font-bold text-slate-100 flex items-center justify-between">
+                        <span class="flex items-center gap-2.5">
+                            <i class="fa-solid fa-file-invoice text-blue-400"></i> Resmi Özgeçmiş & Arşiv
+                        </span>
+                        <i class="fa-solid fa-lock text-[10px] text-slate-400"></i>
+                    </div>
+                    <div class="w-full px-4 py-2.5 bg-slate-800/80 border border-slate-700/80 rounded-xl text-xs font-bold text-slate-100 flex items-center justify-between">
+                        <span class="flex items-center gap-2.5">
+                            <i class="fa-solid fa-briefcase text-blue-400"></i> Şahin UYMAZ'ın Görevleri
+                        </span>
+                        <i class="fa-solid fa-lock text-[10px] text-slate-400"></i>
+                    </div>
+                    <div class="w-full px-4 py-2.5 bg-slate-800/80 border border-slate-700/80 rounded-xl text-xs font-bold text-slate-100 flex items-center justify-between">
+                        <span class="flex items-center gap-2.5">
+                            <i class="fa-solid fa-building-flag text-blue-400"></i> Kurum & Kuruluş Temasları
+                        </span>
+                        <i class="fa-solid fa-lock text-[10px] text-slate-400"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 pt-4 border-t border-slate-800 text-center">
+                <p class="text-[11px] font-medium text-slate-400">
+                    &copy; 2003 | Tüm Hakları Saklıdır.
+                </p>
+            </div>
+        </div>
+
+        <!-- ================= SAĞ PANEL: ERİŞİM TALEBİ FORMU & ONAY ================= -->
+        <div class="lg:col-span-7 p-8 sm:p-12 flex flex-col justify-center relative bg-slate-950/50">
+            
+            <!-- 1. ADIM: ERİŞİM TALEBİ FORMU -->
+            <div id="form-section">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="w-10 h-10 rounded-xl bg-blue-600/20 text-blue-400 flex items-center justify-center border border-blue-500/30">
+                        <i class="fa-solid fa-paper-plane text-lg"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-extrabold text-white tracking-tight">Erişim Talebi Başvurusu</h1>
+                        <p class="text-[11px] text-blue-400 font-bold uppercase tracking-wider">Değerlendirme  ve Onay:Asistan ve Medya Koordinatörü Selin YILMAZER</p>
+                    </div>
+                </div>
+
+                <p class="text-xs text-slate-300 leading-relaxed mb-6 font-normal">
+                    Şahin UYMAZ'ın  özel çalışmalarına, kurum ilişkilerine ve belgelerine erişebilmek için bilgilerinizi eksiksiz iletiniz. 
+                </p>
+
+                <!-- Form -->
+                <form id="access-request-form" onsubmit="submitForm(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-200 uppercase tracking-wider mb-2">
+                            Adınız Soyadınız
+                        </label>
+                        <div class="relative input-glow rounded-xl border border-slate-700 bg-slate-900/80 transition">
+                            <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-slate-400">
+                                <i class="fa-solid fa-user"></i>
+                            </span>
+                            <input type="text" id="user_fullname" required placeholder="Adınızı ve soyadınızı giriniz" 
+                                class="w-full pl-11 pr-4 py-3 bg-transparent text-sm text-slate-100 placeholder-slate-500 focus:outline-none rounded-xl">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-200 uppercase tracking-wider mb-2">
+                            E-posta Adresiniz (Onay Bağlantısı İçin)
+                        </label>
+                        <div class="relative input-glow rounded-xl border border-slate-700 bg-slate-900/80 transition">
+                            <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-slate-400">
+                                <i class="fa-solid fa-envelope"></i>
+                            </span>
+                            <input type="email" id="user_email" required placeholder="ornek@email.com" 
+                                class="w-full pl-11 pr-4 py-3 bg-transparent text-sm text-slate-100 placeholder-slate-500 focus:outline-none rounded-xl">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-200 uppercase tracking-wider mb-2">
+                            Telefon Numaranız (Onay Bağlantısı İçin)
+                        </label>
+                        <div class="relative input-glow rounded-xl border border-slate-700 bg-slate-900/80 transition">
+                            <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-slate-400">
+                                <i class="fa-solid fa-phone"></i>
+                            </span>
+                            <input type="tel" id="user_phone" required placeholder="05XX XXX XX XX" 
+                                class="w-full pl-11 pr-4 py-3 bg-transparent text-sm text-slate-100 placeholder-slate-500 focus:outline-none rounded-xl">
+                        </div>
+                    </div>
+
+                    <button type="submit" id="submit-btn" 
+                        class="w-full py-4 mt-3 bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold text-xs uppercase tracking-widest rounded-xl shadow-lg shadow-blue-600/30 transition transform active:scale-[0.99] flex items-center justify-center gap-2">
+                        <span>Erişim Talebini Asistan ve Medya Koordinatörüne İlet</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </form>
+            </div>
+
+            <!-- 2. ADIM: FORM GÖNDERİLDİKTEN SONRAKİ ONAY EKRANI -->
+            <div id="success-section" class="hidden text-center py-4 animate-fade-in">
+                
+                <!-- Başarılı İkonu -->
+                <div class="w-16 h-16 bg-emerald-500/10 border border-emerald-500/40 text-emerald-400 rounded-full flex items-center justify-center mx-auto mb-4 shadow-xl shadow-emerald-500/10">
+                    <i class="fa-solid fa-circle-check text-3xl"></i>
+                </div>
+
+                <h3 class="text-2xl font-extrabold text-white mb-1 tracking-tight">Talebiniz Başarıyla İletildi</h3>
+                <p class="text-xs text-blue-400 font-semibold uppercase tracking-wider mb-6">
+                    Sistem Tarafından Doğrulandı
+                </p>
+
+                <!-- Belirginleştirilmiş Sekreter Onay Kartı -->
+                <div class="bg-slate-900/95 border border-slate-700/90 rounded-2xl p-6 text-left relative overflow-hidden shadow-2xl">
+                    <div class="flex items-start gap-4">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&auto=format&fit=crop" 
+                             alt="Selin YILMAZER" 
+                             class="w-14 h-14 rounded-full object-cover border-2 border-blue-400 flex-shrink-0 mt-1 glow-avatar">
+                        
+                        <div class="w-full">
+                            <div class="flex items-center justify-between mb-1">
+                                <h4 class="text-sm font-extrabold text-white">Selin YILMAZER</h4>
+                                <span class="px-2.5 py-0.5 rounded bg-blue-500/20 text-blue-300 text-[10px] font-bold uppercase tracking-wider border border-blue-500/30">Yetkili İnceleme</span>
+                            </div>
+                            <p class="text-[11px] font-bold text-blue-400 mb-3">Asistan ve Medya Koordinatörü</p>
+                            
+                            <!-- Açıklama Metni -->
+                            <div class="bg-slate-950/90 p-4 rounded-xl border border-slate-800 text-xs font-medium text-slate-100 leading-relaxed shadow-inner">
+                                <i class="fa-solid fa-quote-left text-blue-400 text-sm mr-1.5 opacity-80"></i>
+                                Talebiniz, bünyemizde barındırılan resmi/özel kurum bilgileri ve belgelerin gizlilik protokolü uyarınca <strong>Asistan ve Medya Koordinatörü olarak bizzat tarafımdan</strong> değerlendirilecek ve tarafınıza Proton Mail üzerinden özel giriş onayı gönderilecektir.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Alt Bilgilendirme -->
+                <div class="mt-6 p-3 bg-amber-500/10 border border-amber-500/20 rounded-xl flex items-center justify-center gap-2 text-xs font-semibold text-amber-300">
+                    <i class="fa-solid fa-envelope-open-text text-amber-400 text-sm"></i>
+                    <span>Lütfen e-posta kutunuzu (Spam/Gereksiz dahil) takip ediniz.</span>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- MANTIKSAL ÇALIŞMA SİSTEMİ (JS) -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const isApprovedByMail = urlParams.get('access') === 'granted';
+            const hasSessionAccess = sessionStorage.getItem('site_access_approved');
+
+            if (isApprovedByMail || hasSessionAccess) {
+                sessionStorage.setItem('site_access_approved', 'true');
+                window.location.href = "/index.html";
+            }
+        });
+
+        function submitForm(e) {
+            e.preventDefault();
+
+            const submitBtn = document.getElementById('submit-btn');
+            const formSection = document.getElementById('form-section');
+            const successSection = document.getElementById('success-section');
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `<i class="fa-solid fa-circle-notch animate-spin"></i> <span>Selin YILMAZER'e İletiliyor...</span>`;
+
+            setTimeout(() => {
+                formSection.classList.add('hidden');
+                successSection.classList.remove('hidden');
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
