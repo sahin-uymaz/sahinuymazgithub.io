@@ -1,0 +1,684 @@
+
+<!doctype html>
+<html lang="tr">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Site Giriş Doğrulama | ŞAHİN UYMAZ</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+    min-height:100vh;
+    font-family:"Segoe UI",Arial,sans-serif;
+    background:
+        linear-gradient(rgba(4,20,38,.94),rgba(4,20,38,.97));
+    color:#172033;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:30px 15px;
+}
+
+/* =====================================================
+   ANA ALAN
+===================================================== */
+
+.login-wrapper{
+    width:100%;
+    max-width:520px;
+}
+
+/* =====================================================
+   ŞAHİN UYMAZ
+===================================================== */
+
+.brand{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.brand-name{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+}
+
+.brand-name h1{
+    margin:0;
+    font-size:30px;
+    font-weight:800;
+}
+
+.sahin{
+    color:#168cff;
+    text-shadow:0 0 12px rgba(22,140,255,.55);
+}
+
+.uymaz{
+    color:#ffffff;
+    text-shadow:0 0 12px rgba(255,255,255,.25);
+}
+
+.brand p{
+    margin:7px 0 0;
+    color:#cbd5e1;
+    font-size:13px;
+}
+
+/* =====================================================
+   GİRİŞ KARTI
+===================================================== */
+
+.login-card{
+    background:#ffffff;
+    border-radius:18px;
+    padding:35px;
+    box-shadow:
+        0 25px 60px rgba(0,0,0,.35),
+        0 0 0 1px rgba(255,255,255,.08);
+}
+
+.card-title{
+    text-align:center;
+    margin-bottom:28px;
+}
+
+.card-title i{
+    width:58px;
+    height:58px;
+    border-radius:50%;
+    background:#eaf4ff;
+    color:#168cff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:0 auto 15px;
+    font-size:24px;
+}
+
+.card-title h2{
+    margin:0 0 8px;
+    color:#061b33;
+    font-size:24px;
+}
+
+.card-title p{
+    margin:0;
+    color:#64748b;
+    font-size:14px;
+    line-height:1.6;
+}
+
+/* =====================================================
+   FORM
+===================================================== */
+
+.form-group{
+    margin-bottom:18px;
+}
+
+.form-group label{
+    display:block;
+    margin-bottom:7px;
+    color:#334155;
+    font-size:13px;
+    font-weight:700;
+}
+
+.input-box{
+    position:relative;
+}
+
+.input-box i{
+    position:absolute;
+    left:14px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#168cff;
+    font-size:14px;
+}
+
+.input-box input{
+    width:100%;
+    height:48px;
+    border:1px solid #cbd5e1;
+    border-radius:8px;
+    padding:0 14px 0 42px;
+    outline:none;
+    font-size:14px;
+    color:#172033;
+    transition:.2s;
+}
+
+.input-box input:focus{
+    border-color:#168cff;
+    box-shadow:0 0 0 3px rgba(22,140,255,.12);
+}
+
+/* =====================================================
+   TELEFON BİLGİSİ
+===================================================== */
+
+.phone-info{
+    margin-top:6px;
+    color:#64748b;
+    font-size:11px;
+}
+
+/* =====================================================
+   BUTON
+===================================================== */
+
+.submit-button{
+    width:100%;
+    height:50px;
+    margin-top:8px;
+    border:0;
+    border-radius:8px;
+    background:#061b33;
+    color:#ffffff;
+    font-size:15px;
+    font-weight:800;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.submit-button:hover{
+    background:#168cff;
+    transform:translateY(-2px);
+}
+
+/* =====================================================
+   SMS DOĞRULAMA
+===================================================== */
+
+.verification-area{
+    display:none;
+    margin-top:25px;
+    padding-top:25px;
+    border-top:1px solid #e2e8f0;
+}
+
+.verification-area.show{
+    display:block;
+}
+
+.verification-title{
+    color:#061b33;
+    font-size:15px;
+    font-weight:800;
+    margin-bottom:7px;
+}
+
+.verification-text{
+    color:#64748b;
+    font-size:12px;
+    line-height:1.5;
+    margin-bottom:15px;
+}
+
+.code-input{
+    width:100%;
+    height:52px;
+    border:1px solid #cbd5e1;
+    border-radius:8px;
+    text-align:center;
+    font-size:22px;
+    font-weight:800;
+    letter-spacing:7px;
+    outline:none;
+}
+
+.code-input:focus{
+    border-color:#168cff;
+    box-shadow:0 0 0 3px rgba(22,140,255,.12);
+}
+
+.verify-button{
+    width:100%;
+    height:48px;
+    margin-top:12px;
+    border:0;
+    border-radius:8px;
+    background:#168cff;
+    color:#ffffff;
+    font-weight:800;
+    cursor:pointer;
+}
+
+/* =====================================================
+   ONAY MESAJI
+===================================================== */
+
+.approval-message{
+    display:none;
+    margin-top:20px;
+    padding:18px;
+    border-radius:10px;
+    background:#f0fdf4;
+    border:1px solid #bbf7d0;
+    color:#166534;
+    text-align:center;
+    font-size:13px;
+    line-height:1.6;
+}
+
+.approval-message.show{
+    display:block;
+}
+
+.approval-message i{
+    font-size:25px;
+    margin-bottom:8px;
+}
+
+/* =====================================================
+   GÜVENLİK
+===================================================== */
+
+.security-info{
+    margin-top:22px;
+    padding:13px;
+    background:#f8fafc;
+    border-radius:8px;
+    color:#64748b;
+    font-size:11px;
+    line-height:1.5;
+    text-align:center;
+}
+
+.security-info i{
+    color:#168cff;
+    margin-right:5px;
+}
+
+/* =====================================================
+   ANA SAYFAYA DÖN
+===================================================== */
+
+.back-home{
+    display:block;
+    text-align:center;
+    margin-top:20px;
+    color:#cbd5e1;
+    text-decoration:none;
+    font-size:13px;
+    transition:.2s;
+}
+
+.back-home:hover{
+    color:#ffffff;
+}
+
+/* =====================================================
+   MOBİL
+===================================================== */
+
+@media(max-width:600px){
+
+    body{
+        padding:20px 12px;
+    }
+
+    .login-card{
+        padding:25px 18px;
+    }
+
+    .brand-name h1{
+        font-size:25px;
+    }
+
+    .card-title h2{
+        font-size:21px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="login-wrapper">
+
+    <!-- =================================================
+         MARKA
+    ================================================== -->
+
+    <div class="brand">
+
+        <div class="brand-name">
+
+            <h1 class="sahin">ŞAHİN</h1>
+
+            <h1 class="uymaz">UYMAZ</h1>
+
+        </div>
+
+        <p>
+            Kamu Politikaları • Kamu Hizmetleri
+        </p>
+
+    </div>
+
+
+    <!-- =================================================
+         GİRİŞ KARTI
+    ================================================== -->
+
+    <div class="login-card">
+
+        <div class="card-title">
+
+            <i class="fa-solid fa-user-shield"></i>
+
+            <h2>
+                Site Giriş Doğrulaması
+            </h2>
+
+            <p>
+                Siteye giriş yapabilmek için
+                aşağıdaki bilgilerinizi eksiksiz
+                olarak doldurunuz.
+            </p>
+
+        </div>
+
+
+        <!-- =================================================
+             ZİYARETÇİ BİLGİLERİ
+        ================================================== -->
+
+        <form id="visitorForm">
+
+            <div class="form-group">
+
+                <label for="adsoyad">
+                    Ad Soyad
+                </label>
+
+                <div class="input-box">
+
+                    <i class="fa-solid fa-user"></i>
+
+                    <input
+                        type="text"
+                        id="adsoyad"
+                        name="adsoyad"
+                        placeholder="Adınızı ve soyadınızı yazınız"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="email">
+                    E-mail
+                </label>
+
+                <div class="input-box">
+
+                    <i class="fa-solid fa-envelope"></i>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="ornek@email.com"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="telefon">
+                    Telefon Numarası
+                </label>
+
+                <div class="input-box">
+
+                    <i class="fa-solid fa-mobile-screen-button"></i>
+
+                    <input
+                        type="tel"
+                        id="telefon"
+                        name="telefon"
+                        placeholder="05XX XXX XX XX"
+                        required
+                    >
+
+                </div>
+
+                <div class="phone-info">
+
+                    <i class="fa-solid fa-circle-info"></i>
+
+                    Doğrulama kodu bu telefon
+                    numarasına gönderilecektir.
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 SMS GÖNDER
+            ================================================== -->
+
+            <button
+                type="button"
+                class="submit-button"
+                onclick="showVerificationArea()">
+
+                <i class="fa-solid fa-paper-plane"></i>
+
+                Doğrulama Kodu Gönder
+
+            </button>
+
+
+            <!-- =================================================
+                 DOĞRULAMA KODU
+            ================================================== -->
+
+            <div
+                class="verification-area"
+                id="verificationArea">
+
+                <div class="verification-title">
+
+                    <i class="fa-solid fa-shield-halved"></i>
+
+                    Telefon Doğrulama
+
+                </div>
+
+                <div class="verification-text">
+
+                    Telefonunuza gönderilen 6 haneli
+                    doğrulama kodunu aşağıdaki
+                    alana giriniz.
+
+                </div>
+
+                <input
+                    type="text"
+                    id="verificationCode"
+                    class="code-input"
+                    maxlength="6"
+                    inputmode="numeric"
+                    placeholder="••••••"
+                >
+
+                <button
+                    type="button"
+                    class="verify-button"
+                    onclick="verifyCode()">
+
+                    <i class="fa-solid fa-check"></i>
+
+                    Kodu Doğrula
+
+                </button>
+
+            </div>
+
+
+            <!-- =================================================
+                 ONAY BEKLEME MESAJI
+            ================================================== -->
+
+            <div
+                class="approval-message"
+                id="approvalMessage">
+
+                <div>
+
+                    <i class="fa-solid fa-circle-check"></i>
+
+                </div>
+
+                <strong>
+                    Bilgileriniz alınmıştır.
+                </strong>
+
+                <br>
+
+                Bilgileriniz incelendikten sonra
+                en kısa sürede tarafınıza site
+                giriş onayı gönderilecektir.
+
+            </div>
+
+        </form>
+
+
+        <!-- =================================================
+             GÜVENLİK BİLGİSİ
+        ================================================== -->
+
+        <div class="security-info">
+
+            <i class="fa-solid fa-lock"></i>
+
+            Bilgileriniz güvenli doğrulama amacıyla
+            kullanılmaktadır.
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         ANA SAYFAYA DÖN
+    ================================================== -->
+
+    <a href="index.html" class="back-home">
+
+        <i class="fa-solid fa-arrow-left"></i>
+
+        Ana Sayfaya Dön
+
+    </a>
+
+</div>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+function showVerificationArea(){
+
+    const adsoyad =
+        document.getElementById("adsoyad").value.trim();
+
+    const email =
+        document.getElementById("email").value.trim();
+
+    const telefon =
+        document.getElementById("telefon").value.trim();
+
+
+    if(!adsoyad || !email || !telefon){
+
+        alert(
+            "Lütfen ad soyad, e-mail ve telefon bilgilerinizi doldurunuz."
+        );
+
+        return;
+    }
+
+
+    document
+        .getElementById("verificationArea")
+        .classList.add("show");
+
+
+    document
+        .getElementById("verificationCode")
+        .focus();
+
+}
+
+
+function verifyCode(){
+
+    const code =
+        document
+        .getElementById("verificationCode")
+        .value
+        .trim();
+
+
+    if(code.length !== 6){
+
+        alert(
+            "Lütfen 6 haneli doğrulama kodunu giriniz."
+        );
+
+        return;
+    }
+
+
+    document
+        .getElementById("verificationArea")
+        .style.display = "none";
+
+
+    document
+        .getElementById("approvalMessage")
+        .classList.add("show");
+
+}
+
+</script>
+
+</body>
+</html>
