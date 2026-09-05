@@ -155,13 +155,9 @@
                     Şahin UYMAZ'ın özel çalışmalarına, kurum ilişkilerine ve belgelerine erişebilmek için bilgilerinizi eksiksiz iletiniz. 
                 </p>
 
-                <!-- FormSubmit Formu (Güncel E-posta ile) -->
-                <form id="access-request-form" action="https://formsubmit.co/S.uymaz@protonmail.com" method="POST" onsubmit="submitForm(event)" class="space-y-4">
+                <!-- Form Etiketi -->
+                <form id="access-request-form" onsubmit="submitForm(event)" class="space-y-4">
                     
-                    <!-- CAPTCHA Kapatma Ayarı -->
-                    <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" name="_subject" value="Yeni Özel Erişim Talebi - s-uymaz.org.tr">
-
                     <div>
                         <label class="block text-xs font-bold text-slate-200 uppercase tracking-wider mb-2">
                             Adınız Soyadınız
@@ -268,7 +264,6 @@
         function submitForm(e) {
             e.preventDefault();
 
-            const form = e.target;
             const submitBtn = document.getElementById('submit-btn');
             const formSection = document.getElementById('form-section');
             const successSection = document.getElementById('success-section');
@@ -276,19 +271,31 @@
             submitBtn.disabled = true;
             submitBtn.innerHTML = `<i class="fa-solid fa-circle-notch animate-spin"></i> <span>Selin YILMAZER'e İletiliyor...</span>`;
 
-            fetch(form.action, {
+            // Verileri JSON Formatına Getirme
+            const data = {
+                "Ad Soyad": document.getElementById('user_fullname').value,
+                "E-posta": document.getElementById('user_email').value,
+                "Telefon": document.getElementById('user_phone').value,
+                "_captcha": "false",
+                "_subject": "Yeni Özel Erişim Talebi - s-uymaz.org.tr"
+            };
+
+            // FormSubmit AJAX Endpoint'ine JSON olarak İstek Atma
+            fetch("https://formsubmit.co/ajax/S.uymaz@protonmail.com", {
                 method: "POST",
-                body: new FormData(form),
-                headers: {
+                headers: { 
+                    'Content-Type': 'application/json',
                     'Accept': 'application/json'
-                }
+                },
+                body: JSON.stringify(data)
             })
-            .then(response => {
-                if (response.ok) {
+            .then(response => response.json())
+            .then(data => {
+                if (data.success === "true" || data.success === true) {
                     formSection.classList.add('hidden');
                     successSection.classList.remove('hidden');
                 } else {
-                    alert("Talebiniz iletilirken bir hata oluştu. Lütfen tekrar deneyiniz.");
+                    alert("Talebiniz iletilirken bir hata oluştu. Lütfen bilgilerinizi kontrol edip tekrar deneyiniz.");
                     submitBtn.disabled = false;
                     submitBtn.innerHTML = `<span>Erişim Talebini Asistan ve Medya Koordinatörüne İlet</span> <i class="fa-solid fa-arrow-right"></i>`;
                 }
