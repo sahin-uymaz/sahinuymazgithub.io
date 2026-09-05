@@ -6,32 +6,49 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- =====================================================
-     GÜVENLİK VE OTURUM KONTROLÜ (GİRİŞ YÖNLENDİRMESİ)
+     GÜVENLİK VE OTURUM KONTROLÜ (GİRİŞ YÖNLENDİRMESİ - DÜZELTİLDİ)
 ===================================================== -->
 <script>
     (function checkSecurity() {
         const urlParams = new URLSearchParams(window.location.search);
         const accessGrant = urlParams.get('access');
 
-        // 1. E-postadaki logoya tıklayarak geldiyse:
+        // 1. E-postadaki logoya tıklandığında (?access=granted ile geldiyse):
         if (accessGrant === 'granted') {
-            // Sadece bu sekme/oturum açık kaldığı sürece geçerli olan geçici onay tanımlanır
+            // Hem sekme hem de cihaz hafızasına izin bilgisini kaydet (Yeni sekme engelini aşar)
             sessionStorage.setItem('temp_site_access', 'active');
+            sessionStorage.setItem('site_access_approved', 'true');
+            localStorage.setItem('mail_access_approved', 'true');
             
-            // Temiz bir URL görünümü için ?access=granted parametresi adresten kaldırılır
+            // Adres çubuğundaki ?access=granted kısmını temizle ama SAYFADA KAL
             window.history.replaceState({}, document.title, window.location.pathname);
-            return;
+            return; // Yönlendirmeyi durdur, Ana Sayfayı yükle
         }
 
-        // 2. Sekme önceden açık değilse veya kullanıcı siteyi kapatıp tekrar geldiyse:
-        const hasActiveSession = sessionStorage.getItem('temp_site_access');
-        
-        if (!hasActiveSession || hasActiveSession !== 'active') {
-            // Oturum yoksa veya kapatıldıysa doğrudan Giriş Paneline yönlendir
+        // 2. Geçerli bir oturum veya cihaz izni var mı kontrol et:
+        const hasSession = sessionStorage.getItem('temp_site_access') === 'active' || 
+                           sessionStorage.getItem('site_access_approved') === 'true' ||
+                           localStorage.getItem('mail_access_approved') === 'true';
+
+        // 3. Hiçbir onay yoksa Giriş Paneline yönlendir:
+        if (!hasSession) {
             window.location.href = "giris-formlari/giris-paneli.html";
         }
     })();
 </script>
+
+<!-- =====================================================
+     GOOGLE GÖRÜNÜRLÜĞÜ ŞİMDİLİK KAPALI
+===================================================== -->
+
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet">
+
+<title>ŞAHİN UYMAZ | Kamu Politikaları • Kamu Hizmetleri</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 <!-- =====================================================
      GOOGLE GÖRÜNÜRLÜĞÜ ŞİMDİLİK KAPALI
