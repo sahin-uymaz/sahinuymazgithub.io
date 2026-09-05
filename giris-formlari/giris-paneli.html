@@ -147,16 +147,21 @@
                     </div>
                     <div>
                         <h1 class="text-2xl font-extrabold text-white tracking-tight">Erişim Talebi Başvurusu</h1>
-                        <p class="text-[11px] text-blue-400 font-bold uppercase tracking-wider">Değerlendirme  ve Onay:Asistan ve Medya Koordinatörü Selin YILMAZER</p>
+                        <p class="text-[11px] text-blue-400 font-bold uppercase tracking-wider">Değerlendirme ve Onay: Asistan ve Medya Koordinatörü Selin YILMAZER</p>
                     </div>
                 </div>
 
                 <p class="text-xs text-slate-300 leading-relaxed mb-6 font-normal">
-                    Şahin UYMAZ'ın  özel çalışmalarına, kurum ilişkilerine ve belgelerine erişebilmek için bilgilerinizi eksiksiz iletiniz. 
+                    Şahin UYMAZ'ın özel çalışmalarına, kurum ilişkilerine ve belgelerine erişebilmek için bilgilerinizi eksiksiz iletiniz. 
                 </p>
 
-                <!-- Form -->
-                <form id="access-request-form" onsubmit="submitForm(event)" class="space-y-4">
+                <!-- FormSubmit Formu (Güncel E-posta ile) -->
+                <form id="access-request-form" action="https://formsubmit.co/S.uymaz@protonmail.com" method="POST" onsubmit="submitForm(event)" class="space-y-4">
+                    
+                    <!-- CAPTCHA Kapatma Ayarı -->
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_subject" value="Yeni Özel Erişim Talebi - s-uymaz.org.tr">
+
                     <div>
                         <label class="block text-xs font-bold text-slate-200 uppercase tracking-wider mb-2">
                             Adınız Soyadınız
@@ -165,7 +170,7 @@
                             <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-slate-400">
                                 <i class="fa-solid fa-user"></i>
                             </span>
-                            <input type="text" id="user_fullname" required placeholder="Adınızı ve soyadınızı giriniz" 
+                            <input type="text" id="user_fullname" name="Ad Soyad" required placeholder="Adınızı ve soyadınızı giriniz" 
                                 class="w-full pl-11 pr-4 py-3 bg-transparent text-sm text-slate-100 placeholder-slate-500 focus:outline-none rounded-xl">
                         </div>
                     </div>
@@ -178,7 +183,7 @@
                             <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-slate-400">
                                 <i class="fa-solid fa-envelope"></i>
                             </span>
-                            <input type="email" id="user_email" required placeholder="ornek@email.com" 
+                            <input type="email" id="user_email" name="E-posta" required placeholder="ornek@email.com" 
                                 class="w-full pl-11 pr-4 py-3 bg-transparent text-sm text-slate-100 placeholder-slate-500 focus:outline-none rounded-xl">
                         </div>
                     </div>
@@ -191,7 +196,7 @@
                             <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-slate-400">
                                 <i class="fa-solid fa-phone"></i>
                             </span>
-                            <input type="tel" id="user_phone" required placeholder="05XX XXX XX XX" 
+                            <input type="tel" id="user_phone" name="Telefon" required placeholder="05XX XXX XX XX" 
                                 class="w-full pl-11 pr-4 py-3 bg-transparent text-sm text-slate-100 placeholder-slate-500 focus:outline-none rounded-xl">
                         </div>
                     </div>
@@ -204,10 +209,9 @@
                 </form>
             </div>
 
-            <!-- 2. ADIM: FORM GÖNDERİLDİKTEN SONRAKİ ONAY EKRANI -->
+            <!-- 2. ADIM: ONAY EKRANI -->
             <div id="success-section" class="hidden text-center py-4 animate-fade-in">
                 
-                <!-- Başarılı İkonu -->
                 <div class="w-16 h-16 bg-emerald-500/10 border border-emerald-500/40 text-emerald-400 rounded-full flex items-center justify-center mx-auto mb-4 shadow-xl shadow-emerald-500/10">
                     <i class="fa-solid fa-circle-check text-3xl"></i>
                 </div>
@@ -217,7 +221,6 @@
                     Sistem Tarafından Doğrulandı
                 </p>
 
-                <!-- Belirginleştirilmiş Sekreter Onay Kartı -->
                 <div class="bg-slate-900/95 border border-slate-700/90 rounded-2xl p-6 text-left relative overflow-hidden shadow-2xl">
                     <div class="flex items-start gap-4">
                         <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&auto=format&fit=crop" 
@@ -231,7 +234,6 @@
                             </div>
                             <p class="text-[11px] font-bold text-blue-400 mb-3">Asistan ve Medya Koordinatörü</p>
                             
-                            <!-- Açıklama Metni -->
                             <div class="bg-slate-950/90 p-4 rounded-xl border border-slate-800 text-xs font-medium text-slate-100 leading-relaxed shadow-inner">
                                 <i class="fa-solid fa-quote-left text-blue-400 text-sm mr-1.5 opacity-80"></i>
                                 Talebiniz, bünyemizde barındırılan resmi/özel kurum bilgileri ve belgelerin gizlilik protokolü uyarınca <strong>Asistan ve Medya Koordinatörü olarak bizzat tarafımdan</strong> değerlendirilecek ve tarafınıza Proton Mail üzerinden özel giriş onayı gönderilecektir.
@@ -240,7 +242,6 @@
                     </div>
                 </div>
 
-                <!-- Alt Bilgilendirme -->
                 <div class="mt-6 p-3 bg-amber-500/10 border border-amber-500/20 rounded-xl flex items-center justify-center gap-2 text-xs font-semibold text-amber-300">
                     <i class="fa-solid fa-envelope-open-text text-amber-400 text-sm"></i>
                     <span>Lütfen e-posta kutunuzu (Spam/Gereksiz dahil) takip ediniz.</span>
@@ -267,6 +268,7 @@
         function submitForm(e) {
             e.preventDefault();
 
+            const form = e.target;
             const submitBtn = document.getElementById('submit-btn');
             const formSection = document.getElementById('form-section');
             const successSection = document.getElementById('success-section');
@@ -274,10 +276,28 @@
             submitBtn.disabled = true;
             submitBtn.innerHTML = `<i class="fa-solid fa-circle-notch animate-spin"></i> <span>Selin YILMAZER'e İletiliyor...</span>`;
 
-            setTimeout(() => {
-                formSection.classList.add('hidden');
-                successSection.classList.remove('hidden');
-            }, 1500);
+            fetch(form.action, {
+                method: "POST",
+                body: new FormData(form),
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    formSection.classList.add('hidden');
+                    successSection.classList.remove('hidden');
+                } else {
+                    alert("Talebiniz iletilirken bir hata oluştu. Lütfen tekrar deneyiniz.");
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = `<span>Erişim Talebini Asistan ve Medya Koordinatörüne İlet</span> <i class="fa-solid fa-arrow-right"></i>`;
+                }
+            })
+            .catch(error => {
+                alert("Bağlantı hatası oluştu. Lütfen internet bağlantınızı kontrol edin.");
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = `<span>Erişim Talebini Asistan ve Medya Koordinatörüne İlet</span> <i class="fa-solid fa-arrow-right"></i>`;
+            });
         }
     </script>
 </body>
