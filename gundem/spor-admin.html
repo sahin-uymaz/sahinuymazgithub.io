@@ -1,2355 +1,1682 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
-
-<title>ŞAHİN UYMAZ | Spor Yönetim Paneli</title>
+<title>Şahin UYMAZ - Spor Admin</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
-
 <link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 <style>
 
 *{
-  box-sizing:border-box;
+    box-sizing:border-box;
 }
 
 body{
-  margin:0;
-  font-family:Arial,Helvetica,sans-serif;
-  background:#eef2f7;
-  color:#172033;
+    margin:0;
+    background:
+        radial-gradient(circle at top left, #182a50 0%, transparent 35%),
+        radial-gradient(circle at bottom right, #101c38 0%, transparent 35%),
+        #0b1428;
+    color:#eef4ff;
+    font-family:Arial, Helvetica, sans-serif;
+    min-height:100vh;
 }
 
-button,
-input,
-select,
-textarea{
-  font-family:inherit;
-}
+/* ÜST BAR */
 
 .topbar{
-  position:sticky;
-  top:0;
-  z-index:9999;
-  background:#07111f;
-  color:#fff;
-  box-shadow:0 8px 25px rgba(0,0,0,.18);
+    background:rgba(5,12,28,.96);
+    border-bottom:1px solid rgba(80,130,220,.25);
+    padding:18px 20px;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    backdrop-filter:blur(12px);
 }
 
 .topbar-inner{
-  max-width:1450px;
-  margin:auto;
-  min-height:76px;
-  padding:12px 22px;
-
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:20px;
+    max-width:1200px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
 }
 
-.brand{
-  display:flex;
-  align-items:center;
-  gap:12px;
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
 }
 
-.brand-icon{
-  width:45px;
-  height:45px;
-  border-radius:14px;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  background:linear-gradient(
-    135deg,
-    #2563eb,
-    #7c3aed
-  );
-
-  box-shadow:
-    0 0 25px rgba(37,99,235,.4);
+.logo-ball{
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#2563eb,#06b6d4);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:24px;
+    box-shadow:0 0 25px rgba(37,99,235,.4);
 }
 
-.brand h1{
-  margin:0;
-  font-size:18px;
-  font-weight:1000;
+.logo h1{
+    margin:0;
+    font-size:20px;
+    font-weight:800;
 }
 
-.brand p{
-  margin:3px 0 0;
-  color:#94a3b8;
-  font-size:10px;
+.logo span{
+    color:#60a5fa;
+    font-size:12px;
 }
 
-.home-link{
-  color:#fff;
-  text-decoration:none;
+/* ANA SAYFA */
 
-  padding:11px 15px;
-
-  border-radius:10px;
-
-  background:#2563eb;
-
-  font-size:12px;
-  font-weight:900;
-
-  transition:.2s;
+.home-btn{
+    text-decoration:none;
+    color:white;
+    background:linear-gradient(135deg,#2563eb,#1d4ed8);
+    padding:11px 17px;
+    border-radius:12px;
+    font-weight:700;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    transition:.2s;
 }
 
-.home-link:hover{
-  transform:translateY(-2px);
-  background:#1d4ed8;
+.home-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 25px rgba(37,99,235,.35);
 }
+
+/* ANA ALAN */
 
 .container{
-  width:min(1400px,calc(100% - 30px));
-  margin:30px auto 60px;
+    width:min(1200px,94%);
+    margin:30px auto 80px;
 }
 
+/* BAŞLIK */
+
 .page-title{
-  margin-bottom:22px;
+    text-align:center;
+    margin-bottom:28px;
 }
 
 .page-title h2{
-  margin:0;
-  font-size:30px;
-  font-weight:1000;
-  color:#0f172a;
+    font-size:32px;
+    margin:0 0 8px;
+    font-weight:900;
 }
 
 .page-title p{
-  margin:7px 0 0;
-  color:#64748b;
-  font-size:13px;
+    margin:0;
+    color:#9fb1d0;
 }
 
-.dashboard{
-  display:grid;
-  grid-template-columns:
-    repeat(4,minmax(0,1fr));
+/* İSTATİSTİKLER */
 
-  gap:15px;
-
-  margin-bottom:25px;
+.stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+    margin-bottom:25px;
 }
 
-.dashboard-card{
-  background:#fff;
-
-  border:1px solid #e2e8f0;
-
-  border-radius:17px;
-
-  padding:18px;
-
-  box-shadow:
-    0 8px 25px rgba(15,23,42,.06);
+.stat{
+    background:rgba(16,29,55,.9);
+    border:1px solid rgba(100,150,230,.2);
+    border-radius:16px;
+    padding:18px;
+    text-align:center;
 }
 
-.dashboard-card i{
-  color:#2563eb;
-  font-size:20px;
-  margin-bottom:8px;
+.stat-number{
+    font-size:28px;
+    font-weight:900;
+    color:#60a5fa;
 }
 
-.dashboard-number{
-  font-size:27px;
-  font-weight:1000;
-  color:#0f172a;
+.stat-label{
+    font-size:13px;
+    color:#9fb1d0;
+    margin-top:4px;
 }
 
-.dashboard-label{
-  color:#64748b;
-  font-size:10px;
-  font-weight:900;
-  margin-top:3px;
-}
+/* FORM */
 
 .panel{
-  background:#fff;
-
-  border:1px solid #e2e8f0;
-
-  border-radius:20px;
-
-  padding:24px;
-
-  margin-bottom:25px;
-
-  box-shadow:
-    0 10px 30px rgba(15,23,42,.06);
+    background:rgba(13,25,49,.94);
+    border:1px solid rgba(100,150,230,.22);
+    border-radius:20px;
+    padding:24px;
+    margin-bottom:28px;
+    box-shadow:0 15px 45px rgba(0,0,0,.18);
 }
 
 .panel-title{
-  display:flex;
-  align-items:center;
-  gap:10px;
-
-  margin-bottom:20px;
-
-  font-size:18px;
-  font-weight:1000;
-
-  color:#0f172a;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:20px;
 }
 
-.panel-title i{
-  color:#2563eb;
+.panel-title h3{
+    margin:0;
+    font-size:21px;
+}
+
+.badge{
+    background:#172d55;
+    color:#93c5fd;
+    padding:7px 12px;
+    border-radius:999px;
+    font-size:12px;
+    font-weight:700;
 }
 
 .form-grid{
-  display:grid;
-
-  grid-template-columns:
-    repeat(2,minmax(0,1fr));
-
-  gap:16px;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
 }
 
-.form-group{
-  display:flex;
-  flex-direction:column;
+.field{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
 }
 
-.form-group.full{
-  grid-column:1/-1;
+.field.full{
+    grid-column:1/-1;
 }
 
-.form-group label{
-  margin-bottom:7px;
-
-  color:#334155;
-
-  font-size:11px;
-  font-weight:1000;
+.field label{
+    color:#aebfdb;
+    font-size:13px;
+    font-weight:700;
 }
 
-.form-group label span{
-  color:#ef4444;
+.field input,
+.field select,
+.field textarea{
+    width:100%;
+    border:1px solid #263d68;
+    background:#09152b;
+    color:white;
+    border-radius:10px;
+    padding:12px 13px;
+    outline:none;
+    font-size:14px;
 }
 
-.form-control{
-  width:100%;
-
-  padding:12px 13px;
-
-  border:1px solid #cbd5e1;
-
-  border-radius:10px;
-
-  outline:none;
-
-  background:#fff;
-
-  color:#172033;
-
-  font-size:13px;
-
-  transition:.2s;
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+    border-color:#3b82f6;
+    box-shadow:0 0 0 3px rgba(59,130,246,.12);
 }
 
-.form-control:focus{
-  border-color:#2563eb;
-
-  box-shadow:
-    0 0 0 3px rgba(37,99,235,.1);
+.field textarea{
+    min-height:90px;
+    resize:vertical;
 }
 
-textarea.form-control{
-  min-height:105px;
-  resize:vertical;
+/* TAHMİNLER */
+
+.prediction-title{
+    margin-top:28px;
+    margin-bottom:14px;
+    font-size:18px;
+    font-weight:800;
+    color:#dbeafe;
 }
 
-.prediction-box{
-  margin-top:25px;
-
-  padding:20px;
-
-  background:#f8fafc;
-
-  border:1px solid #e2e8f0;
-
-  border-radius:16px;
+.predictions{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
 }
 
-.prediction-box-title{
-  display:flex;
-  align-items:center;
-  gap:9px;
-
-  margin-bottom:17px;
-
-  color:#0f172a;
-
-  font-size:15px;
-  font-weight:1000;
+.prediction{
+    background:#0a172e;
+    border:1px solid #20385f;
+    border-radius:12px;
+    padding:13px 15px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    transition:.2s;
 }
 
-.prediction-box-title i{
-  color:#8b5cf6;
+.prediction:hover{
+    border-color:#3b82f6;
+    background:#0d1d3a;
 }
 
-.prediction-grid{
-  display:grid;
-
-  grid-template-columns:
-    repeat(3,minmax(0,1fr));
-
-  gap:13px;
+.prediction-name{
+    font-size:14px;
+    color:#d9e5f8;
+    line-height:1.35;
 }
 
-.prediction-field{
-  background:#fff;
+/* CHECKBOX */
 
-  padding:13px;
-
-  border-radius:12px;
-
-  border:1px solid #e2e8f0;
+.check-wrap{
+    flex-shrink:0;
 }
 
-.prediction-field label{
-  display:block;
-
-  margin-bottom:8px;
-
-  color:#475569;
-
-  font-size:10px;
-  font-weight:1000;
-
-  line-height:1.4;
+.prediction-checkbox{
+    width:25px;
+    height:25px;
+    cursor:pointer;
+    accent-color:#22c55e;
 }
 
-.prediction-field input{
-  width:100%;
+/* BUTONLAR */
 
-  padding:10px;
-
-  border:1px solid #cbd5e1;
-
-  border-radius:8px;
-
-  outline:none;
-
-  font-size:12px;
-}
-
-.prediction-field input:focus{
-  border-color:#8b5cf6;
-
-  box-shadow:
-    0 0 0 3px rgba(139,92,246,.1);
-}
-
-.form-actions{
-  display:flex;
-  flex-wrap:wrap;
-
-  gap:10px;
-
-  margin-top:22px;
+.buttons{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-top:24px;
 }
 
 .btn{
-  border:0;
-
-  cursor:pointer;
-
-  padding:12px 17px;
-
-  border-radius:10px;
-
-  font-size:12px;
-  font-weight:1000;
-
-  transition:.2s;
+    border:0;
+    border-radius:11px;
+    padding:13px 20px;
+    color:white;
+    font-weight:800;
+    cursor:pointer;
+    transition:.2s;
 }
 
 .btn:hover{
-  transform:translateY(-2px);
+    transform:translateY(-2px);
 }
 
 .btn-save{
-  background:#10b981;
-  color:#fff;
+    background:linear-gradient(135deg,#16a34a,#22c55e);
 }
 
 .btn-clear{
-  background:#64748b;
-  color:#fff;
+    background:#334155;
 }
 
 .btn-cancel{
-  background:#f59e0b;
-  color:#fff;
+    background:#7f1d1d;
+    display:none;
 }
 
-.matches-title{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
+/* LİG BAŞLIĞI */
 
-  gap:15px;
-
-  margin-bottom:18px;
-}
-
-.matches-title h2{
-  margin:0;
-
-  font-size:20px;
-  font-weight:1000;
-}
-
-.matches-title span{
-  color:#64748b;
-  font-size:11px;
-}
-
-.league-block{
-  margin-bottom:25px;
-
-  border:1px solid #e2e8f0;
-
-  border-radius:17px;
-
-  overflow:hidden;
-
-  background:#fff;
+.league-section{
+    margin-top:30px;
 }
 
 .league-header{
-  padding:16px 18px;
-
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-
-  color:#fff;
-
-  background:
-    linear-gradient(
-      135deg,
-      #0f172a,
-      #1e293b
-    );
+    padding:17px 20px;
+    border-radius:16px;
+    margin-bottom:14px;
+    font-size:19px;
+    font-weight:900;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    box-shadow:0 8px 25px rgba(0,0,0,.15);
 }
 
-.league-header h3{
-  margin:0;
-
-  font-size:15px;
-  font-weight:1000;
+.super{
+    background:linear-gradient(135deg,#166534,#15803d);
 }
 
-.league-header span{
-  padding:6px 10px;
-
-  border-radius:999px;
-
-  background:rgba(255,255,255,.1);
-
-  font-size:10px;
-  font-weight:900;
+.one{
+    background:linear-gradient(135deg,#1d4ed8,#2563eb);
 }
 
-.match-row{
-  padding:18px;
-
-  border-top:1px solid #e2e8f0;
-
-  display:grid;
-
-  grid-template-columns:
-    1.5fr
-    1fr
-    auto;
-
-  gap:18px;
-
-  align-items:center;
+.champions{
+    background:linear-gradient(135deg,#581c87,#7e22ce);
 }
 
-.match-main{
-  min-width:0;
+.europa{
+    background:linear-gradient(135deg,#92400e,#d97706);
 }
 
-.match-teams{
-  color:#0f172a;
-
-  font-size:15px;
-  font-weight:1000;
+.conference{
+    background:linear-gradient(135deg,#0f766e,#14b8a6);
 }
 
-.match-meta{
-  display:flex;
-  flex-wrap:wrap;
-
-  gap:7px;
-
-  margin-top:7px;
+.cup{
+    background:linear-gradient(135deg,#be123c,#e11d48);
 }
 
-.meta{
-  padding:5px 8px;
+/* MAÇ KARTI */
 
-  border-radius:6px;
-
-  background:#f1f5f9;
-
-  color:#64748b;
-
-  font-size:9px;
-  font-weight:900;
+.match-card{
+    background:#0d1b34;
+    border:1px solid #223a63;
+    border-radius:17px;
+    padding:18px;
+    margin-bottom:14px;
+    transition:.2s;
 }
 
-.published{
-  background:#dcfce7;
-  color:#15803d;
+.match-card:hover{
+    border-color:#3b82f6;
+    transform:translateY(-1px);
 }
 
-.unpublished{
-  background:#fee2e2;
-  color:#b91c1c;
+.match-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
 }
 
-.match-analysis{
-  color:#64748b;
-
-  font-size:10px;
-
-  line-height:1.6;
+.teams{
+    font-size:18px;
+    font-weight:900;
 }
 
-.row-actions{
-  display:flex;
-  flex-wrap:wrap;
+.match-date{
+    color:#91a5c4;
+    font-size:13px;
+    margin-top:5px;
+}
 
-  gap:7px;
+.match-status{
+    background:#16345c;
+    color:#93c5fd;
+    padding:7px 10px;
+    border-radius:9px;
+    font-size:11px;
+    font-weight:800;
+}
 
-  justify-content:flex-end;
+.match-predictions{
+    margin-top:15px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:7px;
+}
+
+.mini-prediction{
+    background:#09152a;
+    border-radius:9px;
+    padding:9px;
+    font-size:11px;
+    color:#a9bad4;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:5px;
+}
+
+.mini-check{
+    font-size:15px;
+}
+
+.checked{
+    color:#4ade80;
+}
+
+.unchecked{
+    color:#475569;
+}
+
+.match-actions{
+    display:flex;
+    gap:8px;
+    margin-top:15px;
 }
 
 .action{
-  border:0;
-
-  cursor:pointer;
-
-  padding:9px 11px;
-
-  border-radius:8px;
-
-  color:#fff;
-
-  font-size:10px;
-  font-weight:1000;
-
-  transition:.2s;
-}
-
-.action:hover{
-  transform:translateY(-2px);
+    border:0;
+    border-radius:9px;
+    padding:9px 12px;
+    cursor:pointer;
+    color:white;
+    font-weight:700;
+    font-size:12px;
 }
 
 .edit{
-  background:#2563eb;
+    background:#1d4ed8;
 }
 
 .delete{
-  background:#ef4444;
+    background:#991b1b;
 }
 
 .publish{
-  background:#10b981;
+    background:#166534;
 }
 
-.unpublish{
-  background:#f59e0b;
-}
+/* BOŞ */
 
 .empty{
-  padding:50px 20px;
-
-  text-align:center;
-
-  color:#64748b;
+    text-align:center;
+    padding:35px;
+    color:#8294b3;
 }
 
-.empty i{
-  font-size:42px;
+/* MOBİL */
 
-  color:#94a3b8;
+@media(max-width:800px){
 
-  margin-bottom:12px;
-}
+    .stats{
+        grid-template-columns:1fr;
+    }
 
-.empty h3{
-  margin:0;
+    .form-grid{
+        grid-template-columns:1fr;
+    }
 
-  color:#334155;
+    .predictions{
+        grid-template-columns:1fr;
+    }
 
-  font-size:17px;
-}
+    .match-predictions{
+        grid-template-columns:1fr;
+    }
 
-.notice{
-  display:none;
+    .match-top{
+        align-items:flex-start;
+    }
 
-  margin-bottom:20px;
+    .teams{
+        font-size:16px;
+    }
 
-  padding:13px 15px;
+    .topbar-inner{
+        flex-direction:column;
+        align-items:stretch;
+    }
 
-  border-radius:10px;
-
-  font-size:12px;
-
-  font-weight:900;
-}
-
-.notice.success{
-  display:block;
-
-  color:#166534;
-
-  background:#dcfce7;
-
-  border:1px solid #86efac;
-}
-
-.notice.error{
-  display:block;
-
-  color:#991b1b;
-
-  background:#fee2e2;
-
-  border:1px solid #fca5a5;
-}
-
-footer{
-  padding:30px 20px;
-
-  text-align:center;
-
-  background:#020617;
-
-  color:#94a3b8;
-
-  font-size:10px;
-}
-
-footer strong{
-  color:#fff;
-  font-size:14px;
-}
-
-@media(max-width:1050px){
-
-  .dashboard{
-    grid-template-columns:
-      repeat(2,1fr);
-  }
-
-  .prediction-grid{
-    grid-template-columns:
-      repeat(2,1fr);
-  }
-
-  .match-row{
-    grid-template-columns:1fr;
-  }
-
-  .row-actions{
-    justify-content:flex-start;
-  }
-
-}
-
-@media(max-width:700px){
-
-  .topbar-inner{
-    padding:10px 13px;
-  }
-
-  .brand h1{
-    font-size:14px;
-  }
-
-  .brand p{
-    display:none;
-  }
-
-  .home-link{
-    padding:9px 11px;
-    font-size:10px;
-  }
-
-  .container{
-    width:calc(100% - 20px);
-    margin-top:20px;
-  }
-
-  .page-title h2{
-    font-size:24px;
-  }
-
-  .dashboard{
-    grid-template-columns:1fr;
-  }
-
-  .form-grid{
-    grid-template-columns:1fr;
-  }
-
-  .form-group.full{
-    grid-column:auto;
-  }
-
-  .prediction-grid{
-    grid-template-columns:1fr;
-  }
-
-  .panel{
-    padding:16px;
-  }
+    .home-btn{
+        justify-content:center;
+    }
 
 }
 
 </style>
-
 </head>
 
 <body>
 
+<!-- ÜST BAR -->
 
 <header class="topbar">
 
-  <div class="topbar-inner">
+    <div class="topbar-inner">
 
-    <div class="brand">
+        <div class="logo">
 
-      <div class="brand-icon">
-        <i class="fa-solid fa-futbol"></i>
-      </div>
+            <div class="logo-ball">
+                ⚽
+            </div>
 
-      <div>
+            <div>
+                <h1>ŞAHİN UYMAZ</h1>
+                <span>SPOR YÖNETİM MERKEZİ</span>
+            </div>
 
-        <h1>
-          ŞAHİN UYMAZ
-        </h1>
+        </div>
 
-        <p>
-          SPOR YÖNETİM PANELİ
-        </p>
-
-      </div>
+        <a href="spor.html" class="home-btn">
+            <i class="fa-solid fa-futbol"></i>
+            SPOR SAYFASINA GİT
+        </a>
 
     </div>
-
-
-    <a
-      href="spor.html"
-      class="home-link">
-
-      <i class="fa-solid fa-arrow-left"></i>
-
-      SPOR SAYFASINA DÖN
-
-    </a>
-
-  </div>
 
 </header>
 
 
-
 <main class="container">
 
+    <div class="page-title">
 
-  <div class="page-title">
+        <h2>⚽ SPOR ADMİN PANELİ</h2>
 
-    <h2>
-      Spor Yönetim Merkezi
-    </h2>
-
-    <p>
-      Ligleri, karşılaşmaları, maç analizlerini ve 9 tahmin seçeneğini buradan yönetebilirsiniz.
-    </p>
-
-  </div>
-
-
-
-  <div
-    id="notice"
-    class="notice">
-  </div>
-
-
-
-  <!-- ==================================================
-       İSTATİSTİKLER
-  ================================================== -->
-
-  <section class="dashboard">
-
-
-    <div class="dashboard-card">
-
-      <i class="fa-solid fa-layer-group"></i>
-
-      <div
-        class="dashboard-number"
-        id="leagueCount">
-        0
-      </div>
-
-      <div class="dashboard-label">
-        LİG / KATEGORİ
-      </div>
+        <p>
+            Maçları ekle ve tahmin seçeneklerinde sadece tik koy.
+        </p>
 
     </div>
 
 
-    <div class="dashboard-card">
+    <!-- İSTATİSTİK -->
 
-      <i class="fa-solid fa-futbol"></i>
+    <div class="stats">
 
-      <div
-        class="dashboard-number"
-        id="matchCount">
-        0
-      </div>
+        <div class="stat">
+            <div class="stat-number" id="leagueCount">0</div>
+            <div class="stat-label">LİG</div>
+        </div>
 
-      <div class="dashboard-label">
-        TOPLAM MAÇ
-      </div>
+        <div class="stat">
+            <div class="stat-number" id="matchCount">0</div>
+            <div class="stat-label">MAÇ</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-number" id="predictionCount">0</div>
+            <div class="stat-label">İŞARETLİ TAHMİN</div>
+        </div>
 
     </div>
 
 
-    <div class="dashboard-card">
+    <!-- MAÇ FORMU -->
 
-      <i class="fa-solid fa-list-check"></i>
+    <section class="panel">
 
-      <div
-        class="dashboard-number"
-        id="predictionCount">
-        0
-      </div>
+        <div class="panel-title">
 
-      <div class="dashboard-label">
-        TOPLAM TAHMİN
-      </div>
+            <h3 id="formTitle">
+                <i class="fa-solid fa-plus-circle"></i>
+                YENİ MAÇ EKLE
+            </h3>
 
-    </div>
-
-
-    <div class="dashboard-card">
-
-      <i class="fa-solid fa-eye"></i>
-
-      <div
-        class="dashboard-number"
-        id="publishedCount">
-        0
-      </div>
-
-      <div class="dashboard-label">
-        YAYINDAKİ MAÇ
-      </div>
-
-    </div>
-
-  </section>
-
-
-
-  <!-- ==================================================
-       MAÇ EKLEME / DÜZENLEME
-  ================================================== -->
-
-  <section class="panel">
-
-    <div class="panel-title">
-
-      <i class="fa-solid fa-circle-plus"></i>
-
-      <span id="formTitle">
-        Yeni Maç Ekle
-      </span>
-
-    </div>
-
-
-    <form id="matchForm">
-
-
-      <div class="form-grid">
-
-
-        <div class="form-group">
-
-          <label>
-            Lig / Kategori
-            <span>*</span>
-          </label>
-
-          <select
-            id="league"
-            class="form-control"
-            required>
-
-            <option value="">
-              Lig seçiniz
-            </option>
-
-            <option value="Süper Lig">
-              Süper Lig
-            </option>
-
-            <option value="1. Lig">
-              1. Lig
-            </option>
-
-            <option value="UEFA Şampiyonlar Ligi">
-              UEFA Şampiyonlar Ligi
-            </option>
-
-            <option value="UEFA Avrupa Ligi">
-              UEFA Avrupa Ligi
-            </option>
-
-            <option value="UEFA Konferans Ligi">
-              UEFA Konferans Ligi
-            </option>
-
-            <option value="Kupa Maçları">
-              Kupa Maçları
-            </option>
-
-          </select>
+            <div class="badge">
+                9 SABİT TAHMİN
+            </div>
 
         </div>
 
 
+        <div class="form-grid">
 
-        <div class="form-group">
+            <div class="field">
 
-          <label>
-            Maç Tarihi
-            <span>*</span>
-          </label>
+                <label>LİG / KATEGORİ</label>
 
-          <input
-            type="date"
-            id="date"
-            class="form-control"
-            required>
+                <select id="league">
 
-        </div>
+                    <option value="Süper Lig">
+                        Süper Lig
+                    </option>
 
+                    <option value="1. Lig">
+                        1. Lig
+                    </option>
 
+                    <option value="UEFA Şampiyonlar Ligi">
+                        UEFA Şampiyonlar Ligi
+                    </option>
 
-        <div class="form-group">
+                    <option value="UEFA Avrupa Ligi">
+                        UEFA Avrupa Ligi
+                    </option>
 
-          <label>
-            Maç Saati
-            <span>*</span>
-          </label>
+                    <option value="UEFA Konferans Ligi">
+                        UEFA Konferans Ligi
+                    </option>
 
-          <input
-            type="time"
-            id="time"
-            class="form-control"
-            required>
+                    <option value="Kupa Maçları">
+                        Kupa Maçları
+                    </option>
 
-        </div>
+                </select>
 
-
-
-        <div class="form-group">
-
-          <label>
-            Ev Sahibi
-            <span>*</span>
-          </label>
-
-          <input
-            type="text"
-            id="home"
-            class="form-control"
-            placeholder="Örneğin: Galatasaray"
-            required>
-
-        </div>
+            </div>
 
 
+            <div class="field">
 
-        <div class="form-group">
+                <label>TARİH</label>
 
-          <label>
-            Deplasman
-            <span>*</span>
-          </label>
+                <input
+                    type="date"
+                    id="matchDate"
+                >
 
-          <input
-            type="text"
-            id="away"
-            class="form-control"
-            placeholder="Örneğin: Fenerbahçe"
-            required>
-
-        </div>
+            </div>
 
 
+            <div class="field">
 
-        <div class="form-group full">
+                <label>SAAT</label>
 
-          <label>
-            Maç Analizi
-          </label>
+                <input
+                    type="time"
+                    id="matchTime"
+                >
 
-          <textarea
-            id="analysis"
-            class="form-control"
-            placeholder="Bu karşılaşma hakkındaki değerlendirmeyi yazın..."></textarea>
-
-        </div>
-
-      </div>
+            </div>
 
 
+            <div class="field">
 
-      <!-- ==================================================
-           9 TAHMİN
-      ================================================== -->
+                <label>EV SAHİBİ</label>
 
-      <div class="prediction-box">
+                <input
+                    type="text"
+                    id="homeTeam"
+                    placeholder="Örn: Galatasaray"
+                >
 
-        <div class="prediction-box-title">
+            </div>
 
-          <i class="fa-solid fa-list-check"></i>
 
-          9 TAHMİN SEÇENEĞİ
+            <div class="field">
+
+                <label>DEPLASMAN</label>
+
+                <input
+                    type="text"
+                    id="awayTeam"
+                    placeholder="Örn: Trabzonspor"
+                >
+
+            </div>
+
+
+            <div class="field full">
+
+                <label>MAÇ GENEL DEĞERLENDİRMESİ</label>
+
+                <textarea
+                    id="analysis"
+                    placeholder="İstersen maç hakkında kısa bir değerlendirme yaz..."
+                ></textarea>
+
+            </div>
 
         </div>
 
 
-        <div class="prediction-grid">
+        <div class="prediction-title">
+            <i class="fa-solid fa-check-double"></i>
+            TAHMİN SEÇENEKLERİ
+            <small style="color:#7890b5;font-weight:normal;">
+                — Sadece doğru gördüklerine tik koy.
+            </small>
+        </div>
 
 
-          <div class="prediction-field">
-
-            <label>
-              1. Ev Sahibi İlk Yarı Gol
-            </label>
-
-            <input
-              type="text"
-              id="prediction0"
-              placeholder="VAR / YOK">
-
-          </div>
+        <div class="predictions" id="predictionList"></div>
 
 
+        <div class="buttons">
 
-          <div class="prediction-field">
+            <button
+                class="btn btn-save"
+                onclick="saveMatch()"
+            >
+                <i class="fa-solid fa-floppy-disk"></i>
+                MAÇI KAYDET
+            </button>
 
-            <label>
-              2. Deplasman İlk Yarı Gol
-            </label>
+            <button
+                class="btn btn-clear"
+                onclick="clearForm()"
+            >
+                <i class="fa-solid fa-eraser"></i>
+                TEMİZLE
+            </button>
 
-            <input
-              type="text"
-              id="prediction1"
-              placeholder="VAR / YOK">
-
-          </div>
-
-
-
-          <div class="prediction-field">
-
-            <label>
-              3. İlk Yarı Sonucu – Ev Sahibi
-            </label>
-
-            <input
-              type="text"
-              id="prediction2"
-              placeholder="EV SAHİBİ">
-
-          </div>
-
-
-
-          <div class="prediction-field">
-
-            <label>
-              4. İlk Yarı Sonucu – Deplasman
-            </label>
-
-            <input
-              type="text"
-              id="prediction3"
-              placeholder="DEPLASMAN">
-
-          </div>
-
-
-
-          <div class="prediction-field">
-
-            <label>
-              5. 2.5 Üst Gol
-            </label>
-
-            <input
-              type="text"
-              id="prediction4"
-              placeholder="ÜST / ALT">
-
-          </div>
-
-
-
-          <div class="prediction-field">
-
-            <label>
-              6. 2.5 Üst + Karşılıklı Gol
-            </label>
-
-            <input
-              type="text"
-              id="prediction5"
-              placeholder="VAR / YOK">
-
-          </div>
-
-
-
-          <div class="prediction-field">
-
-            <label>
-              7. Maç Sonu Ev Sahibi 1.5 Üst
-            </label>
-
-            <input
-              type="text"
-              id="prediction6"
-              placeholder="VAR / YOK">
-
-          </div>
-
-
-
-          <div class="prediction-field">
-
-            <label>
-              8. Maç Sonu Deplasman 1.5 Üst
-            </label>
-
-            <input
-              type="text"
-              id="prediction7"
-              placeholder="VAR / YOK">
-
-          </div>
-
-
-
-          <div class="prediction-field">
-
-            <label>
-              9. Karşılıklı Gol – VAR
-            </label>
-
-            <input
-              type="text"
-              id="prediction8"
-              placeholder="VAR / YOK">
-
-          </div>
-
+            <button
+                class="btn btn-cancel"
+                id="cancelEdit"
+                onclick="cancelEdit()"
+            >
+                İPTAL
+            </button>
 
         </div>
 
-      </div>
+    </section>
 
 
+    <!-- MAÇLAR -->
 
-      <div class="form-actions">
+    <section class="panel">
 
-        <button
-          type="submit"
-          class="btn btn-save">
+        <div class="panel-title">
 
-          <i class="fa-solid fa-floppy-disk"></i>
+            <h3>
+                <i class="fa-solid fa-list"></i>
+                KAYITLI MAÇLAR
+            </h3>
 
-          <span id="saveButtonText">
-            MAÇI KAYDET
-          </span>
+            <div class="badge">
+                YÖNETİM
+            </div>
 
-        </button>
+        </div>
 
+        <div id="matchesContainer"></div>
 
-        <button
-          type="button"
-          id="clearButton"
-          class="btn btn-clear">
-
-          <i class="fa-solid fa-rotate-left"></i>
-
-          FORMU TEMİZLE
-
-        </button>
-
-
-        <button
-          type="button"
-          id="cancelButton"
-          class="btn btn-cancel"
-          style="display:none;">
-
-          <i class="fa-solid fa-xmark"></i>
-
-          DÜZENLEMEYİ İPTAL ET
-
-        </button>
-
-      </div>
-
-
-    </form>
-
-  </section>
-
-
-
-  <!-- ==================================================
-       KAYITLI MAÇLAR
-  ================================================== -->
-
-  <section class="panel">
-
-    <div class="matches-title">
-
-      <div>
-
-        <h2>
-          Kayıtlı Maçlar
-        </h2>
-
-        <span>
-          Eklediğiniz maçları buradan yönetebilirsiniz.
-        </span>
-
-      </div>
-
-    </div>
-
-
-    <div id="matchesContainer"></div>
-
-  </section>
-
+    </section>
 
 </main>
 
 
-
-<footer>
-
-  <strong>
-    ŞAHİN UYMAZ
-  </strong>
-
-  <div>
-    Spor Yönetim Merkezi
-  </div>
-
-</footer>
-
-
-
 <script>
 
-
-/* ==================================================
+/* =========================================================
    AYARLAR
-================================================== */
+========================================================= */
 
-const STORAGE_KEY =
-  "sahinUymazSporMaclari";
+const STORAGE_KEY = "sahinUymazSporMaclari";
 
-
-const PREDICTION_TYPES = [
-
-  "Ev Sahibi İlk Yarı Gol",
-
-  "Deplasman İlk Yarı Gol",
-
-  "İlk Yarı Sonucu – Ev Sahibi",
-
-  "İlk Yarı Sonucu – Deplasman",
-
-  "2.5 Üst Gol",
-
-  "2.5 Üst + Karşılıklı Gol",
-
-  "Maç Sonu Ev Sahibi 1.5 Üst",
-
-  "Maç Sonu Deplasman 1.5 Üst",
-
-  "Karşılıklı Gol – VAR"
-
-];
-
-
-const LEAGUE_ORDER = [
-
-  "Süper Lig",
-
-  "1. Lig",
-
-  "UEFA Şampiyonlar Ligi",
-
-  "UEFA Avrupa Ligi",
-
-  "UEFA Konferans Ligi",
-
-  "Kupa Maçları"
-
-];
-
+let matches = [];
 
 let editingId = null;
 
 
-/* ==================================================
-   ELEMENTLER
-================================================== */
+/* =========================================================
+   9 SABİT TAHMİN
+========================================================= */
 
-const form =
-  document.getElementById("matchForm");
+const predictionNames = [
 
-const notice =
-  document.getElementById("notice");
+    "Ev Sahibi İlk Yarı Gol",
 
-const matchesContainer =
-  document.getElementById("matchesContainer");
+    "Deplasman İlk Yarı Gol",
 
+    "İlk Yarı Sonucu – Ev Sahibi",
 
-/* ==================================================
-   GÜVENLİ HTML
-================================================== */
+    "İlk Yarı Sonucu – Deplasman",
 
-function escapeHTML(value){
+    "2.5 Üst Gol",
 
-  if(
-    value === null ||
-    value === undefined
-  ){
-    return "";
-  }
+    "2.5 Üst + Karşılıklı Gol",
 
-  return String(value)
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+    "Maç Sonu Ev Sahibi 1.5 Üst",
 
-}
+    "Maç Sonu Deplasman 1.5 Üst",
 
+    "Karşılıklı Gol – VAR"
 
-/* ==================================================
-   BİLDİRİM
-================================================== */
+];
 
-function showNotice(
-  message,
-  type="success"
-){
 
-  notice.textContent = message;
+/* =========================================================
+   SAYFA AÇILIŞI
+========================================================= */
 
-  notice.className =
-    "notice " + type;
+document.addEventListener("DOMContentLoaded", function(){
 
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
+    createPredictionInputs();
 
-}
+    loadMatches();
 
+    renderMatches();
 
-/* ==================================================
-   VERİ OKU
-================================================== */
+    updateStats();
 
-function getMatches(){
+});
 
-  try{
 
-    const data =
-      JSON.parse(
-        localStorage.getItem(
-          STORAGE_KEY
-        )
-      );
+/* =========================================================
+   9 CHECKBOX OLUŞTUR
+========================================================= */
 
-    if(
-      Array.isArray(data)
-    ){
-      return data;
-    }
+function createPredictionInputs(){
 
-  }catch(error){
+    const box = document.getElementById("predictionList");
 
-    console.error(error);
+    box.innerHTML = "";
 
-  }
+    predictionNames.forEach((name,index)=>{
 
-  return [];
+        const div = document.createElement("div");
 
-}
+        div.className = "prediction";
 
+        div.innerHTML = `
 
-/* ==================================================
-   VERİ KAYDET
-================================================== */
+            <div class="prediction-name">
+                ${index + 1}. ${name}
+            </div>
 
-function saveMatches(matches){
+            <div class="check-wrap">
 
-  localStorage.setItem(
-    STORAGE_KEY,
-    JSON.stringify(matches)
-  );
+                <input
+                    type="checkbox"
+                    class="prediction-checkbox"
+                    data-index="${index}"
+                >
 
-}
+            </div>
 
+        `;
 
-/* ==================================================
-   FORMU OKU
-================================================== */
+        box.appendChild(div);
 
-function getFormData(){
-
-  const predictions =
-    PREDICTION_TYPES.map(
-      (title,index) => {
-
-        return {
-
-          title:title,
-
-          value:
-            document.getElementById(
-              "prediction" + index
-            ).value.trim()
-
-        };
-
-      }
-    );
-
-
-  return {
-
-    league:
-      document
-        .getElementById("league")
-        .value,
-
-    date:
-      document
-        .getElementById("date")
-        .value,
-
-    time:
-      document
-        .getElementById("time")
-        .value,
-
-    home:
-      document
-        .getElementById("home")
-        .value.trim(),
-
-    away:
-      document
-        .getElementById("away")
-        .value.trim(),
-
-    analysis:
-      document
-        .getElementById("analysis")
-        .value.trim(),
-
-    predictions:predictions
-
-  };
-
-}
-
-
-/* ==================================================
-   FORMU TEMİZLE
-================================================== */
-
-function clearForm(){
-
-  form.reset();
-
-  editingId = null;
-
-  document.getElementById(
-    "formTitle"
-  ).textContent =
-    "Yeni Maç Ekle";
-
-  document.getElementById(
-    "saveButtonText"
-  ).textContent =
-    "MAÇI KAYDET";
-
-  document.getElementById(
-    "cancelButton"
-  ).style.display =
-    "none";
-
-}
-
-
-/* ==================================================
-   FORMU DOLDUR
-================================================== */
-
-function fillForm(match){
-
-  document.getElementById(
-    "league"
-  ).value =
-    match.league || "";
-
-  document.getElementById(
-    "date"
-  ).value =
-    match.date || "";
-
-  document.getElementById(
-    "time"
-  ).value =
-    match.time || "";
-
-  document.getElementById(
-    "home"
-  ).value =
-    match.home || "";
-
-  document.getElementById(
-    "away"
-  ).value =
-    match.away || "";
-
-  document.getElementById(
-    "analysis"
-  ).value =
-    match.analysis || "";
-
-
-  const predictions =
-    Array.isArray(match.predictions)
-      ? match.predictions
-      : [];
-
-
-  PREDICTION_TYPES.forEach(
-    (title,index) => {
-
-      const found =
-        predictions.find(
-          item =>
-            String(
-              item.title || ""
-            ).trim()
-            .toLocaleLowerCase("tr-TR")
-            ===
-            title
-              .trim()
-              .toLocaleLowerCase("tr-TR")
-        );
-
-
-      document.getElementById(
-        "prediction" + index
-      ).value =
-        found
-          ? found.value || ""
-          : "";
-
-    }
-  );
-
-
-  editingId =
-    match.id;
-
-
-  document.getElementById(
-    "formTitle"
-  ).textContent =
-    "Maçı Düzenle";
-
-
-  document.getElementById(
-    "saveButtonText"
-  ).textContent =
-    "DEĞİŞİKLİKLERİ KAYDET";
-
-
-  document.getElementById(
-    "cancelButton"
-  ).style.display =
-    "inline-block";
-
-
-  document
-    .querySelector(".panel")
-    .scrollIntoView({
-      behavior:"smooth",
-      block:"start"
     });
 
 }
 
 
-/* ==================================================
-   FORM GÖNDER
-================================================== */
+/* =========================================================
+   VERİLERİ YÜKLE
+========================================================= */
 
-form.addEventListener(
-  "submit",
-  function(event){
+function loadMatches(){
 
-    event.preventDefault();
+    try{
+
+        const saved = localStorage.getItem(STORAGE_KEY);
+
+        if(saved){
+
+            const parsed = JSON.parse(saved);
+
+            if(Array.isArray(parsed)){
+
+                matches = parsed;
+
+            }
+
+        }
+
+    }catch(error){
+
+        console.error(error);
+
+        matches = [];
+
+    }
+
+}
 
 
-    const data =
-      getFormData();
+/* =========================================================
+   KAYDET
+========================================================= */
+
+function saveMatch(){
+
+    const league =
+        document.getElementById("league").value;
+
+    const matchDate =
+        document.getElementById("matchDate").value;
+
+    const matchTime =
+        document.getElementById("matchTime").value;
+
+    const homeTeam =
+        document.getElementById("homeTeam").value.trim();
+
+    const awayTeam =
+        document.getElementById("awayTeam").value.trim();
+
+    const analysis =
+        document.getElementById("analysis").value.trim();
 
 
-    if(
-      !data.league ||
-      !data.date ||
-      !data.time ||
-      !data.home ||
-      !data.away
-    ){
+    if(!homeTeam || !awayTeam){
 
-      showNotice(
-        "Lütfen zorunlu alanların tamamını doldurun.",
-        "error"
-      );
+        alert("Lütfen ev sahibi ve deplasman takımını yaz.");
 
-      return;
+        return;
 
     }
 
 
-    let matches =
-      getMatches();
+    /* 9 CHECKBOX DURUMUNU AL */
+
+    const checkboxes =
+        document.querySelectorAll(".prediction-checkbox");
 
 
-    if(editingId){
+    const predictions =
+        predictionNames.map((name,index)=>({
 
-      const index =
-        matches.findIndex(
-          match =>
-            match.id === editingId
-        );
+            title:name,
+
+            checked:checkboxes[index].checked
+
+        }));
 
 
-      if(index !== -1){
+    /* DÜZENLEME */
 
-        matches[index] = {
+    if(editingId !== null){
 
-          ...matches[index],
+        const index =
+            matches.findIndex(m => m.id === editingId);
 
-          ...data,
+        if(index !== -1){
 
-          predictions:
-            data.predictions
+            matches[index].league = league;
+
+            matches[index].date = matchDate;
+
+            matches[index].time = matchTime;
+
+            matches[index].home = homeTeam;
+
+            matches[index].away = awayTeam;
+
+            matches[index].analysis = analysis;
+
+            matches[index].predictions = predictions;
+
+        }
+
+    }
+
+    /* YENİ MAÇ */
+
+    else{
+
+        const newMatch = {
+
+            id:Date.now(),
+
+            league:league,
+
+            date:matchDate,
+
+            time:matchTime,
+
+            home:homeTeam,
+
+            away:awayTeam,
+
+            analysis:analysis,
+
+            predictions:predictions,
+
+            published:true
 
         };
 
-      }
-
-
-      showNotice(
-        "Maç başarıyla güncellendi."
-      );
-
-    }else{
-
-      const newMatch = {
-
-        id:
-          "spor-" +
-          Date.now() +
-          "-" +
-          Math.random()
-            .toString(36)
-            .substring(2,8),
-
-        ...data,
-
-        published:true,
-
-        createdAt:
-          new Date().toISOString()
-
-      };
-
-
-      matches.push(
-        newMatch
-      );
-
-
-      showNotice(
-        "Yeni maç başarıyla eklendi."
-      );
+        matches.push(newMatch);
 
     }
 
 
-    saveMatches(matches);
+    localStorage.setItem(
+
+        STORAGE_KEY,
+
+        JSON.stringify(matches)
+
+    );
+
+
+    alert("Maç başarıyla kaydedildi.");
+
 
     clearForm();
 
     renderMatches();
 
-  }
-);
-
-
-/* ==================================================
-   TEMİZLE
-================================================== */
-
-document
-  .getElementById("clearButton")
-  .addEventListener(
-    "click",
-    function(){
-
-      clearForm();
-
-      showNotice(
-        "Form temizlendi."
-      );
-
-    }
-  );
-
-
-/* ==================================================
-   İPTAL
-================================================== */
-
-document
-  .getElementById("cancelButton")
-  .addEventListener(
-    "click",
-    function(){
-
-      clearForm();
-
-    }
-  );
-
-
-/* ==================================================
-   TARİH
-================================================== */
-
-function formatDate(date){
-
-  if(!date){
-    return "Tarih yok";
-  }
-
-  const d =
-    new Date(
-      date + "T00:00:00"
-    );
-
-  if(isNaN(d.getTime())){
-    return date;
-  }
-
-  return d.toLocaleDateString(
-    "tr-TR",
-    {
-      day:"2-digit",
-      month:"long",
-      year:"numeric"
-    }
-  );
+    updateStats();
 
 }
 
 
-/* ==================================================
-   MAÇLARI GRUPLA
-================================================== */
+/* =========================================================
+   FORM TEMİZLE
+========================================================= */
 
-function groupMatches(matches){
+function clearForm(){
 
-  const groups = {};
+    document.getElementById("league").value =
+        "Süper Lig";
 
+    document.getElementById("matchDate").value =
+        "";
 
-  matches.forEach(
-    match => {
+    document.getElementById("matchTime").value =
+        "";
 
-      const league =
-        match.league ||
-        "Diğer";
+    document.getElementById("homeTeam").value =
+        "";
 
+    document.getElementById("awayTeam").value =
+        "";
 
-      if(!groups[league]){
-        groups[league] = [];
-      }
-
-
-      groups[league].push(
-        match
-      );
-
-    }
-  );
+    document.getElementById("analysis").value =
+        "";
 
 
-  return groups;
+    document
+        .querySelectorAll(".prediction-checkbox")
+        .forEach(cb => cb.checked = false);
+
+
+    editingId = null;
+
+
+    document.getElementById("formTitle").innerHTML = `
+        <i class="fa-solid fa-plus-circle"></i>
+        YENİ MAÇ EKLE
+    `;
+
+
+    document.getElementById("cancelEdit").style.display =
+        "none";
 
 }
 
 
-/* ==================================================
-   MAÇ SATIRI
-================================================== */
+/* =========================================================
+   DÜZENLE
+========================================================= */
 
-function createMatchRow(match){
+function editMatch(id){
 
-  const published =
-    match.published !== false;
+    const match =
+        matches.find(m => m.id === id);
 
-
-  const predictions =
-    Array.isArray(match.predictions)
-      ? match.predictions.length
-      : 0;
+    if(!match) return;
 
 
-  return `
-
-    <div class="match-row">
+    editingId = id;
 
 
-      <div class="match-main">
+    document.getElementById("league").value =
+        match.league || "Süper Lig";
 
-        <div class="match-teams">
+    document.getElementById("matchDate").value =
+        match.date || "";
 
-          ${escapeHTML(
-            match.home || "Ev Sahibi"
-          )}
+    document.getElementById("matchTime").value =
+        match.time || "";
 
-         
+    document.getElementById("homeTeam").value =
+        match.home || "";
 
-          <span style="color:#94a3b8;">
-            VS
-          </span>
+    document.getElementById("awayTeam").value =
+        match.away || "";
 
-         
-
-          ${escapeHTML(
-            match.away || "Deplasman"
-          )}
-
-        </div>
+    document.getElementById("analysis").value =
+        match.analysis || "";
 
 
-        <div class="match-meta">
+    /* TÜM CHECKBOX'LARI SIFIRLA */
 
-          <span class="meta">
-
-            <i class="fa-regular fa-calendar"></i>
-
-            ${escapeHTML(
-              formatDate(match.date)
-            )}
-
-          </span>
+    document
+        .querySelectorAll(".prediction-checkbox")
+        .forEach(cb => cb.checked = false);
 
 
-          <span class="meta">
+    /* ESKİ VERİYİ OKU */
 
-            <i class="fa-regular fa-clock"></i>
+    if(Array.isArray(match.predictions)){
 
-            ${escapeHTML(
-              match.time || "--:--"
-            )}
+        match.predictions.forEach((p,index)=>{
 
-          </span>
+            const checkbox =
+                document.querySelector(
+                    `.prediction-checkbox[data-index="${index}"]`
+                );
 
-
-          <span class="meta">
-
-            <i class="fa-solid fa-list-check"></i>
-
-            ${predictions} tahmin
-
-          </span>
+            if(!checkbox) return;
 
 
-          <span
-            class="meta ${
-              published
-                ? "published"
-                : "unpublished"
-            }">
+            /*
+             * Yeni sistem:
+             * checked:true
+             */
 
-            <i class="fa-solid ${
-              published
-                ? "fa-eye"
-                : "fa-eye-slash"
-            }"></i>
+            if(p.checked === true){
 
-            ${
-              published
-                ? "YAYINDA"
-                : "YAYINDA DEĞİL"
+                checkbox.checked = true;
+
             }
 
-          </span>
+            /*
+             * Eski sistemde value varsa,
+             * boş olmayan değerleri de işaretli kabul et.
+             */
 
-        </div>
+            else if(
+                p.value &&
+                String(p.value).trim() !== ""
+            ){
 
-      </div>
+                checkbox.checked = true;
 
+            }
 
+        });
 
-      <div class="match-analysis">
-
-        ${
-          escapeHTML(
-            match.analysis ||
-            "Bu maç için analiz girilmemiş."
-          )
-        }
-
-      </div>
-
+    }
 
 
-      <div class="row-actions">
+    document.getElementById("formTitle").innerHTML = `
+        <i class="fa-solid fa-pen"></i>
+        MAÇI DÜZENLE
+    `;
 
 
-        <button
-          class="action edit"
-          onclick="editMatch('${match.id}')">
-
-          <i class="fa-solid fa-pen"></i>
-
-          Düzenle
-
-        </button>
+    document.getElementById("cancelEdit").style.display =
+        "inline-block";
 
 
-        <button
-          class="action ${
-            published
-              ? "unpublish"
-              : "publish"
-          }"
-          onclick="togglePublish('${match.id}')">
+    window.scrollTo({
 
-          <i class="fa-solid ${
-            published
-              ? "fa-eye-slash"
-              : "fa-eye"
-          }"></i>
+        top:0,
 
-          ${
-            published
-              ? "Yayından Kaldır"
-              : "Yayınla"
-          }
+        behavior:"smooth"
 
-        </button>
-
-
-        <button
-          class="action delete"
-          onclick="deleteMatch('${match.id}')">
-
-          <i class="fa-solid fa-trash"></i>
-
-          Sil
-
-        </button>
-
-
-      </div>
-
-
-    </div>
-
-  `;
+    });
 
 }
 
 
-/* ==================================================
+/* =========================================================
+   DÜZENLEME İPTAL
+========================================================= */
+
+function cancelEdit(){
+
+    clearForm();
+
+}
+
+
+/* =========================================================
+   MAÇ SİL
+========================================================= */
+
+function deleteMatch(id){
+
+    const match =
+        matches.find(m => m.id === id);
+
+    if(!match) return;
+
+
+    const ok =
+        confirm(
+            `${match.home} - ${match.away} maçını silmek istiyor musun?`
+        );
+
+
+    if(!ok) return;
+
+
+    matches =
+        matches.filter(m => m.id !== id);
+
+
+    localStorage.setItem(
+
+        STORAGE_KEY,
+
+        JSON.stringify(matches)
+
+    );
+
+
+    renderMatches();
+
+    updateStats();
+
+}
+
+
+/* =========================================================
+   YAYINLA / GİZLE
+========================================================= */
+
+function togglePublish(id){
+
+    const match =
+        matches.find(m => m.id === id);
+
+    if(!match) return;
+
+
+    match.published =
+        match.published === false;
+
+
+    localStorage.setItem(
+
+        STORAGE_KEY,
+
+        JSON.stringify(matches)
+
+    );
+
+
+    renderMatches();
+
+}
+
+
+/* =========================================================
+   LİG RENGİ
+========================================================= */
+
+function getLeagueClass(league){
+
+    if(league === "Süper Lig")
+        return "super";
+
+    if(league === "1. Lig")
+        return "one";
+
+    if(league === "UEFA Şampiyonlar Ligi")
+        return "champions";
+
+    if(league === "UEFA Avrupa Ligi")
+        return "europa";
+
+    if(league === "UEFA Konferans Ligi")
+        return "conference";
+
+    return "cup";
+
+}
+
+
+/* =========================================================
+   LİG İKONU
+========================================================= */
+
+function getLeagueIcon(league){
+
+    if(league === "Süper Lig")
+        return "🏆";
+
+    if(league === "1. Lig")
+        return "⚽";
+
+    if(league === "UEFA Şampiyonlar Ligi")
+        return "⭐";
+
+    if(league === "UEFA Avrupa Ligi")
+        return "🌟";
+
+    if(league === "UEFA Konferans Ligi")
+        return "🔥";
+
+    return "🥇";
+
+}
+
+
+/* =========================================================
    MAÇLARI GÖSTER
-================================================== */
+========================================================= */
 
 function renderMatches(){
 
-  const matches =
-    getMatches();
+    const container =
+        document.getElementById("matchesContainer");
 
 
-  updateDashboard(
-    matches
-  );
+    if(!matches.length){
+
+        container.innerHTML = `
+
+            <div class="empty">
+
+                <i
+                    class="fa-solid fa-futbol"
+                    style="font-size:40px;margin-bottom:12px;"
+                ></i>
+
+                <br>
+
+                Henüz maç eklenmedi.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
 
 
-  if(matches.length === 0){
+    const leagueOrder = [
 
-    matchesContainer.innerHTML = `
+        "Süper Lig",
 
-      <div class="empty">
+        "1. Lig",
 
-        <i class="fa-solid fa-futbol"></i>
+        "UEFA Şampiyonlar Ligi",
 
-        <h3>
-          Henüz kayıtlı maç bulunmuyor.
-        </h3>
+        "UEFA Avrupa Ligi",
 
-        <p>
-          Yukarıdaki formu kullanarak ilk maçı ekleyebilirsiniz.
-        </p>
+        "UEFA Konferans Ligi",
 
-      </div>
+        "Kupa Maçları"
 
-    `;
-
-    return;
-
-  }
+    ];
 
 
-  const groups =
-    groupMatches(matches);
+    let html = "";
 
 
-  let leagues =
-    LEAGUE_ORDER.filter(
-      league =>
-        groups[league]
-    );
+    leagueOrder.forEach(league=>{
+
+        const leagueMatches =
+            matches.filter(m => m.league === league);
 
 
-  Object.keys(groups)
-    .forEach(
-      league => {
+        if(!leagueMatches.length) return;
 
-        if(!leagues.includes(league)){
 
-          leagues.push(
-            league
-          );
+        html += `
+
+            <div class="league-section">
+
+                <div class="league-header ${getLeagueClass(league)}">
+
+                    <span>
+                        ${getLeagueIcon(league)}
+                    </span>
+
+                    ${league}
+
+                    <span style="
+                        margin-left:auto;
+                        font-size:12px;
+                        opacity:.85;
+                    ">
+                        ${leagueMatches.length} MAÇ
+                    </span>
+
+                </div>
+
+        `;
+
+
+        leagueMatches.forEach(match=>{
+
+            html += createMatchCard(match);
+
+        });
+
+
+        html += `</div>`;
+
+    });
+
+
+    container.innerHTML = html;
+
+}
+
+
+/* =========================================================
+   MAÇ KARTI
+========================================================= */
+
+function createMatchCard(match){
+
+    let dateText = "";
+
+    if(match.date){
+
+        const parts =
+            match.date.split("-");
+
+        if(parts.length === 3){
+
+            dateText =
+                `${parts[2]}.${parts[1]}.${parts[0]}`;
 
         }
 
-      }
-    );
+    }
 
 
-  matchesContainer.innerHTML =
-    leagues.map(
-      league => {
+    if(match.time){
 
-        const leagueMatches =
-          groups[league];
+        dateText +=
+            ` • ${match.time}`;
 
-
-        return `
-
-          <div class="league-block">
+    }
 
 
-            <div class="league-header">
-
-              <h3>
-
-                <i class="fa-solid fa-trophy"></i>
-
-                ${escapeHTML(league)}
-
-              </h3>
+    let predictionHtml = "";
 
 
-              <span>
+    predictionNames.forEach((name,index)=>{
 
-                ${leagueMatches.length}
-                MAÇ
+        let checked = false;
 
-              </span>
+
+        if(Array.isArray(match.predictions)){
+
+            const p =
+                match.predictions[index];
+
+
+            if(p){
+
+                if(p.checked === true){
+
+                    checked = true;
+
+                }
+
+                else if(
+                    p.value &&
+                    String(p.value).trim() !== ""
+                ){
+
+                    checked = true;
+
+                }
+
+            }
+
+        }
+
+
+        predictionHtml += `
+
+            <div class="mini-prediction">
+
+                <span>
+                    ${name}
+                </span>
+
+                <span class="
+                    mini-check
+                    ${checked ? "checked" : "unchecked"}
+                ">
+                    ${checked ? "☑" : "☐"}
+                </span>
+
+            </div>
+
+        `;
+
+    });
+
+
+    return `
+
+        <div class="match-card">
+
+            <div class="match-top">
+
+                <div>
+
+                    <div class="teams">
+
+                        ${escapeHtml(match.home)}
+
+                        <span style="
+                            color:#64748b;
+                            margin:0 5px;
+                        ">
+                            VS
+                        </span>
+
+                        ${escapeHtml(match.away)}
+
+                    </div>
+
+                    <div class="match-date">
+
+                        ${dateText || "Tarih belirtilmedi"}
+
+                    </div>
+
+                </div>
+
+
+                <div class="match-status">
+
+                    ${
+                        match.published === false
+                        ? "GİZLİ"
+                        : "YAYINDA"
+                    }
+
+                </div>
 
             </div>
 
 
-            ${leagueMatches
-              .map(createMatchRow)
-              .join("")}
+            <div class="match-predictions">
+
+                ${predictionHtml}
+
+            </div>
 
 
-          </div>
+            <div class="match-actions">
 
-        `;
+                <button
+                    class="action edit"
+                    onclick="editMatch(${match.id})"
+                >
+                    <i class="fa-solid fa-pen"></i>
+                    DÜZENLE
+                </button>
 
-      }
-    ).join("");
+
+                <button
+                    class="action publish"
+                    onclick="togglePublish(${match.id})"
+                >
+
+                    <i class="fa-solid fa-eye"></i>
+
+                    ${
+                        match.published === false
+                        ? "YAYINLA"
+                        : "GİZLE"
+                    }
+
+                </button>
+
+
+                <button
+                    class="action delete"
+                    onclick="deleteMatch(${match.id})"
+                >
+
+                    <i class="fa-solid fa-trash"></i>
+                    SİL
+
+                </button>
+
+            </div>
+
+        </div>
+
+    `;
 
 }
 
 
-/* ==================================================
+/* =========================================================
    İSTATİSTİKLER
-================================================== */
+========================================================= */
 
-function updateDashboard(
-  matches
-){
+function updateStats(){
 
-  const leagues =
-    new Set(
-      matches.map(
-        match =>
-          match.league
-      )
-    );
+    const leagues =
+        new Set(
+            matches.map(m => m.league)
+        );
 
 
-  const published =
-    matches.filter(
-      match =>
-        match.published !== false
-    );
+    let checkedCount = 0;
 
 
-  document.getElementById(
-    "leagueCount"
-  ).textContent =
-    leagues.size;
+    matches.forEach(match=>{
+
+        if(!Array.isArray(match.predictions))
+            return;
 
 
-  document.getElementById(
-    "matchCount"
-  ).textContent =
-    matches.length;
+        match.predictions.forEach(p=>{
+
+            if(
+                p.checked === true ||
+                (
+                    p.value &&
+                    String(p.value).trim() !== ""
+                )
+            ){
+
+                checkedCount++;
+
+            }
+
+        });
+
+    });
 
 
-  document.getElementById(
-    "predictionCount"
-  ).textContent =
-    matches.length *
-    PREDICTION_TYPES.length;
+    document.getElementById("leagueCount").textContent =
+        leagues.size;
 
 
-  document.getElementById(
-    "publishedCount"
-  ).textContent =
-    published.length;
-
-}
+    document.getElementById("matchCount").textContent =
+        matches.length;
 
 
-/* ==================================================
-   DÜZENLE
-================================================== */
-
-function editMatch(id){
-
-  const matches =
-    getMatches();
-
-
-  const match =
-    matches.find(
-      item =>
-        item.id === id
-    );
-
-
-  if(!match){
-
-    showNotice(
-      "Maç bulunamadı.",
-      "error"
-    );
-
-    return;
-
-  }
-
-
-  fillForm(match);
+    document.getElementById("predictionCount").textContent =
+        checkedCount;
 
 }
 
 
-/* ==================================================
-   YAYIN DURUMU
-================================================== */
+/* =========================================================
+   GÜVENLİ METİN
+========================================================= */
 
-function togglePublish(id){
+function escapeHtml(text){
 
-  const matches =
-    getMatches();
+    if(text === undefined || text === null)
+        return "";
 
+    return String(text)
 
-  const index =
-    matches.findIndex(
-      match =>
-        match.id === id
-    );
+        .replace(/&/g,"&amp;")
 
+        .replace(/</g,"&lt;")
 
-  if(index === -1){
-    return;
-  }
+        .replace(/>/g,"&gt;")
 
+        .replace(/"/g,"&quot;")
 
-  matches[index].published =
-    matches[index].published === false;
-
-
-  saveMatches(matches);
-
-  renderMatches();
-
-
-  showNotice(
-    matches[index].published
-      ? "Maç yayınlandı."
-      : "Maç yayından kaldırıldı."
-  );
+        .replace(/'/g,"&#039;");
 
 }
-
-
-/* ==================================================
-   SİL
-================================================== */
-
-function deleteMatch(id){
-
-  const matches =
-    getMatches();
-
-
-  const match =
-    matches.find(
-      item =>
-        item.id === id
-    );
-
-
-  if(!match){
-    return;
-  }
-
-
-  const confirmed =
-    confirm(
-      match.home +
-      " - " +
-      match.away +
-      " maçını silmek istediğinizden emin misiniz?"
-    );
-
-
-  if(!confirmed){
-    return;
-  }
-
-
-  const filtered =
-    matches.filter(
-      item =>
-        item.id !== id
-    );
-
-
-  saveMatches(
-    filtered
-  );
-
-
-  renderMatches();
-
-
-  showNotice(
-    "Maç başarıyla silindi."
-  );
-
-}
-
-
-/* ==================================================
-   SAYFA BAŞLANGICI
-================================================== */
-
-renderMatches();
-
-
-/* ==================================================
-   BAŞKA SEKMEDE DEĞİŞİKLİK OLURSA
-================================================== */
-
-window.addEventListener(
-  "storage",
-  function(event){
-
-    if(
-      event.key === STORAGE_KEY
-    ){
-
-      renderMatches();
-
-    }
-
-  }
-);
 
 </script>
 
