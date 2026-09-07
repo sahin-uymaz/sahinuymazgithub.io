@@ -1,1 +1,1452 @@
-.
+```html
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Şahin Uymaz | Spor Yönetim Paneli</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f1f5f9;
+      color: #172033;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #071a3d, #123d82);
+      color: white;
+    }
+
+    .brand {
+      letter-spacing: 1px;
+    }
+
+    .admin-card {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(15, 23, 42, .08);
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 20px;
+      font-weight: 900;
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 800;
+      color: #475569;
+      margin-bottom: 7px;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      box-sizing: border-box;
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+      padding: 12px 13px;
+      outline: none;
+      background: white;
+      transition: .2s;
+      font-family: inherit;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, .12);
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .prediction-box {
+      border: 1px solid #e2e8f0;
+      background: #f8fafc;
+      border-radius: 16px;
+      padding: 16px;
+    }
+
+    .prediction-number {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: #2563eb;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 12px;
+      padding: 12px 18px;
+      font-weight: 900;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: #2563eb;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #1d4ed8;
+    }
+
+    .btn-success {
+      background: #16a34a;
+      color: white;
+    }
+
+    .btn-danger {
+      background: #dc2626;
+      color: white;
+    }
+
+    .btn-gray {
+      background: #e2e8f0;
+      color: #334155;
+    }
+
+    .match-item {
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      background: white;
+      padding: 16px;
+    }
+
+    .status-published {
+      color: #15803d;
+      background: #dcfce7;
+    }
+
+    .status-draft {
+      color: #92400e;
+      background: #fef3c7;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 9px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .danger-zone {
+      border: 1px solid #fecaca;
+      background: #fef2f2;
+      border-radius: 16px;
+    }
+
+    @media (max-width: 640px) {
+
+      .action-buttons {
+        flex-direction: column;
+      }
+
+      .action-buttons .btn {
+        width: 100%;
+      }
+
+    }
+  </style>
+</head>
+
+<body>
+
+
+<header class="header">
+
+  <div class="max-w-6xl mx-auto px-4 py-6">
+
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+
+      <div>
+
+        <div class="brand text-2xl md:text-3xl font-black">
+          ŞAHİN UYMAZ
+        </div>
+
+        <div class="text-blue-100 mt-1">
+          Spor Yönetim Paneli
+        </div>
+
+      </div>
+
+
+      <a href="spor.html"
+         class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-white text-blue-800 font-black hover:bg-blue-50">
+
+        <i class="fa-solid fa-futbol"></i>
+
+        Spor Sayfasını Gör
+
+      </a>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+
+<main class="max-w-6xl mx-auto px-4 py-8">
+
+
+  <!-- MAÇ EKLEME -->
+
+  <section class="admin-card p-5 md:p-7">
+
+    <div class="section-title text-blue-700">
+
+      <i class="fa-solid fa-plus-circle"></i>
+
+      Yeni Maç Ekle
+
+    </div>
+
+
+    <form id="matchForm">
+
+
+      <!-- TEMEL BİLGİLER -->
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+
+        <div>
+
+          <label for="league">
+            Lig / Organizasyon
+          </label>
+
+          <input
+            id="league"
+            type="text"
+            placeholder="Örn: Süper Lig"
+            required
+          >
+
+        </div>
+
+
+        <div>
+
+          <label for="date">
+            Tarih
+          </label>
+
+          <input
+            id="date"
+            type="date"
+            required
+          >
+
+        </div>
+
+
+        <div>
+
+          <label for="time">
+            Maç Saati
+          </label>
+
+          <input
+            id="time"
+            type="time"
+            required
+          >
+
+        </div>
+
+
+        <div>
+
+          <label for="home">
+            Ev Sahibi
+          </label>
+
+          <input
+            id="home"
+            type="text"
+            placeholder="Ev sahibi takım"
+            required
+          >
+
+        </div>
+
+
+        <div>
+
+          <label for="away">
+            Deplasman
+          </label>
+
+          <input
+            id="away"
+            type="text"
+            placeholder="Deplasman takımı"
+            required
+          >
+
+        </div>
+
+      </div>
+
+
+
+      <!-- ANALİZ -->
+
+      <div class="mt-6">
+
+        <div class="section-title text-purple-700">
+
+          <i class="fa-solid fa-magnifying-glass-chart"></i>
+
+          Maç Analizi
+
+        </div>
+
+
+        <textarea
+          id="analysis"
+          placeholder="Maç hakkındaki değerlendirmeyi buraya yaz..."
+        ></textarea>
+
+      </div>
+
+
+
+      <!-- 5 TAHMİN -->
+
+      <div class="mt-8">
+
+        <div class="section-title text-orange-600">
+
+          <i class="fa-solid fa-bullseye"></i>
+
+          Şahin Uymaz Tahminleri
+
+        </div>
+
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+
+          <!-- TAHMİN 1 -->
+
+          <div class="prediction-box">
+
+            <div class="flex items-center gap-3 mb-4">
+
+              <div class="prediction-number">
+                1
+              </div>
+
+              <div>
+
+                <div class="font-black">
+                  Birinci Tahmin
+                </div>
+
+                <div class="text-xs text-slate-500">
+                  Örn: Maç Sonucu
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+
+              <input
+                id="predictionTitle1"
+                type="text"
+                placeholder="Tahmin başlığı"
+              >
+
+              <input
+                id="predictionValue1"
+                type="text"
+                placeholder="Tahmin sonucu"
+              >
+
+            </div>
+
+          </div>
+
+
+
+          <!-- TAHMİN 2 -->
+
+          <div class="prediction-box">
+
+            <div class="flex items-center gap-3 mb-4">
+
+              <div class="prediction-number">
+                2
+              </div>
+
+              <div>
+
+                <div class="font-black">
+                  İkinci Tahmin
+                </div>
+
+                <div class="text-xs text-slate-500">
+                  Örn: İlk Yarı
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+
+              <input
+                id="predictionTitle2"
+                type="text"
+                placeholder="Tahmin başlığı"
+              >
+
+              <input
+                id="predictionValue2"
+                type="text"
+                placeholder="Tahmin sonucu"
+              >
+
+            </div>
+
+          </div>
+
+
+
+          <!-- TAHMİN 3 -->
+
+          <div class="prediction-box">
+
+            <div class="flex items-center gap-3 mb-4">
+
+              <div class="prediction-number">
+                3
+              </div>
+
+              <div>
+
+                <div class="font-black">
+                  Üçüncü Tahmin
+                </div>
+
+                <div class="text-xs text-slate-500">
+                  Örn: Toplam Gol
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+
+              <input
+                id="predictionTitle3"
+                type="text"
+                placeholder="Tahmin başlığı"
+              >
+
+              <input
+                id="predictionValue3"
+                type="text"
+                placeholder="Tahmin sonucu"
+              >
+
+            </div>
+
+          </div>
+
+
+
+          <!-- TAHMİN 4 -->
+
+          <div class="prediction-box">
+
+            <div class="flex items-center gap-3 mb-4">
+
+              <div class="prediction-number">
+                4
+              </div>
+
+              <div>
+
+                <div class="font-black">
+                  Dördüncü Tahmin
+                </div>
+
+                <div class="text-xs text-slate-500">
+                  Örn: Karşılıklı Gol
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+
+              <input
+                id="predictionTitle4"
+                type="text"
+                placeholder="Tahmin başlığı"
+              >
+
+              <input
+                id="predictionValue4"
+                type="text"
+                placeholder="Tahmin sonucu"
+              >
+
+            </div>
+
+          </div>
+
+
+
+          <!-- TAHMİN 5 -->
+
+          <div class="prediction-box md:col-span-2">
+
+            <div class="flex items-center gap-3 mb-4">
+
+              <div class="prediction-number">
+                5
+              </div>
+
+              <div>
+
+                <div class="font-black">
+                  Beşinci Tahmin
+                </div>
+
+                <div class="text-xs text-slate-500">
+                  Örn: İlk Gol
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+
+              <input
+                id="predictionTitle5"
+                type="text"
+                placeholder="Tahmin başlığı"
+              >
+
+              <input
+                id="predictionValue5"
+                type="text"
+                placeholder="Tahmin sonucu"
+              >
+
+            </div>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+
+
+      <!-- BUTONLAR -->
+
+      <div class="action-buttons flex flex-col sm:flex-row gap-3 mt-8">
+
+        <button
+          type="submit"
+          class="btn btn-success flex-1"
+        >
+
+          <i class="fa-solid fa-cloud-arrow-up"></i>
+
+          MAÇI KAYDET VE YAYINLA
+
+        </button>
+
+
+        <button
+          type="button"
+          onclick="saveDraft()"
+          class="btn btn-gray flex-1"
+        >
+
+          <i class="fa-solid fa-file"></i>
+
+          TASLAK OLARAK KAYDET
+
+        </button>
+
+
+        <button
+          type="button"
+          onclick="resetForm()"
+          class="btn btn-danger"
+        >
+
+          <i class="fa-solid fa-rotate-left"></i>
+
+          TEMİZLE
+
+        </button>
+
+      </div>
+
+
+    </form>
+
+  </section>
+
+
+
+  <!-- KAYITLI MAÇLAR -->
+
+  <section class="admin-card p-5 md:p-7 mt-8">
+
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-5">
+
+      <div class="section-title text-blue-700 mb-0">
+
+        <i class="fa-solid fa-list"></i>
+
+        Kayıtlı Maçlar
+
+      </div>
+
+
+      <div
+        id="matchCount"
+        class="text-sm font-black text-slate-500"
+      >
+        0 maç
+      </div>
+
+    </div>
+
+
+    <div
+      id="matchList"
+      class="space-y-4"
+    ></div>
+
+  </section>
+
+
+
+  <!-- DİKKAT -->
+
+  <section class="danger-zone p-5 mt-8">
+
+    <div class="flex gap-3">
+
+      <div class="text-red-600 text-xl">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+      </div>
+
+      <div>
+
+        <div class="font-black text-red-800">
+          Yönetim Notu
+        </div>
+
+        <div class="text-sm text-red-700 mt-1">
+
+          Bu panel şu anda kayıtları tarayıcının
+          <strong>localStorage</strong> alanında tutmaktadır.
+
+          Farklı bilgisayar ve cihazlardan ortak veri kullanmak
+          için daha sonra Firebase / Firestore bağlantısı yapılmalıdır.
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+</main>
+
+
+
+<script>
+
+
+const STORAGE_KEY = "sahinUymazSporMaclari";
+
+
+let editingId = null;
+
+
+
+/*
+============================================================
+GÜVENLİ HTML
+============================================================
+*/
+
+function escapeHTML(value) {
+
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+
+}
+
+
+
+/*
+============================================================
+MAÇLARI OKU
+============================================================
+*/
+
+function getMatches() {
+
+  try {
+
+    const saved =
+      localStorage.getItem(STORAGE_KEY);
+
+    if (!saved) {
+      return [];
+    }
+
+    const matches =
+      JSON.parse(saved);
+
+    return Array.isArray(matches)
+      ? matches
+      : [];
+
+  } catch (error) {
+
+    console.error(error);
+
+    return [];
+
+  }
+
+}
+
+
+
+/*
+============================================================
+MAÇLARI KAYDET
+============================================================
+*/
+
+function saveMatches(matches) {
+
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(matches)
+  );
+
+}
+
+
+
+/*
+============================================================
+FORMDAN VERİ AL
+============================================================
+*/
+
+function getFormData(published) {
+
+
+  const predictions = [];
+
+
+  for (let i = 1; i <= 5; i++) {
+
+    const title =
+      document.getElementById(
+        `predictionTitle${i}`
+      ).value.trim();
+
+
+    const value =
+      document.getElementById(
+        `predictionValue${i}`
+      ).value.trim();
+
+
+    if (title || value) {
+
+      predictions.push({
+
+        title: title || `Tahmin ${i}`,
+
+        value: value || "-"
+
+      });
+
+    }
+
+  }
+
+
+  return {
+
+    id:
+      editingId ??
+      Date.now(),
+
+    league:
+      document.getElementById("league")
+        .value.trim(),
+
+    date:
+      document.getElementById("date")
+        .value,
+
+    time:
+      document.getElementById("time")
+        .value,
+
+    home:
+      document.getElementById("home")
+        .value.trim(),
+
+    away:
+      document.getElementById("away")
+        .value.trim(),
+
+    analysis:
+      document.getElementById("analysis")
+        .value.trim(),
+
+    predictions,
+
+    published,
+
+    updatedAt:
+      new Date().toISOString()
+
+  };
+
+}
+
+
+
+/*
+============================================================
+YAYINLA
+============================================================
+*/
+
+document
+  .getElementById("matchForm")
+  .addEventListener(
+    "submit",
+    function(event) {
+
+      event.preventDefault();
+
+      saveMatch(true);
+
+    }
+  );
+
+
+
+function saveMatch(published) {
+
+
+  const data =
+    getFormData(published);
+
+
+  if (
+    !data.league ||
+    !data.date ||
+    !data.time ||
+    !data.home ||
+    !data.away
+  ) {
+
+    alert(
+      "Lütfen lig, tarih, saat, ev sahibi ve deplasman bilgilerini doldurun."
+    );
+
+    return;
+
+  }
+
+
+  const matches =
+    getMatches();
+
+
+  const existingIndex =
+    matches.findIndex(
+      match =>
+        Number(match.id) ===
+        Number(data.id)
+    );
+
+
+  if (existingIndex >= 0) {
+
+    matches[existingIndex] =
+      data;
+
+  } else {
+
+    matches.unshift(data);
+
+  }
+
+
+  saveMatches(matches);
+
+
+  alert(
+    published
+      ? "Maç başarıyla yayınlandı."
+      : "Maç taslak olarak kaydedildi."
+  );
+
+
+  resetForm();
+
+  renderMatches();
+
+}
+
+
+
+/*
+============================================================
+TASLAK
+============================================================
+*/
+
+function saveDraft() {
+
+  saveMatch(false);
+
+}
+
+
+
+/*
+============================================================
+FORMU TEMİZLE
+============================================================
+*/
+
+function resetForm() {
+
+  document
+    .getElementById("matchForm")
+    .reset();
+
+
+  editingId = null;
+
+
+  document
+    .querySelector(
+      'button[type="submit"]'
+    )
+    .innerHTML = `
+
+      <i class="fa-solid fa-cloud-arrow-up"></i>
+
+      MAÇI KAYDET VE YAYINLA
+
+    `;
+
+}
+
+
+
+/*
+============================================================
+DÜZENLE
+============================================================
+*/
+
+function editMatch(id) {
+
+
+  const matches =
+    getMatches();
+
+
+  const match =
+    matches.find(
+      item =>
+        Number(item.id) ===
+        Number(id)
+    );
+
+
+  if (!match) return;
+
+
+  editingId =
+    match.id;
+
+
+  document.getElementById("league").value =
+    match.league || "";
+
+
+  document.getElementById("date").value =
+    match.date || "";
+
+
+  document.getElementById("time").value =
+    match.time || "";
+
+
+  document.getElementById("home").value =
+    match.home || "";
+
+
+  document.getElementById("away").value =
+    match.away || "";
+
+
+  document.getElementById("analysis").value =
+    match.analysis || "";
+
+
+  for (let i = 1; i <= 5; i++) {
+
+    const prediction =
+      Array.isArray(match.predictions)
+        ? match.predictions[i - 1]
+        : null;
+
+
+    document.getElementById(
+      `predictionTitle${i}`
+    ).value =
+      prediction?.title || "";
+
+
+    document.getElementById(
+      `predictionValue${i}`
+    ).value =
+      prediction?.value || "";
+
+  }
+
+
+  document
+    .querySelector(
+      'button[type="submit"]'
+    )
+    .innerHTML = `
+
+      <i class="fa-solid fa-pen"></i>
+
+      DEĞİŞİKLİKLERİ YAYINLA
+
+    `;
+
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+}
+
+
+
+/*
+============================================================
+YAYIN DURUMUNU DEĞİŞTİR
+============================================================
+*/
+
+function togglePublish(id) {
+
+
+  const matches =
+    getMatches();
+
+
+  const match =
+    matches.find(
+      item =>
+        Number(item.id) ===
+        Number(id)
+    );
+
+
+  if (!match) return;
+
+
+  match.published =
+    !match.published;
+
+
+  match.updatedAt =
+    new Date().toISOString();
+
+
+  saveMatches(matches);
+
+
+  renderMatches();
+
+}
+
+
+
+/*
+============================================================
+SİL
+============================================================
+*/
+
+function deleteMatch(id) {
+
+
+  const confirmed =
+    confirm(
+      "Bu maçı silmek istediğinizden emin misiniz?"
+    );
+
+
+  if (!confirmed) return;
+
+
+  const matches =
+    getMatches();
+
+
+  const filtered =
+    matches.filter(
+      match =>
+        Number(match.id) !==
+        Number(id)
+    );
+
+
+  saveMatches(filtered);
+
+
+  renderMatches();
+
+}
+
+
+
+/*
+============================================================
+MAÇLARI GÖSTER
+============================================================
+*/
+
+function renderMatches() {
+
+
+  const matches =
+    getMatches();
+
+
+  const container =
+    document.getElementById("matchList");
+
+
+  const count =
+    document.getElementById("matchCount");
+
+
+  count.textContent =
+    `${matches.length} maç`;
+
+
+  if (!matches.length) {
+
+    container.innerHTML = `
+
+      <div class="text-center py-12 text-slate-500">
+
+        <div class="text-5xl mb-4">
+          ⚽
+        </div>
+
+        <div class="font-black text-lg">
+          Henüz maç eklenmedi.
+        </div>
+
+        <div class="text-sm mt-1">
+          Yukarıdaki formdan ilk maçı ekleyebilirsiniz.
+        </div>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  container.innerHTML =
+    matches
+      .map(
+        match =>
+          createMatchItem(match)
+      )
+      .join("");
+
+}
+
+
+
+/*
+============================================================
+MAÇ KARTI
+============================================================
+*/
+
+function createMatchItem(match) {
+
+
+  const predictions =
+    Array.isArray(match.predictions)
+      ? match.predictions
+      : [];
+
+
+  return `
+
+    <div class="match-item">
+
+
+      <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+
+
+        <div class="flex-1">
+
+
+          <div class="flex flex-wrap items-center gap-2">
+
+            <span class="font-black text-lg">
+
+              ${escapeHTML(match.home)}
+
+              <span class="text-slate-400 mx-1">
+                VS
+              </span>
+
+              ${escapeHTML(match.away)}
+
+            </span>
+
+
+            ${
+              match.published
+                ? `
+                  <span class="status status-published">
+                    <i class="fa-solid fa-circle-check"></i>
+                    YAYINDA
+                  </span>
+                `
+                : `
+                  <span class="status status-draft">
+                    <i class="fa-solid fa-file"></i>
+                    TASLAK
+                  </span>
+                `
+            }
+
+          </div>
+
+
+          <div class="text-sm text-slate-500 mt-2">
+
+            ${escapeHTML(match.league || "")}
+
+            •
+
+            ${escapeHTML(match.date || "")}
+
+            •
+
+            ${escapeHTML(match.time || "")}
+
+          </div>
+
+
+          ${
+            match.analysis
+              ? `
+                <div class="mt-3 text-sm text-slate-600">
+                  ${escapeHTML(match.analysis)}
+                </div>
+              `
+              : ""
+          }
+
+
+          ${
+            predictions.length
+              ? `
+
+                <div class="flex flex-wrap gap-2 mt-4">
+
+                  ${predictions.map(
+                    prediction => `
+
+                      <span class="px-3 py-1.5 rounded-lg bg-blue-50 text-blue-700 text-xs font-bold">
+
+                        ${escapeHTML(prediction.title)}
+
+                        :
+
+                        ${escapeHTML(prediction.value)}
+
+                      </span>
+
+                    `
+                  ).join("")}
+
+                </div>
+
+              `
+              : ""
+          }
+
+
+        </div>
+
+
+
+        <div class="flex flex-wrap gap-2">
+
+
+          <button
+            type="button"
+            class="btn btn-primary"
+            onclick="editMatch(${Number(match.id)})"
+          >
+
+            <i class="fa-solid fa-pen"></i>
+
+            Düzenle
+
+          </button>
+
+
+          <button
+            type="button"
+            class="btn btn-gray"
+            onclick="togglePublish(${Number(match.id)})"
+          >
+
+            ${
+              match.published
+                ? `
+                  <i class="fa-solid fa-eye-slash"></i>
+                  Yayından Kaldır
+                `
+                : `
+                  <i class="fa-solid fa-eye"></i>
+                  Yayınla
+                `
+            }
+
+          </button>
+
+
+          <button
+            type="button"
+            class="btn btn-danger"
+            onclick="deleteMatch(${Number(match.id)})"
+          >
+
+            <i class="fa-solid fa-trash"></i>
+
+            Sil
+
+          </button>
+
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+
+/*
+============================================================
+BAŞLANGIÇ
+============================================================
+*/
+
+renderMatches();
+
+
+</script>
+
+</body>
+</html>
+```
