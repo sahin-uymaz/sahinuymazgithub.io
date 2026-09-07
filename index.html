@@ -6,63 +6,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- =====================================================
-     GÜVENLİK VE OTURUM KONTROLÜ (GİRİŞ YÖNLENDİRMESİ - DÜZELTİLDİ)
-===================================================== -->
-<!-- =====================================================
-     GÜVENLİK VE OTURUM KONTROLÜ (DÜZELTİLDİ)
-===================================================== -->
-<script>
-(function checkSecurity() {
-
-    const urlParams = new URLSearchParams(window.location.search);
-    const accessGrant = urlParams.get('access');
-
-    if (accessGrant === 'approved' || accessGrant === 'granted') {
-
-        localStorage.setItem('mail_access_approved', 'true');
-
-        sessionStorage.setItem('temp_site_access', 'active');
-        sessionStorage.setItem('site_access_approved', 'true');
-
-        window.history.replaceState(
-            {},
-            document.title,
-            window.location.pathname
-        );
-
-        return;
-    }
-
-    const hasPermanentAccess =
-        localStorage.getItem('mail_access_approved') === 'true';
-
-    const hasSessionAccess =
-        sessionStorage.getItem('temp_site_access') === 'active' ||
-        sessionStorage.getItem('site_access_approved') === 'true';
-
-    if (hasPermanentAccess || hasSessionAccess) {
-        return;
-    }
-
-    window.location.href = "giris-formlari/giris-paneli.html";
-
-})();
-</script>
-
-<!-- =====================================================
-     GOOGLE GÖRÜNÜRLÜĞÜ ŞİMDİLİK KAPALI
-===================================================== -->
-
-<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
-<meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet">
-
-<title>ŞAHİN UYMAZ | Kamu Politikaları • Kamu Hizmetleri</title>
-
-<script src="https://cdn.tailwindcss.com"></script>
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-<!-- =====================================================
      GOOGLE GÖRÜNÜRLÜĞÜ ŞİMDİLİK KAPALI
 ===================================================== -->
 
@@ -1179,42 +1122,9 @@ footer a:hover{
         scroll-behavior:auto !important;
     }
 }
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
 
-.dropdown-menu {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  min-width: 190px;
-  background: #ffffff;
-  border-radius: 12px;
-  padding: 8px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.18);
-  z-index: 9999;
-}
-
-.dropdown-menu a {
-  display: block;
-  padding: 10px 14px;
-  text-decoration: none;
-  color: #172033;
-  border-radius: 8px;
-  white-space: nowrap;
-}
-
-.dropdown-menu a:hover {
-  background: #2563eb;
-  color: white;
-}
-
-.dropdown:hover .dropdown-menu {
-  display: block;
-}
 </style>
+
 </head>
 
 <body>
@@ -1239,29 +1149,30 @@ footer a:hover{
       <a href="#alanlar">Çalışma Alanları</a>
       <a href="#calismalar">Çalışmalar</a>
 
-<div class="dropdown">
-  <a href="#arastirmalar">Araştırmalar ▾</a>
+     <div class="dropdown">
+  <a href="#arastirmalar">Gündem ▾</a>
 
   <div class="dropdown-menu">
     <a href="gundem/gundem.html">📰 Gündem</a>
     <a href="gundem/spor.html">⚽ Spor</a>
   </div>
 </div>
-       <!-- SAHA ZİYARETLERİ + 4 ALT MENÜ -->
+               
+      <!-- SAHA ZİYARETLERİ + 4 ALT MENÜ -->
       <div class="dropdown">
-  <a href="#ziyaretler" class="dropdown-btn">
-    Şahin UYMAZ
-    <i class="fa-solid fa-chevron-down text-[11px] opacity-70"></i>
-  </a>
-
-  <div class="dropdown-content">
-    <a href="hakkimda.html">Hakkımda</a>
-    <a href="dijital-kartvizit.html">Dijital Kartvizit</a>
+        <a href="#ziyaretler" class="dropdown-btn">
+          Şahin UYMAZ<i class="fa-solid fa-chevron-down text-[11px] opacity-70"></i>
+        </a>
+        <div class="dropdown-content">
+          <a href="hakkimda.html">Hakkımda</a>
+          <a href="saha-incelemeleri.html">Saha İncelemeleri</a>
+          <a href="vatandas-gorusmeleri.html">Vatandaş Görüşmeleri</a>
+          <a href="dijital-kartvizit.html">dijital kartvizit</a>
+        </div>
+      </div>
+    </nav>
   </div>
-</div>
-</nav>
-</div>
- </header>
+</header>
 
 
 <!-- =====================================================
@@ -1282,8 +1193,6 @@ footer a:hover{
 
       <!-- Slayt 1 -->
       <div class="hero-inner">
-      <div class="hero-image">
-    <img src="https://images/kamu.jpg" alt="Kamu Politikaları Araştırma">
         <div class="hero-label">ARAŞTIRMA • İZLEME • DEĞERLENDİRME</div>
         <h2>Kamu Politikalarını Araştırıyor, Kamu Hizmetlerini İzliyoruz</h2>
         <p>Kamu politikaları, kamu kurumları ve kamu hizmetleri üzerine araştırma, izleme, değerlendirme ve bilgilendirme çalışmaları yürütüyoruz.</p>
