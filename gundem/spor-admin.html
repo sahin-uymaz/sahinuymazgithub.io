@@ -1,582 +1,3115 @@
 <!DOCTYPE html>
-
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Spor Admin Paneli</title>
+<title>ŞAHİN UYMAZ | Spor Yönetim Paneli</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+>
 
-    body {
-      margin: 0;
-      padding: 20px;
-      background: #222;
-      color: #fff;
-      font-family: Arial, Helvetica, sans-serif;
-    }
+<style>
 
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-    }
+:root{
+  --blue:#2563eb;
+  --blue2:#1d4ed8;
+  --dark:#020617;
+  --dark2:#0f172a;
+  --panel:#111827;
+  --panel2:#1e293b;
+  --border:#334155;
+  --text:#f8fafc;
+  --muted:#94a3b8;
+  --green:#22c55e;
+  --green-dark:#166534;
+  --red:#ef4444;
+  --orange:#f59e0b;
+}
 
-    h1 {
-      margin-bottom: 25px;
-      color: #00ff00;
-    }
+*{
+  box-sizing:border-box;
+}
 
-    .panel {
-      background: #333;
-      border-radius: 12px;
-      padding: 25px;
-      margin-bottom: 20px;
-    }
+html{
+  scroll-behavior:smooth;
+}
 
-    .panel h2 {
-      margin-top: 0;
-      color: #00ff00;
-    }
+body{
+  margin:0;
+  background:
+    radial-gradient(circle at top left,rgba(37,99,235,.12),transparent 30%),
+    linear-gradient(135deg,#020617,#0f172a);
+  color:var(--text);
+  font-family:Arial,Helvetica,sans-serif;
+  min-height:100vh;
+}
 
-    label {
-      display: block;
-      margin-top: 15px;
-      margin-bottom: 6px;
-      font-weight: bold;
-    }
+/* =========================================
+   HEADER
+========================================= */
 
-    input[type="text"],
-    input[type="time"],
-    input[type="date"],
-    select,
-    textarea {
-      width: 100%;
-      max-width: 500px;
-      display: block;
-      padding: 12px;
-      border-radius: 6px;
-      border: 1px solid #666;
-      background: #111;
-      color: #fff;
-      font-size: 16px;
-    }
+.header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:rgba(2,6,23,.96);
+  backdrop-filter:blur(15px);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
 
-    textarea {
-      resize: vertical;
-    }
+.header-inner{
+  max-width:1450px;
+  margin:auto;
+  min-height:75px;
+  padding:12px 22px;
 
-    /* =========================
-       TAHMİN CHECKBOXLARI
-       ========================= */
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
 
-    .prediction-list {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-top: 20px;
-    }
+.logo{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  color:#fff;
+  text-decoration:none;
+  font-size:20px;
+  font-weight:900;
+  letter-spacing:.5px;
+}
 
-    .prediction-item {
-      position: relative;
-    }
+.logo-icon{
+  width:45px;
+  height:45px;
+  border-radius:13px;
 
-    .prediction-item input[type="checkbox"] {
-      position: absolute;
-      opacity: 0;
-      pointer-events: none;
-    }
+  display:flex;
+  align-items:center;
+  justify-content:center;
 
-    .prediction-item label {
-      margin: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 55px;
-      padding: 12px;
-      border: 2px solid #666;
-      border-radius: 8px;
-      background: #222;
-      color: #fff;
-      cursor: pointer;
-      user-select: none;
-      transition: 0.2s ease;
-    }
+  background:linear-gradient(135deg,#2563eb,#7c3aed);
 
-    .prediction-item label:hover {
-      border-color: #00ff00;
-    }
+  box-shadow:
+    0 10px 30px rgba(37,99,235,.3);
+}
 
-    .prediction-item input[type="checkbox"]:checked + label {
-      background: #064d06;
-      border-color: #00ff00;
-      color: #00ff00;
-      box-shadow: 0 0 10px rgba(0,255,0,0.25);
-    }
+.header-center{
+  text-align:center;
+}
 
-    .prediction-item input[type="checkbox"]:checked + label::before {
-      content: "✓";
-      margin-right: 8px;
-      font-size: 20px;
-      font-weight: bold;
-    }
+.header-center strong{
+  display:block;
+  font-size:16px;
+}
 
-    .button-area {
-      margin-top: 25px;
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
+.header-center span{
+  display:block;
+  margin-top:4px;
+  color:#64748b;
+  font-size:11px;
+}
 
-    button {
-      padding: 12px 25px;
-      background: #00ff00;
-      color: #000;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 16px;
-      font-weight: bold;
-    }
+.header-right{
+  display:flex;
+  gap:8px;
+}
 
-    button:hover {
-      background: #00cc00;
-    }
+.header-link{
+  color:#cbd5e1;
+  text-decoration:none;
+  padding:9px 12px;
+  border-radius:9px;
+  font-size:12px;
+  font-weight:800;
+}
 
-    button.secondary {
-      background: #555;
-      color: #fff;
-    }
+.header-link:hover{
+  background:rgba(255,255,255,.08);
+  color:#fff;
+}
 
-    button.secondary:hover {
-      background: #666;
-    }
+/* =========================================
+   CONTAINER
+========================================= */
 
-    #sonuc {
-      margin-top: 20px;
-      padding: 15px;
-      border-radius: 8px;
-      background: #111;
-      display: none;
-    }
+.container{
+  width:min(1450px,calc(100% - 30px));
+  margin:30px auto 70px;
+}
 
-    .selected-info {
-      margin-top: 20px;
-      padding: 15px;
-      background: #111;
-      border-radius: 8px;
-      color: #ccc;
-    }
+/* =========================================
+   TITLE
+========================================= */
 
-    .selected-info strong {
-      color: #00ff00;
-    }
+.page-title{
+  margin-bottom:25px;
+}
 
-    @media (max-width: 700px) {
-      .prediction-list {
-        grid-template-columns: 1fr;
-      }
+.page-title h1{
+  margin:0;
+  font-size:clamp(27px,4vw,42px);
+  font-weight:950;
+}
 
-      body {
-        padding: 10px;
-      }
+.page-title h1 span{
+  color:#60a5fa;
+}
 
-      .panel {
-        padding: 15px;
-      }
-    }
-  </style>
+.page-title p{
+  margin:8px 0 0;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.6;
+}
 
+/* =========================================
+   TOP INFO
+========================================= */
+
+.info-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+  margin-bottom:22px;
+}
+
+.info-card{
+  background:rgba(15,23,42,.9);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:17px;
+}
+
+.info-card i{
+  color:#60a5fa;
+  font-size:18px;
+  margin-bottom:8px;
+}
+
+.info-number{
+  font-size:25px;
+  font-weight:950;
+}
+
+.info-label{
+  color:var(--muted);
+  font-size:10px;
+  font-weight:800;
+  margin-top:4px;
+}
+
+/* =========================================
+   PANEL
+========================================= */
+
+.panel{
+  background:rgba(15,23,42,.96);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:25px;
+  margin-bottom:22px;
+  box-shadow:0 15px 45px rgba(0,0,0,.18);
+}
+
+.panel-title{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin:0 0 20px;
+  font-size:19px;
+  font-weight:900;
+}
+
+.panel-title i{
+  color:#60a5fa;
+}
+
+/* =========================================
+   FORM
+========================================= */
+
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:17px;
+}
+
+.form-group{
+  display:flex;
+  flex-direction:column;
+}
+
+.form-group.full{
+  grid-column:1/-1;
+}
+
+.form-group label{
+  margin-bottom:7px;
+  color:#cbd5e1;
+  font-size:12px;
+  font-weight:900;
+}
+
+.form-group label i{
+  color:#60a5fa;
+  margin-right:5px;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="time"],
+select,
+textarea{
+  width:100%;
+  padding:13px 14px;
+
+  border:1px solid #475569;
+  border-radius:11px;
+
+  background:#020617;
+  color:#fff;
+
+  font-family:inherit;
+  font-size:14px;
+
+  outline:none;
+  transition:.2s;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus,
+input[type="time"]:focus,
+select:focus,
+textarea:focus{
+  border-color:#3b82f6;
+  box-shadow:0 0 0 3px rgba(59,130,246,.12);
+}
+
+textarea{
+  min-height:150px;
+  resize:vertical;
+  line-height:1.65;
+}
+
+select option{
+  background:#020617;
+  color:#fff;
+}
+
+/* =========================================
+   PREDICTIONS
+========================================= */
+
+.prediction-help{
+  color:#94a3b8;
+  font-size:12px;
+  line-height:1.6;
+  margin:-8px 0 18px;
+}
+
+.prediction-list{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+}
+
+.prediction-item{
+  min-width:0;
+}
+
+/*
+  ÖNEMLİ:
+  Checkbox gizlenmiyor.
+  pointer-events:none KULLANILMIYOR.
+*/
+
+.prediction-label{
+  display:flex;
+  align-items:center;
+  gap:11px;
+
+  min-height:67px;
+  padding:12px;
+
+  border:1px solid #475569;
+  border-radius:13px;
+
+  background:#0f172a;
+  color:#cbd5e1;
+
+  cursor:pointer;
+  user-select:none;
+
+  transition:.2s;
+}
+
+.prediction-label:hover{
+  border-color:#60a5fa;
+  background:#172554;
+}
+
+.prediction-label input{
+  appearance:none;
+  -webkit-appearance:none;
+
+  width:23px;
+  height:23px;
+  min-width:23px;
+
+  border:2px solid #64748b;
+  border-radius:6px;
+
+  background:#020617;
+
+  cursor:pointer;
+  position:relative;
+
+  margin:0;
+}
+
+.prediction-label input:hover{
+  border-color:#22c55e;
+}
+
+.prediction-label input:checked{
+  background:#16a34a;
+  border-color:#22c55e;
+}
+
+.prediction-label input:checked::after{
+  content:"✓";
+
+  position:absolute;
+  left:50%;
+  top:50%;
+
+  transform:translate(-50%,-53%);
+
+  color:#fff;
+  font-size:16px;
+  font-weight:950;
+}
+
+.prediction-text{
+  flex:1;
+  font-size:12px;
+  font-weight:900;
+  line-height:1.4;
+}
+
+.prediction-selected{
+  color:#22c55e;
+  font-size:17px;
+}
+
+/* =========================================
+   SELECTED
+========================================= */
+
+.selected-info{
+  margin-top:18px;
+  padding:15px;
+
+  border-radius:12px;
+  border:1px solid #334155;
+
+  background:#020617;
+
+  font-size:12px;
+  color:#94a3b8;
+  line-height:1.7;
+}
+
+.selected-info strong{
+  color:#22c55e;
+}
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.button-area{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+button{
+  border:0;
+  border-radius:11px;
+  padding:13px 18px;
+
+  cursor:pointer;
+
+  font-family:inherit;
+  font-size:13px;
+  font-weight:900;
+
+  transition:.2s;
+}
+
+button:hover{
+  transform:translateY(-2px);
+}
+
+.btn-save{
+  background:linear-gradient(135deg,#22c55e,#15803d);
+  color:#fff;
+}
+
+.btn-new{
+  background:linear-gradient(135deg,#2563eb,#1d4ed8);
+  color:#fff;
+}
+
+.btn-clear{
+  background:#334155;
+  color:#fff;
+}
+
+.btn-delete{
+  background:#7f1d1d;
+  color:#fecaca;
+}
+
+.btn-load{
+  background:linear-gradient(135deg,#7c3aed,#6d28d9);
+  color:#fff;
+}
+
+/* =========================================
+   RESULT
+========================================= */
+
+#sonuc{
+  display:none;
+
+  margin-top:17px;
+  padding:14px 16px;
+
+  border-radius:11px;
+
+  font-size:13px;
+  line-height:1.6;
+}
+
+#sonuc.success{
+  display:block;
+  background:#052e16;
+  border:1px solid #166534;
+  color:#86efac;
+}
+
+#sonuc.error{
+  display:block;
+  background:#450a0a;
+  border:1px solid #991b1b;
+  color:#fca5a5;
+}
+
+/* =========================================
+   MATCH LIST
+========================================= */
+
+.matches-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  margin-bottom:18px;
+}
+
+.matches-header h2{
+  margin:0;
+  font-size:20px;
+}
+
+.matches-header span{
+  color:#94a3b8;
+  font-size:12px;
+}
+
+.match-list{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:15px;
+}
+
+.match-admin-card{
+  background:#020617;
+  border:1px solid #334155;
+  border-radius:15px;
+  overflow:hidden;
+}
+
+.match-admin-top{
+  padding:13px 15px;
+  background:#111827;
+  border-bottom:1px solid #334155;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.league-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+
+  padding:6px 9px;
+  border-radius:999px;
+
+  font-size:10px;
+  font-weight:900;
+}
+
+.league-super{
+  background:#fee2e2;
+  color:#991b1b;
+}
+
+.league-first{
+  background:#fef3c7;
+  color:#92400e;
+}
+
+.league-ucl{
+  background:#ede9fe;
+  color:#6d28d9;
+}
+
+.league-uel{
+  background:#dcfce7;
+  color:#166534;
+}
+
+.league-uecl{
+  background:#cffafe;
+  color:#155e75;
+}
+
+.league-cup{
+  background:#ffedd5;
+  color:#9a3412;
+}
+
+.league-other{
+  background:#e2e8f0;
+  color:#334155;
+}
+
+.status{
+  font-size:10px;
+  font-weight:900;
+}
+
+.status.published{
+  color:#4ade80;
+}
+
+.status.hidden{
+  color:#f87171;
+}
+
+.match-admin-body{
+  padding:16px;
+}
+
+.match-admin-teams{
+  text-align:center;
+  font-size:18px;
+  font-weight:950;
+  line-height:1.5;
+}
+
+.match-admin-teams .vs{
+  color:#60a5fa;
+  font-size:11px;
+  margin:3px 0;
+}
+
+.match-meta{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  margin-top:10px;
+
+  color:#94a3b8;
+  font-size:11px;
+}
+
+.match-predictions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-top:14px;
+}
+
+.mini-prediction{
+  padding:5px 7px;
+  border-radius:6px;
+  font-size:9px;
+  font-weight:900;
+}
+
+.mini-prediction.active{
+  background:#052e16;
+  color:#4ade80;
+  border:1px solid #166534;
+}
+
+.mini-prediction.inactive{
+  background:#1e293b;
+  color:#64748b;
+}
+
+.match-admin-analysis{
+  margin-top:13px;
+  padding:11px;
+
+  background:#0f172a;
+  border-radius:9px;
+
+  color:#94a3b8;
+  font-size:10px;
+  line-height:1.6;
+}
+
+.match-admin-analysis strong{
+  color:#cbd5e1;
+  display:block;
+  margin-bottom:4px;
+}
+
+.match-admin-actions{
+  display:flex;
+  gap:7px;
+  padding:12px 15px;
+
+  border-top:1px solid #334155;
+  background:#111827;
+}
+
+.small-btn{
+  flex:1;
+  padding:9px 10px;
+  border-radius:8px;
+  font-size:10px;
+}
+
+.edit-btn{
+  background:#1d4ed8;
+  color:#fff;
+}
+
+.delete-btn{
+  background:#7f1d1d;
+  color:#fecaca;
+}
+
+/* =========================================
+   PUBLISH
+========================================= */
+
+.publish-box{
+  margin-top:17px;
+  padding:13px 15px;
+
+  border:1px solid #334155;
+  border-radius:11px;
+
+  background:#020617;
+}
+
+.publish-label{
+  display:flex;
+  align-items:center;
+  gap:10px;
+
+  color:#cbd5e1;
+  font-size:12px;
+  font-weight:900;
+
+  cursor:pointer;
+}
+
+.publish-label input{
+  width:20px;
+  height:20px;
+  accent-color:#22c55e;
+  cursor:pointer;
+}
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.footer{
+  text-align:center;
+  padding:30px 20px;
+  color:#64748b;
+  font-size:11px;
+}
+
+.footer strong{
+  color:#fff;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media(max-width:1100px){
+
+  .info-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .prediction-list{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .match-list{
+    grid-template-columns:1fr;
+  }
+
+}
+
+@media(max-width:700px){
+
+  body{
+    background:#020617;
+  }
+
+  .header-inner{
+    padding:10px 14px;
+  }
+
+  .header-center{
+    display:none;
+  }
+
+  .header-link{
+    display:none;
+  }
+
+  .container{
+    width:calc(100% - 18px);
+    margin-top:20px;
+  }
+
+  .panel{
+    padding:17px;
+    border-radius:15px;
+  }
+
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+
+  .form-group.full{
+    grid-column:auto;
+  }
+
+  .prediction-list{
+    grid-template-columns:1fr;
+  }
+
+  .info-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .button-area{
+    flex-direction:column;
+  }
+
+  button{
+    width:100%;
+  }
+
+}
+
+</style>
 </head>
 
 <body>
 
-<div class="container">
+<header class="header">
 
-  <h1>⚽ Spor Admin Paneli</h1>
+  <div class="header-inner">
 
-  <!-- MAÇ BİLGİLERİ -->
+    <a href="../index.html" class="logo">
+      <div class="logo-icon">
+        <i class="fa-solid fa-futbol"></i>
+      </div>
 
-  <div class="panel">
+      <span>ŞAHİN UYMAZ</span>
+    </a>
 
-```
-<h2>Maç Bilgileri</h2>
+    <div class="header-center">
+      <strong>SPOR YÖNETİM PANELİ</strong>
+      <span>Maçlar • Analizler • Tahminler</span>
+    </div>
 
-<label for="tarih">Maç Tarihi</label>
-<input type="date" id="tarih">
-
-<label for="evSahibi">Ev Sahibi Takım</label>
-<select id="evSahibi">
-  <option value="">Takım seçin</option>
-  <option value="Galatasaray">Galatasaray</option>
-  <option value="Fenerbahçe">Fenerbahçe</option>
-  <option value="Beşiktaş">Beşiktaş</option>
-  <option value="Trabzonspor">Trabzonspor</option>
-</select>
-
-<label for="deplasman">Deplasman Takımı</label>
-<select id="deplasman">
-  <option value="">Takım seçin</option>
-  <option value="Galatasaray">Galatasaray</option>
-  <option value="Fenerbahçe">Fenerbahçe</option>
-  <option value="Beşiktaş">Beşiktaş</option>
-  <option value="Trabzonspor">Trabzonspor</option>
-</select>
-
-<label for="saat">Maç Saati</label>
-<input type="time" id="saat">
-
-<label for="aciklama">Açıklama</label>
-<textarea
-  id="aciklama"
-  rows="4"
-  placeholder="Maç hakkında açıklama..."
-></textarea>
-```
+    <div class="header-right">
+      <a href="spor.html" class="header-link">
+        <i class="fa-solid fa-eye"></i>
+        Spor Sayfasını Gör
+      </a>
+    </div>
 
   </div>
+
+</header>
+
+
+<main class="container">
+
+  <div class="page-title">
+
+    <h1>
+      Spor <span>Yönetim Merkezi</span>
+    </h1>
+
+    <p>
+      Maç bilgilerini, analizleri ve tahmin seçimlerini buradan yönetin.
+      Kaydedilen bilgiler spor sayfasında otomatik olarak görüntülenir.
+    </p>
+
+  </div>
+
+
+  <!-- İSTATİSTİK -->
+
+  <div class="info-grid">
+
+    <div class="info-card">
+      <i class="fa-solid fa-layer-group"></i>
+      <div class="info-number" id="kategoriSayisi">0</div>
+      <div class="info-label">KATEGORİ</div>
+    </div>
+
+    <div class="info-card">
+      <i class="fa-solid fa-futbol"></i>
+      <div class="info-number" id="macSayisi">0</div>
+      <div class="info-label">TOPLAM MAÇ</div>
+    </div>
+
+    <div class="info-card">
+      <i class="fa-solid fa-circle-check"></i>
+      <div class="info-number" id="aktifTahminSayisi">0</div>
+      <div class="info-label">SEÇİLİ TAHMİN</div>
+    </div>
+
+    <div class="info-card">
+      <i class="fa-solid fa-globe"></i>
+      <div class="info-number" id="yayindaSayisi">0</div>
+      <div class="info-label">YAYINDAKİ MAÇ</div>
+    </div>
+
+  </div>
+
+
+  <!-- MAÇ FORMU -->
+
+  <section class="panel">
+
+    <h2 class="panel-title">
+      <i class="fa-solid fa-pen-to-square"></i>
+      <span id="formBaslik">Yeni Maç Oluştur</span>
+    </h2>
+
+    <div class="form-grid">
+
+      <div class="form-group">
+
+        <label for="lig">
+          <i class="fa-solid fa-trophy"></i>
+          Lig / Kategori
+        </label>
+
+        <select id="lig">
+
+          <option value="Süper Lig">
+            Süper Lig
+          </option>
+
+          <option value="1. Lig">
+            1. Lig
+          </option>
+
+          <option value="UEFA Şampiyonlar Ligi">
+            UEFA Şampiyonlar Ligi
+          </option>
+
+          <option value="UEFA Avrupa Ligi">
+            UEFA Avrupa Ligi
+          </option>
+
+          <option value="UEFA Konferans Ligi">
+            UEFA Konferans Ligi
+          </option>
+
+          <option value="Kupa Maçları">
+            Kupa Maçları
+          </option>
+
+          <option value="Diğer Maçlar">
+            Diğer Maçlar
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label for="tarih">
+          <i class="fa-regular fa-calendar"></i>
+          Maç Tarihi
+        </label>
+
+        <input
+          type="date"
+          id="tarih"
+        >
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label for="saat">
+          <i class="fa-regular fa-clock"></i>
+          Maç Saati
+        </label>
+
+        <input
+          type="time"
+          id="saat"
+        >
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label for="evSahibi">
+          <i class="fa-solid fa-house"></i>
+          Ev Sahibi Takım
+        </label>
+
+        <input
+          type="text"
+          id="evSahibi"
+          placeholder="Örn: Galatasaray"
+        >
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label for="deplasman">
+          <i class="fa-solid fa-plane"></i>
+          Deplasman Takımı
+        </label>
+
+        <input
+          type="text"
+          id="deplasman"
+          placeholder="Örn: Fenerbahçe"
+        >
+
+      </div>
+
+
+      <div class="form-group full">
+
+        <label for="aciklama">
+          <i class="fa-solid fa-chart-line"></i>
+          Maç Analizi / Detaylı Açıklama
+        </label>
+
+        <textarea
+          id="aciklama"
+          placeholder="Bu maçla ilgili detaylı analiz, takım formu, hücum gücü, savunma yapısı, ilk yarı değerlendirmesi, gol beklentisi ve diğer notlarınızı buraya yazın..."
+        ></textarea>
+
+      </div>
+
+    </div>
+
+
+    <!-- YAYIN DURUMU -->
+
+    <div class="publish-box">
+
+      <label class="publish-label">
+
+        <input
+          type="checkbox"
+          id="yayinda"
+          checked
+        >
+
+        <span>
+          Bu maçı spor sayfasında yayınla
+        </span>
+
+      </label>
+
+    </div>
+
+  </section>
+
 
   <!-- TAHMİNLER -->
 
-  <div class="panel">
+  <section class="panel">
 
-```
-<h2>Maç Tahminleri</h2>
+    <h2 class="panel-title">
+      <i class="fa-solid fa-list-check"></i>
+      Maç Tahminleri
+    </h2>
 
-<p>
-  İstediğin tahmin seçeneklerini işaretle.
-</p>
+    <p class="prediction-help">
+      İstediğiniz tahminleri işaretleyin. İşaretlenen tahminler
+      <strong style="color:#4ade80;">spor.html</strong>
+      sayfasında yeşil tik ile gösterilecektir.
+    </p>
 
-<div class="prediction-list">
 
-  <div class="prediction-item">
-    <input type="checkbox" id="evKazanir" value="Ev sahibi kazanır">
-    <label for="evKazanir">
-      Ev sahibi kazanır
-    </label>
-  </div>
+    <div class="prediction-list">
 
-  <div class="prediction-item">
-    <input type="checkbox" id="beraberlik" value="Beraberlik">
-    <label for="beraberlik">
-      Beraberlik
-    </label>
-  </div>
 
-  <div class="prediction-item">
-    <input type="checkbox" id="deplasmanKazanir" value="Deplasman kazanır">
-    <label for="deplasmanKazanir">
-      Deplasman kazanır
-    </label>
-  </div>
+      <div class="prediction-item">
 
-  <div class="prediction-item">
-    <input type="checkbox" id="kgVar" value="Karşılıklı gol var">
-    <label for="kgVar">
-      KG Var
-    </label>
-  </div>
+        <label class="prediction-label">
 
-  <div class="prediction-item">
-    <input type="checkbox" id="kgYok" value="Karşılıklı gol yok">
-    <label for="kgYok">
-      KG Yok
-    </label>
-  </div>
+          <input
+            type="checkbox"
+            class="prediction-checkbox"
+            data-title="Ev Sahibi İlk Yarı Gol"
+            data-value="VAR"
+          >
 
-  <div class="prediction-item">
-    <input type="checkbox" id="ust25" value="2.5 Üst">
-    <label for="ust25">
-      2.5 Üst
-    </label>
-  </div>
+          <span class="prediction-text">
+            Ev Sahibi İlk Yarı Gol
+          </span>
 
-  <div class="prediction-item">
-    <input type="checkbox" id="alt25" value="2.5 Alt">
-    <label for="alt25">
-      2.5 Alt
-    </label>
-  </div>
+          <span class="prediction-selected">
+            ✓
+          </span>
 
-  <div class="prediction-item">
-    <input type="checkbox" id="ust35" value="3.5 Üst">
-    <label for="ust35">
-      3.5 Üst
-    </label>
-  </div>
+        </label>
 
-  <div class="prediction-item">
-    <input type="checkbox" id="alt35" value="3.5 Alt">
-    <label for="alt35">
-      3.5 Alt
-    </label>
-  </div>
+      </div>
 
-</div>
 
-<div class="selected-info">
-  <strong>Seçilen tahminler:</strong>
-  <span id="secilenler">Henüz seçim yapılmadı.</span>
-</div>
-```
+      <div class="prediction-item">
 
-  </div>
+        <label class="prediction-label">
+
+          <input
+            type="checkbox"
+            class="prediction-checkbox"
+            data-title="Deplasman İlk Yarı Gol"
+            data-value="VAR"
+          >
+
+          <span class="prediction-text">
+            Deplasman İlk Yarı Gol
+          </span>
+
+          <span class="prediction-selected">
+            ✓
+          </span>
+
+        </label>
+
+      </div>
+
+
+      <div class="prediction-item">
+
+        <label class="prediction-label">
+
+          <input
+            type="checkbox"
+            class="prediction-checkbox"
+            data-title="İlk Yarı Sonucu – Ev Sahibi"
+            data-value="EV SAHİBİ"
+          >
+
+          <span class="prediction-text">
+            İlk Yarı Sonucu – Ev Sahibi
+          </span>
+
+          <span class="prediction-selected">
+            ✓
+          </span>
+
+        </label>
+
+      </div>
+
+
+      <div class="prediction-item">
+
+        <label class="prediction-label">
+
+          <input
+            type="checkbox"
+            class="prediction-checkbox"
+            data-title="İlk Yarı Sonucu – Deplasman"
+            data-value="DEPLASMAN"
+          >
+
+          <span class="prediction-text">
+            İlk Yarı Sonucu – Deplasman
+          </span>
+
+          <span class="prediction-selected">
+            ✓
+          </span>
+
+        </label>
+
+      </div>
+
+
+      <div class="prediction-item">
+
+        <label class="prediction-label">
+
+          <input
+            type="checkbox"
+            class="prediction-checkbox"
+            data-title="2.5 Üst Gol"
+            data-value="VAR"
+          >
+
+          <span class="prediction-text">
+            2.5 Üst Gol
+          </span>
+
+          <span class="prediction-selected">
+            ✓
+          </span>
+
+        </label>
+
+      </div>
+
+
+      <div class="prediction-item">
+
+        <label class="prediction-label">
+
+          <input
+            type="checkbox"
+            class="prediction-checkbox"
+            data-title="2.5 Üst + Karşılıklı Gol"
+            data-value="VAR"
+          >
+
+          <span class="prediction-text">
+            2.5 Üst + Karşılıklı Gol
+          </span>
+
+          <span class="prediction-selected">
+            ✓
+          </span>
+
+        </label>
+
+      </div>
+
+
+      <div class="prediction-item">
+
+        <label class="prediction-label">
+
+          <input
+            type="checkbox"
+            class="prediction-checkbox"
+            data-title="Maç Sonu Ev Sahibi 1.5 Üst"
+            data-value="VAR"
+          >
+
+          <span class="prediction-text">
+            Maç Sonu Ev Sahibi 1.5 Üst
+          </span>
+
+          <span class="prediction-selected">
+            ✓
+          </span>
+
+        </label>
+
+      </div>
+
+
+      <div class="prediction-item">
+
+        <label class="prediction-label">
+
+          <input
+            type="checkbox"
+            class="prediction-checkbox"
+            data-title="Maç Sonu Deplasman 1.5 Üst"
+            data-value="VAR"
+          >
+
+          <span class="prediction-text">
+            Maç Sonu Deplasman 1.5 Üst
+          </span>
+
+          <span class="prediction-selected">
+            ✓
+          </span>
+
+        </label>
+
+      </div>
+
+
+      <div class="prediction-item">
+
+        <label class="prediction-label">
+
+          <input
+            type="checkbox"
+            class="prediction-checkbox"
+            data-title="Karşılıklı Gol – VAR"
+            data-value="VAR"
+          >
+
+          <span class="prediction-text">
+            Karşılıklı Gol – VAR
+          </span>
+
+          <span class="prediction-selected">
+            ✓
+          </span>
+
+        </label>
+
+      </div>
+
+    </div>
+
+
+    <div class="selected-info">
+
+      <strong>
+        <i class="fa-solid fa-circle-check"></i>
+        Seçilen tahminler:
+      </strong>
+
+      <span id="secilenler">
+        Henüz seçim yapılmadı.
+      </span>
+
+    </div>
+
+  </section>
+
 
   <!-- BUTONLAR -->
 
-  <div class="panel">
+  <section class="panel">
 
-```
-<div class="button-area">
+    <div class="button-area">
 
-  <button type="button" id="kaydetBtn">
-    💾 Kaydet
-  </button>
+      <button
+        type="button"
+        class="btn-save"
+        id="kaydetBtn"
+      >
+        <i class="fa-solid fa-floppy-disk"></i>
+        Maçı Kaydet
+      </button>
 
-  <button
-    type="button"
-    class="secondary"
-    id="temizleBtn"
-  >
-    🗑️ Temizle
-  </button>
 
-</div>
+      <button
+        type="button"
+        class="btn-new"
+        id="yeniMacBtn"
+      >
+        <i class="fa-solid fa-plus"></i>
+        Yeni Maç
+      </button>
 
-<div id="sonuc"></div>
-```
 
+      <button
+        type="button"
+        class="btn-clear"
+        id="temizleBtn"
+      >
+        <i class="fa-solid fa-eraser"></i>
+        Formu Temizle
+      </button>
+
+
+      <button
+        type="button"
+        class="btn-load"
+        id="ornekleriYukleBtn"
+      >
+        <i class="fa-solid fa-database"></i>
+        18 Örnek Maçı Yükle
+      </button>
+
+    </div>
+
+
+    <div id="sonuc"></div>
+
+  </section>
+
+
+  <!-- KAYITLAR -->
+
+  <section class="panel">
+
+    <div class="matches-header">
+
+      <div>
+
+        <h2>
+          Kayıtlı Maçlar
+        </h2>
+
+        <span>
+          Buradaki kayıtları düzenleyebilir veya silebilirsiniz.
+        </span>
+
+      </div>
+
+    </div>
+
+    <div
+      class="match-list"
+      id="matchList"
+    ></div>
+
+  </section>
+
+</main>
+
+
+<footer class="footer">
+
+  <strong>ŞAHİN UYMAZ</strong>
+
+  <div>
+    Spor Yönetim Merkezi
   </div>
 
-</div>
+  <div>
+    © <span id="year"></span>
+  </div>
+
+</footer>
+
 
 <script>
 
-  /*
-   * ==========================================
-   * CHECKBOX SİSTEMİ
-   * ==========================================
-   */
+/* =========================================================
+   ORTAK STORAGE ANAHTARI
+========================================================= */
 
-  const checkboxlar = document.querySelectorAll(
-    '.prediction-item input[type="checkbox"]'
-  );
-
-  const secilenler = document.getElementById("secilenler");
+const STORAGE_KEY = "sahinUymazSporMaclari";
 
 
-  function secimleriGuncelle() {
+/* =========================================================
+   9 TAHMİN
+========================================================= */
 
-    const secilen = [];
+const PREDICTION_TYPES = [
 
-    checkboxlar.forEach(function(checkbox) {
+  {
+    title:"Ev Sahibi İlk Yarı Gol",
+    checkedValue:"VAR"
+  },
 
-      if (checkbox.checked) {
-        secilen.push(checkbox.value);
-      }
+  {
+    title:"Deplasman İlk Yarı Gol",
+    checkedValue:"VAR"
+  },
 
-    });
+  {
+    title:"İlk Yarı Sonucu – Ev Sahibi",
+    checkedValue:"EV SAHİBİ"
+  },
 
-    if (secilen.length === 0) {
+  {
+    title:"İlk Yarı Sonucu – Deplasman",
+    checkedValue:"DEPLASMAN"
+  },
 
-      secilenler.textContent =
-        "Henüz seçim yapılmadı.";
+  {
+    title:"2.5 Üst Gol",
+    checkedValue:"VAR"
+  },
 
-    } else {
+  {
+    title:"2.5 Üst + Karşılıklı Gol",
+    checkedValue:"VAR"
+  },
 
-      secilenler.textContent =
-        secilen.join(" • ");
+  {
+    title:"Maç Sonu Ev Sahibi 1.5 Üst",
+    checkedValue:"VAR"
+  },
+
+  {
+    title:"Maç Sonu Deplasman 1.5 Üst",
+    checkedValue:"VAR"
+  },
+
+  {
+    title:"Karşılıklı Gol – VAR",
+    checkedValue:"VAR"
+  }
+
+];
+
+
+/* =========================================================
+   ÖRNEK 18 MAÇ
+   6 KATEGORİ × 3 MAÇ
+========================================================= */
+
+const DEFAULT_MATCHES = [
+
+  /* ===================== SÜPER LİG ===================== */
+
+  {
+    id:"sl-001",
+    league:"Süper Lig",
+    date:"2026-09-12",
+    time:"20:00",
+    home:"Galatasaray",
+    away:"Fenerbahçe",
+    analysis:"İki takımın hücum gücü, saha avantajı ve maç temposu birlikte değerlendirildiğinde yüksek tempolu bir mücadele beklentisi öne çıkmaktadır. İlk yarıda gol üretme potansiyeli ve maçın ikinci bölümünde oluşabilecek boşluklar önemli değerlendirme başlıklarıdır.",
+    predictions:[
+      {title:"Ev Sahibi İlk Yarı Gol",value:"VAR",selected:true},
+      {title:"Deplasman İlk Yarı Gol",value:"VAR",selected:true},
+      {title:"İlk Yarı Sonucu – Ev Sahibi",value:"EV SAHİBİ",selected:true},
+      {title:"İlk Yarı Sonucu – Deplasman",value:"—",selected:false},
+      {title:"2.5 Üst Gol",value:"VAR",selected:true},
+      {title:"2.5 Üst + Karşılıklı Gol",value:"VAR",selected:true},
+      {title:"Maç Sonu Ev Sahibi 1.5 Üst",value:"VAR",selected:true},
+      {title:"Maç Sonu Deplasman 1.5 Üst",value:"—",selected:false},
+      {title:"Karşılıklı Gol – VAR",value:"VAR",selected:true}
+    ],
+    published:true
+  },
+
+  {
+    id:"sl-002",
+    league:"Süper Lig",
+    date:"2026-09-13",
+    time:"17:00",
+    home:"Beşiktaş",
+    away:"Trabzonspor",
+    analysis:"Karşılaşmada ev sahibi avantajı, hücum organizasyonları ve orta saha mücadelesi belirleyici olabilir. İki takımın gol bulma yaklaşımı nedeniyle maçın dengeli başlaması ancak ilerleyen dakikalarda tempo kazanması beklenebilir.",
+    predictions:[
+      {title:"Ev Sahibi İlk Yarı Gol",value:"VAR",selected:true},
+      {title:"Deplasman İlk Yarı Gol",value:"—",selected:false},
+      {title:"İlk Yarı Sonucu – Ev Sahibi",value:"EV SAHİBİ",selected:true},
+      {title:"İlk Yarı Sonucu – Deplasman",value:"—",selected:false},
+      {title:"2.5 Üst Gol",value:"VAR",selected:true},
+      {title:"2.5 Üst + Karşılıklı Gol",value:"VAR",selected:true},
+      {title:"Maç Sonu Ev Sahibi 1.5 Üst",value:"VAR",selected:true},
+      {title:"Maç Sonu Deplasman 1.5 Üst",value:"—",selected:false},
+      {title:"Karşılıklı Gol – VAR",value:"VAR",selected:true}
+    ],
+    published:true
+  },
+
+  {
+    id:"sl-003",
+    league:"Süper Lig",
+    date:"2026-09-13",
+    time:"20:00",
+    home:"Başakşehir",
+    away:"Samsunspor",
+    analysis:"Kontrollü başlaması beklenen karşılaşmada saha avantajı ve savunma organizasyonu öne çıkmaktadır. Takımların ikinci yarıda daha fazla risk alması halinde gol beklentisinin yükselmesi mümkün olabilir.",
+    predictions:[
+      {title:"Ev Sahibi İlk Yarı Gol",value:"VAR",selected:true},
+      {title:"Deplasman İlk Yarı Gol",value:"—",selected:false},
+      {title:"İlk Yarı Sonucu – Ev Sahibi",value:"EV SAHİBİ",selected:true},
+      {title:"İlk Yarı Sonucu – Deplasman",value:"—",selected:false},
+      {title:"2.5 Üst Gol",value:"VAR",selected:true},
+      {title:"2.5 Üst + Karşılıklı Gol",value:"VAR",selected:true},
+      {title:"Maç Sonu Ev Sahibi 1.5 Üst",value:"VAR",selected:true},
+      {title:"Maç Sonu Deplasman 1.5 Üst",value:"—",selected:false},
+      {title:"Karşılıklı Gol – VAR",value:"VAR",selected:true}
+    ],
+    published:true
+  },
+
+
+  /* ===================== 1. LİG ===================== */
+
+  {
+    id:"1lig-001",
+    league:"1. Lig",
+    date:"2026-09-13",
+    time:"16:00",
+    home:"Sakaryaspor",
+    away:"Gençlerbirliği",
+    analysis:"Mücadele gücü yüksek olması beklenen karşılaşmada ev sahibi avantajı ve takımların hücumdaki üretkenliği temel değerlendirme başlıklarıdır. Orta saha dengesi maçın sonucunda önemli rol oynayabilir.",
+    predictions:[
+      {title:"Ev Sahibi İlk Yarı Gol",value:"VAR",selected:true},
+      {title:"Deplasman İlk Yarı Gol",value:"—",selected:false},
+      {title:"İlk Yarı Sonucu – Ev Sahibi",value:"EV SAHİBİ",selected:true},
+      {title:"İlk Yarı Sonucu – Deplasman",value:"—",selected:false},
+      {title:"2.5 Üst Gol",value:"VAR",selected:true},
+      {title:"2.5 Üst + Karşılıklı Gol",value:"VAR",selected:true},
+      {title:"Maç Sonu Ev Sahibi 1.5 Üst",value:"VAR",selected:true},
+      {title:"Maç Sonu Deplasman 1.5 Üst",value:"—",selected:false},
+      {title:"Karşılıklı Gol – VAR",value:"VAR",selected:true}
+    ],
+    published:true
+  },
+
+  {
+    id:"1lig-002",
+    league:"1. Lig",
+    date:"2026-09-14",
+    time:"16:00",
+    home:"Boluspor",
+    away:"Bandırmaspor",
+    analysis:"İki takımın savunma disiplininin maçın ilk bölümünde belirleyici olması beklenebilir. Kanat organizasyonları ve duran toplar karşılaşmanın kritik noktaları arasında değerlendirilmektedir.",
+    predictions:[
+      {title:"Ev Sahibi İlk Yarı Gol",value:"VAR",selected:true},
+      {title:"Deplasman İlk Yarı Gol",value:"VAR",selected:true},
+      {title:"İlk Yarı Sonucu – Ev Sahibi",value:"—",selected:false},
+      {title:"İlk Yarı Sonucu – Deplasman",value:"—",selected:false},
+      {title:"2.5 Üst Gol",value:"VAR",selected:true},
+      {title:"2.5 Üst + Karşılıklı Gol",value:"—",selected:false},
+      {title:"Maç Sonu Ev Sahibi 1.5 Üst",value:"—",selected:false},
+      {title:"Maç Sonu Deplasman 1.5 Üst",value:"VAR",selected:true},
+      {title:"Karşılıklı Gol – VAR",value:"VAR",selected:true}
+    ],
+    published:true
+  },
+
+  {
+    id:"1lig-003",
+    league:"1. Lig",
+    date:"2026-09-14",
+    time:"20:00",
+    home:"Erzurumspor",
+    away:"İstanbulspor",
+    analysis:"Karşılaşmada saha avantajı ve hücum geçişleri önemli olabilir. İlk golü atan tarafın oyunun kontrolünü ele geçirme ihtimali nedeniyle başlangıç bölümü özellikle dikkat çekmektedir.",
+    predictions:[
+      {title:"Ev Sahibi İlk Yarı Gol",value:"VAR",selected:true},
+      {title:"Deplasman İlk Yarı Gol",value:"VAR",selected:true},
+      {title:"İlk Yarı Sonucu – Ev Sahibi",value:"EV SAHİBİ",selected:true},
+      {title:"İlk Yarı Sonucu – Deplasman",value:"—",selected:false},
+      {title:"2.5 Üst Gol",value:"VAR",selected:true},
+      {title:"2.5 Üst + Karşılıklı Gol",value:"VAR",selected:true},
+      {title:"Maç Sonu Ev Sahibi 1.5 Üst",value:"VAR",selected:true},
+      {title:"Maç Sonu Deplasman 1.5 Üst",value:"—",selected:false},
+      {title:"Karşılıklı Gol – VAR",value:"VAR",selected:true}
+    ],
+    published:true
+  },
+
+
+  /* ===================== ŞAMPİYONLAR LİGİ ===================== */
+
+  {
+    id:"ucl-001",
+    league:"UEFA Şampiyonlar Ligi",
+    date:"2026-09-16",
+    time:"22:00",
+    home:"Manchester City",
+    away:"Real Madrid",
+    analysis:"Üst düzey Avrupa futbolunun iki güçlü ekibinin karşılaşmasında topa sahip olma, hücum kalitesi ve geçiş oyunları belirleyici olabilir. Maçın yüksek tempoda oynanması halinde gol beklentisinin artabileceği değerlendirilmektedir.",
+    predictions:[
+      {title:"Ev Sahibi İlk Yarı Gol",value:"VAR",selected:true},
+      {title:"Deplasman İlk Yarı Gol",value:"VAR",selected:true},
+      {title:"İlk Yarı Sonucu – Ev Sahibi",value:"EV SAHİBİ",selected:true},
+      {title:"İlk Yarı Sonucu – Deplasman",value:"—",selected:false},
+      {title:"2.5 Üst Gol",value:"VAR",selected:true},
+      {title:"2.5 Üst + Karşılıklı Gol",value:"VAR",selected:true},
+      {title:"Maç Sonu Ev Sahibi 1.5 Üst",value:"VAR",selected:true},
+      {title:"Maç Sonu Deplasman 1.5 Üst",value:"VAR",selected:true},
+      {title:"Karşılıklı Gol – VAR",value:"VAR",selected:true}
+    ],
+    published:true
+  },
+
+  {
+    id:"ucl-002",
+    league:"UEFA Şampiyonlar Ligi",
+    date:"2026-09-16",
+    time:"22:00",
+    home:"Bayern Münih",
+    away:"Paris Saint-Germain",
+    analysis:"İki hücum gücü yüksek takımın karşılaşmasında savunma arkasına yapılan koşular ve kanat organizasyonları öne çıkabilir. İlk yarıda karşılıklı pozisyon ihtimali yüksek bir oyun senaryosu değerlendirilmektedir.",
+    predictions:[
+      {title:"Ev Sahibi İlk Yarı Gol",value:"VAR",selected:true},
+      {title:"Deplasman İlk Yarı Gol",value:"VAR",selected:true},
+      {title:"İlk Yarı Sonucu – Ev Sahibi",value:"—",selected:false},
+      {title:"İlk Yarı Sonucu – Deplasman",value:"—",selected:false},
+      {title:"2.5 Üst Gol",value:"VAR",selected:true},
+      {title:"2.5 Üst + Karşılıklı Gol",value:"VAR",selected:true},
+      {title:"Maç Sonu Ev Sahibi 1.5 Üst",value:"VAR",selected:true},
+      {title:"Maç Sonu Deplasman 1.5 Üst",value:"VAR",selected:true},
+      {title:"Karşılıklı Gol – VAR",value:"VAR",selected:true}
+    ],
+    published:true
+  },
+
+  {
+    id:"ucl-003",
+    league:"UEFA Şampiyonlar Ligi",
+    date:"2026-09-17",
+    time:"22:00",
+    home:"Liverpool",
+    away:"Inter",
+    analysis:"Tempo ve pres seviyesinin yüksek olması beklenen mücadelede top kayıpları sonrası hızlı hücumlar önem kazanabilir. Özellikle ikinci yarıda oluşabilecek alanlar gol ihtimalini artırabilir.",
+    predictions:[
+      {title:"Ev Sahibi İlk Yarı Gol",value:"VAR",selected:true},
+      {title:"Deplasman İlk Yarı Gol",value:"VAR",selected:true},
+      {title:"İlk Yarı Sonucu – Ev Sahibi",value:"EV SAHİBİ",selected:true},
+      {title:"İlk Yarı Sonucu – Deplasman",value:"—",selected:false},
+      {title:"2.5 Üst Gol",value:"VAR",selected:true},
+      {title:"2.5 Üst + Karşılıklı Gol",value:"VAR",selected:true},
+      {title:"Maç Sonu Ev Sahibi 1.5 Üst",value:"VAR",selected:true},
+      {title:"Maç Sonu Deplasman 1.5 Üst",value:"VAR",selected:true},
+      {title:"Karşılıklı Gol – VAR",value:"VAR",selected:true}
+    ],
+    published:true
+  },
+
+
+  /* ===================== AVRUPA LİGİ ===================== */
+
+  {
+    id:"uel-001",
+    league:"UEFA Avrupa Ligi",
+    date:"2026-09-17",
+    time:"22:00",
+    home:"Roma",
+    away:"Ajax",
+    analysis:"İki köklü Avrupa takımının karşılaşmasında hücum organizasyonları, orta saha kontrolü ve maç temposu önemli olacaktır. Ev sahibi avantajının oyunun yönünü etkilemesi beklenebilir.",
+    predictions:[
+      {title:"Ev Sahibi İlk Yarı Gol",value:"VAR",selected:true},
+      {title:"Deplasman İlk Yarı Gol",value:"VAR",selected:true},
+      {title:"İlk Yarı Sonucu – Ev Sahibi",value:"EV SAHİBİ",selected:true},
+      {title:"İlk Yarı Sonucu – Deplasman",value:"—",selected:false},
+      {title:"2.5 Üst Gol",value:"VAR",selected:true},
+      {title:"2.5 Üst + Karşılıklı Gol",value:"VAR",selected:true},
+      {title:"Maç Sonu Ev Sahibi 1.5 Üst",value:"VAR",selected:true},
+      {title:"Maç Sonu Deplasman 1.5 Üst",value:"VAR",selected:true},
+      {title:"Karşılıklı Gol – VAR",value:"VAR",selected:true}
+    ],
+    published:true
+  },
+
+  {
+    id:"uel-002",
+    league:"UEFA Avrupa Ligi",
+    date:"2026-09-18",
+    time:"20:45",
+    home:"Tottenham",
+    away:"Villarreal",
+    analysis:"Hücum hattındaki hareketlilik ve kanat kullanımı maçın önemli unsurları olabilir. Savunma geçişlerinde yaşanabilecek boşluklar nedeniyle iki tarafın da gol fırsatı üretmesi beklenebilir.",
+    predictions:[
+      {title:"Ev Sahibi İlk Yarı Gol",value:"VAR",selected:true},
+      {title:"Deplasman İlk Yarı Gol",value:"VAR",selected:true},
+      {title:"İlk Yarı Sonucu – Ev Sahibi",value:"EV SAHİBİ",selected:true},
+      {title:"İlk Yarı Sonucu – Deplasman",value:"—",selected:false},
+      {title:"2.5 Üst Gol",value:"VAR",selected:true},
+      {title:"2.5 Üst + Karşılıklı Gol",value:"VAR",selected:true},
+      {title:"Maç Sonu Ev Sahibi 1.5 Üst",value:"VAR",selected:true},
+      {title:"Maç Sonu Deplasman 1.5 Üst",value:"—",selected:false},
+      {title:"Karşılıklı Gol – VAR",value:"VAR",selected:true}
+    ],
+    published:true
+  },
+
+  {
+    id:"uel-003",
+    league:"UEFA Avrupa Ligi",
+    date:"2026-09-18",
+    time:"22:00",
+    home:"Porto",
+    away:"Lyon",
+    analysis:"Maçın kontrolü orta saha mücadelesi üzerinden şekillenebilir. Takımların Avrupa tecrübesi nedeniyle ilk bölümde kontrollü oyun, sonrasında ise daha fazla hücum riski görülebilir.",
+    predictions:[
+      {title:"Ev Sahibi İlk Yarı Gol",value:"VAR",selected:true},
+      {title:"Deplasman İlk Yarı Gol",value:"—",selected:false},
+      {title:"İlk Yarı Sonucu – Ev Sahibi",value:"EV SAHİBİ",selected:true},
+      {title:"İlk Yarı Sonucu – Deplasman",value:"—",selected:false},
+      {title:"2.5 Üst Gol",value:"VAR",selected:true},
+      {title:"2.5 Üst + Karşılıklı Gol",value:"—",selected:false},
+      {title:"Maç Sonu Ev Sahibi 1.5 Üst",value:"VAR",selected:true},
+      {title:"Maç Sonu Deplasman 1.5 Üst",value:"—",selected:false},
+      {title:"Karşılıklı Gol – VAR",value:"VAR",selected:true}
+    ],
+    published:true
+  },
+
+
+  /* ===================== KONFERANS LİGİ ===================== */
+
+  {
+    id:"uecl-001",
+    league:"UEFA Konferans Ligi",
+    date:"2026-09-18",
+    time:"20:45",
+    home:"Fiorentina",
+    away:"Real Betis",
+    analysis:"Takım kalitesi, saha avantajı ve hücum etkinliği üzerinden değerlendirilen karşılaşmada özellikle kanat organizasyonları önem taşıyabilir. Karşılıklı pozisyon ihtimalinin yüksek olduğu bir oyun senaryosu öne çıkmaktadır.",
+    predictions:[
+      {title:"Ev Sahibi İlk Yarı Gol",value:"VAR",selected:true},
+      {title:"Deplasman İlk Yarı Gol",value:"VAR",selected:true},
+      {title:"İlk Yarı Sonucu – Ev Sahibi",value:"EV SAHİBİ",selected:true},
+      {title:"İlk Yarı Sonucu – Deplasman",value:"—",selected:false},
+      {title:"2.5 Üst Gol",value:"VAR",selected:true},
+      {title:"2.5 Üst + Karşılıklı Gol",value:"VAR",selected:true},
+      {title:"Maç Sonu Ev Sahibi 1.5 Üst",value:"VAR",selected:true},
+      {title:"Maç Sonu Deplasman 1.5 Üst",value:"—",selected:false},
+      {title:"Karşılıklı Gol – VAR",value:"VAR",selected:true}
+    ],
+    published:true
+  },
+
+  {
+    id:"uecl-002",
+    league:"UEFA Konferans Ligi",
+    date:"2026-09-19",
+    time:"20:00",
+    home:"Lille",
+    away:"PAOK",
+    analysis:"Ev sahibi ekibin saha avantajı ve hücum organizasyonları karşılaşmanın öne çıkan başlıklarıdır. Rakibin hızlı hücumları nedeniyle savunma geçişleri de dikkatle değerlendirilmelidir.",
+    predictions:[
+      {title:"Ev Sahibi İlk Yarı Gol",value:"VAR",selected:true},
+      {title:"Deplasman İlk Yarı Gol",value:"—",selected:false},
+      {title:"İlk Yarı Sonucu – Ev Sahibi",value:"EV SAHİBİ",selected:true},
+      {title:"İlk Yarı Sonucu – Deplasman",value:"—",selected:false},
+      {title:"2.5 Üst Gol",value:"VAR",selected:true},
+      {title:"2.5 Üst + Karşılıklı Gol",value:"VAR",selected:true},
+      {title:"Maç Sonu Ev Sahibi 1.5 Üst",value:"VAR",selected:true},
+      {title:"Maç Sonu Deplasman 1.5 Üst",value:"—",selected:false},
+      {title:"Karşılıklı Gol – VAR",value:"VAR",selected:true}
+    ],
+    published:true
+  },
+
+  {
+    id:"uecl-003",
+    league:"UEFA Konferans Ligi",
+    date:"2026-09-19",
+    time:"22:00",
+    home:"Braga",
+    away:"Fiorentina",
+    analysis:"İki takımın hücumdaki hareketliliği ve topa sahip olma mücadelesi maçın temposunu belirleyebilir. Duran toplar ve ikinci toplar önemli fırsat alanları oluşturabilir.",
+    predictions:[
+      {title:"Ev Sahibi İlk Yarı Gol",value:"VAR",selected:true},
+      {title:"Deplasman İlk Yarı Gol",value:"VAR",selected:true},
+      {title:"İlk Yarı Sonucu – Ev Sahibi",value:"—",selected:false},
+      {title:"İlk Yarı Sonucu – Deplasman",value:"—",selected:false},
+      {title:"2.5 Üst Gol",value:"VAR",selected:true},
+      {title:"2.5 Üst + Karşılıklı Gol",value:"VAR",selected:true},
+      {title:"Maç Sonu Ev Sahibi 1.5 Üst",value:"—",selected:false},
+      {title:"Maç Sonu Deplasman 1.5 Üst",value:"VAR",selected:true},
+      {title:"Karşılıklı Gol – VAR",value:"VAR",selected:true}
+    ],
+    published:true
+  },
+
+
+  /* ===================== KUPA ===================== */
+
+  {
+    id:"cup-001",
+    league:"Kupa Maçları",
+    date:"2026-09-20",
+    time:"20:00",
+    home:"Fenerbahçe",
+    away:"Beşiktaş",
+    analysis:"Kupa karşılaşmalarında turun önemi nedeniyle takımların oyun yaklaşımı değişebilir. İlk golün önemi yüksek olabilir. Hücum kalitesi, kadro tercihleri ve maçın başlangıç temposu temel değerlendirme başlıklarıdır.",
+    predictions:[
+      {title:"Ev Sahibi İlk Yarı Gol",value:"VAR",selected:true},
+      {title:"Deplasman İlk Yarı Gol",value:"VAR",selected:true},
+      {title:"İlk Yarı Sonucu – Ev Sahibi",value:"EV SAHİBİ",selected:true},
+      {title:"İlk Yarı Sonucu – Deplasman",value:"—",selected:false},
+      {title:"2.5 Üst Gol",value:"VAR",selected:true},
+      {title:"2.5 Üst + Karşılıklı Gol",value:"VAR",selected:true},
+      {title:"Maç Sonu Ev Sahibi 1.5 Üst",value:"VAR",selected:true},
+      {title:"Maç Sonu Deplasman 1.5 Üst",value:"VAR",selected:true},
+      {title:"Karşılıklı Gol – VAR",value:"VAR",selected:true}
+    ],
+    published:true
+  },
+
+  {
+    id:"cup-002",
+    league:"Kupa Maçları",
+    date:"2026-09-21",
+    time:"20:00",
+    home:"Trabzonspor",
+    away:"Galatasaray",
+    analysis:"Kupa atmosferi nedeniyle mücadele seviyesi yüksek olabilir. Takımların erken gol arayışı ve ikinci yarıda oluşabilecek riskler maçın gol potansiyelini etkileyebilecek faktörlerdir.",
+    predictions:[
+      {title:"Ev Sahibi İlk Yarı Gol",value:"VAR",selected:true},
+      {title:"Deplasman İlk Yarı Gol",value:"VAR",selected:true},
+      {title:"İlk Yarı Sonucu – Ev Sahibi",value:"—",selected:false},
+      {title:"İlk Yarı Sonucu – Deplasman",value:"—",selected:false},
+      {title:"2.5 Üst Gol",value:"VAR",selected:true},
+      {title:"2.5 Üst + Karşılıklı Gol",value:"VAR",selected:true},
+      {title:"Maç Sonu Ev Sahibi 1.5 Üst",value:"—",selected:false},
+      {title:"Maç Sonu Deplasman 1.5 Üst",value:"VAR",selected:true},
+      {title:"Karşılıklı Gol – VAR",value:"VAR",selected:true}
+    ],
+    published:true
+  },
+
+  {
+    id:"cup-003",
+    league:"Kupa Maçları",
+    date:"2026-09-21",
+    time:"22:00",
+    home:"Beşiktaş",
+    away:"Başakşehir",
+    analysis:"Kupa maçlarında kontrollü oyun ile risk alma arasındaki denge önemlidir. İlk yarıda savunma güvenliği ön planda tutulabilirken maç ilerledikçe hücum girişimlerinin artması beklenebilir.",
+    predictions:[
+      {title:"Ev Sahibi İlk Yarı Gol",value:"VAR",selected:true},
+      {title:"Deplasman İlk Yarı Gol",value:"—",selected:false},
+      {title:"İlk Yarı Sonucu – Ev Sahibi",value:"EV SAHİBİ",selected:true},
+      {title:"İlk Yarı Sonucu – Deplasman",value:"—",selected:false},
+      {title:"2.5 Üst Gol",value:"VAR",selected:true},
+      {title:"2.5 Üst + Karşılıklı Gol",value:"—",selected:false},
+      {title:"Maç Sonu Ev Sahibi 1.5 Üst",value:"VAR",selected:true},
+      {title:"Maç Sonu Deplasman 1.5 Üst",value:"—",selected:false},
+      {title:"Karşılıklı Gol – VAR",value:"VAR",selected:true}
+    ],
+    published:true
+  }
+
+];
+
+
+/* =========================================================
+   DEĞİŞKENLER
+========================================================= */
+
+let matches = [];
+let editingId = null;
+
+
+/* =========================================================
+   YARDIMCI
+========================================================= */
+
+function normalizeText(text){
+
+  return String(text || "")
+    .toLocaleLowerCase("tr-TR")
+    .replace(/\s+/g," ")
+    .trim();
+
+}
+
+
+function createId(){
+
+  return "mac-" +
+    Date.now() +
+    "-" +
+    Math.random()
+      .toString(36)
+      .substring(2,8);
+
+}
+
+
+/* =========================================================
+   TAHMİNLERİ NORMALLEŞTİR
+========================================================= */
+
+function normalizePredictions(match){
+
+  const old =
+    Array.isArray(match.predictions)
+      ? match.predictions
+      : [];
+
+  return PREDICTION_TYPES.map(type => {
+
+    const found =
+      old.find(item =>
+        normalizeText(item.title) ===
+        normalizeText(type.title)
+      );
+
+    if(!found){
+
+      return {
+        title:type.title,
+        value:"—",
+        selected:false
+      };
 
     }
+
+    return {
+      title:type.title,
+
+      value:
+        found.selected === true
+          ? (found.value || type.checkedValue)
+          : "—",
+
+      selected:
+        found.selected === true
+    };
+
+  });
+
+}
+
+
+/* =========================================================
+   VERİYİ OKU
+========================================================= */
+
+function loadData(){
+
+  try{
+
+    const raw =
+      localStorage.getItem(STORAGE_KEY);
+
+    if(raw){
+
+      const parsed =
+        JSON.parse(raw);
+
+      if(Array.isArray(parsed)){
+
+        matches =
+          parsed.map(normalizeMatch);
+
+        saveData(false);
+
+        return;
+
+      }
+
+    }
+
+  }catch(error){
+
+    console.error(error);
+
   }
 
 
-  checkboxlar.forEach(function(checkbox) {
+  /*
+   * İlk kez açılıyorsa 18 örnek maç oluştur.
+   */
 
-    checkbox.addEventListener("change", function() {
+  matches =
+    DEFAULT_MATCHES.map(normalizeMatch);
 
-      secimleriGuncelle();
+  saveData(false);
+
+}
+
+
+/* =========================================================
+   MAÇ NORMALİZE
+========================================================= */
+
+function normalizeMatch(match){
+
+  return {
+
+    id:
+      match.id ||
+      createId(),
+
+    league:
+      match.league ||
+      "Diğer Maçlar",
+
+    date:
+      match.date ||
+      "",
+
+    time:
+      match.time ||
+      "",
+
+    home:
+      match.home ||
+      match.evSahibi ||
+      "",
+
+    away:
+      match.away ||
+      match.deplasman ||
+      "",
+
+    analysis:
+      match.analysis ||
+      match.aciklama ||
+      "",
+
+    predictions:
+      normalizePredictions(match),
+
+    published:
+      match.published !== false,
+
+    updatedAt:
+      match.updatedAt ||
+      new Date().toISOString()
+
+  };
+
+}
+
+
+/* =========================================================
+   VERİYİ KAYDET
+========================================================= */
+
+function saveData(showMessage=true){
+
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(matches)
+  );
+
+  if(showMessage){
+
+    showResult(
+      "Maç bilgileri başarıyla kaydedildi.",
+      "success"
+    );
+
+  }
+
+  updateStats();
+  renderMatchList();
+
+}
+
+
+/* =========================================================
+   SONUÇ MESAJI
+========================================================= */
+
+function showResult(message,type="success"){
+
+  const sonuc =
+    document.getElementById("sonuc");
+
+  sonuc.className = type;
+
+  sonuc.innerHTML =
+    message;
+
+  sonuc.style.display =
+    "block";
+
+  clearTimeout(
+    window.resultTimer
+  );
+
+  window.resultTimer =
+    setTimeout(() => {
+
+      sonuc.style.display =
+        "none";
+
+    },4000);
+
+}
+
+
+/* =========================================================
+   CHECKBOX SEÇİMLERİNİ GÖSTER
+========================================================= */
+
+function updateSelectedInfo(){
+
+  const selected = [];
+
+  document
+    .querySelectorAll(".prediction-checkbox")
+    .forEach(checkbox => {
+
+      if(checkbox.checked){
+
+        selected.push(
+          checkbox.dataset.title +
+          " = " +
+          checkbox.dataset.value
+        );
+
+      }
 
     });
 
-  });
+
+  document.getElementById(
+    "secilenler"
+  ).textContent =
+    selected.length
+      ? selected.join(" • ")
+      : "Henüz seçim yapılmadı.";
+
+}
 
 
-  /*
-   * ==========================================
-   * KAYDET
-   * ==========================================
-   */
+/* =========================================================
+   FORMU OKU
+========================================================= */
 
-  document
-    .getElementById("kaydetBtn")
-    .addEventListener("click", function() {
+function readForm(){
 
-      const tahminler = {};
+  const predictions =
+    PREDICTION_TYPES.map(type => {
 
-      checkboxlar.forEach(function(checkbox) {
+      const checkbox =
+        [...document.querySelectorAll(".prediction-checkbox")]
+          .find(
+            item =>
+              normalizeText(item.dataset.title)
+              ===
+              normalizeText(type.title)
+          );
 
-        tahminler[checkbox.id] = checkbox.checked;
+      const selected =
+        checkbox
+          ? checkbox.checked
+          : false;
 
-      });
+      return {
 
+        title:type.title,
 
-      const mac = {
+        value:
+          selected
+            ? type.checkedValue
+            : "—",
 
-        tarih:
-          document.getElementById("tarih").value,
-
-        evSahibi:
-          document.getElementById("evSahibi").value,
-
-        deplasman:
-          document.getElementById("deplasman").value,
-
-        saat:
-          document.getElementById("saat").value,
-
-        aciklama:
-          document.getElementById("aciklama").value,
-
-        tahminler:
-          tahminler
+        selected:selected
 
       };
 
+    });
 
-      localStorage.setItem(
-        "sporMac",
-        JSON.stringify(mac)
+
+  return {
+
+    league:
+      document.getElementById("lig").value.trim(),
+
+    date:
+      document.getElementById("tarih").value,
+
+    time:
+      document.getElementById("saat").value,
+
+    home:
+      document.getElementById("evSahibi").value.trim(),
+
+    away:
+      document.getElementById("deplasman").value.trim(),
+
+    analysis:
+      document.getElementById("aciklama").value.trim(),
+
+    predictions:
+
+      predictions,
+
+    published:
+      document.getElementById("yayinda").checked
+
+  };
+
+}
+
+
+/* =========================================================
+   FORMU TEMİZLE
+========================================================= */
+
+function clearForm(){
+
+  editingId = null;
+
+  document.getElementById(
+    "formBaslik"
+  ).textContent =
+    "Yeni Maç Oluştur";
+
+  document.getElementById(
+    "kaydetBtn"
+  ).innerHTML =
+    '<i class="fa-solid fa-floppy-disk"></i> Maçı Kaydet';
+
+
+  document.getElementById("lig").value =
+    "Süper Lig";
+
+  document.getElementById("tarih").value =
+    "";
+
+  document.getElementById("saat").value =
+    "";
+
+  document.getElementById("evSahibi").value =
+    "";
+
+  document.getElementById("deplasman").value =
+    "";
+
+  document.getElementById("aciklama").value =
+    "";
+
+  document.getElementById("yayinda").checked =
+    true;
+
+
+  document
+    .querySelectorAll(".prediction-checkbox")
+    .forEach(checkbox => {
+
+      checkbox.checked =
+        false;
+
+    });
+
+
+  updateSelectedInfo();
+
+}
+
+
+/* =========================================================
+   FORMU DOLDUR
+========================================================= */
+
+function editMatch(id){
+
+  const match =
+    matches.find(
+      item => item.id === id
+    );
+
+  if(!match){
+    return;
+  }
+
+  editingId =
+    id;
+
+  document.getElementById(
+    "formBaslik"
+  ).textContent =
+    "Maçı Düzenle";
+
+
+  document.getElementById(
+    "kaydetBtn"
+  ).innerHTML =
+    '<i class="fa-solid fa-pen-to-square"></i> Değişiklikleri Kaydet';
+
+
+  document.getElementById("lig").value =
+    match.league;
+
+  document.getElementById("tarih").value =
+    match.date;
+
+  document.getElementById("saat").value =
+    match.time;
+
+  document.getElementById("evSahibi").value =
+    match.home;
+
+  document.getElementById("deplasman").value =
+    match.away;
+
+  document.getElementById("aciklama").value =
+    match.analysis;
+
+  document.getElementById("yayinda").checked =
+    match.published !== false;
+
+
+  const predictions =
+    normalizePredictions(match);
+
+
+  document
+    .querySelectorAll(".prediction-checkbox")
+    .forEach(checkbox => {
+
+      const found =
+        predictions.find(
+          item =>
+            normalizeText(item.title)
+            ===
+            normalizeText(checkbox.dataset.title)
+        );
+
+      checkbox.checked =
+        found
+          ? found.selected === true
+          : false;
+
+    });
+
+
+  updateSelectedInfo();
+
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+/* =========================================================
+   MAÇ SİL
+========================================================= */
+
+function deleteMatch(id){
+
+  const match =
+    matches.find(
+      item => item.id === id
+    );
+
+  if(!match){
+    return;
+  }
+
+
+  const confirmed =
+    confirm(
+      `"${match.home} - ${match.away}" maçını silmek istediğinize emin misiniz?`
+    );
+
+
+  if(!confirmed){
+    return;
+  }
+
+
+  matches =
+    matches.filter(
+      item => item.id !== id
+    );
+
+
+  if(editingId === id){
+
+    clearForm();
+
+  }
+
+
+  saveData();
+
+  showResult(
+    "Maç başarıyla silindi.",
+    "success"
+  );
+
+}
+
+
+/* =========================================================
+   TARİH FORMAT
+========================================================= */
+
+function formatDate(date){
+
+  if(!date){
+    return "Tarih yok";
+  }
+
+  const d =
+    new Date(
+      date + "T00:00:00"
+    );
+
+  if(isNaN(d.getTime())){
+    return date;
+  }
+
+  return d.toLocaleDateString(
+    "tr-TR",
+    {
+      day:"2-digit",
+      month:"long",
+      year:"numeric"
+    }
+  );
+
+}
+
+
+/* =========================================================
+   HTML ESCAPE
+========================================================= */
+
+function escapeHTML(value){
+
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================================================
+   LİG SINIFI
+========================================================= */
+
+function getLeagueClass(league){
+
+  if(league === "Süper Lig")
+    return "league-super";
+
+  if(league === "1. Lig")
+    return "league-first";
+
+  if(league === "UEFA Şampiyonlar Ligi")
+    return "league-ucl";
+
+  if(league === "UEFA Avrupa Ligi")
+    return "league-uel";
+
+  if(league === "UEFA Konferans Ligi")
+    return "league-uecl";
+
+  if(league === "Kupa Maçları")
+    return "league-cup";
+
+  return "league-other";
+
+}
+
+
+/* =========================================================
+   MAÇ LİSTESİ
+========================================================= */
+
+function renderMatchList(){
+
+  const container =
+    document.getElementById(
+      "matchList"
+    );
+
+
+  if(matches.length === 0){
+
+    container.innerHTML = `
+
+      <div style="
+        grid-column:1/-1;
+        text-align:center;
+        padding:45px 20px;
+        color:#64748b;
+      ">
+
+        <i
+          class="fa-solid fa-futbol"
+          style="
+            font-size:35px;
+            margin-bottom:12px;
+          "
+        ></i>
+
+        <div>
+          Henüz maç bulunmuyor.
+        </div>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  const sorted =
+    [...matches].sort(
+      (a,b) =>
+        `${a.date} ${a.time}`
+        .localeCompare(
+          `${b.date} ${b.time}`
+        )
+    );
+
+
+  container.innerHTML =
+    sorted.map(match => {
+
+      const predictions =
+        normalizePredictions(match);
+
+
+      const activePredictions =
+        predictions.filter(
+          item =>
+            item.selected === true
+        );
+
+
+      const predictionHTML =
+        predictions.map(item => {
+
+          if(item.selected){
+
+            return `
+              <span class="mini-prediction active">
+                ✓ ${escapeHTML(item.title)}
+              </span>
+            `;
+
+          }
+
+          return `
+            <span class="mini-prediction inactive">
+              ${escapeHTML(item.title)}
+            </span>
+          `;
+
+        }).join("");
+
+
+      return `
+
+        <article class="match-admin-card">
+
+          <div class="match-admin-top">
+
+            <span
+              class="league-badge ${getLeagueClass(match.league)}"
+            >
+              <i class="fa-solid fa-trophy"></i>
+              ${escapeHTML(match.league)}
+            </span>
+
+            <span class="status ${
+              match.published
+                ? "published"
+                : "hidden"
+            }">
+
+              ${
+                match.published
+                  ? "● YAYINDA"
+                  : "● GİZLİ"
+              }
+
+            </span>
+
+          </div>
+
+
+          <div class="match-admin-body">
+
+            <div class="match-admin-teams">
+
+              ${escapeHTML(match.home || "Ev Sahibi")}
+
+              <div class="vs">
+                VS
+              </div>
+
+              ${escapeHTML(match.away || "Deplasman")}
+
+            </div>
+
+
+            <div class="match-meta">
+
+              <span>
+                <i class="fa-regular fa-calendar"></i>
+                ${escapeHTML(formatDate(match.date))}
+              </span>
+
+              <span>
+                <i class="fa-regular fa-clock"></i>
+                ${escapeHTML(match.time || "--:--")}
+              </span>
+
+            </div>
+
+
+            <div class="match-predictions">
+
+              ${predictionHTML}
+
+            </div>
+
+
+            <div class="match-admin-analysis">
+
+              <strong>
+                <i class="fa-solid fa-chart-line"></i>
+                Maç Analizi
+              </strong>
+
+              ${escapeHTML(
+                match.analysis ||
+                "Analiz eklenmemiş."
+              )}
+
+            </div>
+
+          </div>
+
+
+          <div class="match-admin-actions">
+
+            <button
+              type="button"
+              class="small-btn edit-btn"
+              data-action="edit"
+              data-id="${escapeHTML(match.id)}"
+            >
+              <i class="fa-solid fa-pen"></i>
+              Düzenle
+            </button>
+
+
+            <button
+              type="button"
+              class="small-btn delete-btn"
+              data-action="delete"
+              data-id="${escapeHTML(match.id)}"
+            >
+              <i class="fa-solid fa-trash"></i>
+              Sil
+            </button>
+
+          </div>
+
+        </article>
+
+      `;
+
+    }).join("");
+
+}
+
+
+/* =========================================================
+   İSTATİSTİK
+========================================================= */
+
+function updateStats(){
+
+  const categories =
+    new Set(
+      matches.map(
+        item => item.league
+      )
+    );
+
+
+  const selectedCount =
+    matches.reduce(
+      (total,match) => {
+
+        return total +
+          normalizePredictions(match)
+            .filter(
+              item =>
+                item.selected === true
+            ).length;
+
+      },
+      0
+    );
+
+
+  const published =
+    matches.filter(
+      item =>
+        item.published !== false
+    ).length;
+
+
+  document.getElementById(
+    "kategoriSayisi"
+  ).textContent =
+    categories.size;
+
+
+  document.getElementById(
+    "macSayisi"
+  ).textContent =
+    matches.length;
+
+
+  document.getElementById(
+    "aktifTahminSayisi"
+  ).textContent =
+    selectedCount;
+
+
+  document.getElementById(
+    "yayindaSayisi"
+  ).textContent =
+    published;
+
+}
+
+
+/* =========================================================
+   KAYDET
+========================================================= */
+
+function saveMatch(){
+
+  const form =
+    readForm();
+
+
+  if(!form.league){
+
+    showResult(
+      "Lütfen lig/kategori seçin.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  if(!form.home){
+
+    showResult(
+      "Lütfen ev sahibi takımını yazın.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  if(!form.away){
+
+    showResult(
+      "Lütfen deplasman takımını yazın.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  if(!form.date){
+
+    showResult(
+      "Lütfen maç tarihini seçin.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  if(!form.time){
+
+    showResult(
+      "Lütfen maç saatini seçin.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  if(editingId){
+
+    const index =
+      matches.findIndex(
+        item =>
+          item.id === editingId
       );
 
 
-      const sonuc =
-        document.getElementById("sonuc");
+    if(index === -1){
 
-      sonuc.style.display = "block";
+      showResult(
+        "Düzenlenecek maç bulunamadı.",
+        "error"
+      );
 
-      sonuc.innerHTML =
-        "✅ Maç ve tahminler başarıyla kaydedildi.";
+      return;
 
-
-      console.log("Kaydedilen maç:", mac);
-
-    });
+    }
 
 
-  /*
-   * ==========================================
-   * TEMİZLE
-   * ==========================================
-   */
+    matches[index] = {
 
-  document
-    .getElementById("temizleBtn")
-    .addEventListener("click", function() {
+      ...matches[index],
 
-      document.getElementById("tarih").value = "";
+      ...form,
 
-      document.getElementById("evSahibi").value = "";
+      updatedAt:
+        new Date().toISOString()
 
-      document.getElementById("deplasman").value = "";
-
-      document.getElementById("saat").value = "";
-
-      document.getElementById("aciklama").value = "";
+    };
 
 
-      checkboxlar.forEach(function(checkbox) {
+    saveData();
 
-        checkbox.checked = false;
-
-      });
-
-
-      secimleriGuncelle();
+    showResult(
+      "Maç başarıyla güncellendi. Spor sayfasındaki bilgiler de güncellendi.",
+      "success"
+    );
 
 
-      document.getElementById("sonuc").style.display =
-        "none";
+    clearForm();
 
-    });
+    return;
+
+  }
 
 
-  /*
-   * ==========================================
-   * DAHA ÖNCE KAYDEDİLEN VERİYİ YÜKLE
-   * ==========================================
-   */
+  const newMatch = {
 
-  window.addEventListener("DOMContentLoaded", function() {
+    id:createId(),
 
-    const kayit =
-      localStorage.getItem("sporMac");
+    ...form,
 
-    if (!kayit) {
+    updatedAt:
+      new Date().toISOString()
+
+  };
+
+
+  matches.push(
+    newMatch
+  );
+
+
+  saveData();
+
+
+  showResult(
+    "Yeni maç başarıyla eklendi.",
+    "success"
+  );
+
+
+  clearForm();
+
+}
+
+
+/* =========================================================
+   18 ÖRNEK MAÇ YÜKLE
+========================================================= */
+
+function loadExamples(){
+
+  const confirmed =
+    confirm(
+      "Bu işlem mevcut maç listesini 18 örnek maç ile değiştirecek. Devam edilsin mi?"
+    );
+
+
+  if(!confirmed){
+    return;
+  }
+
+
+  matches =
+    DEFAULT_MATCHES.map(
+      normalizeMatch
+    );
+
+
+  saveData();
+
+
+  showResult(
+    "18 örnek maç başarıyla yüklendi.",
+    "success"
+  );
+
+
+  clearForm();
+
+}
+
+
+/* =========================================================
+   EVENTLER
+========================================================= */
+
+document
+  .querySelectorAll(".prediction-checkbox")
+  .forEach(checkbox => {
+
+    checkbox.addEventListener(
+      "change",
+      updateSelectedInfo
+    );
+
+  });
+
+
+document
+  .getElementById("kaydetBtn")
+  .addEventListener(
+    "click",
+    saveMatch
+  );
+
+
+document
+  .getElementById("yeniMacBtn")
+  .addEventListener(
+    "click",
+    clearForm
+  );
+
+
+document
+  .getElementById("temizleBtn")
+  .addEventListener(
+    "click",
+    clearForm
+  );
+
+
+document
+  .getElementById("ornekleriYukleBtn")
+  .addEventListener(
+    "click",
+    loadExamples
+  );
+
+
+/*
+  Liste butonları event delegation ile çalışıyor.
+*/
+
+document
+  .getElementById("matchList")
+  .addEventListener(
+    "click",
+    function(event){
+
+      const button =
+        event.target.closest(
+          "button[data-action]"
+        );
+
+
+      if(!button){
+        return;
+      }
+
+
+      const id =
+        button.dataset.id;
+
+
+      if(button.dataset.action === "edit"){
+
+        editMatch(id);
+
+      }
+
+
+      if(button.dataset.action === "delete"){
+
+        deleteMatch(id);
+
+      }
+
+    }
+  );
+
+
+/* =========================================================
+   STORAGE BAŞKA SEKMEDE DEĞİŞİRSE
+========================================================= */
+
+window.addEventListener(
+  "storage",
+  function(event){
+
+    if(event.key !== STORAGE_KEY){
       return;
     }
 
+    loadData();
 
-    try {
+    renderMatchList();
 
-      const mac = JSON.parse(kayit);
+    updateStats();
 
-
-      if (mac.tarih) {
-        document.getElementById("tarih").value =
-          mac.tarih;
-      }
-
-      if (mac.evSahibi) {
-        document.getElementById("evSahibi").value =
-          mac.evSahibi;
-      }
-
-      if (mac.deplasman) {
-        document.getElementById("deplasman").value =
-          mac.deplasman;
-      }
-
-      if (mac.saat) {
-        document.getElementById("saat").value =
-          mac.saat;
-      }
-
-      if (mac.aciklama) {
-        document.getElementById("aciklama").value =
-          mac.aciklama;
-      }
+  }
+);
 
 
-      if (mac.tahminler) {
+/* =========================================================
+   BAŞLAT
+========================================================= */
 
-        checkboxlar.forEach(function(checkbox) {
-
-          checkbox.checked =
-            mac.tahminler[checkbox.id] === true;
-
-        });
-
-      }
+document.getElementById(
+  "year"
+).textContent =
+  new Date().getFullYear();
 
 
-      secimleriGuncelle();
+loadData();
 
-    }
+renderMatchList();
 
-    catch (error) {
+updateStats();
 
-      console.error(
-        "Kayıt okunamadı:",
-        error
-      );
-
-    }
-
-  });
+updateSelectedInfo();
 
 </script>
 
