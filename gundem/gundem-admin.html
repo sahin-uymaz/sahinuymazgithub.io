@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Haber Ekle - Admin Paneli</title>
+<title>Haber Yönetim Paneli</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif;}
 body{background:#f4f6f9;padding:20px;color:#333;}
@@ -57,26 +57,44 @@ button:hover{background:#d71920;}
 
     <div class="card">
         <h2>Yayınlanan Haberleriniz</h2>
-        <div id="haberListesi">Yükleniyor...</div>
+        <div id="haberListesi"></div>
     </div>
 </div>
 
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+<script>
+function haberleriGetir() {
+    return JSON.parse(localStorage.getItem('site_haberleri')) || [];
+}
 
-const firebaseConfig = { databaseURL: "https://eserkon-default-rtdb.firebaseio.com" };
-const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
-const haberlerRef = ref(db, 'kendi_haberlerim');
+function haberleriListele() {
+    const liste = document.getElementById('haberListesi');
+    const haberler = haberleriGetir();
 
-// Form Gönderildiğinde (Haber Kaydetme)
+    if(haberler.length === 0) {
+        liste.innerHTML = '<p style="color:#666;">Henüz eklenmiş bir haber yok.</p>';
+        return;
+    }
+
+    liste.innerHTML = '';
+    haberler.forEach((h, index) => {
+        liste.innerHTML += `
+            <div class="haber-item">
+                <div class="haber-bilgi">
+                    <img src="${h.resim}">
+                    <div>
+                        <strong>${h.baslik}</strong><br>
+                        <small style="color:#666;">${h.kategori} - ${h.tarih}</small>
+                    </div>
+                </div>
+                <button class="btn-sil" onclick="haberSil(${index})">Sil</button>
+            </div>
+        `;
+    });
+}
+
 document.getElementById('haberForm').addEventListener('submit', function(e) {
     e.preventDefault();
-    const btn = document.getElementById('kaydetBtn');
-    btn.disabled = true;
-    btn.innerText = "Kaydediliyor...";
-
+    
     const resimDosyasi = document.getElementById('resim').files[0];
     const reader = new FileReader();
 
@@ -89,50 +107,29 @@ document.getElementById('haberForm').addEventListener('submit', function(e) {
             tarih: new Date().toLocaleDateString('tr-TR')
         };
 
-        push(haberlerRef, yeniHaber).then(() => {
-            alert("Haber başarıyla eklendi!");
-            document.getElementById('haberForm').reset();
-            btn.disabled = false;
-            btn.innerText = "Haberi Kaydet ve Yayınla";
-        });
+        const mevcutHaberler = haberleriGetir();
+        mevcutHaberler.unshift(yeniHaber); // Yeni haberi başa ekler
+        localStorage.setItem('site_haberleri', JSON.stringify(mevcutHaberler));
+
+        alert("Haber başarıyla kaydedildi!");
+        document.getElementById('haberForm').reset();
+        haberleriListele();
     };
 
     reader.readAsDataURL(resimDosyasi);
 });
 
-// Haberleri Listeleme ve Silme
-onValue(haberlerRef, (snapshot) => {
-    const liste = document.getElementById('haberListesi');
-    liste.innerHTML = '';
-    const veriler = snapshot.val();
-
-    if(!veriler) {
-        liste.innerHTML = '<p>Henüz haber eklemediniz.</p>';
-        return;
-    }
-
-    Object.keys(veriler).reverse().forEach(key => {
-        const h = veriler[key];
-        liste.innerHTML += `
-            <div class="haber-item">
-                <div class="haber-bilgi">
-                    <img src="${h.resim}">
-                    <div>
-                        <strong>${h.baslik}</strong><br>
-                        <small style="color:#666;">${h.kategori} - ${h.tarih}</small>
-                    </div>
-                </div>
-                <button class="btn-sil" onclick="window.haberSil('${key}')">Sil</button>
-            </div>
-        `;
-    });
-});
-
-window.haberSil = function(key) {
+function haberSil(index) {
     if(confirm("Bu haberi silmek istediğinize emin misiniz?")) {
-        remove(ref(db, 'kendi_haberlerim/' + key));
+        const haberler = haberleriGetir();
+        haberler.splice(index, 1);
+        localStorage.setItem('site_haberleri', JSON.stringify(haberler));
+        haberleriListele();
     }
 }
+
+// Sayfa açıldığında mevcut haberleri yükle
+haberleriListele();
 </script>
 
 </body>
