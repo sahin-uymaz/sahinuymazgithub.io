@@ -4,54 +4,91 @@
 
 <!-- =====================================================
      ÖZEL ERİŞİM KONTROLÜ
-     Giriş yapılmadan ana site gösterilmez.
+     E-POSTA ONAYI + 24 SAATLİK ERİŞİM
 ===================================================== -->
 
 <script>
 (function () {
 
     const ACCESS_KEY = "site_access_approved";
+    const ACCESS_TIME_KEY = "site_access_time";
+    const ACCESS_DURATION = 24 * 60 * 60 * 1000; // 24 saat
 
     /*
-     * Daha önce giriş yapılmış mı?
-     */
-    const hasAccess = sessionStorage.getItem(ACCESS_KEY);
-
-    /*
-     * E-posta ile gelen onay bağlantısı:
+     * E-posta bağlantısından gelen onay:
      * ?access=granted
      */
     const params = new URLSearchParams(window.location.search);
     const mailApproved = params.get("access") === "granted";
 
     /*
-     * Onay bağlantısıyla gelindiyse erişimi aktif et.
+     * Daha önce verilmiş erişim bilgisi
+     */
+    const hasAccess = localStorage.getItem(ACCESS_KEY);
+    const accessTime = parseInt(
+        localStorage.getItem(ACCESS_TIME_KEY) || "0",
+        10
+    );
+
+    /*
+     * ==================================================
+     * 1. E-POSTA ONAYIYLA GELDİYSE
+     * ==================================================
      */
     if (mailApproved) {
-        sessionStorage.setItem(ACCESS_KEY, "true");
+
+        localStorage.setItem(ACCESS_KEY, "true");
+        localStorage.setItem(
+            ACCESS_TIME_KEY,
+            Date.now().toString()
+        );
 
         /*
-         * URL'deki access=granted bilgisini temizle.
+         * BURADA URL'Yİ TEMİZLEMİYORUZ.
+         *
+         * ?access=granted URL'de kalabilir.
+         * Öncelikle erişimin kesin olarak tanınmasını sağlıyoruz.
          */
-        const cleanURL =
-            window.location.origin +
-            window.location.pathname;
-
-        window.history.replaceState({}, document.title, cleanURL);
 
         return;
     }
 
     /*
-     * Erişim yoksa giriş paneline gönder.
+     * ==================================================
+     * 2. DAHA ÖNCE ONAYLANMIŞ KULLANICI
+     * ==================================================
      */
-    if (hasAccess !== "true") {
 
-        window.location.replace(
-            "giris-formlari/giris-paneli.html"
-        );
+    if (hasAccess === "true") {
 
+        /*
+         * 24 saat dolmuş mu?
+         */
+        if (
+            accessTime &&
+            (Date.now() - accessTime) < ACCESS_DURATION
+        ) {
+
+            return;
+
+        }
+
+        /*
+         * 24 saat dolduysa erişimi kaldır
+         */
+        localStorage.removeItem(ACCESS_KEY);
+        localStorage.removeItem(ACCESS_TIME_KEY);
     }
+
+    /*
+     * ==================================================
+     * 3. ERİŞİM YOKSA GİRİŞ PANELİNE GÖNDER
+     * ==================================================
+     */
+
+    window.location.replace(
+        "giris-formlari/giris-paneli.html"
+    );
 
 })();
 </script>
