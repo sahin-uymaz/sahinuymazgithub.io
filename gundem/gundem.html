@@ -3,68 +3,155 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ŞAHİN UYMAZ | Gündem Haberleri</title>
+<title>Haber Yönetim Paneli | ŞAHİN UYMAZ</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
-body{background:#f8fafc;color:#0f172a;}
-header{background:#081b33;color:#fff;padding:25px;text-align:center;}
-header h1{font-size:26px;letter-spacing:1px;}
-header p{font-size:12px;color:#94a3b8;margin-top:5px;letter-spacing:1.5px;}
-
-.container{max-width:1100px;margin:30px auto;padding:0 20px;}
-.grid{display:grid;grid-template-columns:repeat(auto-fill, minmax(300px, 1fr));gap:25px;}
-
-.card{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 4px 15px rgba(0,0,0,0.05);border:1px solid #e2e8f0;display:flex;flex-direction:column;}
-.card img{width:100%;height:200px;object-fit:cover;}
-.card-body{padding:20px;display:flex;flex-direction:column;flex:1;}
-.kategori{background:#d71920;color:#fff;font-size:10px;font-weight:bold;padding:4px 8px;border-radius:4px;width:max-content;margin-bottom:10px;}
-.card h3{font-size:18px;margin-bottom:10px;color:#081b33;line-height:1.3;}
-.card p{font-size:14px;color:#475569;line-height:1.5;flex:1;}
-.tarih{font-size:11px;color:#94a3b8;margin-top:15px;}
-
-.bos-mesaj{text-align:center;padding:50px;color:#64748b;font-size:16px;grid-column:1/-1;background:#fff;border-radius:8px;border:1px solid #e2e8f0;}
+body{background:#f0f2f5;color:#1e293b;padding-bottom:50px;}
+.header{background:#081b33;color:#fff;padding:20px;display:flex;justify-content:space-between;align-items:center;}
+.header h1{font-size:20px;}
+.header a{color:#fff;background:#d71920;padding:8px 15px;border-radius:5px;text-decoration:none;font-weight:700;font-size:12px;}
+.container{max-width:1200px;margin:30px auto;padding:0 20px;display:grid;grid-template-columns:1fr 1.5fr;gap:30px;}
+.card{background:#fff;padding:25px;border-radius:10px;box-shadow:0 4px 15px rgba(0,0,0,0.05);}
+.card h2{font-size:18px;margin-bottom:20px;color:#081b33;border-bottom:2px solid #e2e8f0;padding-bottom:10px;}
+.form-group{margin-bottom:15px;}
+.form-group label{display:block;font-size:12px;font-weight:700;margin-bottom:5px;color:#475569;}
+.form-group input, .form-group select, .form-group textarea{width:100%;padding:10px;border:1px solid #cbd5e1;border-radius:6px;font-size:14px;outline:none;}
+.form-group textarea{height:100px;resize:vertical;}
+.checkbox-group{display:flex;gap:15px;margin-top:10px;}
+.checkbox-group label{display:flex;align-items:center;gap:5px;font-size:13px;cursor:pointer;}
+.btn-submit{width:100%;background:#081b33;color:#fff;border:none;padding:12px;border-radius:6px;font-weight:700;cursor:pointer;margin-top:10px;transition:.2s;}
+.btn-submit:hover{background:#123f73;}
+.news-list-item{display:flex;gap:15px;padding:12px;border-bottom:1px solid #f1f5f9;align-items:center;}
+.news-list-item img{width:60px;height:60px;object-fit:cover;border-radius:6px;}
+.news-info{flex:1;}
+.news-info h4{font-size:14px;margin-bottom:3px;}
+.news-info span{font-size:11px;color:#64748b;background:#e2e8f0;padding:2px 6px;border-radius:4px;}
+.btn-delete{background:#ef4444;color:#fff;border:none;padding:6px 10px;border-radius:4px;cursor:pointer;font-size:12px;}
+@media(max-width:900px){.container{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
 
-<header>
-    <h1>ŞAHİN UYMAZ</h1>
-    <p>HABER • GÜNDEM • YORUM • ANALİZ</p>
-</header>
+<div class="header">
+    <h1>⚙️ ŞAHİN UYMAZ - Haber İçerik Yönetimi (Admin)</h1>
+    <a href="index.html" target="_blank"><i class="fa-solid fa-eye"></i> Canlı Siteyi Gör</a>
+</div>
 
 <div class="container">
-    <div class="grid" id="haberAlani"></div>
+    <!-- HABER EKLEME / DÜZENLEME FORMU -->
+    <div class="card">
+        <h2><i class="fa-solid fa-pen-to-square"></i> Yeni Haber Ekle</h2>
+        <form id="newsForm">
+            <div class="form-group">
+                <label>Haber Başlığı</label>
+                <input type="text" id="title" placeholder="Başlık giriniz..." required>
+            </div>
+
+            <div class="form-group">
+                <label>Kategori</label>
+                <select id="category" required>
+                    <option value="siyaset">Siyaset</option>
+                    <option value="ekonomi">Ekonomi</option>
+                    <option value="saglik">Sağlık</option>
+                    <option value="spor">Spor</option>
+                    <option value="dunya">Dünya</option>
+                    <option value="toplum">Toplum</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Haber Görseli Yükle</label>
+                <input type="file" id="imageInput" accept="image/*" required>
+            </div>
+
+            <div class="form-group">
+                <label>Özet / Kısa Açıklama</label>
+                <textarea id="summary" placeholder="Kart üzerinde görünecek özet yazı..." required></textarea>
+            </div>
+
+            <div class="checkbox-group">
+                <label><input type="checkbox" id="isSlider"> 📌 Slider (Gündem) Manşetine Ekle</label>
+                <label><input type="checkbox" id="isBreaking"> 🔴 Son Dakika Bandına Ekle</label>
+            </div>
+
+            <button type="submit" class="btn-submit"><i class="fa-solid fa-floppy-disk"></i> Haberi Yayınla</button>
+        </form>
+    </div>
+
+    <!-- YAYINLANAN HABERLER LİSTESİ -->
+    <div class="card">
+        <h2><i class="fa-solid fa-list"></i> Yayınlanan Haberler (<span id="count">0</span>)</h2>
+        <div id="newsList"></div>
+    </div>
 </div>
 
 <script>
-function haberleriYukle() {
-    const alan = document.getElementById('haberAlani');
-    const haberler = JSON.parse(localStorage.getItem('site_haberleri')) || [];
+let newsData = JSON.parse(localStorage.getItem('portal_news')) || [];
 
-    if(haberler.length === 0) {
-        alan.innerHTML = '<div class="bos-mesaj">Henüz yayınlanmış bir haber bulunmuyor. Admin panelinden haber ekleyebilirsiniz.</div>';
-        return;
+const newsForm = document.getElementById('newsForm');
+const imageInput = document.getElementById('imageInput');
+
+newsForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const file = imageInput.files[0];
+    const reader = new FileReader();
+
+    reader.onloadend = function() {
+        const newNews = {
+            id: Date.now(),
+            title: document.getElementById('title').value,
+            category: document.getElementById('category').value,
+            image: reader.result,
+            summary: document.getElementById('summary').value,
+            isSlider: document.getElementById('isSlider').checked,
+            isBreaking: document.getElementById('isBreaking').checked,
+            date: new Date().toLocaleDateString('tr-TR')
+        };
+
+        newsData.unshift(newNews);
+        localStorage.setItem('portal_news', JSON.stringify(newsData));
+        
+        newsForm.reset();
+        renderAdminList();
+        alert('Haber başarıyla eklendi ve Ana Sayfaya yansıtıldı!');
+    };
+
+    if (file) {
+        reader.readAsDataURL(file);
     }
+});
 
-    alan.innerHTML = '';
-    haberler.forEach(h => {
-        alan.innerHTML += `
-            <div class="card">
-                <img src="${h.resim}" alt="haber">
-                <div class="card-body">
-                    <span class="kategori">${h.kategori}</span>
-                    <h3>${h.baslik}</h3>
-                    <p>${h.ozet}</p>
-                    <div class="tarih">📅 ${h.tarih}</div>
+function renderAdminList() {
+    const list = document.getElementById('newsList');
+    document.getElementById('count').innerText = newsData.length;
+    list.innerHTML = '';
+
+    newsData.forEach(item => {
+        list.innerHTML += `
+            <div class="news-list-item">
+                <img src="${item.image}" alt="haber">
+                <div class="news-info">
+                    <h4>${item.title}</h4>
+                    <span>${item.category.toUpperCase()}</span> ${item.isSlider ? '<b>[SLIDER]</b>' : ''} ${item.isBreaking ? '<b>[SON DAKİKA]</b>' : ''}
                 </div>
+                <button class="btn-delete" onclick="deleteNews(${item.id})"><i class="fa-solid fa-trash"></i> Sil</button>
             </div>
         `;
     });
 }
 
-// Sayfa yüklendiği an çalıştır
-haberleriYukle();
+function deleteNews(id) {
+    if(confirm('Bu haberi silmek istediğinize emin misiniz?')) {
+        newsData = newsData.filter(item => item.id !== id);
+        localStorage.setItem('portal_news', JSON.stringify(newsData));
+        renderAdminList();
+    }
+}
+
+renderAdminList();
 </script>
 
 </body>
