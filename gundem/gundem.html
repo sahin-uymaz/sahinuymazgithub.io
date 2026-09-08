@@ -8,9 +8,9 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
 body{background:#f8fafc;color:#0f172a;}
-header{background:#081b33;color:#fff;padding:20px;text-align:center;}
-header h1{font-size:24px;letter-spacing:1px;}
-header p{font-size:12px;color:#94a3b8;margin-top:5px;}
+header{background:#081b33;color:#fff;padding:25px;text-align:center;}
+header h1{font-size:26px;letter-spacing:1px;}
+header p{font-size:12px;color:#94a3b8;margin-top:5px;letter-spacing:1.5px;}
 
 .container{max-width:1100px;margin:30px auto;padding:0 20px;}
 .grid{display:grid;grid-template-columns:repeat(auto-fill, minmax(300px, 1fr));gap:25px;}
@@ -23,7 +23,7 @@ header p{font-size:12px;color:#94a3b8;margin-top:5px;}
 .card p{font-size:14px;color:#475569;line-height:1.5;flex:1;}
 .tarih{font-size:11px;color:#94a3b8;margin-top:15px;}
 
-.bos-mesaj{text-align:center;padding:50px;color:#64748b;font-size:16px;grid-column:1/-1;}
+.bos-mesaj{text-align:center;padding:50px;color:#64748b;font-size:16px;grid-column:1/-1;background:#fff;border-radius:8px;border:1px solid #e2e8f0;}
 </style>
 </head>
 <body>
@@ -34,30 +34,21 @@ header p{font-size:12px;color:#94a3b8;margin-top:5px;}
 </header>
 
 <div class="container">
-    <div class="grid" id="haberAlani">
-        <div class="bos-mesaj">Haberler yükleniyor...</div>
-    </div>
+    <div class="grid" id="haberAlani"></div>
 </div>
 
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
-
-const firebaseConfig = { databaseURL: "https://eserkon-default-rtdb.firebaseio.com" };
-const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
-
-onValue(ref(db, 'kendi_haberlerim'), (snapshot) => {
+<script>
+function haberleriYukle() {
     const alan = document.getElementById('haberAlani');
-    alan.innerHTML = '';
-    const veriler = snapshot.val();
+    const haberler = JSON.parse(localStorage.getItem('site_haberleri')) || [];
 
-    if(!veriler) {
-        alan.innerHTML = '<div class="bos-mesaj">Henüz haber eklenmedi. Admin panelinden ilk haberinizi ekleyebilirsiniz.</div>';
+    if(haberler.length === 0) {
+        alan.innerHTML = '<div class="bos-mesaj">Henüz yayınlanmış bir haber bulunmuyor. Admin panelinden haber ekleyebilirsiniz.</div>';
         return;
     }
 
-    Object.values(veriler).reverse().forEach(h => {
+    alan.innerHTML = '';
+    haberler.forEach(h => {
         alan.innerHTML += `
             <div class="card">
                 <img src="${h.resim}" alt="haber">
@@ -70,7 +61,10 @@ onValue(ref(db, 'kendi_haberlerim'), (snapshot) => {
             </div>
         `;
     });
-});
+}
+
+// Sayfa yüklendiği an çalıştır
+haberleriYukle();
 </script>
 
 </body>
