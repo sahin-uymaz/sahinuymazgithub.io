@@ -10,18 +10,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
 
-<link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
 <style>
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-}
-
-html{
-    scroll-behavior:smooth;
 }
 
 :root{
@@ -51,9 +44,7 @@ button{
     font-family:inherit;
 }
 
-/* =========================
-   ÜST BAR
-========================= */
+/* TOPBAR */
 
 .topbar{
     background:#061426;
@@ -70,16 +61,11 @@ button{
     justify-content:space-between;
 }
 
-/* =========================
-   HEADER
-========================= */
+/* HEADER */
 
 .header{
     background:#fff;
     border-bottom:1px solid var(--border);
-    position:sticky;
-    top:0;
-    z-index:1000;
 }
 
 .header-inner{
@@ -123,28 +109,17 @@ button{
 .nav{
     display:flex;
     align-items:center;
-    gap:16px;
+    gap:22px;
     font-size:13px;
     font-weight:700;
 }
 
 .nav a{
     transition:.2s;
-    padding:7px 9px;
-    border-radius:6px;
 }
 
-.nav a:nth-child(1){color:#9b1c1c}
-.nav a:nth-child(2){color:#a16207}
-.nav a:nth-child(3){color:#166534}
-.nav a:nth-child(4){color:#075985}
-.nav a:nth-child(5){color:#6b21a8}
-.nav a:nth-child(6){color:#0f766e}
-.nav a:nth-child(7){color:#374151}
-
 .nav a:hover{
-    color:#fff;
-    background:var(--lacivert);
+    color:var(--kirmizi);
 }
 
 .search{
@@ -154,14 +129,9 @@ button{
     border-radius:50%;
     background:#fff;
     cursor:pointer;
-    display:flex;
-    align-items:center;
-    justify-content:center;
 }
 
-/* =========================
-   SON DAKİKA
-========================= */
+/* BREAKING */
 
 .breaking{
     background:#fff;
@@ -171,7 +141,7 @@ button{
 .breaking-inner{
     width:94%;
     max-width:1400px;
-    min-height:46px;
+    height:46px;
     margin:auto;
     display:flex;
     align-items:center;
@@ -179,16 +149,22 @@ button{
 }
 
 .breaking-label{
-    display:flex;
-    align-items:center;
-    gap:7px;
-    background:linear-gradient(135deg,#d71920,#a8070d);
-    color:#fff;
+    background:var(--kirmizi);
+    color:white;
     padding:8px 14px;
     font-size:11px;
     font-weight:900;
     white-space:nowrap;
-    border-radius:5px;
+    animation:pulse 1.7s infinite;
+}
+
+@keyframes pulse{
+    0%,100%{
+        opacity:1;
+    }
+    50%{
+        opacity:.72;
+    }
 }
 
 .breaking-text{
@@ -199,15 +175,15 @@ button{
     overflow:hidden;
 }
 
-/* =========================
-   GENEL
-========================= */
+/* CONTAINER */
 
 .container{
     width:94%;
     max-width:1400px;
     margin:28px auto 70px;
 }
+
+/* SECTION TITLE */
 
 .section-title{
     display:flex;
@@ -230,42 +206,6 @@ button{
 }
 
 /* =========================
-   YÜKLENİYOR
-========================= */
-
-.loading{
-    min-height:250px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    flex-direction:column;
-    gap:12px;
-    color:var(--gri);
-}
-
-.loading i{
-    font-size:30px;
-}
-
-/* =========================
-   HABER YOK
-========================= */
-
-.empty{
-    background:#fff;
-    border:1px solid var(--border);
-    border-radius:8px;
-    padding:40px 20px;
-    text-align:center;
-    color:var(--gri);
-}
-
-.empty i{
-    font-size:35px;
-    margin-bottom:12px;
-}
-
-/* =========================
    GÜNDEM SLIDER
 ========================= */
 
@@ -282,7 +222,7 @@ button{
     inset:0;
     opacity:0;
     visibility:hidden;
-    transition:opacity .7s ease,visibility .7s ease;
+    transition:opacity .7s ease;
     display:grid;
     grid-template-columns:1.7fr 1fr;
 }
@@ -293,13 +233,13 @@ button{
 }
 
 .slide-image{
-    background:#173a61;
-    background-size:cover;
-    background-position:center;
+    background:
+        linear-gradient(90deg,rgba(8,27,51,.05),rgba(8,27,51,.75)),
+        linear-gradient(135deg,#315f8e,#0d213a);
 }
 
 .slide-content{
-    color:#fff;
+    color:white;
     padding:48px 42px;
     display:flex;
     flex-direction:column;
@@ -364,9 +304,7 @@ button{
     transform:scale(1.2);
 }
 
-/* =========================
-   HABER KARTLARI
-========================= */
+/* NEWS GRID */
 
 .news-grid{
     display:grid;
@@ -389,9 +327,8 @@ button{
 
 .news-image{
     height:165px;
-    background:linear-gradient(135deg,#234d78,#91a9c1);
-    background-size:cover;
-    background-position:center;
+    background:
+        linear-gradient(135deg,#234d78,#91a9c1);
 }
 
 .news-content{
@@ -419,16 +356,7 @@ button{
     line-height:1.55;
 }
 
-.news-date{
-    display:block;
-    margin-top:12px;
-    color:#98a2b3;
-    font-size:10px;
-}
-
-/* =========================
-   YORUM
-========================= */
+/* YORUM */
 
 .commentary{
     background:var(--lacivert);
@@ -470,9 +398,7 @@ button{
     line-height:1.7;
 }
 
-/* =========================
-   SPOR
-========================= */
+/* SPORTS */
 
 .sports-box{
     background:#fff;
@@ -504,41 +430,58 @@ button{
     line-height:1.6;
 }
 
-.sports-link-card{
-    background:linear-gradient(135deg,#081b33,#123f73);
-    color:#fff;
-    border-radius:10px;
-    padding:24px;
-    position:relative;
-    overflow:hidden;
+/* SPOR TAHMİNİ */
+
+.prediction{
+    background:#f8f9fb;
+    border:1px solid var(--border);
+    border-radius:7px;
+    padding:22px;
 }
 
-.sports-link-card h3{
+.prediction-label{
+    color:var(--kirmizi);
+    font-size:10px;
+    font-weight:900;
+    letter-spacing:1px;
+}
+
+.prediction h3{
     font-family:"Playfair Display",serif;
     font-size:21px;
-    margin:9px 0;
+    margin:8px 0;
 }
 
-.sports-link-card p{
-    color:#d9e4ef;
+.prediction p{
+    color:var(--gri);
     font-size:12px;
-    line-height:1.6;
+    line-height:1.5;
 }
 
-.sport-page-button{
-    display:inline-block;
-    margin-top:16px;
-    padding:11px 15px;
-    background:#12b76a;
-    color:#fff;
-    border-radius:5px;
+.prediction button{
+    width:100%;
+    margin-top:15px;
+    padding:11px;
+    background:var(--lacivert);
+    color:white;
+    border:0;
+    border-radius:4px;
     font-size:11px;
+    font-weight:900;
+    cursor:pointer;
+}
+
+.prediction-result{
+    display:none;
+    margin-top:12px;
+    padding:12px;
+    background:#fff;
+    border:1px solid var(--border);
+    text-align:center;
     font-weight:900;
 }
 
-/* =========================
-   İKİLİ ALAN
-========================= */
+/* TWO COLUMN */
 
 .two-columns{
     display:grid;
@@ -546,8 +489,9 @@ button{
     gap:24px;
 }
 
-.topic,
-.most-read{
+/* GÜNÜN KONUSU */
+
+.topic{
     background:#fff;
     border:1px solid var(--border);
     border-radius:8px;
@@ -574,6 +518,15 @@ button{
     line-height:1.7;
 }
 
+/* EN ÇOK OKUNAN */
+
+.most-read{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:22px;
+}
+
 .read-item{
     display:flex;
     gap:13px;
@@ -596,9 +549,7 @@ button{
     line-height:1.4;
 }
 
-/* =========================
-   ANKET
-========================= */
+/* POLL */
 
 .poll{
     background:#fff;
@@ -629,30 +580,30 @@ button{
     cursor:pointer;
 }
 
-/* =========================
-   ANA SAYFA
-========================= */
-
-.fixed-home-btn{
-    position:fixed;
-    right:22px;
-    bottom:22px;
-    z-index:99999;
-    display:flex;
-    align-items:center;
-    gap:8px;
-    padding:13px 19px;
-    background:linear-gradient(135deg,#123f73,#081b33);
-    color:#fff;
-    border-radius:50px;
-    font-size:12px;
-    font-weight:900;
-    box-shadow:0 8px 25px rgba(0,0,0,.25);
+.poll-option:hover{
+    border-color:var(--mavi);
 }
 
-/* =========================
-   FOOTER
-========================= */
+/* UPDATE */
+
+.update{
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+    gap:7px;
+    color:#667085;
+    font-size:11px;
+    margin-top:20px;
+}
+
+.update-dot{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:#12b76a;
+}
+
+/* FOOTER */
 
 footer{
     background:#061426;
@@ -685,20 +636,19 @@ footer{
     font-size:12px;
 }
 
-/* =========================
-   MOBİL
-========================= */
+/* MOBİL */
 
 @media(max-width:1100px){
 
     .nav{
-        gap:7px;
+        gap:12px;
         font-size:11px;
     }
 
     .news-grid{
         grid-template-columns:repeat(2,1fr);
     }
+
 }
 
 @media(max-width:750px){
@@ -733,7 +683,7 @@ footer{
     }
 
     .gundem-slider{
-        min-height:540px;
+        min-height:510px;
     }
 
     .slide{
@@ -741,7 +691,7 @@ footer{
     }
 
     .slide-image{
-        min-height:190px;
+        min-height:180px;
     }
 
     .slide-content{
@@ -792,22 +742,14 @@ footer{
         flex-wrap:wrap;
     }
 
-    .fixed-home-btn{
-        right:15px;
-        bottom:15px;
-        padding:11px 16px;
-        font-size:11px;
-    }
 }
+
 </style>
 </head>
 
 <body>
 
-<a href="../index.html" class="fixed-home-btn">
-    <i class="fa-solid fa-house"></i>
-    ANA SAYFA
-</a>
+<!-- ÜST BİLGİ -->
 
 <div class="topbar">
     <div class="topbar-inner">
@@ -816,15 +758,17 @@ footer{
     </div>
 </div>
 
+
+<!-- HEADER -->
+
 <header class="header">
+
     <div class="header-inner">
 
-        <a href="../index.html" class="logo">
+        <a href="index.html" class="logo">
 
-            <img
-                src="../logo.png"
-                class="logo-image"
-                alt="Şahin UYMAZ">
+            <!-- LOGO -->
+            <img src="logo.png" class="logo-image" alt="Şahin UYMAZ">
 
             <div class="logo-text">
                 <strong>ŞAHİN UYMAZ</strong>
@@ -833,27 +777,25 @@ footer{
 
         </a>
 
-        <nav class="nav">
 
+        <nav class="nav">
             <a href="#siyaset">Siyaset</a>
             <a href="#ekonomi">Ekonomi</a>
             <a href="#saglik">Sağlık</a>
-            <a href="spor.html">⚽ Spor</a>
+            <a href="#spor">Spor</a>
             <a href="#dunya">Dünya</a>
             <a href="#toplum">Toplum</a>
             <a href="#yorum">Yorum</a>
 
-            <button
-                class="search"
-                onclick="aramaAc()"
-                aria-label="Arama">
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
-
+            <button class="search">⌕</button>
         </nav>
 
     </div>
+
 </header>
+
+
+<!-- SON DAKİKA -->
 
 <div class="breaking">
 
@@ -863,372 +805,633 @@ footer{
             🔴 SON DAKİKA
         </div>
 
-        <div
-            class="breaking-text"
-            id="breakingText">
-            Haberler yükleniyor...
+        <div class="breaking-text" id="breakingText">
+            Günün önemli gelişmeleri burada...
         </div>
 
     </div>
 
 </div>
 
+
 <main class="container">
 
-    <!-- GÜNDEM -->
 
-    <div class="section-title">
+<!-- =========================
+     GÜNDEM SLIDER
+========================= -->
 
-        <h2>Gündem</h2>
+<div class="section-title">
+    <h2>Gündem</h2>
+    <a href="#">TÜM GÜNDEM HABERLERİ →</a>
+</div>
 
-        <a href="#gundem-haberleri">
-            TÜM GÜNDEM HABERLERİ →
-        </a>
+
+<section class="gundem-slider">
+
+    <article class="slide active">
+
+        <div class="slide-image"></div>
+
+        <div class="slide-content">
+
+            <span class="slide-category">
+                GÜNDEM
+            </span>
+
+            <h1>
+                Türkiye'nin gündemindeki önemli gelişmeler
+            </h1>
+
+            <p>
+                Günün öne çıkan gelişmeleri, olayların arka planı
+                ve kamuoyuna yansımaları.
+            </p>
+
+            <a href="#" class="read-more">
+                HABERİ OKU →
+            </a>
+
+        </div>
+
+    </article>
+
+
+    <article class="slide">
+
+        <div class="slide-image"></div>
+
+        <div class="slide-content">
+
+            <span class="slide-category">
+                SON GELİŞME
+            </span>
+
+            <h1>
+                Günün en çok konuşulan konusu ne?
+            </h1>
+
+            <p>
+                Türkiye'nin gündemindeki gelişmeler farklı
+                yönleriyle değerlendiriliyor.
+            </p>
+
+            <a href="#" class="read-more">
+                DETAYLARI GÖR →
+            </a>
+
+        </div>
+
+    </article>
+
+
+    <article class="slide">
+
+        <div class="slide-image"></div>
+
+        <div class="slide-content">
+
+            <span class="slide-category">
+                ÖZEL HABER
+            </span>
+
+            <h1>
+                Gündemin arka planında neler yaşanıyor?
+            </h1>
+
+            <p>
+                Haberlerin yalnızca görünen kısmı değil,
+                arka planındaki gelişmeler.
+            </p>
+
+            <a href="#" class="read-more">
+                DEVAMINI OKU →
+            </a>
+
+        </div>
+
+    </article>
+
+
+    <div class="slider-controls">
+
+        <button class="slider-dot active" onclick="goSlide(0)"></button>
+        <button class="slider-dot" onclick="goSlide(1)"></button>
+        <button class="slider-dot" onclick="goSlide(2)"></button>
 
     </div>
 
-    <section
-        class="gundem-slider"
-        id="gundemSlider">
+</section>
 
-        <div class="loading">
-            <i class="fa-solid fa-spinner fa-spin"></i>
-            <span>Haberler yükleniyor...</span>
+
+<!-- =========================
+     SİYASET
+========================= -->
+
+<div class="section-title" id="siyaset">
+    <h2>🏛️ Siyaset</h2>
+    <a href="#">TÜM HABERLER →</a>
+</div>
+
+<section class="news-grid">
+
+    <article class="news-card">
+        <div class="news-image"></div>
+        <div class="news-content">
+            <div class="mini-cat">SİYASET</div>
+            <h3>Siyasi gündemde günün öne çıkan gelişmeleri</h3>
+            <p>Ankara'dan son gelişmeler ve gündemin ayrıntıları.</p>
         </div>
+    </article>
 
-    </section>
+    <article class="news-card">
+        <div class="news-image"></div>
+        <div class="news-content">
+            <div class="mini-cat">ANKARA</div>
+            <h3>Meclis gündeminde dikkat çeken başlıklar</h3>
+            <p>Siyasetin gündemindeki önemli gelişmeler.</p>
+        </div>
+    </article>
+
+    <article class="news-card">
+        <div class="news-image"></div>
+        <div class="news-content">
+            <div class="mini-cat">POLİTİKA</div>
+            <h3>Siyasette yeni dönemin dikkat çeken gelişmeleri</h3>
+            <p>Gündemin arka planına ilişkin değerlendirmeler.</p>
+        </div>
+    </article>
+
+    <article class="news-card">
+        <div class="news-image"></div>
+        <div class="news-content">
+            <div class="mini-cat">ANALİZ</div>
+            <h3>Siyasi gelişmeler vatandaş için ne ifade ediyor?</h3>
+            <p>Gelişmelere farklı bir bakış.</p>
+        </div>
+    </article>
+
+</section>
 
 
-    <!-- DİNAMİK KATEGORİLER -->
+<!-- =========================
+     EKONOMİ
+========================= -->
 
-    <section id="kategori-alanlari">
+<div class="section-title" id="ekonomi">
+    <h2>💰 Ekonomi</h2>
+    <a href="#">TÜM HABERLER →</a>
+</div>
 
-        <div
-            class="category-section"
-            id="gundem-haberleri"
-            data-category="GÜNDEM">
+<section class="news-grid">
 
-            <div class="section-title">
-                <h2>📰 Gündem</h2>
-                <a href="#gundem-haberleri">TÜM HABERLER →</a>
+    <article class="news-card">
+        <div class="news-image"></div>
+        <div class="news-content">
+            <div class="mini-cat">EKONOMİ</div>
+            <h3>Ekonomide günün öne çıkan gelişmeleri</h3>
+            <p>Ekonomi gündemindeki önemli gelişmeler.</p>
+        </div>
+    </article>
+
+    <article class="news-card">
+        <div class="news-image"></div>
+        <div class="news-content">
+            <div class="mini-cat">PİYASALAR</div>
+            <h3>Piyasalarda bugün dikkat çeken gelişmeler</h3>
+            <p>Ekonomi ve piyasalardan son gelişmeler.</p>
+        </div>
+    </article>
+
+    <article class="news-card">
+        <div class="news-image"></div>
+        <div class="news-content">
+            <div class="mini-cat">VATANDAŞ</div>
+            <h3>Ekonomik gelişmeler vatandaşı nasıl etkiliyor?</h3>
+            <p>Ekonominin günlük yaşama yansımaları.</p>
+        </div>
+    </article>
+
+    <article class="news-card">
+        <div class="news-image"></div>
+        <div class="news-content">
+            <div class="mini-cat">ANALİZ</div>
+            <h3>Ekonomide rakamların arkasında ne var?</h3>
+            <p>Ekonomik gelişmelere analizli bakış.</p>
+        </div>
+    </article>
+
+</section>
+
+
+<!-- =========================
+     SAĞLIK
+========================= -->
+
+<div class="section-title" id="saglik">
+    <h2>🏥 Sağlık</h2>
+    <a href="#">TÜM HABERLER →</a>
+</div>
+
+<section class="news-grid">
+
+    <article class="news-card">
+        <div class="news-image"></div>
+        <div class="news-content">
+            <div class="mini-cat">SAĞLIK</div>
+            <h3>Sağlık gündeminden önemli gelişmeler</h3>
+            <p>Sağlık alanındaki güncel gelişmeler.</p>
+        </div>
+    </article>
+
+    <article class="news-card">
+        <div class="news-image"></div>
+        <div class="news-content">
+            <div class="mini-cat">BİLİM</div>
+            <h3>Bilim dünyasından dikkat çeken gelişmeler</h3>
+            <p>Bilim ve sağlık alanından haberler.</p>
+        </div>
+    </article>
+
+    <article class="news-card">
+        <div class="news-image"></div>
+        <div class="news-content">
+            <div class="mini-cat">TOPLUM</div>
+            <h3>Sağlık hizmetlerinde vatandaşın gündemi</h3>
+            <p>Vatandaşların sağlık gündemi.</p>
+        </div>
+    </article>
+
+    <article class="news-card">
+        <div class="news-image"></div>
+        <div class="news-content">
+            <div class="mini-cat">YAŞAM</div>
+            <h3>Günlük yaşamda sağlık ve yaşam kalitesi</h3>
+            <p>Yaşama ilişkin dikkat çeken bilgiler.</p>
+        </div>
+    </article>
+
+</section>
+
+
+<!-- =========================
+     SPOR
+========================= -->
+
+<div class="section-title" id="spor">
+    <h2>⚽ Spor</h2>
+    <a href="#">TÜM SPOR HABERLERİ →</a>
+</div>
+
+
+<section class="sports-box">
+
+    <div class="sports-layout">
+
+        <article class="sports-news">
+
+            <div class="mini-cat">
+                SPOR GÜNDEMİ
             </div>
 
-            <div class="news-grid"></div>
+            <h3>
+                Sporda günün öne çıkan gelişmeleri
+            </h3>
 
-        </div>
+            <p>
+                Futbol, basketbol ve diğer spor branşlarından
+                günün önemli haberleri ve gelişmeleri.
+            </p>
+
+        </article>
 
 
-        <div
-            class="category-section"
-            id="siyaset"
-            data-category="SİYASET">
+        <!-- SADECE SPORA EKLENEN TAHMİN -->
 
-            <div class="section-title">
-                <h2>🏛️ Siyaset</h2>
-                <a href="#siyaset">TÜM HABERLER →</a>
+        <aside class="prediction">
+
+            <div class="prediction-label">
+                🔮 ŞAHİN UYMAZ MAÇ TAHMİNİ
             </div>
 
-            <div class="news-grid"></div>
+            <h3>
+                Maç öncesi özel değerlendirme
+            </h3>
 
-        </div>
+            <p>
+                Şahin UYMAZ'ın maç öncesi değerlendirmesini
+                görmek için tahmini açın.
+            </p>
 
+            <button onclick="showPrediction()">
+                TAHMİNİ GÖR
+            </button>
 
-        <div
-            class="category-section"
-            id="ekonomi"
-            data-category="EKONOMİ">
-
-            <div class="section-title">
-                <h2>💰 Ekonomi</h2>
-                <a href="#ekonomi">TÜM HABERLER →</a>
+            <div class="prediction-result" id="predictionResult">
+                Ev sahibi 2 – 1 kazanır.
             </div>
 
-            <div class="news-grid"></div>
-
-        </div>
-
-
-        <div
-            class="category-section"
-            id="saglik"
-            data-category="SAĞLIK">
-
-            <div class="section-title">
-                <h2>🏥 Sağlık</h2>
-                <a href="#saglik">TÜM HABERLER →</a>
-            </div>
-
-            <div class="news-grid"></div>
-
-        </div>
-
-
-        <div
-            class="category-section"
-            id="dunya"
-            data-category="DÜNYA">
-
-            <div class="section-title">
-                <h2>🌍 Dünya</h2>
-                <a href="#dunya">TÜM HABERLER →</a>
-            </div>
-
-            <div class="news-grid"></div>
-
-        </div>
-
-
-        <div
-            class="category-section"
-            id="toplum"
-            data-category="TOPLUM">
-
-            <div class="section-title">
-                <h2>👥 Toplum</h2>
-                <a href="#toplum">TÜM HABERLER →</a>
-            </div>
-
-            <div class="news-grid"></div>
-
-        </div>
-
-
-        <div
-            class="category-section"
-            id="yorum"
-            data-category="YORUM">
-
-            <div class="section-title">
-                <h2>✍️ Şahin UYMAZ Yorumluyor</h2>
-            </div>
-
-            <div class="commentary">
-
-                <div>
-                    <div class="commentary-label">
-                        GÜNÜN YORUMU
-                    </div>
-
-                    <h2>Şahin UYMAZ</h2>
-                </div>
-
-                <div class="commentary-text">
-
-                    <h3 id="yorumBaslik">
-                        Henüz yorum eklenmedi.
-                    </h3>
-
-                    <p id="yorumMetin">
-                        Admin panelinden YORUM kategorisine
-                        haber eklediğinizde burada yayınlanacaktır.
-                    </p>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- SPOR -->
-
-    <div class="section-title" id="spor">
-
-        <h2>⚽ Spor</h2>
-
-        <a href="spor.html">
-            TÜM SPOR HABERLERİ →
-        </a>
+        </aside>
 
     </div>
 
-    <section class="sports-box">
-
-        <div class="sports-layout">
-
-            <article class="sports-news">
-
-                <div class="mini-cat">
-                    SPOR GÜNDEMİ
-                </div>
-
-                <h3>
-                    Şahin UYMAZ Spor
-                </h3>
-
-                <p>
-                    Futbol, maç yorumları, karşılaşmalar
-                    ve özel spor içerikleri için Spor
-                    sayfamızı ziyaret edebilirsiniz.
-                </p>
-
-            </article>
+</section>
 
 
-            <aside class="sports-link-card">
+<!-- =========================
+     DÜNYA
+========================= -->
 
-                <div class="mini-cat"
-                     style="color:#8ed081;">
-                    ⚽ ŞAHİN UYMAZ SPOR
-                </div>
+<div class="section-title" id="dunya">
+    <h2>🌍 Dünya</h2>
+    <a href="#">TÜM HABERLER →</a>
+</div>
 
-                <h3>
-                    Maç yorumları ve özel içerikler
-                </h3>
+<section class="news-grid">
 
-                <p>
-                    Spor sayfasında yayınlanan maçlar,
-                    yorumlar ve tahminlere ulaşabilirsiniz.
-                </p>
+    <article class="news-card">
+        <div class="news-image"></div>
+        <div class="news-content">
+            <div class="mini-cat">DÜNYA</div>
+            <h3>Dünyada günün öne çıkan gelişmeleri</h3>
+            <p>Uluslararası gündemden önemli haberler.</p>
+        </div>
+    </article>
 
-                <a
-                    class="sport-page-button"
-                    href="spor.html">
-                    SPOR MENÜSÜNE GİT →
-                </a>
+    <article class="news-card">
+        <div class="news-image"></div>
+        <div class="news-content">
+            <div class="mini-cat">DIŞ POLİTİKA</div>
+            <h3>Bölgesel gelişmeler yakından izleniyor</h3>
+            <p>Dış politika gündeminden gelişmeler.</p>
+        </div>
+    </article>
 
-            </aside>
+    <article class="news-card">
+        <div class="news-image"></div>
+        <div class="news-content">
+            <div class="mini-cat">ULUSLARARASI</div>
+            <h3>Dünya gündemindeki kritik başlıklar</h3>
+            <p>Uluslararası gelişmelerden son bilgiler.</p>
+        </div>
+    </article>
 
+    <article class="news-card">
+        <div class="news-image"></div>
+        <div class="news-content">
+            <div class="mini-cat">ANALİZ</div>
+            <h3>Dünyadaki gelişmeler Türkiye'yi nasıl etkiliyor?</h3>
+            <p>Gelişmelere Türkiye açısından bakış.</p>
+        </div>
+    </article>
+
+</section>
+
+
+<!-- =========================
+     TOPLUM
+========================= -->
+
+<div class="section-title" id="toplum">
+    <h2>👥 Toplum</h2>
+    <a href="#">TÜM HABERLER →</a>
+</div>
+
+<section class="news-grid">
+
+    <article class="news-card">
+        <div class="news-image"></div>
+        <div class="news-content">
+            <div class="mini-cat">TOPLUM</div>
+            <h3>Vatandaşın gündeminde bugün ne var?</h3>
+            <p>Toplumdan ve vatandaşın gündeminden gelişmeler.</p>
+        </div>
+    </article>
+
+    <article class="news-card">
+        <div class="news-image"></div>
+        <div class="news-content">
+            <div class="mini-cat">EĞİTİM</div>
+            <h3>Eğitim gündeminden önemli gelişmeler</h3>
+            <p>Öğrenci ve aileleri ilgilendiren gelişmeler.</p>
+        </div>
+    </article>
+
+    <article class="news-card">
+        <div class="news-image"></div>
+        <div class="news-content">
+            <div class="mini-cat">VATANDAŞ</div>
+            <h3>Vatandaş ne düşünüyor?</h3>
+            <p>Sahadan gelen görüşler ve değerlendirmeler.</p>
+        </div>
+    </article>
+
+    <article class="news-card">
+        <div class="news-image"></div>
+        <div class="news-content">
+            <div class="mini-cat">YAŞAM</div>
+            <h3>Toplumsal yaşamdan dikkat çeken gelişmeler</h3>
+            <p>Gündelik hayatın içinden haberler.</p>
+        </div>
+    </article>
+
+</section>
+
+
+<!-- =========================
+     ŞAHİN UYMAZ YORUMLUYOR
+========================= -->
+
+<div class="section-title" id="yorum">
+    <h2>✍️ Şahin UYMAZ Yorumluyor</h2>
+</div>
+
+
+<section class="commentary">
+
+    <div>
+
+        <div class="commentary-label">
+            GÜNÜN YORUMU
         </div>
 
-    </section>
-
-
-    <!-- GÜNÜN KONUSU -->
-
-    <div class="two-columns">
-
-        <div>
-
-            <div class="section-title">
-                <h2>📊 Günün Konusu</h2>
-            </div>
-
-            <article class="topic">
-
-                <div class="topic-label">
-                    BUGÜNÜN ANA GÜNDEMİ
-                </div>
-
-                <h3 id="gununKonusuBaslik">
-                    Henüz belirlenmedi.
-                </h3>
-
-                <p id="gununKonusuMetin">
-                    Admin panelinden Öne Çıkan olarak
-                    işaretlediğiniz haber burada gösterilir.
-                </p>
-
-            </article>
-
-        </div>
-
-
-        <div>
-
-            <div class="section-title">
-                <h2>🔥 Günün En Çok Okunanları</h2>
-            </div>
-
-            <div
-                class="most-read"
-                id="mostRead">
-
-                <div class="empty">
-                    <i class="fa-regular fa-newspaper"></i>
-                    <p>
-                        Henüz yayınlanmış haber bulunmuyor.
-                    </p>
-                </div>
-
-            </div>
-
-        </div>
+        <h2>
+            Şahin UYMAZ
+        </h2>
 
     </div>
 
 
-    <!-- ANKET -->
-
-    <div class="section-title">
-        <h2>❓ Okur Anketi</h2>
-    </div>
-
-    <section class="poll">
+    <div class="commentary-text">
 
         <h3>
-            Sizce günün en önemli gündem maddesi hangisi?
+            Gündemin arka planında ne var?
         </h3>
 
         <p>
-            Görüşünüzü paylaşın.
+            Güncel gelişmeleri yalnızca aktarmak değil;
+            olayların nedenlerini, sonuçlarını ve vatandaş
+            üzerindeki etkilerini değerlendirmek.
         </p>
 
-        <label class="poll-option">
-            <input type="radio"
-                   name="poll"
-                   value="ekonomi">
-            Ekonomi
-        </label>
+    </div>
 
-        <label class="poll-option">
-            <input type="radio"
-                   name="poll"
-                   value="siyaset">
-            Siyaset
-        </label>
+</section>
 
-        <label class="poll-option">
-            <input type="radio"
-                   name="poll"
-                   value="saglik">
-            Sağlık
-        </label>
 
-        <label class="poll-option">
-            <input type="radio"
-                   name="poll"
-                   value="toplum">
-            Toplum
-        </label>
+<!-- =========================
+     GÜNÜN KONUSU + ÇOK OKUNAN
+========================= -->
 
-        <label class="poll-option">
-            <input type="radio"
-                   name="poll"
-                   value="dunya">
-            Dünya
-        </label>
+<div class="two-columns">
 
-    </section>
+
+    <div>
+
+        <div class="section-title">
+            <h2>📊 Günün Konusu</h2>
+        </div>
+
+        <article class="topic">
+
+            <div class="topic-label">
+                BUGÜNÜN ANA GÜNDEMİ
+            </div>
+
+            <h3>
+                Türkiye bugün en çok neyi konuşuyor?
+            </h3>
+
+            <p>
+                Günün en önemli konusu burada ayrıntılı şekilde
+                ele alınacak. Haber, arka plan, değerlendirme
+                ve vatandaş açısından sonuçları tek yerde.
+            </p>
+
+        </article>
+
+    </div>
+
+
+    <div>
+
+        <div class="section-title">
+            <h2>🔥 Günün En Çok Okunanları</h2>
+        </div>
+
+        <div class="most-read">
+
+            <div class="read-item">
+                <div class="read-number">01</div>
+                <h3>Günün en çok merak edilen gelişmesi</h3>
+            </div>
+
+            <div class="read-item">
+                <div class="read-number">02</div>
+                <h3>Siyaset gündemindeki önemli gelişme</h3>
+            </div>
+
+            <div class="read-item">
+                <div class="read-number">03</div>
+                <h3>Ekonomide vatandaşın merak ettiği konu</h3>
+            </div>
+
+            <div class="read-item">
+                <div class="read-number">04</div>
+                <h3>Şahin UYMAZ'ın günün yorumu</h3>
+            </div>
+
+            <div class="read-item">
+                <div class="read-number">05</div>
+                <h3>Günün dikkat çeken haberi</h3>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     OKUR ANKETİ
+========================= -->
+
+<div class="section-title">
+    <h2>❓ Okur Anketi</h2>
+</div>
+
+
+<section class="poll">
+
+    <h3>
+        Sizce günün en önemli gündem maddesi hangisi?
+    </h3>
+
+    <p>
+        Görüşünüzü paylaşın.
+    </p>
+
+    <label class="poll-option">
+        <input type="radio" name="poll">
+        Ekonomi
+    </label>
+
+    <label class="poll-option">
+        <input type="radio" name="poll">
+        Siyaset
+    </label>
+
+    <label class="poll-option">
+        <input type="radio" name="poll">
+        Sağlık
+    </label>
+
+    <label class="poll-option">
+        <input type="radio" name="poll">
+        Toplum
+    </label>
+
+    <label class="poll-option">
+        <input type="radio" name="poll">
+        Dünya
+    </label>
+
+</section>
+
+
+<!-- SON GÜNCELLEME -->
+
+<div class="update">
+
+    <span class="update-dot"></span>
+
+    <span>
+        Son güncelleme:
+        <strong id="updateTime"></strong>
+    </span>
+
+</div>
 
 </main>
 
+
+<!-- FOOTER -->
 
 <footer>
 
     <div class="footer-inner">
 
         <div class="footer-brand">
-
             <strong>ŞAHİN UYMAZ</strong>
-
-            <p>
-                Haber • Gündem • Yorum • Analiz
-                - Tüm Hakları Saklıdır © 2026
-            </p>
-
+            <p>Haber • Gündem • Yorum • Analiz</p>
         </div>
 
         <div class="footer-links">
-
-            <a href="#siyaset">Siyaset</a>
-            <a href="#ekonomi">Ekonomi</a>
-            <a href="#saglik">Sağlık</a>
-            <a href="spor.html">Spor</a>
-            <a href="#dunya">Dünya</a>
-
+            <a href="#">Hakkımda</a>
+            <a href="#">İletişim</a>
+            <a href="#">Gizlilik</a>
+            <a href="#">KVKK</a>
         </div>
 
     </div>
@@ -1238,797 +1441,94 @@ footer{
 
 <script>
 
-/* =========================================================
-   KENDİ HABER SİSTEMİ
-   =========================================================
+/* TARİH */
 
-   BURAYA BİZİM OLUŞTURACAĞIMIZ CLOUDFLARE WORKER ADRESİ GELECEK.
+const now = new Date();
 
-   ÖRNEK:
-   https://sahin-uymaz-gundem.xxxxx.workers.dev
-
-   ŞİMDİLİK DEĞİŞTİRME.
-========================================================= */
-
-const API_URL =
-    "BURAYA-WORKER-ADRESI-GELECEK";
-
-
-/* =========================================================
-   TARİH
-========================================================= */
-
-function tarihGoster(){
-
-    const el =
-        document.getElementById("date");
-
-    const options = {
-        weekday:"long",
-        year:"numeric",
+document.getElementById("date").textContent =
+    now.toLocaleDateString("tr-TR",{
+        day:"2-digit",
         month:"long",
-        day:"numeric"
-    };
-
-    el.textContent =
-        new Date().toLocaleDateString(
-            "tr-TR",
-            options
-        );
-}
-
-tarihGoster();
+        year:"numeric"
+    });
 
 
-/* =========================================================
-   HABER RESMİ
-========================================================= */
+/* SON GÜNCELLEME */
 
-function haberResmi(haber){
+document.getElementById("updateTime").textContent =
+    new Date().toLocaleTimeString("tr-TR",{
+        hour:"2-digit",
+        minute:"2-digit"
+    });
 
-    if(haber.image){
 
-        return `
-            background-image:
-            linear-gradient(
-                rgba(0,0,0,.08),
-                rgba(0,0,0,.08)
-            ),
-            url("${escapeHtml(haber.image)}");
-        `;
+/* SON DAKİKA YAZILARI */
 
+const breakingNews = [
+
+    "Günün önemli gelişmeleri burada...",
+    "Türkiye gündeminden son gelişmeler...",
+    "Siyaset ve ekonomi gündemindeki son gelişmeler...",
+    "Günün dikkat çeken haberleri ve gelişmeleri..."
+
+];
+
+let breakingIndex = 0;
+
+setInterval(function(){
+
+    breakingIndex++;
+
+    if(breakingIndex >= breakingNews.length){
+        breakingIndex = 0;
     }
 
-    return "";
-}
+    document.getElementById("breakingText").textContent =
+        breakingNews[breakingIndex];
 
+},4000);
 
-/* =========================================================
-   HTML GÜVENLİĞİ
-========================================================= */
 
-function escapeHtml(value){
-
-    if(value === null || value === undefined){
-        return "";
-    }
-
-    return String(value)
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
-}
-
-
-/* =========================================================
-   TARİH FORMAT
-========================================================= */
-
-function tarihFormatla(tarih){
-
-    if(!tarih){
-        return "";
-    }
-
-    const date =
-        new Date(tarih);
-
-    if(Number.isNaN(date.getTime())){
-        return escapeHtml(tarih);
-    }
-
-    return date.toLocaleDateString(
-        "tr-TR",
-        {
-            day:"2-digit",
-            month:"2-digit",
-            year:"numeric"
-        }
-    );
-}
-
-
-/* =========================================================
-   HABERLERİ GETİR
-========================================================= */
-
-async function haberleriGetir(){
-
-    if(
-        !API_URL ||
-        API_URL.includes("BURAYA-WORKER")
-    ){
-
-        demoMesaji();
-
-        return;
-    }
-
-    try{
-
-        const response =
-            await fetch(
-                API_URL +
-                "/api/news?published=1",
-                {
-                    method:"GET",
-                    cache:"no-store"
-                }
-            );
-
-        if(!response.ok){
-            throw new Error(
-                "Sunucu cevap vermedi."
-            );
-        }
-
-        const data =
-            await response.json();
-
-        const haberler =
-            Array.isArray(data.news)
-                ? data.news
-                : [];
-
-        haberleriGoster(haberler);
-
-    }catch(error){
-
-        console.error(error);
-
-        hataGoster();
-
-    }
-
-}
-
-
-/* =========================================================
-   HABERLERİ EKRANA BAS
-========================================================= */
-
-function haberleriGoster(haberler){
-
-    const aktif =
-        haberler.filter(
-            haber => haber.published
-        );
-
-
-    kategoriKartlariniDoldur(aktif);
-
-    sliderOlustur(aktif);
-
-    sonDakikaOlustur(aktif);
-
-    yorumOlustur(aktif);
-
-    gununKonusuOlustur(aktif);
-
-    enCokOkunanOlustur(aktif);
-
-}
-
-
-/* =========================================================
-   KATEGORİ KARTLARI
-========================================================= */
-
-function kategoriKartlariniDoldur(haberler){
-
-    document
-        .querySelectorAll(
-            ".category-section"
-        )
-        .forEach(section => {
-
-            const kategori =
-                section.dataset.category;
-
-            const grid =
-                section.querySelector(
-                    ".news-grid"
-                );
-
-            if(!grid){
-                return;
-            }
-
-            const liste =
-                haberler
-                    .filter(
-                        haber =>
-                        String(haber.category)
-                        .toUpperCase()
-                        === kategori
-                    )
-                    .slice(0,4);
-
-            if(!liste.length){
-
-                grid.innerHTML = `
-                    <div class="empty"
-                         style="grid-column:1/-1;">
-                        <i class="fa-regular fa-newspaper"></i>
-                        <p>
-                            Bu kategoride henüz
-                            yayınlanmış haber bulunmuyor.
-                        </p>
-                    </div>
-                `;
-
-                return;
-            }
-
-            grid.innerHTML =
-                liste
-                .map(haberKart)
-                .join("");
-
-        });
-
-}
-
-
-/* =========================================================
-   HABER KARTI
-========================================================= */
-
-function haberKart(haber){
-
-    return `
-
-        <a
-            class="news-card"
-            href="haber.html?id=${encodeURIComponent(haber.id)}">
-
-            <div
-                class="news-image"
-                style="${haberResmi(haber)}">
-            </div>
-
-            <div class="news-content">
-
-                <div class="mini-cat">
-                    ${escapeHtml(haber.category)}
-                </div>
-
-                <h3>
-                    ${escapeHtml(haber.title)}
-                </h3>
-
-                <p>
-                    ${escapeHtml(haber.summary || "")}
-                </p>
-
-                <span class="news-date">
-                    ${tarihFormatla(haber.newsDate)}
-                </span>
-
-            </div>
-
-        </a>
-
-    `;
-
-}
-
-
-/* =========================================================
-   SLIDER
-========================================================= */
-
-function sliderOlustur(haberler){
-
-    const alan =
-        document.getElementById(
-            "gundemSlider"
-        );
-
-    const sliderHaberleri =
-        haberler
-            .filter(
-                haber =>
-                haber.slider === true ||
-                haber.featured === true
-            )
-            .slice(0,5);
-
-    if(!sliderHaberleri.length){
-
-        alan.innerHTML = `
-            <div class="empty"
-                 style="
-                    height:100%;
-                    min-height:460px;
-                    display:flex;
-                    align-items:center;
-                    justify-content:center;
-                    flex-direction:column;
-                 ">
-
-                <i class="fa-regular fa-newspaper"></i>
-
-                <p>
-                    Henüz öne çıkan haber bulunmuyor.
-                </p>
-
-            </div>
-        `;
-
-        return;
-    }
-
-
-    alan.innerHTML =
-        sliderHaberleri
-        .map(
-            (haber,index) => `
-
-            <article
-                class="slide ${index === 0 ? "active" : ""}">
-
-                <div
-                    class="slide-image"
-                    style="${haberResmi(haber)}">
-                </div>
-
-                <div class="slide-content">
-
-                    <span class="slide-category">
-                        ${escapeHtml(haber.category)}
-                    </span>
-
-                    <h1>
-                        ${escapeHtml(haber.title)}
-                    </h1>
-
-                    <p>
-                        ${escapeHtml(haber.summary || "")}
-                    </p>
-
-                    <a
-                        href="haber.html?id=${encodeURIComponent(haber.id)}"
-                        class="read-more">
-
-                        HABERİ OKU →
-
-                    </a>
-
-                </div>
-
-            </article>
-
-        `
-        )
-        .join("");
-
-
-    alan.innerHTML += `
-
-        <div class="slider-controls">
-
-            ${sliderHaberleri
-                .map(
-                    (_,index) => `
-                        <button
-                            class="slider-dot ${
-                                index === 0
-                                ? "active"
-                                : ""
-                            }"
-                            onclick="goSlide(${index})">
-                        </button>
-                    `
-                )
-                .join("")}
-
-        </div>
-    `;
-
-
-    sliderBaslat();
-
-}
-
-
-/* =========================================================
-   SLIDER KONTROL
-========================================================= */
+/* GÜNDEM SLIDER */
 
 let currentSlide = 0;
-let sliderTimer = null;
 
-function sliderBaslat(){
-
-    const slides =
-        document.querySelectorAll(
-            "#gundemSlider .slide"
-        );
-
-    if(slides.length <= 1){
-        return;
-    }
-
-    clearInterval(sliderTimer);
-
-    sliderTimer =
-        setInterval(
-            () => {
-
-                let next =
-                    (currentSlide + 1)
-                    % slides.length;
-
-                goSlide(next);
-
-            },
-            5000
-        );
-
-}
-
+const slides = document.querySelectorAll(".slide");
+const dots = document.querySelectorAll(".slider-dot");
 
 function goSlide(index){
 
-    const slides =
-        document.querySelectorAll(
-            "#gundemSlider .slide"
-        );
-
-    const dots =
-        document.querySelectorAll(
-            "#gundemSlider .slider-dot"
-        );
-
-    if(!slides.length){
-        return;
-    }
-
-    if(index >= slides.length){
-        index = 0;
-    }
-
-    slides.forEach(
-        slide =>
-        slide.classList.remove("active")
-    );
-
-    dots.forEach(
-        dot =>
-        dot.classList.remove("active")
-    );
+    slides[currentSlide].classList.remove("active");
+    dots[currentSlide].classList.remove("active");
 
     currentSlide = index;
 
-    slides[currentSlide]
-        .classList.add("active");
-
-    if(dots[currentSlide]){
-        dots[currentSlide]
-            .classList.add("active");
-    }
-
+    slides[currentSlide].classList.add("active");
+    dots[currentSlide].classList.add("active");
 }
 
 
-/* =========================================================
-   SON DAKİKA
-========================================================= */
+setInterval(function(){
 
-function sonDakikaOlustur(haberler){
+    let next = currentSlide + 1;
 
-    const alan =
-        document.getElementById(
-            "breakingText"
-        );
-
-    const liste =
-        haberler
-            .filter(
-                haber => haber.breaking === true
-            )
-            .slice(0,10);
-
-
-    if(!liste.length){
-
-        alan.textContent =
-            "Şahin UYMAZ Gündem";
-
-        return;
+    if(next >= slides.length){
+        next = 0;
     }
 
+    goSlide(next);
 
-    let index = 0;
-
-    alan.textContent =
-        liste[0].title;
+},6000);
 
 
-    if(liste.length > 1){
+/* SPOR TAHMİNİ */
 
-        setInterval(
-            () => {
+function showPrediction(){
 
-                index =
-                    (index + 1)
-                    % liste.length;
-
-                alan.style.opacity = "0";
-
-                setTimeout(
-                    () => {
-
-                        alan.textContent =
-                            liste[index].title;
-
-                        alan.style.opacity = "1";
-
-                    },
-                    250
-                );
-
-            },
-            4000
-        );
-
-    }
+    document.getElementById("predictionResult").style.display =
+        "block";
 
 }
-
-
-/* =========================================================
-   YORUM
-========================================================= */
-
-function yorumOlustur(haberler){
-
-    const yorumlar =
-        haberler
-            .filter(
-                haber =>
-                String(haber.category)
-                .toUpperCase()
-                === "YORUM"
-            )
-            .slice(0,1);
-
-    if(!yorumlar.length){
-        return;
-    }
-
-    const haber =
-        yorumlar[0];
-
-    document.getElementById(
-        "yorumBaslik"
-    ).textContent =
-        haber.title;
-
-    document.getElementById(
-        "yorumMetin"
-    ).textContent =
-        haber.summary ||
-        haber.content ||
-        "";
-
-}
-
-
-/* =========================================================
-   GÜNÜN KONUSU
-========================================================= */
-
-function gununKonusuOlustur(haberler){
-
-    const haber =
-        haberler
-            .find(
-                haber =>
-                haber.featured === true
-            );
-
-    if(!haber){
-        return;
-    }
-
-    document.getElementById(
-        "gununKonusuBaslik"
-    ).textContent =
-        haber.title;
-
-    document.getElementById(
-        "gununKonusuMetin"
-    ).textContent =
-        haber.summary ||
-        haber.content ||
-        "";
-
-}
-
-
-/* =========================================================
-   EN ÇOK OKUNANLAR
-========================================================= */
-
-function enCokOkunanOlustur(haberler){
-
-    const alan =
-        document.getElementById(
-            "mostRead"
-        );
-
-    const liste =
-        haberler.slice(0,5);
-
-
-    if(!liste.length){
-
-        alan.innerHTML = `
-            <div class="empty">
-                <i class="fa-regular fa-newspaper"></i>
-                <p>
-                    Henüz yayınlanmış haber bulunmuyor.
-                </p>
-            </div>
-        `;
-
-        return;
-    }
-
-
-    alan.innerHTML =
-        liste
-        .map(
-            (haber,index) => `
-
-                <a
-                    class="read-item"
-                    href="haber.html?id=${encodeURIComponent(haber.id)}">
-
-                    <div class="read-number">
-                        ${String(index + 1).padStart(2,"0")}
-                    </div>
-
-                    <h3>
-                        ${escapeHtml(haber.title)}
-                    </h3>
-
-                </a>
-
-            `
-        )
-        .join("");
-
-}
-
-
-/* =========================================================
-   ARAMA
-========================================================= */
-
-function aramaAc(){
-
-    const kelime =
-        prompt(
-            "Aramak istediğiniz haberi yazın:"
-        );
-
-    if(!kelime){
-        return;
-    }
-
-    const temiz =
-        kelime.trim();
-
-    if(!temiz){
-        return;
-    }
-
-    window.location.href =
-        "arama.html?q=" +
-        encodeURIComponent(temiz);
-
-}
-
-
-/* =========================================================
-   HATA
-========================================================= */
-
-function hataGoster(){
-
-    document.getElementById(
-        "gundemSlider"
-    ).innerHTML = `
-
-        <div class="empty"
-             style="
-                min-height:460px;
-                display:flex;
-                align-items:center;
-                justify-content:center;
-                flex-direction:column;
-             ">
-
-            <i class="fa-solid fa-triangle-exclamation"></i>
-
-            <p>
-                Haberler şu anda yüklenemiyor.
-            </p>
-
-        </div>
-
-    `;
-
-}
-
-
-/* =========================================================
-   WORKER HENÜZ BAĞLANMADI
-========================================================= */
-
-function demoMesaji(){
-
-    document.getElementById(
-        "gundemSlider"
-    ).innerHTML = `
-
-        <div class="empty"
-             style="
-                min-height:460px;
-                display:flex;
-                align-items:center;
-                justify-content:center;
-                flex-direction:column;
-             ">
-
-            <i class="fa-regular fa-newspaper"></i>
-
-            <h3 style="margin-bottom:8px;">
-                Şahin UYMAZ Gündem
-            </h3>
-
-            <p>
-                Admin panelinden haberlerinizi
-                yayınlamaya hazır.
-            </p>
-
-        </div>
-
-    `;
-
-}
-
-
-/* =========================================================
-   BAŞLAT
-========================================================= */
-
-haberleriGetir();
 
 </script>
 
