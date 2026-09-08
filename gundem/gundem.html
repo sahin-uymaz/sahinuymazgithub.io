@@ -1,138 +1,76 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Haber Ekle - Admin Paneli</title>
+<title>ŞAHİN UYMAZ | Gündem Haberleri</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif;}
-body{background:#f4f6f9;padding:20px;color:#333;}
-.container{max-width:800px;margin:auto;}
-.card{background:#fff;padding:20px;border-radius:8px;box-shadow:0 2px 10px rgba(0,0,0,0.1);margin-bottom:20px;}
-h2{margin-bottom:15px;color:#081b33;}
-.form-group{margin-bottom:12px;}
-label{display:block;font-weight:bold;margin-bottom:5px;font-size:14px;}
-input, textarea, select{width:100%;padding:10px;border:1px solid #ccc;border-radius:5px;font-size:14px;}
-textarea{height:100px;resize:vertical;}
-button{background:#081b33;color:#fff;border:none;padding:12px;width:100%;font-size:16px;font-weight:bold;border-radius:5px;cursor:pointer;}
-button:hover{background:#d71920;}
-.haber-item{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid #eee;}
-.haber-item img{width:60px;height:40px;object-fit:cover;border-radius:4px;margin-right:10px;}
-.haber-bilgi{display:flex;align-items:center;}
-.btn-sil{background:#e74c3c;color:#fff;border:none;padding:5px 10px;border-radius:4px;cursor:pointer;width:auto;}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
+body{background:#f8fafc;color:#0f172a;}
+header{background:#081b33;color:#fff;padding:20px;text-align:center;}
+header h1{font-size:24px;letter-spacing:1px;}
+header p{font-size:12px;color:#94a3b8;margin-top:5px;}
+
+.container{max-width:1100px;margin:30px auto;padding:0 20px;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill, minmax(300px, 1fr));gap:25px;}
+
+.card{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 4px 15px rgba(0,0,0,0.05);border:1px solid #e2e8f0;display:flex;flex-direction:column;}
+.card img{width:100%;height:200px;object-fit:cover;}
+.card-body{padding:20px;display:flex;flex-direction:column;flex:1;}
+.kategori{background:#d71920;color:#fff;font-size:10px;font-weight:bold;padding:4px 8px;border-radius:4px;width:max-content;margin-bottom:10px;}
+.card h3{font-size:18px;margin-bottom:10px;color:#081b33;line-height:1.3;}
+.card p{font-size:14px;color:#475569;line-height:1.5;flex:1;}
+.tarih{font-size:11px;color:#94a3b8;margin-top:15px;}
+
+.bos-mesaj{text-align:center;padding:50px;color:#64748b;font-size:16px;grid-column:1/-1;}
 </style>
 </head>
 <body>
 
-<div class="container">
-    <div class="card">
-        <h2>Yeni Haber Yayınla</h2>
-        <form id="haberForm">
-            <div class="form-group">
-                <label>Haber Başlığı</label>
-                <input type="text" id="baslik" required placeholder="Haber başlığını yazın">
-            </div>
-            <div class="form-group">
-                <label>Kategori</label>
-                <select id="kategori">
-                    <option value="SİYASET">Siyaset</option>
-                    <option value="EKONOMİ">Ekonomi</option>
-                    <option value="SAĞLIK">Sağlık</option>
-                    <option value="SPOR">Spor</option>
-                    <option value="DÜNYA">Dünya</option>
-                    <option value="TOPLUM">Toplum</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Haber Görseli</label>
-                <input type="file" id="resim" accept="image/*" required>
-            </div>
-            <div class="form-group">
-                <label>Haber İçeriği / Özet</label>
-                <textarea id="ozet" required placeholder="Haber detayını yazın"></textarea>
-            </div>
-            <button type="submit" id="kaydetBtn">Haberi Kaydet ve Yayınla</button>
-        </form>
-    </div>
+<header>
+    <h1>ŞAHİN UYMAZ</h1>
+    <p>HABER • GÜNDEM • YORUM • ANALİZ</p>
+</header>
 
-    <div class="card">
-        <h2>Yayınlanan Haberleriniz</h2>
-        <div id="haberListesi">Yükleniyor...</div>
+<div class="container">
+    <div class="grid" id="haberAlani">
+        <div class="bos-mesaj">Haberler yükleniyor...</div>
     </div>
 </div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
 const firebaseConfig = { databaseURL: "https://eserkon-default-rtdb.firebaseio.com" };
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
-const haberlerRef = ref(db, 'kendi_haberlerim');
 
-// Form Gönderildiğinde (Haber Kaydetme)
-document.getElementById('haberForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const btn = document.getElementById('kaydetBtn');
-    btn.disabled = true;
-    btn.innerText = "Kaydediliyor...";
-
-    const resimDosyasi = document.getElementById('resim').files[0];
-    const reader = new FileReader();
-
-    reader.onload = function(event) {
-        const yeniHaber = {
-            baslik: document.getElementById('baslik').value,
-            kategori: document.getElementById('kategori').value,
-            ozet: document.getElementById('ozet').value,
-            resim: event.target.result,
-            tarih: new Date().toLocaleDateString('tr-TR')
-        };
-
-        push(haberlerRef, yeniHaber).then(() => {
-            alert("Haber başarıyla eklendi!");
-            document.getElementById('haberForm').reset();
-            btn.disabled = false;
-            btn.innerText = "Haberi Kaydet ve Yayınla";
-        });
-    };
-
-    reader.readAsDataURL(resimDosyasi);
-});
-
-// Haberleri Listeleme ve Silme
-onValue(haberlerRef, (snapshot) => {
-    const liste = document.getElementById('haberListesi');
-    liste.innerHTML = '';
+onValue(ref(db, 'kendi_haberlerim'), (snapshot) => {
+    const alan = document.getElementById('haberAlani');
+    alan.innerHTML = '';
     const veriler = snapshot.val();
 
     if(!veriler) {
-        liste.innerHTML = '<p>Henüz haber eklemediniz.</p>';
+        alan.innerHTML = '<div class="bos-mesaj">Henüz haber eklenmedi. Admin panelinden ilk haberinizi ekleyebilirsiniz.</div>';
         return;
     }
 
-    Object.keys(veriler).reverse().forEach(key => {
-        const h = veriler[key];
-        liste.innerHTML += `
-            <div class="haber-item">
-                <div class="haber-bilgi">
-                    <img src="${h.resim}">
-                    <div>
-                        <strong>${h.baslik}</strong><br>
-                        <small style="color:#666;">${h.kategori} - ${h.tarih}</small>
-                    </div>
+    Object.values(veriler).reverse().forEach(h => {
+        alan.innerHTML += `
+            <div class="card">
+                <img src="${h.resim}" alt="haber">
+                <div class="card-body">
+                    <span class="kategori">${h.kategori}</span>
+                    <h3>${h.baslik}</h3>
+                    <p>${h.ozet}</p>
+                    <div class="tarih">📅 ${h.tarih}</div>
                 </div>
-                <button class="btn-sil" onclick="window.haberSil('${key}')">Sil</button>
             </div>
         `;
     });
 });
-
-window.haberSil = function(key) {
-    if(confirm("Bu haberi silmek istediğinize emin misiniz?")) {
-        remove(ref(db, 'kendi_haberlerim/' + key));
-    }
-}
 </script>
 
 </body>
