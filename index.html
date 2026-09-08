@@ -1841,6 +1841,26 @@ function handleChatSubmit(event) {
   }, 1200);
 }
 </script>
+<!-- =====================================================
+     FOOTER SCRIPT: GÜVENLİ YÖNLENDİRME
+===================================================== -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    const isApprovedByMail = urlParams.get('access') === 'granted';
+    const hasSessionAccess = sessionStorage.getItem('site_access_approved');
+
+    if (isApprovedByMail || hasSessionAccess) {
+        // Kullanıcı sekreter mailindeki logoya tıklamış → erişim verildi
+        sessionStorage.setItem('site_access_approved', 'true');
+    } else {
+        // Erişim yok → giriş paneline yönlendir
+        window.location.href = "/giris.formlari/giris-paneli.html";
+    }
+});
+</script>
+</body>
+</html>
 
 </body>
 </html>
