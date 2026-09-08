@@ -1,202 +1,138 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ŞAHİN UYMAZ | Haber • Gündem • Yorum • Analiz</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+<title>Haber Ekle - Admin Paneli</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
-html {scroll-behavior: smooth;}
-:root{--lacivert:#081b33;--mavi:#123f73;--kirmizi:#d71920;--acik:#f4f6f9;--gri:#667085;--border:#e4e7ec;}
-body{font-family:Inter,sans-serif;background:var(--acik);color:#111827;}
-a{text-decoration:none;color:inherit;}
-
-.topbar{background:#061426;color:#cbd5e1;font-size:12px;padding:8px 0;}
-.topbar-inner{width:94%;max-width:1400px;margin:auto;display:flex;justify-content:space-between;}
-.header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:1000;}
-.header-inner{width:94%;max-width:1400px;min-height:88px;margin:auto;display:flex;align-items:center;justify-content:space-between;}
-.logo{display:flex;align-items:center;gap:13px;}
-.logo-text strong{font-size:22px;display:block;}
-.logo-text span{font-size:10px;color:#667085;letter-spacing:1.5px;}
-
-.nav{display:flex;gap:22px;font-size:13px;font-weight:700;}
-.nav a{padding:7px 9px;border-radius:6px;transition:.2s;}
-.nav a:hover{background:var(--lacivert);color:#fff;}
-
-.breaking{background:#fff;border-bottom:1px solid var(--border);}
-.breaking-inner{width:94%;max-width:1400px;height:46px;margin:auto;display:flex;align-items:center;}
-.breaking-label{background:var(--kirmizi);color:#fff;padding:6px 12px;font-size:11px;font-weight:900;border-radius:4px;}
-.breaking-text{margin-left:15px;font-size:13px;font-weight:600;}
-
-.container{width:94%;max-width:1400px;margin:28px auto 70px;}
-.section-title{display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid var(--lacivert);padding-bottom:10px;margin:38px 0 18px;}
-.section-title h2{font-family:"Playfair Display",serif;font-size:25px;}
-
-.gundem-slider{position:relative;min-height:460px;overflow:hidden;border-radius:9px;background:#091d35;}
-.slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .7s ease;display:grid;grid-template-columns:1.7fr 1fr;}
-.slide.active{opacity:1;visibility:visible;}
-.slide-image{background-size:cover;background-position:center;}
-.slide-content{color:white;padding:48px 42px;display:flex;flex-direction:column;justify-content:center;}
-.slide-category{background:var(--kirmizi);padding:5px 10px;font-size:10px;font-weight:900;width:max-content;margin-bottom:15px;}
-.slide-content h1{font-family:"Playfair Display",serif;font-size:35px;line-height:1.1;margin-bottom:15px;}
-.slide-content p{color:#d9e3ee;font-size:14px;line-height:1.6;}
-
-.news-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
-.news-card{background:#fff;border:1px solid var(--border);border-radius:7px;overflow:hidden;transition:.25s;}
-.news-card:hover{transform:translateY(-3px);box-shadow:0 10px 20px rgba(0,0,0,.08);}
-.news-image{height:165px;background-size:cover;background-position:center;}
-.news-content{padding:17px;}
-.mini-cat{color:var(--kirmizi);font-size:10px;font-weight:900;margin-bottom:8px;}
-.news-content h3{font-family:"Playfair Display",serif;font-size:18px;line-height:1.25;margin-bottom:8px;}
-.news-content p{color:var(--gri);font-size:12px;line-height:1.55;}
-
-.admin-link-btn{position:fixed;bottom:20px;left:20px;background:#081b33;color:#fff;padding:12px 20px;border-radius:50px;font-weight:700;font-size:12px;box-shadow:0 5px 20px rgba(0,0,0,0.3);z-index:9999;}
-
-@media(max-width:1100px){.news-grid{grid-template-columns:repeat(2,1fr);}}
-@media(max-width:750px){.nav{display:none;}.slide{grid-template-columns:1fr;}.news-grid{grid-template-columns:1fr;}}
+*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif;}
+body{background:#f4f6f9;padding:20px;color:#333;}
+.container{max-width:800px;margin:auto;}
+.card{background:#fff;padding:20px;border-radius:8px;box-shadow:0 2px 10px rgba(0,0,0,0.1);margin-bottom:20px;}
+h2{margin-bottom:15px;color:#081b33;}
+.form-group{margin-bottom:12px;}
+label{display:block;font-weight:bold;margin-bottom:5px;font-size:14px;}
+input, textarea, select{width:100%;padding:10px;border:1px solid #ccc;border-radius:5px;font-size:14px;}
+textarea{height:100px;resize:vertical;}
+button{background:#081b33;color:#fff;border:none;padding:12px;width:100%;font-size:16px;font-weight:bold;border-radius:5px;cursor:pointer;}
+button:hover{background:#d71920;}
+.haber-item{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid #eee;}
+.haber-item img{width:60px;height:40px;object-fit:cover;border-radius:4px;margin-right:10px;}
+.haber-bilgi{display:flex;align-items:center;}
+.btn-sil{background:#e74c3c;color:#fff;border:none;padding:5px 10px;border-radius:4px;cursor:pointer;width:auto;}
 </style>
 </head>
 <body>
 
-<a href="gundem-admin.html" class="admin-link-btn"><i class="fa-solid fa-gear"></i> Admin Paneline Git</a>
-
-<div class="topbar">
-    <div class="topbar-inner">
-        <span>ŞAHİN UYMAZ | Haber • Gündem • Yorum • Analiz</span>
-        <span id="date"></span>
-    </div>
-</div>
-
-<header class="header">
-    <div class="header-inner">
-        <a href="gundem.html" class="logo">
-            <div class="logo-text">
-                <strong>ŞAHİN UYMAZ</strong>
-                <span>HABER • GÜNDEM • YORUM • ANALİZ</span>
+<div class="container">
+    <div class="card">
+        <h2>Yeni Haber Yayınla</h2>
+        <form id="haberForm">
+            <div class="form-group">
+                <label>Haber Başlığı</label>
+                <input type="text" id="baslik" required placeholder="Haber başlığını yazın">
             </div>
-        </a>
-        <nav class="nav">
-            <a href="#siyaset">Siyaset</a>
-            <a href="#ekonomi">Ekonomi</a>
-            <a href="#saglik">Sağlık</a>
-            <a href="#spor">Spor</a>
-            <a href="#dunya">Dünya</a>
-            <a href="#toplum">Toplum</a>
-        </nav>
+            <div class="form-group">
+                <label>Kategori</label>
+                <select id="kategori">
+                    <option value="SİYASET">Siyaset</option>
+                    <option value="EKONOMİ">Ekonomi</option>
+                    <option value="SAĞLIK">Sağlık</option>
+                    <option value="SPOR">Spor</option>
+                    <option value="DÜNYA">Dünya</option>
+                    <option value="TOPLUM">Toplum</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Haber Görseli</label>
+                <input type="file" id="resim" accept="image/*" required>
+            </div>
+            <div class="form-group">
+                <label>Haber İçeriği / Özet</label>
+                <textarea id="ozet" required placeholder="Haber detayını yazın"></textarea>
+            </div>
+            <button type="submit" id="kaydetBtn">Haberi Kaydet ve Yayınla</button>
+        </form>
     </div>
-</header>
 
-<div class="breaking">
-    <div class="breaking-inner">
-        <div class="breaking-label">🔴 SON DAKİKA</div>
-        <div class="breaking-text" id="breakingText">Henüz son dakika gelişmesi eklenmedi.</div>
+    <div class="card">
+        <h2>Yayınlanan Haberleriniz</h2>
+        <div id="haberListesi">Yükleniyor...</div>
     </div>
 </div>
-
-<main class="container">
-    <div class="section-title"><h2>Gündem Manşet</h2></div>
-    <section class="gundem-slider" id="sliderContainer"></section>
-    <div id="categoriesWrapper"></div>
-</main>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
-document.getElementById('date').innerText = new Date().toLocaleDateString('tr-TR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-
-const firebaseConfig = {
-    databaseURL: "https://eserkon-default-rtdb.firebaseio.com"
-};
-
+const firebaseConfig = { databaseURL: "https://eserkon-default-rtdb.firebaseio.com" };
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
+const haberlerRef = ref(db, 'kendi_haberlerim');
 
-let slideInterval;
+// Form Gönderildiğinde (Haber Kaydetme)
+document.getElementById('haberForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('kaydetBtn');
+    btn.disabled = true;
+    btn.innerText = "Kaydediliyor...";
 
-onValue(ref(db, 'portal_news'), (snapshot) => {
-    const rawData = snapshot.val();
-    if(!rawData) return;
+    const resimDosyasi = document.getElementById('resim').files[0];
+    const reader = new FileReader();
 
-    const newsData = Object.values(rawData).reverse();
+    reader.onload = function(event) {
+        const yeniHaber = {
+            baslik: document.getElementById('baslik').value,
+            kategori: document.getElementById('kategori').value,
+            ozet: document.getElementById('ozet').value,
+            resim: event.target.result,
+            tarih: new Date().toLocaleDateString('tr-TR')
+        };
 
-    // 1. Son Dakika
-    const breakingNews = newsData.filter(n => n.isBreaking);
-    if(breakingNews.length > 0) {
-        document.getElementById('breakingText').innerText = breakingNews.map(n => n.title).join('  •  ');
-    }
-
-    // 2. Slider
-    const sliderNews = newsData.filter(n => n.isSlider);
-    const sliderContainer = document.getElementById('sliderContainer');
-    sliderContainer.innerHTML = '';
-
-    if(sliderNews.length === 0) {
-        sliderContainer.innerHTML = '<div style="color:#fff; padding:40px; text-align:center;">Slider manşeti için admin panelinden haber ekleyiniz.</div>';
-    } else {
-        sliderNews.forEach((item, index) => {
-            sliderContainer.innerHTML += `
-                <article class="slide ${index === 0 ? 'active' : ''}">
-                    <div class="slide-image" style="background-image:url('${item.image}')"></div>
-                    <div class="slide-content">
-                        <span class="slide-category">${item.category.toUpperCase()}</span>
-                        <h1>${item.title}</h1>
-                        <p>${item.summary}</p>
-                    </div>
-                </article>
-            `;
+        push(haberlerRef, yeniHaber).then(() => {
+            alert("Haber başarıyla eklendi!");
+            document.getElementById('haberForm').reset();
+            btn.disabled = false;
+            btn.innerText = "Haberi Kaydet ve Yayınla";
         });
+    };
+
+    reader.readAsDataURL(resimDosyasi);
+});
+
+// Haberleri Listeleme ve Silme
+onValue(haberlerRef, (snapshot) => {
+    const liste = document.getElementById('haberListesi');
+    liste.innerHTML = '';
+    const veriler = snapshot.val();
+
+    if(!veriler) {
+        liste.innerHTML = '<p>Henüz haber eklemediniz.</p>';
+        return;
     }
 
-    // Slider Döngüsü
-    clearInterval(slideInterval);
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.slide');
-    if(slides.length > 1) {
-        slideInterval = setInterval(() => {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.add('active');
-        }, 4000);
-    }
-
-    // 3. Kategoriler
-    const categories = ['siyaset', 'ekonomi', 'saglik', 'spor', 'dunya', 'toplum'];
-    const wrapper = document.getElementById('categoriesWrapper');
-    wrapper.innerHTML = '';
-
-    categories.forEach(cat => {
-        const catNews = newsData.filter(n => n.category === cat);
-        let cardsHtml = '';
-
-        if(catNews.length === 0) {
-            cardsHtml = '<p style="color:#667085; font-size:13px; grid-column:span 4;">Bu kategoride henüz haber eklenmedi.</p>';
-        } else {
-            catNews.forEach(item => {
-                cardsHtml += `
-                    <article class="news-card">
-                        <div class="news-image" style="background-image:url('${item.image}')"></div>
-                        <div class="news-content">
-                            <div class="mini-cat">${item.category.toUpperCase()}</div>
-                            <h3>${item.title}</h3>
-                            <p>${item.summary}</p>
-                        </div>
-                    </article>
-                `;
-            });
-        }
-
-        wrapper.innerHTML += `
-            <div class="section-title" id="${cat}">
-                <h2>${cat.toUpperCase()}</h2>
+    Object.keys(veriler).reverse().forEach(key => {
+        const h = veriler[key];
+        liste.innerHTML += `
+            <div class="haber-item">
+                <div class="haber-bilgi">
+                    <img src="${h.resim}">
+                    <div>
+                        <strong>${h.baslik}</strong><br>
+                        <small style="color:#666;">${h.kategori} - ${h.tarih}</small>
+                    </div>
+                </div>
+                <button class="btn-sil" onclick="window.haberSil('${key}')">Sil</button>
             </div>
-            <section class="news-grid">${cardsHtml}</section>
         `;
     });
 });
+
+window.haberSil = function(key) {
+    if(confirm("Bu haberi silmek istediğinize emin misiniz?")) {
+        remove(ref(db, 'kendi_haberlerim/' + key));
+    }
+}
 </script>
 
 </body>
