@@ -1,99 +1,49 @@
 <!doctype html>
 <html lang="tr">
 <head>
+    <meta charset="UTF-8">
+    <title>Ana Sayfa</title>
 
-<!-- =====================================================
-     ÖZEL ERİŞİM KONTROLÜ
-     E-POSTA ONAYI + 24 SAATLİK ERİŞİM
-===================================================== -->
+    <!-- =====================================================
+         ÖZEL ERİŞİM KONTROLÜ (GÜNCELLENMİŞ SÜRÜM)
+    ===================================================== -->
+    <script>
+    (function () {
+        const ACCESS_KEY = "site_access_approved";
+        const ACCESS_TIME_KEY = "site_access_time";
+        const ACCESS_DURATION = 24 * 60 * 60 * 1000; // 24 saat
 
-<script>
-(function () {
+        // URL parametrelerini alırken küçük harfe çevirip kontrol edelim
+        const params = new URLSearchParams(window.location.search);
+        const accessParam = (params.get("access") || "").toLowerCase();
+        const mailApproved = accessParam === "granted";
 
-    const ACCESS_KEY = "site_access_approved";
-    const ACCESS_TIME_KEY = "site_access_time";
-    const ACCESS_DURATION = 24 * 60 * 60 * 1000; // 24 saat
-
-    /*
-     * E-posta bağlantısından gelen onay:
-     * ?access=granted
-     */
-    const params = new URLSearchParams(window.location.search);
-    const mailApproved = params.get("access") === "granted";
-
-    /*
-     * Daha önce verilmiş erişim bilgisi
-     */
-    const hasAccess = localStorage.getItem(ACCESS_KEY);
-    const accessTime = parseInt(
-        localStorage.getItem(ACCESS_TIME_KEY) || "0",
-        10
-    );
-
-    /*
-     * ==================================================
-     * 1. E-POSTA ONAYIYLA GELDİYSE
-     * ==================================================
-     */
-    if (mailApproved) {
-
-        localStorage.setItem(ACCESS_KEY, "true");
-        localStorage.setItem(
-            ACCESS_TIME_KEY,
-            Date.now().toString()
-        );
-
-        /*
-         * BURADA URL'Yİ TEMİZLEMİYORUZ.
-         *
-         * ?access=granted URL'de kalabilir.
-         * Öncelikle erişimin kesin olarak tanınmasını sağlıyoruz.
-         */
-
-        return;
-    }
-
-    /*
-     * ==================================================
-     * 2. DAHA ÖNCE ONAYLANMIŞ KULLANICI
-     * ==================================================
-     */
-
-    if (hasAccess === "true") {
-
-        /*
-         * 24 saat dolmuş mu?
-         */
-        if (
-            accessTime &&
-            (Date.now() - accessTime) < ACCESS_DURATION
-        ) {
-
-            return;
-
+        // 1. E-posta Onayıyla Gelindiyse
+        if (mailApproved) {
+            localStorage.setItem(ACCESS_KEY, "true");
+            localStorage.setItem(ACCESS_TIME_KEY, Date.now().toString());
+            return; // Sayfada kal, yönlendirme yapma
         }
 
-        /*
-         * 24 saat dolduysa erişimi kaldır
-         */
-        localStorage.removeItem(ACCESS_KEY);
-        localStorage.removeItem(ACCESS_TIME_KEY);
-    }
+        // 2. Önceden Onaylanmış Kullanıcı Kontrolü
+        const hasAccess = localStorage.getItem(ACCESS_KEY);
+        const accessTime = parseInt(localStorage.getItem(ACCESS_TIME_KEY) || "0", 10);
 
-    /*
-     * ==================================================
-     * 3. ERİŞİM YOKSA GİRİŞ PANELİNE GÖNDER
-     * ==================================================
-     */
+        if (hasAccess === "true") {
+            if (accessTime && (Date.now() - accessTime) < ACCESS_DURATION) {
+                return; // 24 saat dolmamış, sayfada kal
+            }
+            // Süre dolduysa temizle
+            localStorage.removeItem(ACCESS_KEY);
+            localStorage.removeItem(ACCESS_TIME_KEY);
+        }
 
-    window.location.replace(
-        "giris-formlari/giris-paneli.html"
-    );
+        // 3. Geçerli erişim yoksa yönlendir
+        window.location.replace("giris-formlari/giris-paneli.html");
+    })();
+    </script>
 
-})();
-</script>
-
-</head>
+ </head>
 
 <body>
 
