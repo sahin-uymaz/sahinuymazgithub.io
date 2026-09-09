@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Haber | Şahin UYMAZ</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>body{font-family:Inter,system-ui,sans-serif;background:#f7f7f5;color:#111}.wrap{width:min(960px,calc(100% - 28px));margin:auto}.article img{width:100%;max-height:650px;object-fit:cover;border-radius:28px}.article h1{font-size:clamp(34px,6vw,68px);line-height:1.02;letter-spacing:-.05em;font-weight:800}.article-body{font-size:18px;line-height:1.9;color:#333;white-space:pre-line}.badge{display:inline-block;border-radius:999px;background:#111;color:#fff;padding:7px 12px;font-size:11px;font-weight:800;text-transform:uppercase}</style>
+</head>
+<body>
+<header class="border-b border-black/10 bg-white/80 backdrop-blur sticky top-0 z-10"><div class="wrap h-20 flex items-center justify-between"><a href="gundem.html" class="font-extrabold">ŞAHİN UYMAZ</a><a href="gundem.html" class="font-semibold text-sm">← Gündeme Dön</a></div></header>
+<main class="wrap py-8 md:py-14 article" id="article"></main>
+<script>
+const KEY="sahin_uymaz_gundem_haberleri";
+const demo=[{id:"demo1",category:"Siyaset",title:"Gündemin öne çıkan başlıkları burada yer alacak",short:"Admin panelinden eklediğiniz haberler bu alanda modern kartlar halinde gösterilir.",body:"Haber detay metni admin panelinden girilir.",image:"https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=1600&q=85",slider:true,date:"2026-09-09"}];
+let news=JSON.parse(localStorage.getItem(KEY)||"null")||demo;
+const id=new URLSearchParams(location.search).get("id");const n=news.find(x=>x.id===id)||news[0];
+const esc=s=>String(s||"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
+document.title=(n.title||"Haber")+" | Şahin UYMAZ";
+document.getElementById("article").innerHTML=`<div class="mb-7"><span class="badge">${esc(n.category)}</span><div class="text-sm text-gray-500 mt-4">${esc(n.date||"")}</div><h1 class="mt-4">${esc(n.title)}</h1><p class="text-lg text-gray-600 leading-8 mt-5">${esc(n.short)}</p></div><img src="${esc(n.image)}" alt="${esc(n.title)}" class="mb-10"><div class="article-body">${esc(n.body||n.short)}</div>`;
+</script>
+</body>
+</html>

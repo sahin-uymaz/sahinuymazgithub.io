@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Gündem Admin | Şahin UYMAZ</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>body{font-family:Inter,system-ui,sans-serif;background:#f4f4f1;color:#111}.box{background:#fff;border:1px solid #e3e3de;border-radius:20px}.input{width:100%;border:1px solid #d9d9d3;border-radius:12px;padding:13px 14px;outline:none;background:#fff}.input:focus{border-color:#111;box-shadow:0 0 0 3px #1111}.thumb{width:110px;height:75px;object-fit:cover;border-radius:10px;background:#ddd}.btn{border-radius:999px;padding:11px 17px;font-weight:800;font-size:13px}.danger{background:#fee2e2;color:#991b1b}.edit{background:#eee;color:#111}</style>
+</head>
+<body>
+<header class="bg-white border-b border-black/10"><div class="max-w-6xl mx-auto px-4 h-20 flex items-center justify-between"><div><div class="font-extrabold text-xl">GÜNDEM ADMİN</div><div class="text-xs text-gray-500">Şahin UYMAZ</div></div><a href="gundem.html" class="font-bold text-sm">Siteyi Gör →</a></div></header>
+<main class="max-w-6xl mx-auto px-4 py-8 grid lg:grid-cols-[430px_1fr] gap-6">
+<section class="box p-5 h-fit">
+<h1 class="text-2xl font-extrabold mb-5" id="formTitle">Yeni Haber Ekle</h1>
+<form id="form" class="space-y-4">
+<input type="hidden" id="id">
+<div><label class="text-sm font-bold">Kategori</label><select id="category" class="input mt-1"><option>Siyaset</option><option>Ekonomi</option><option>Dünya</option><option>Spor</option></select></div>
+<div><label class="text-sm font-bold">Haber başlığı</label><input id="title" class="input mt-1" required placeholder="Haber başlığını yazın"></div>
+<div><label class="text-sm font-bold">Kısa açıklama</label><textarea id="short" class="input mt-1" rows="3" required placeholder="Görselin altında görünecek açıklama"></textarea></div>
+<div><label class="text-sm font-bold">Haber detay metni</label><textarea id="body" class="input mt-1" rows="8" placeholder="Haberin tam metni"></textarea></div>
+<div><label class="text-sm font-bold">Görsel</label><input id="imageFile" type="file" accept="image/*" class="input mt-1"><div id="preview" class="mt-2"></div></div>
+<div class="flex items-center gap-2"><input id="slider" type="checkbox" class="w-5 h-5"><label for="slider" class="font-bold text-sm">Ana slider'da göster</label></div>
+<div class="flex gap-2"><button class="btn bg-black text-white" type="submit">HABERİ YAYINLA</button><button class="btn bg-gray-100" type="button" onclick="resetForm()">TEMİZLE</button></div>
+</form>
+</section>
+<section class="box p-5">
+<div class="flex items-center justify-between gap-3 mb-5"><h2 class="text-2xl font-extrabold">Yayınlanan Haberler</h2><span id="count" class="text-sm text-gray-500"></span></div>
+<div id="list" class="space-y-3"></div>
+</section>
+</main>
+<script>
+const KEY="sahin_uymaz_gundem_haberleri";let news=[];let currentImage="";
+const demo=[{id:"demo1",category:"Siyaset",title:"Gündemin öne çıkan başlıkları burada yer alacak",short:"Admin panelinden eklediğiniz haberler bu alanda modern kartlar halinde gösterilir.",body:"Haber detay metni admin panelinden girilir.",image:"https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=1600&q=85",slider:true,date:"2026-09-09"}];
+function load(){news=JSON.parse(localStorage.getItem(KEY)||"null")||demo}
+function persist(){localStorage.setItem(KEY,JSON.stringify(news));render()}
+function esc(s=""){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+function render(){document.getElementById("count").textContent=news.length+" haber";document.getElementById("list").innerHTML=news.map(n=>`<div class="border border-gray-200 rounded-2xl p-3 flex gap-3 items-center"><img class="thumb" src="${esc(n.image)}"><div class="min-w-0 flex-1"><div class="text-[10px] font-extrabold uppercase text-gray-500">${esc(n.category)} ${n.slider?"· SLIDER":""}</div><div class="font-extrabold truncate">${esc(n.title)}</div><div class="text-xs text-gray-500 truncate">${esc(n.short)}</div></div><div class="flex gap-2"><button class="btn edit" onclick="editNews('${n.id}')">Düzenle</button><button class="btn danger" onclick="deleteNews('${n.id}')">Sil</button></div></div>`).join("")||'<div class="text-gray-500 py-10 text-center">Henüz haber yok.</div>'}
+function resetForm(){document.getElementById("form").reset();document.getElementById("id").value="";currentImage="";document.getElementById("preview").innerHTML="";document.getElementById("formTitle").textContent="Yeni Haber Ekle"}
+function editNews(id){const n=news.find(x=>x.id===id);if(!n)return;document.getElementById("id").value=n.id;document.getElementById("category").value=n.category;document.getElementById("title").value=n.title;document.getElementById("short").value=n.short;document.getElementById("body").value=n.body;document.getElementById("slider").checked=!!n.slider;currentImage=n.image;document.getElementById("preview").innerHTML=`<img class="thumb" src="${esc(n.image)}">`;document.getElementById("formTitle").textContent="Haberi Düzenle";scrollTo({top:0,behavior:"smooth"})}
+function deleteNews(id){if(!confirm("Bu haberi silmek istediğinize emin misiniz?"))return;news=news.filter(x=>x.id!==id);persist()}
+document.getElementById("imageFile").addEventListener("change",e=>{const f=e.target.files[0];if(!f)return;if(f.size>4*1024*1024){alert("Bu demo sürümünde 4 MB'dan büyük görsel seçmeyin.");return}const r=new FileReader();r.onload=()=>{currentImage=r.result;document.getElementById("preview").innerHTML=`<img class="thumb" src="${r.result}">`};r.readAsDataURL(f)});
+document.getElementById("form").addEventListener("submit",e=>{e.preventDefault();if(!currentImage){alert("Lütfen bir görsel seçin.");return}const id=document.getElementById("id").value||("haber_"+Date.now());const item={id,category:category.value,title:title.value.trim(),short:short.value.trim(),body:body.value.trim(),image:currentImage,slider:slider.checked,date:new Date().toISOString().slice(0,10)};const ix=news.findIndex(x=>x.id===id);if(ix>=0)news[ix]=item;else news.unshift(item);persist();resetForm();alert("Haber yayınlandı.");});
+load();render();
+</script>
+</body>
+</html>

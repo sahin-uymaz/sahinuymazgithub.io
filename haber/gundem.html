@@ -1,1 +1,111 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Gündem | Şahin UYMAZ</title>
+<meta name="description" content="Siyaset, ekonomi, dünya ve spor gündeminden son gelişmeler.">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f7f7f5;color:#111;font-family:Inter,system-ui,sans-serif}
+.container{width:min(1240px,calc(100% - 32px));margin:auto}
+.nav{position:sticky;top:0;z-index:50;background:rgba(247,247,245,.92);backdrop-filter:blur(18px);border-bottom:1px solid #e5e5e0}
+.hero{position:relative;height:min(70vh,650px);min-height:430px;border-radius:28px;overflow:hidden;background:#111}
+.hero img{width:100%;height:100%;object-fit:cover}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.82),rgba(0,0,0,.05) 65%)}
+.hero-content{position:absolute;z-index:2;left:clamp(22px,5vw,64px);right:clamp(22px,5vw,64px);bottom:40px;color:#fff;max-width:850px}
+.badge{display:inline-flex;padding:7px 12px;border-radius:999px;background:#fff;color:#111;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.05em}
+.hero-title{font-size:clamp(30px,5vw,64px);line-height:1.02;font-weight:800;margin:15px 0 12px;letter-spacing:-.045em}
+.hero-desc{font-size:clamp(14px,1.6vw,18px);line-height:1.55;color:#e8e8e8;max-width:720px}
+.arrow{width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.5);background:rgba(0,0,0,.25);color:#fff;display:grid;place-items:center;font-size:24px}
+.hero-controls{position:absolute;z-index:4;right:30px;bottom:35px;display:flex;gap:8px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.card{background:#fff;border:1px solid #e7e7e2;border-radius:22px;overflow:hidden;transition:.25s;box-shadow:0 4px 20px rgba(0,0,0,.035)}
+.card:hover{transform:translateY(-5px);box-shadow:0 18px 45px rgba(0,0,0,.09)}
+.card-img{aspect-ratio:16/10;overflow:hidden;background:#ddd}
+.card-img img{width:100%;height:100%;object-fit:cover;transition:.5s}
+.card:hover .card-img img{transform:scale(1.035)}
+.card-body{padding:21px 22px 24px}
+.card-cat{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:#555}
+.card-title{font-size:21px;line-height:1.2;font-weight:800;letter-spacing:-.025em;margin:9px 0}
+.card-desc{font-size:14px;line-height:1.6;color:#606060;margin:0 0 18px}
+.read{font-size:13px;font-weight:800;color:#111}
+.section-title{font-size:clamp(28px,4vw,42px);letter-spacing:-.04em;font-weight:800;margin:70px 0 24px}
+.empty{padding:80px 20px;text-align:center;background:#fff;border:1px dashed #ccc;border-radius:22px;color:#777}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.container{width:min(100% - 20px,1240px)}.hero{height:62vh;min-height:460px;border-radius:20px}.hero-controls{right:18px;bottom:18px}.hero-content{bottom:24px}.grid{grid-template-columns:1fr;gap:16px}.section-title{margin-top:48px}.navlinks{overflow:auto;white-space:nowrap}.navlinks a{font-size:13px}}
+</style>
+</head>
+<body>
+<header class="nav">
+<div class="container h-[72px] flex items-center justify-between gap-5">
+<a href="gundem.html" class="font-extrabold text-xl tracking-tight whitespace-nowrap">ŞAHİN UYMAZ</a>
+<nav class="navlinks flex items-center gap-6 font-semibold">
+<a href="#siyaset" class="hover:opacity-60">Siyaset</a>
+<a href="#ekonomi" class="hover:opacity-60">Ekonomi</a>
+<a href="#dunya" class="hover:opacity-60">Dünya</a>
+<a href="#spor" class="hover:opacity-60">Spor</a>
+</nav>
+<a href="gundem-admin.html" class="hidden sm:inline-flex rounded-full bg-black text-white px-4 py-2 text-sm font-bold">Admin</a>
+</div>
+</header>
 
+<main class="container py-6 md:py-8">
+<section id="hero" class="hero">
+<div id="heroContent" class="hero-content"></div>
+<div class="hero-controls">
+<button class="arrow" onclick="prevSlide()">‹</button>
+<button class="arrow" onclick="nextSlide()">›</button>
+</div>
+</section>
+
+<section>
+<h2 class="section-title">Gündemden Öne Çıkanlar</h2>
+<div id="newsGrid" class="grid"></div>
+</section>
+</main>
+
+<footer class="mt-24 border-t border-black/10">
+<div class="container py-10 flex flex-col md:flex-row justify-between gap-4 text-sm text-gray-500">
+<span>© <span id="year"></span> Şahin UYMAZ</span>
+<span>Siyaset · Ekonomi · Dünya · Spor</span>
+</div>
+</footer>
+
+<script>
+const KEY="sahin_uymaz_gundem_haberleri";
+const demo=[
+{id:"demo1",category:"Siyaset",title:"Gündemin öne çıkan başlıkları burada yer alacak",short:"Admin panelinden eklediğiniz haberler bu alanda modern kartlar halinde gösterilir.",body:"Haber detay metni admin panelinden girilir.",image:"https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=1600&q=85",slider:true,date:"2026-09-09"},
+{id:"demo2",category:"Ekonomi",title:"Ekonomi gündeminden önemli gelişmeler",short:"Yeni haberlerinizi görsel, başlık ve açıklama ile kolayca yayınlayabilirsiniz.",body:"Haber detay metni.",image:"https://images.unsplash.com/photo-1559526324-593bc073d938?auto=format&fit=crop&w=1200&q=85",slider:false,date:"2026-09-09"},
+{id:"demo3",category:"Dünya",title:"Dünyadan son gelişmeler",short:"Görsellerin altında başlık ve açıklama özellikle okunabilir olacak şekilde tasarlandı.",body:"Haber detay metni.",image:"https://images.unsplash.com/photo-1521295121783-8a321d551ad2?auto=format&fit=crop&w=1200&q=85",slider:false,date:"2026-09-09"}
+];
+let news=[],slide=0,timer;
+function load(){try{news=JSON.parse(localStorage.getItem(KEY)||"null")||demo}catch(e){news=demo}}
+function saveDemo(){if(!localStorage.getItem(KEY))localStorage.setItem(KEY,JSON.stringify(demo))}
+function esc(s=""){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+function renderHero(){
+ const slides=news.filter(x=>x.slider);
+ if(!slides.length){document.getElementById("hero").style.display="none";return}
+ slide=(slide+slides.length)%slides.length;const n=slides[slide];
+ document.getElementById("hero").style.backgroundImage=`url("${n.image}")`;
+ document.getElementById("heroContent").innerHTML=`<span class="badge">${esc(n.category)}</span><h1 class="hero-title">${esc(n.title)}</h1><p class="hero-desc">${esc(n.short)}</p><a href="haber-detay.html?id=${encodeURIComponent(n.id)}" class="inline-flex mt-5 rounded-full bg-white text-black px-5 py-3 text-sm font-bold">Haberi Oku →</a>`;
+ document.getElementById("hero").querySelector("img")?.remove();
+}
+function renderGrid(){
+ const grid=document.getElementById("newsGrid");
+ if(!news.length){grid.innerHTML='<div class="empty col-span-full">Henüz haber eklenmedi.</div>';return}
+ grid.innerHTML=news.map(n=>`<article class="card" id="${esc(n.category.toLowerCase())}">
+<div class="card-img"><img src="${esc(n.image)}" alt="${esc(n.title)}" loading="lazy"></div>
+<div class="card-body"><div class="card-cat">${esc(n.category)}</div><h3 class="card-title">${esc(n.title)}</h3><p class="card-desc">${esc(n.short)}</p><a class="read" href="haber-detay.html?id=${encodeURIComponent(n.id)}">Devamını Oku →</a></div>
+</article>`).join("");
+}
+function nextSlide(){const s=news.filter(x=>x.slider);if(!s.length)return;slide++;renderHero()}
+function prevSlide(){const s=news.filter(x=>x.slider);if(!s.length)return;slide--;renderHero()}
+function start(){clearInterval(timer);timer=setInterval(nextSlide,6000)}
+load();saveDemo();load();renderHero();renderGrid();start();document.getElementById("year").textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
