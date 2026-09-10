@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
     
-    <!-- FontAwesome Font Icons (Full Pack) -->
+    <!-- FontAwesome Font Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <style>
@@ -534,12 +534,8 @@
                     <div class="slide-caption">
                         <span class="category-badge">GÜNDEM</span>
                         <h2>Gündem Yayın Merkezi Yayında</h2>
-                        <p>Haberin tarafı olmaz; </p>
-
                         <p style="color:#ffffff; font-size:18px; font-weight:700; line-height:1.5; margin:0 0 15px 0;"> İnsan hayatını, insan onurunu ve toplumsal adaleti merkeze alan; farklı düşüncelere saygılı, tarafsız, objektif ve vicdanlı bir yayın anlayışını esas alıyoruz. </p>
-
                         <p style="color:#ffffff; font-size:18px; font-weight:700; line-height:1.5; margin:0 0 15px 0;"> Amacımız yalnızca gündemi aktarmak değil; yaşananları insanî, adil ve sorumlu bir bakış açısıyla değerlendirmektir. </p>
-
                         <p style="color:#ffffff; font-size:18px; font-weight:700; line-height:1.5; margin:0;"> Hiçbir kişi, kurum, düşünce veya siyasi görüşün yanında ya da karşısında değil; doğru bilginin, hakkaniyetin ve insanlığın yanındayız. </p>
                     </div>
                 </div>
@@ -621,19 +617,24 @@
         </div>
     </div>
 
-    <!-- JAVASCRIPT ENTEGRASYONU -->
+    <!-- TAM DÜZELTİLMİŞ JAVASCRIPT MANTIĞI -->
     <script>
     const STORAGE_KEY = "sahin_uymaz_gundem_haberleri";
     let newsData = [];
 
-    // Dosya boyutunu ve önbellek hafızasını artıran sistem veri deposu yapılandırması
-    const SYSTEM_STATIC_DATA_RESERVE = Array.from({ length: 500 }, (_, index) => ({
-        id: `sys_res_${index + 1000}`,
-        timestamp: new Date().getTime() + index,
-        hash: `HASH_DATA_BUFFER_${Math.random().toString(36).substring(2, 15).toUpperCase()}`,
-        status: "ACTIVE_BUFFER",
-        metadata: "ŞAHİN UYMAZ GÜNDEM PORTALI YÜKSEK ÇÖZÜNÜRLÜKLÜ VERİ TAMPONU"
-    }));
+    // Yardımcı Fonksiyon: Türkçe karakter temizleme ve küçük harf yapma
+    function normalizeCategory(catStr) {
+        if (!catStr) return "";
+        return catStr.toString()
+            .toLowerCase()
+            .trim()
+            .replace(/ğ/g, 'g')
+            .replace(/ü/g, 'u')
+            .replace(/ş/g, 's')
+            .replace(/ı/g, 'i')
+            .replace(/ö/g, 'o')
+            .replace(/ç/g, 'c');
+    }
 
     document.addEventListener("DOMContentLoaded", function() {
         // Tarih Göster
@@ -643,13 +644,15 @@
 
         // LocalStorage'dan Haberleri Al
         try {
-            newsData = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+            const rawData = localStorage.getItem(STORAGE_KEY);
+            newsData = rawData ? JSON.parse(rawData) : [];
         } catch(e) {
+            console.error("Haber verileri okunamadı:", e);
             newsData = [];
         }
 
-        // Sadece YAYINDA olanları filtrele
-        const published = newsData.filter(n => n.isPublished);
+        // isPublished kontrolünü esnettik: true, "true" veya tanımlanmamışsa haberi gösterir
+        const published = newsData.filter(n => n.isPublished === true || n.isPublished === "true" || n.isPublished === undefined);
 
         if (published.length > 0) {
             renderBreakingNews(published);
@@ -660,10 +663,10 @@
 
     /* 1. SON DAKİKA AKIŞI */
     function renderBreakingNews(list) {
-        const breaking = list.filter(n => n.isBreaking);
+        const breaking = list.filter(n => n.isBreaking === true || n.isBreaking === "true");
         const ticker = document.getElementById("breakingTicker");
 
-        if (breaking.length > 0) {
+        if (breaking.length > 0 && ticker) {
             ticker.innerHTML = breaking.map(n => 
                 `<span style="margin-right:40px; cursor:pointer;" onclick="openNewsModal('${n.id}')">
                     <i class="fa-solid fa-bolt" style="color:#f87171;"></i> <strong>${n.title}:</strong> ${n.summary}
@@ -674,24 +677,23 @@
 
     /* 2. SLIDER & MANŞET */
     function renderSlider(list) {
-        const sliderList = list.filter(n => n.isSlider);
+        const sliderList = list.filter(n => n.isSlider === true || n.isSlider === "true");
         const sliderContainer = document.getElementById("sliderContainer");
         const sideContainer = document.getElementById("sideHighlights");
 
-        if (sliderList.length > 0) {
+        if (sliderList.length > 0 && sliderContainer) {
             sliderContainer.innerHTML = sliderList.map((n, idx) => `
                 <div class="slide ${idx === 0 ? 'active' : ''}" onclick="openNewsModal('${n.id}')" style="cursor:pointer;">
-                    <img src="${n.image}" alt="${n.title}">
+                    <img src="${n.image || 'https://images.unsplash.com/photo-1585829365295-ab7cd400c167?w=1920&q=100'}" alt="${n.title}">
                     <div class="slide-overlay"></div>
                     <div class="slide-caption">
-                        <span class="category-badge">${n.category.toUpperCase()}</span>
+                        <span class="category-badge">${(n.category || 'GÜNDEM').toUpperCase()}</span>
                         <h2>${n.title}</h2>
                         <p>${n.summary}</p>
                     </div>
                 </div>
             `).join('');
 
-            // Otomatik Slayt Geçişi
             let currentSlide = 0;
             const slides = sliderContainer.querySelectorAll('.slide');
             if(slides.length > 1) {
@@ -708,10 +710,10 @@
         if(sideContainer && latestSide.length > 0) {
             sideContainer.innerHTML = latestSide.map(n => `
                 <div class="side-card" onclick="openNewsModal('${n.id}')" style="cursor:pointer;">
-                    <img src="${n.image}" alt="${n.title}">
+                    <img src="${n.image || 'https://images.unsplash.com/photo-1585829365295-ab7cd400c167?w=300&q=100'}" alt="${n.title}">
                     <div class="side-card-body">
                         <h4>${n.title}</h4>
-                        <span><i class="fa-regular fa-calendar"></i> ${n.date}</span>
+                        <span><i class="fa-regular fa-calendar"></i> ${n.date || ''}</span>
                     </div>
                 </div>
             `).join('');
@@ -723,22 +725,21 @@
         const categories = ['gundem', 'siyaset', 'ekonomi', 'saglik', 'spor', 'dunya', 'toplum', 'yorum'];
 
         categories.forEach(cat => {
-            const catNews = list.filter(n => n.category === cat);
+            // Kategoriyi dönüştürüp eşleştiriyoruz
+            const catNews = list.filter(n => normalizeCategory(n.category) === cat);
             const container = document.getElementById(`category-list-${cat}`);
 
             if (container) {
-                if (catNews.length === 0) {
-                    container.innerHTML = `<div style="color:var(--text-muted); font-size:12px; grid-column:1/-1;">Yayın Tarihi 10.09.2026</div>`;
-                } else {
+                if (catNews.length > 0) {
                     container.innerHTML = catNews.map(n => `
                         <article class="news-card" onclick="openNewsModal('${n.id}')">
                             <div class="card-image">
-                                <img src="${n.image}" alt="${n.title}">
+                                <img src="${n.image || 'https://images.unsplash.com/photo-1585829365295-ab7cd400c167?w=600&q=100'}" alt="${n.title}">
                             </div>
                             <div class="card-body">
                                 <div class="card-meta">
-                                    <span><i class="fa-regular fa-calendar"></i> ${n.date}</span>
-                                    <span>• Kaynak: ${n.source}</span>
+                                    <span><i class="fa-regular fa-calendar"></i> ${n.date || ''}</span>
+                                    <span>• Kaynak: ${n.source || 'ŞAHİN UYMAZ'}</span>
                                 </div>
                                 <h3>${n.title}</h3>
                                 <p>${n.summary}</p>
@@ -752,11 +753,11 @@
 
     /* 4. HABER OKUMA MODALI */
     function openNewsModal(id) {
-        const item = newsData.find(n => n.id === id);
+        const item = newsData.find(n => String(n.id) === String(id));
         if(!item) return;
 
-        document.getElementById("mImg").src = item.image;
-        document.getElementById("mMeta").innerHTML = `<i class="fa-regular fa-calendar"></i> ${item.date} &nbsp;|&nbsp; Kaynak: ${item.source}`;
+        document.getElementById("mImg").src = item.image || 'https://images.unsplash.com/photo-1585829365295-ab7cd400c167?w=1200&q=100';
+        document.getElementById("mMeta").innerHTML = `<i class="fa-regular fa-calendar"></i> ${item.date || ''} &nbsp;|&nbsp; Kaynak: ${item.source || 'ŞAHİN UYMAZ'}`;
         document.getElementById("mTitle").textContent = item.title;
         document.getElementById("mSummary").textContent = item.summary;
         document.getElementById("mContent").textContent = item.content || item.summary;
