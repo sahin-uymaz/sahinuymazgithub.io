@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Haber Portal</title>
-    <!-- FontAwesome & Google Fonts -->
+    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-dark: #0f172a;
@@ -16,7 +15,7 @@
             --text-muted: #94a3b8;
             --accent-red: #ef4444;
             --accent-blue: #3b82f6;
-            --font-family: 'Inter', sans-serif;
+            --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
         }
 
         * {
@@ -31,6 +30,7 @@
             font-family: var(--font-family);
             line-height: 1.5;
             padding-bottom: 50px;
+            -webkit-font-smoothing: antialiased;
         }
 
         .container {
@@ -385,7 +385,7 @@
     <header>
         <div class="container header-content">
             <a href="#" class="logo">
-                <i class="fa-solid fa-newspaper">
+                <i class="fa-solid fa-newspaper"></i>
                 <span>HABER PORTALI</span>
             </a>
         </div>
@@ -449,7 +449,6 @@
         });
 
         function initPortal() {
-            // LocalStorage veri çekimi
             const localData = localStorage.getItem("newsData");
             
             if (localData) {
@@ -461,7 +460,6 @@
                 }
             }
 
-            // Sadece yayınlanmış haberleri filtrele
             const published = allNewsData.filter(n => n.status === "published" || !n.status);
 
             renderBreakingNews(published);
@@ -470,10 +468,8 @@
         }
 
         function setupEventListeners() {
-            // Modal kapatma butonu
             document.getElementById("modalCloseBtn").addEventListener("click", closeReadModal);
 
-            // Modal dışına (siyah alana) tıklayınca kapatma
             window.addEventListener("click", (e) => {
                 const modal = document.getElementById("readModal");
                 if (e.target === modal) {
@@ -481,7 +477,6 @@
                 }
             });
 
-            // ESC tuşu ile modal kapatma
             window.addEventListener("keydown", (e) => {
                 if (e.key === "Escape") {
                     closeReadModal();
@@ -502,7 +497,6 @@
                     </span>
                 `).join('<span style="margin-right:40px; color:var(--panel-border);">●</span>');
 
-                // Ticker tıklama olayları
                 ticker.querySelectorAll('.ticker-item').forEach(el => {
                     el.addEventListener('click', () => openNewsModal(el.getAttribute('data-id')));
                 });
@@ -518,7 +512,6 @@
 
             container.innerHTML = "";
             
-            // Slaytları Oluştur
             sliderNews.forEach((item, idx) => {
                 const slide = document.createElement("div");
                 slide.className = `slide ${idx === 0 ? 'active' : ''}`;
@@ -538,7 +531,6 @@
                 container.appendChild(slide);
             });
 
-            // Noktaları (Dots) Oluştur
             if (sliderNews.length > 1) {
                 const dotsWrap = document.createElement("div");
                 dotsWrap.className = "slider-dots";
@@ -628,13 +620,13 @@
             document.getElementById("mDate").textContent = item.date ? new Date(item.date).toLocaleString("tr-TR") : "";
             document.getElementById("mContent").textContent = item.content || item.summary || "";
 
-            document.body.style.overflow = "hidden"; // Arka planın kaymasını engelle
+            document.body.style.overflow = "hidden";
             modal.classList.add("show");
         }
 
         function closeReadModal() {
             const modal = document.getElementById("readModal");
-            document.body.style.overflow = "auto"; // Kaydırmayı tekrar aktif et
+            document.body.style.overflow = "auto";
             modal.classList.remove("show");
         }
 
