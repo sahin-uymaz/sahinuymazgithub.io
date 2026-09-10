@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gündem | ŞAHİN UYMAZ</title>
+    <meta name="description" content="Şahin UYMAZ - Gündem, Siyaset, Ekonomi, Sağlık, Spor, Dünya ve Toplum Haberleri.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Font Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --panel-bg: #111827;
+            --panel-border: #1f293d;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --primary-blue: #2563eb;
+            --primary-hover: #1d4ed8;
+            --accent-red: #dc2626;
+            --accent-green: #16a34a;
+            --accent-gold: #d97706;
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* HEADER & TOPBAR */
+        .topbar {
+            background-color: #05070c;
+            border-bottom: 1px solid var(--panel-border);
+            font-size: 13px;
+            color: var(--text-muted);
+            padding: 8px 0;
+        }
+
+        .topbar-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .topbar-date i {
+            margin-right: 5px;
+            color: var(--primary-blue);
+        }
+
+        .header {
+            background-color: rgba(17, 24, 39, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--panel-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary-blue);
+        }
+
+        .logo-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        .logo-subtitle {
+            font-size: 11px;
+            color: var(--text-muted);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        /* SON DAKİKA BANTI */
+        .breaking-bar {
+            background: #111827;
+            border-bottom: 1px solid var(--panel-border);
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .breaking-label {
+            background: var(--accent-red);
+            color: #fff;
+            padding: 10px 20px;
+            font-weight: 800;
+            font-size: 13px;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 2;
+        }
+
+        .ticker-content {
+            white-space: nowrap;
+            animation: ticker 35s linear infinite;
+            padding-left: 100%;
+            display: inline-block;
+            color: #e2e8f0;
+            font-size: 14px;
+        }
+
+        @keyframes ticker {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
+        }
+
+        .ticker-content:hover {
+            animation-play-state: paused;
+        }
+
+        /* CONTAINER */
+        .container {
+            max-width: 1300px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        /* SLIDER & HERO SECTION */
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .main-slider {
+            position: relative;
+            height: 420px;
+            border-radius: 16px;
+            overflow: hidden;
+            background: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+        }
+
+        .slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 0.6s ease-in-out;
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .slide.active {
+            opacity: 1;
+            z-index: 1;
+        }
+
+        .slide img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slide-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(11, 15, 25, 0.95) 0%, rgba(11, 15, 25, 0.2) 60%, transparent 100%);
+        }
+
+        .slide-caption {
+            position: relative;
+            z-index: 2;
+            padding: 30px;
+            max-width: 90%;
+        }
+
+        .category-badge {
+            display: inline-block;
+            background: var(--primary-blue);
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .slide-caption h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            line-height: 1.3;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .slide-caption p {
+            color: #cbd5e1;
+            font-size: 13px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* YAN MANŞETLER */
+        .side-highlights {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .side-card {
+            background: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            gap: 12px;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .side-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--primary-blue);
+        }
+
+        .side-card img {
+            width: 90px;
+            height: 75px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .side-card-body h4 {
+            font-size: 14px;
+            line-height: 1.3;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .side-card-body span {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        /* KATEGORİ BÖLÜMLERİ */
+        .category-section {
+            margin-bottom: 45px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid var(--panel-border);
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            color: #fff;
+        }
+
+        .section-title i {
+            color: var(--primary-blue);
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        /* HABER KARTLARI */
+        .news-card {
+            background: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-blue);
+            box-shadow: var(--card-shadow);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 170px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .news-card:hover .card-image img {
+            transform: scale(1.06);
+        }
+
+        .card-body {
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-meta {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-body h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 17px;
+            line-height: 1.35;
+            margin-bottom: 8px;
+            color: #f8fafc;
+        }
+
+        .card-body p {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.5;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+
+        /* HABER OKUMA MODALI */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            border-radius: 16px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            padding: 30px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #1f293d;
+            border: none;
+            color: #fff;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .modal-img {
+            width: 100%;
+            max-height: 360px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .modal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+
+        .modal-summary {
+            font-size: 15px;
+            font-weight: 600;
+            color: #e2e8f0;
+            background: rgba(37, 99, 235, 0.1);
+            border-left: 4px solid var(--primary-blue);
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
+
+        .modal-text {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #cbd5e1;
+            white-space: pre-wrap;
+        }
+
+        /* MOBİL UYUM */
+        @media(max-width: 900px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+            .main-slider {
+                height: 320px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOPBAR -->
+    <div class="topbar">
+        <div class="topbar-container">
+            <div class="topbar-date">
+                <i class="fa-regular fa-calendar-days"></i>
+                <span id="currentDate">-- -- ----</span>
+            </div>
+            <div>ŞAHİN UYMAZ | RESMİ GÜNDEM PORTALI</div>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo-area">
+                <img src="logo.png" class="logo-img" alt="Şahin UYMAZ" onerror="this.src='https://via.placeholder.com/50'">
+                <div>
+                    <div class="logo-title">ŞAHİN UYMAZ</div>
+                    <div class="logo-subtitle">HABER • YORUM • ANALİZ</div>
+                </div>
+            </a>
+            <a href="admin-gundem.html" style="color: var(--text-muted); font-size: 13px;" target="_blank">
+                <i class="fa-solid fa-user-gear"></i> Yönetim
+            </a>
+        </div>
+    </header>
+
+    <!-- SON DAKİKA BANTI -->
+    <div class="breaking-bar">
+        <div class="breaking-label">
+            <i class="fa-solid fa-bolt"></i> SON DAKİKA
+        </div>
+        <div class="ticker-content" id="breakingTicker">
+            <span>Henüz bir son dakika haberi girilmedi.</span>
+        </div>
+    </div>
+
+    <!-- ANA İÇERİK CONTAINER -->
+    <main class="container">
+
+        <!-- SLIDER & MANŞET -->
+        <section class="hero-grid">
+            <div class="main-slider" id="sliderContainer">
+                <div class="slide active">
+                    <img src="https://images.unsplash.com/photo-1585829365295-ab7cd400c167?w=1200" alt="Gündem">
+                    <div class="slide-overlay"></div>
+                    <div class="slide-caption">
+                        <span class="category-badge">GÜNDEM</span>
+                        <h2>Gündem Yayın Merkezi Yayında</h2>
+                        <p>Admin panelinden eklediğiniz haberler slider ve kategori bloklarında anında görüntülenecektir.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="side-highlights" id="sideHighlights">
+                <!-- Yan Öne Çıkanlar Otomatik Dolar -->
+            </div>
+        </section>
+
+        <!-- KATEGORİ BÖLÜMLERİ -->
+        <section class="category-section">
+            <div class="section-header">
+                <div class="section-title"><i class="fa-solid fa-newspaper"></i> Gündem</div>
+            </div>
+            <div class="news-grid" id="category-list-gundem"></div>
+        </section>
+
+        <section class="category-section">
+            <div class="section-header">
+                <div class="section-title"><i class="fa-solid fa-landmark"></i> Siyaset</div>
+            </div>
+            <div class="news-grid" id="category-list-siyaset"></div>
+        </section>
+
+        <section class="category-section">
+            <div class="section-header">
+                <div class="section-title"><i class="fa-solid fa-chart-line"></i> Ekonomi</div>
+            </div>
+            <div class="news-grid" id="category-list-ekonomi"></div>
+        </section>
+
+        <section class="category-section">
+            <div class="section-header">
+                <div class="section-title"><i class="fa-solid fa-heart-pulse"></i> Sağlık</div>
+            </div>
+            <div class="news-grid" id="category-list-saglik"></div>
+        </section>
+
+        <section class="category-section">
+            <div class="section-header">
+                <div class="section-title"><i class="fa-solid fa-futbol"></i> Spor</div>
+            </div>
+            <div class="news-grid" id="category-list-spor"></div>
+        </section>
+
+        <section class="category-section">
+            <div class="section-header">
+                <div class="section-title"><i class="fa-solid fa-earth-americas"></i> Dünya</div>
+            </div>
+            <div class="news-grid" id="category-list-dunya"></div>
+        </section>
+
+        <section class="category-section">
+            <div class="section-header">
+                <div class="section-title"><i class="fa-solid fa-people-group"></i> Toplum</div>
+            </div>
+            <div class="news-grid" id="category-list-toplum"></div>
+        </section>
+
+        <section class="category-section">
+            <div class="section-header">
+                <div class="section-title"><i class="fa-solid fa-comment-dots"></i> Yorum & Analiz</div>
+            </div>
+            <div class="news-grid" id="category-list-yorum"></div>
+        </section>
+
+    </main>
+
+    <!-- HABER DETAY OKUMA MODALI -->
+    <div class="modal" id="readModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeReadModal()"><i class="fa-solid fa-xmark"></i></button>
+            <img src="" class="modal-img" id="mImg" alt="">
+            <div class="card-meta" id="mMeta"></div>
+            <h1 class="modal-title" id="mTitle"></h1>
+            <div class="modal-summary" id="mSummary"></div>
+            <div class="modal-text" id="mContent"></div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT ENTEGRASYONU -->
+    <script>
+    const STORAGE_KEY = "sahin_uymaz_gundem_haberleri";
+    let newsData = [];
+
+    document.addEventListener("DOMContentLoaded", function() {
+        // Tarih Göster
+        document.getElementById("currentDate").textContent = new Date().toLocaleDateString("tr-TR", {
+            day: "2-digit", month: "long", year: "numeric"
+        });
+
+        // LocalStorage'dan Haberleri Al
+        try {
+            newsData = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+        } catch(e) {
+            newsData = [];
+        }
+
+        // Sadece YAYINDA olanları filtrele
+        const published = newsData.filter(n => n.isPublished);
+
+        if (published.length > 0) {
+            renderBreakingNews(published);
+            renderSlider(published);
+            renderCategories(published);
+        }
+    });
+
+    /* 1. SON DAKİKA AKIŞI */
+    function renderBreakingNews(list) {
+        const breaking = list.filter(n => n.isBreaking);
+        const ticker = document.getElementById("breakingTicker");
+
+        if (breaking.length > 0) {
+            ticker.innerHTML = breaking.map(n => 
+                `<span style="margin-right:40px; cursor:pointer;" onclick="openNewsModal('${n.id}')">
+                    <i class="fa-solid fa-bolt" style="color:#f87171;"></i> <strong>${n.title}:</strong> ${n.summary}
+                </span>`
+            ).join('');
+        }
+    }
+
+    /* 2. SLIDER & MANŞET */
+    function renderSlider(list) {
+        const sliderList = list.filter(n => n.isSlider);
+        const sliderContainer = document.getElementById("sliderContainer");
+        const sideContainer = document.getElementById("sideHighlights");
+
+        if (sliderList.length > 0) {
+            sliderContainer.innerHTML = sliderList.map((n, idx) => `
+                <div class="slide ${idx === 0 ? 'active' : ''}" onclick="openNewsModal('${n.id}')" style="cursor:pointer;">
+                    <img src="${n.image}" alt="${n.title}">
+                    <div class="slide-overlay"></div>
+                    <div class="slide-caption">
+                        <span class="category-badge">${n.category.toUpperCase()}</span>
+                        <h2>${n.title}</h2>
+                        <p>${n.summary}</p>
+                    </div>
+                </div>
+            `).join('');
+
+            // Otomatik Slayt Geçişi
+            let currentSlide = 0;
+            const slides = sliderContainer.querySelectorAll('.slide');
+            if(slides.length > 1) {
+                setInterval(() => {
+                    slides[currentSlide].classList.remove('active');
+                    currentSlide = (currentSlide + 1) % slides.length;
+                    slides[currentSlide].classList.add('active');
+                }, 5000);
+            }
+        }
+
+        // Yan Taraf İçin Son 3 Haberi Bas
+        const latestSide = list.slice(0, 3);
+        if(sideContainer && latestSide.length > 0) {
+            sideContainer.innerHTML = latestSide.map(n => `
+                <div class="side-card" onclick="openNewsModal('${n.id}')" style="cursor:pointer;">
+                    <img src="${n.image}" alt="${n.title}">
+                    <div class="side-card-body">
+                        <h4>${n.title}</h4>
+                        <span><i class="fa-regular fa-calendar"></i> ${n.date}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+    }
+
+    /* 3. KATEGORİ LİSTELERİ */
+    function renderCategories(list) {
+        const categories = ['gundem', 'siyaset', 'ekonomi', 'saglik', 'spor', 'dunya', 'toplum', 'yorum'];
+
+        categories.forEach(cat => {
+            const catNews = list.filter(n => n.category === cat);
+            const container = document.getElementById(`category-list-${cat}`);
+
+            if (container) {
+                if (catNews.length === 0) {
+                    container.innerHTML = `<div style="color:var(--text-muted); font-size:12px; grid-column:1/-1;">Bu kategoride henüz haber yayınlanmadı.</div>`;
+                } else {
+                    container.innerHTML = catNews.map(n => `
+                        <article class="news-card" onclick="openNewsModal('${n.id}')">
+                            <div class="card-image">
+                                <img src="${n.image}" alt="${n.title}">
+                            </div>
+                            <div class="card-body">
+                                <div class="card-meta">
+                                    <span><i class="fa-regular fa-calendar"></i> ${n.date}</span>
+                                    <span>• Kaynak: ${n.source}</span>
+                                </div>
+                                <h3>${n.title}</h3>
+                                <p>${n.summary}</p>
+                            </div>
+                        </article>
+                    `).join('');
+                }
+            }
+        });
+    }
+
+    /* 4. HABER OKUMA MODALI */
+    function openNewsModal(id) {
+        const item = newsData.find(n => n.id === id);
+        if(!item) return;
+
+        document.getElementById("mImg").src = item.image;
+        document.getElementById("mMeta").innerHTML = `<i class="fa-regular fa-calendar"></i> ${item.date} &nbsp;|&nbsp; Kaynak: ${item.source}`;
+        document.getElementById("mTitle").textContent = item.title;
+        document.getElementById("mSummary").textContent = item.summary;
+        document.getElementById("mContent").textContent = item.content || item.summary;
+
+        document.getElementById("readModal").classList.add("show");
+    }
+
+    function closeReadModal() {
+        document.getElementById("readModal").classList.remove("show");
+    }
+    </script>
+</body>
+</html>
