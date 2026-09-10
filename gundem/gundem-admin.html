@@ -51,6 +51,30 @@
             color: var(--primary);
         }
 
+        .category-nav {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .category-nav-btn {
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: 0.2s;
+        }
+
+        .category-nav-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -80,7 +104,7 @@
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 8px;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             overflow: hidden;
         }
 
@@ -90,11 +114,14 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            cursor: pointer;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .category-header h2 {
             font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .btn {
@@ -116,6 +143,7 @@
             padding: 20px;
             border-bottom: 1px solid var(--border-color);
             display: none;
+            background-color: #141e30;
         }
 
         .news-form-container.open {
@@ -367,6 +395,16 @@
         <h1><i class="fa-solid fa-newspaper"></i> Haber Yönetim Paneli</h1>
     </header>
 
+    <!-- KATEGORİ HIZLI ERİŞİM MENÜSÜ -->
+    <div class="category-nav">
+        <button class="category-nav-btn" onclick="scrollToCategory('gundem')"><i class="fa-solid fa-layer-group"></i> Gündem</button>
+        <button class="category-nav-btn" onclick="scrollToCategory('ekonomi')"><i class="fa-solid fa-chart-line"></i> Ekonomi</button>
+        <button class="category-nav-btn" onclick="scrollToCategory('siyaset')"><i class="fa-solid fa-building-columns"></i> Siyaset</button>
+        <button class="category-nav-btn" onclick="scrollToCategory('spor')"><i class="fa-solid fa-football"></i> Spor</button>
+        <button class="category-nav-btn" onclick="scrollToCategory('teknoloji')"><i class="fa-solid fa-microchip"></i> Teknoloji</button>
+    </div>
+
+    <!-- İSTATİSTİK KARTLARI -->
     <div class="stats-grid">
         <div class="stat-card">
             <h3 id="totalNews">0</h3>
@@ -386,78 +424,54 @@
         </div>
     </div>
 
-    <!-- GÜNDEM KATEGORİSİ -->
+    <!-- 1. GÜNDEM KATEGORİSİ -->
     <div class="category-section" id="category-gundem">
         <div class="category-header">
-            <h2><i class="fa-solid fa-layer-group"></i> Gündem Haberleri</h2>
+            <h2><i class="fa-solid fa-layer-group" style="color: #3b82f6;"></i> Gündem Haberleri</h2>
             <button class="btn" onclick="toggleForm('gundem')"><i class="fa-solid fa-plus"></i> Yeni Haber Ekle</button>
         </div>
-        
-        <div class="news-form-container" id="form-gundem">
-            <div class="form-fields">
-                <div class="field">
-                    <label>HABER BAŞLIĞI</label>
-                    <input type="text" id="title-gundem" placeholder="Başlık yazın...">
-                </div>
-                
-                <div class="field">
-                    <label>HABER GÖRSELİ (BİLGİSAYARDAN VEYA LİNK OLARAK)</label>
-                    <div class="image-upload-box" onclick="document.getElementById('file-gundem').click()">
-                        <i class="fa-solid fa-cloud-arrow-up fa-2x"></i>
-                        <p style="margin-top: 5px;">Bilgisayardan Resim Seçin</p>
-                        <input type="file" id="file-gundem" accept="image/*" style="display:none;" onchange="handleImageUpload(event, 'gundem')">
-                        <img id="preview-gundem" class="image-preview" src="">
-                    </div>
-                    <input type="url" id="imageUrl-gundem" placeholder="VEYA Görsel İnternet Adresi (URL) Yapıştırın (https://...)" style="margin-top: 8px;">
-                </div>
-
-                <div class="field">
-                    <label>KISA AÇIKLAMA / SPOT</label>
-                    <textarea id="summary-gundem" placeholder="Haberin özetini yazın..."></textarea>
-                </div>
-
-                <div class="field">
-                    <label>HABER DETAY METNİ</label>
-                    <textarea class="content" id="content-gundem" placeholder="Haberin detaylarını buraya yazın..."></textarea>
-                </div>
-
-                <div class="two-fields">
-                    <div class="field">
-                        <label>HABER TARİHİ</label>
-                        <input type="date" id="date-gundem">
-                    </div>
-                    <div class="field">
-                        <label>KAYNAK</label>
-                        <input type="text" id="source-gundem" placeholder="Şahin UYMAZ">
-                    </div>
-                </div>
-
-                <div class="field">
-                    <label>YAYIN ÖZELLİKLERİ</label>
-                    <div class="options">
-                        <div class="option">
-                            <input type="checkbox" id="published-gundem" checked>
-                            <label for="published-gundem"><i class="fa-solid fa-globe"></i> Yayında</label>
-                        </div>
-                        <div class="option">
-                            <input type="checkbox" id="slider-gundem">
-                            <label for="slider-gundem"><i class="fa-solid fa-images"></i> Slider'a Ekle</label>
-                        </div>
-                        <div class="option">
-                            <input type="checkbox" id="breaking-gundem">
-                            <label for="breaking-gundem"><i class="fa-solid fa-bolt"></i> Son Dakika</label>
-                        </div>
-                    </div>
-                </div>
-
-                <div style="display: flex; gap: 10px; margin-top: 10px;">
-                    <button class="btn" onclick="saveNews('gundem')">Haberi Kaydet</button>
-                    <button class="btn" style="background-color: var(--border-color);" onclick="toggleForm('gundem')">İptal</button>
-                </div>
-            </div>
-        </div>
-
+        <div class="news-form-container" id="form-gundem"></div>
         <div class="news-list" id="list-gundem"></div>
+    </div>
+
+    <!-- 2. EKONOMİ KATEGORİSİ -->
+    <div class="category-section" id="category-ekonomi">
+        <div class="category-header">
+            <h2><i class="fa-solid fa-chart-line" style="color: #10b981;"></i> Ekonomi Haberleri</h2>
+            <button class="btn" onclick="toggleForm('ekonomi')"><i class="fa-solid fa-plus"></i> Yeni Haber Ekle</button>
+        </div>
+        <div class="news-form-container" id="form-ekonomi"></div>
+        <div class="news-list" id="list-ekonomi"></div>
+    </div>
+
+    <!-- 3. SİYASET KATEGORİSİ -->
+    <div class="category-section" id="category-siyaset">
+        <div class="category-header">
+            <h2><i class="fa-solid fa-building-columns" style="color: #f59e0b;"></i> Siyaset Haberleri</h2>
+            <button class="btn" onclick="toggleForm('siyaset')"><i class="fa-solid fa-plus"></i> Yeni Haber Ekle</button>
+        </div>
+        <div class="news-form-container" id="form-siyaset"></div>
+        <div class="news-list" id="list-siyaset"></div>
+    </div>
+
+    <!-- 4. SPOR KATEGORİSİ -->
+    <div class="category-section" id="category-spor">
+        <div class="category-header">
+            <h2><i class="fa-solid fa-football" style="color: #ef4444;"></i> Spor Haberleri</h2>
+            <button class="btn" onclick="toggleForm('spor')"><i class="fa-solid fa-plus"></i> Yeni Haber Ekle</button>
+        </div>
+        <div class="news-form-container" id="form-spor"></div>
+        <div class="news-list" id="list-spor"></div>
+    </div>
+
+    <!-- 5. TEKNOLOJİ KATEGORİSİ -->
+    <div class="category-section" id="category-teknoloji">
+        <div class="category-header">
+            <h2><i class="fa-solid fa-microchip" style="color: #8b5cf6;"></i> Teknoloji Haberleri</h2>
+            <button class="btn" onclick="toggleForm('teknoloji')"><i class="fa-solid fa-plus"></i> Yeni Haber Ekle</button>
+        </div>
+        <div class="news-form-container" id="form-teknoloji"></div>
+        <div class="news-list" id="list-teknoloji"></div>
     </div>
 </div>
 
@@ -480,18 +494,91 @@ let news = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
 let imageStore = {};
 
 const categories = {
-    gundem: { label: "GÜNDEM", title: "Gündem Haberleri" }
+    gundem: { label: "GÜNDEM", title: "Gündem Haberleri" },
+    ekonomi: { label: "EKONOMİ", title: "Ekonomi Haberleri" },
+    siyaset: { label: "SİYASET", title: "Siyaset Haberleri" },
+    spor: { label: "SPOR", title: "Spor Haberleri" },
+    teknoloji: { label: "TEKNOLOJİ", title: "Teknoloji Haberleri" }
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-    // Bugünün tarihini varsayılan yap
-    const today = new Date().toISOString().split('T')[0];
-    if(document.getElementById('date-gundem')) {
-        document.getElementById('date-gundem').value = today;
-    }
+    buildForms();
     renderAllNews();
     updateStats();
 });
+
+// Her kategori için dinamik form oluşturur
+function buildForms() {
+    const today = new Date().toISOString().split('T')[0];
+    Object.keys(categories).forEach(cat => {
+        const container = document.getElementById(`form-${cat}`);
+        if(!container) return;
+
+        container.innerHTML = `
+            <div class="form-fields">
+                <div class="field">
+                    <label>HABER BAŞLIĞI</label>
+                    <input type="text" id="title-${cat}" placeholder="Başlık yazın...">
+                </div>
+                
+                <div class="field">
+                    <label>HABER GÖRSELİ (BİLGİSAYARDAN VEYA LİNK OLARAK)</label>
+                    <div class="image-upload-box" onclick="document.getElementById('file-${cat}').click()">
+                        <i class="fa-solid fa-cloud-arrow-up fa-2x"></i>
+                        <p style="margin-top: 5px;">Bilgisayardan Resim Seçin</p>
+                        <input type="file" id="file-${cat}" accept="image/*" style="display:none;" onchange="handleImageUpload(event, '${cat}')">
+                        <img id="preview-${cat}" class="image-preview" src="">
+                    </div>
+                    <input type="url" id="imageUrl-${cat}" placeholder="VEYA Görsel İnternet Adresi (URL) Yapıştırın (https://...)" style="margin-top: 8px;">
+                </div>
+
+                <div class="field">
+                    <label>KISA AÇIKLAMA / SPOT</label>
+                    <textarea id="summary-${cat}" placeholder="Haberin özetini yazın..."></textarea>
+                </div>
+
+                <div class="field">
+                    <label>HABER DETAY METNİ</label>
+                    <textarea class="content" id="content-${cat}" placeholder="Haberin detaylarını buraya yazın..."></textarea>
+                </div>
+
+                <div class="two-fields">
+                    <div class="field">
+                        <label>HABER TARİHİ</label>
+                        <input type="date" id="date-${cat}" value="${today}">
+                    </div>
+                    <div class="field">
+                        <label>KAYNAK</label>
+                        <input type="text" id="source-${cat}" placeholder="Şahin UYMAZ">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>YAYIN ÖZELLİKLERİ</label>
+                    <div class="options">
+                        <div class="option">
+                            <input type="checkbox" id="published-${cat}" checked>
+                            <label for="published-${cat}"><i class="fa-solid fa-globe"></i> Yayında</label>
+                        </div>
+                        <div class="option">
+                            <input type="checkbox" id="slider-${cat}">
+                            <label for="slider-${cat}"><i class="fa-solid fa-images"></i> Slider'a Ekle</label>
+                        </div>
+                        <div class="option">
+                            <input type="checkbox" id="breaking-${cat}">
+                            <label for="breaking-${cat}"><i class="fa-solid fa-bolt"></i> Son Dakika</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 10px; margin-top: 10px;">
+                    <button class="btn" onclick="saveNews('${cat}')">Haberi Kaydet</button>
+                    <button class="btn" style="background-color: var(--border-color);" onclick="toggleForm('${cat}')">İptal</button>
+                </div>
+            </div>
+        `;
+    });
+}
 
 /* =========================================================
    GÖRSEL YÜKLEME VE OTOMATİK SIKIŞTIRMA (CANVAS)
@@ -511,7 +598,7 @@ function compressAndProcessImage(file, category) {
         img.src = e.target.result;
         img.onload = function () {
             const canvas = document.createElement("canvas");
-            const MAX_WIDTH = 800; // Resim genişliğini maksimum 800px yapar
+            const MAX_WIDTH = 800; // Maksimum 800px genişlik
             let width = img.width;
             let height = img.height;
 
@@ -526,7 +613,7 @@ function compressAndProcessImage(file, category) {
             const ctx = canvas.getContext("2d");
             ctx.drawImage(img, 0, 0, width, height);
 
-            // Resim kalitesini %70'e düşürerek boyutunu ~50 KB seviyesine indirir
+            // Resim boyutunu hafızada yer kaplamaması için ~50 KB seviyesine indirir
             const compressedBase64 = canvas.toDataURL("image/jpeg", 0.7);
             imageStore[category] = compressedBase64;
             
@@ -567,7 +654,6 @@ function saveNews(category) {
         return;
     }
 
-    // Görsel Önceliği: 1. Yapıştırılan URL, 2. Yüklenen Resim, 3. Varsayılan Görsel
     const finalImage = externalImageUrl || imageStore[category] || "https://images.unsplash.com/photo-1585829365295-ab7cd400c167?w=800";
 
     const newArticle = {
@@ -685,6 +771,11 @@ function updateStats() {
     if(document.getElementById("publishedNews")) document.getElementById("publishedNews").textContent = news.filter(n => n.isPublished).length;
     if(document.getElementById("sliderNews")) document.getElementById("sliderNews").textContent = news.filter(n => n.isSlider).length;
     if(document.getElementById("breakingNews")) document.getElementById("breakingNews").textContent = news.filter(n => n.isBreaking).length;
+}
+
+function scrollToCategory(catId) {
+    const el = document.getElementById(`category-${catId}`);
+    if(el) el.scrollIntoView({ behavior: 'smooth' });
 }
 
 /* =========================================================
