@@ -553,7 +553,7 @@
         <!-- KATEGORİ BÖLÜMLERİ -->
         <section class="category-section">
             <div class="section-header">
-                <div class="section-title"><i class="fa-solid fa-newspaper"></i> Gündem</div>
+                <div class="section-title"><i class="fa-solid fa-newspaper"></i> TBMM</div>
             </div>
             <div class="news-grid" id="category-list-gundem"></div>
         </section>
@@ -719,7 +719,7 @@
 
             if (container) {
                 if (catNews.length === 0) {
-                    container.innerHTML = `<div style="color:var(--text-muted); font-size:12px; grid-column:1/-1;">Bu kategoride henüz haber yayınlanmadı.</div>`;
+                    container.innerHTML = `<div style="color:var(--text-muted); font-size:12px; grid-column:1/-1;">Yayın Tarihi 10.09.2026</div>`;
                 } else {
                     container.innerHTML = catNews.map(n => `
                         <article class="news-card" onclick="openNewsModal('${n.id}')">
