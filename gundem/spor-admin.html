@@ -883,6 +883,12 @@ button:hover{
    RESULT
 ========================================================= */
 
+#yeniTakim{
+  pointer-events:auto;
+  user-select:text;
+  cursor:text;
+}
+
 #sonuc{
 
   display:none;
@@ -2114,6 +2120,19 @@ select:disabled{
 
       <button
         type="button"
+        class="btn-delete"
+        id="tumMaclariSilBtn"
+      >
+
+        <i class="fa-solid fa-trash"></i>
+
+        Tüm Maçları Sil
+
+      </button>
+
+
+      <button
+        type="button"
         class="btn-load"
         id="ornekleriYukleBtn"
       >
@@ -2295,7 +2314,26 @@ const DEFAULT_TEAMS = {
 
   ],
 
-  "1. Lig":[],
+  "1. Lig":[
+    "Sakaryaspor",
+    "Gençlerbirliği",
+    "Boluspor",
+    "Bandırmaspor",
+    "Erzurumspor FK",
+    "İstanbulspor",
+    "Çorum FK",
+    "Amed Sportif Faaliyetler",
+    "Keçiörengücü",
+    "Ümraniyespor",
+    "Manisa FK",
+    "Pendikspor",
+    "Erokspor",
+    "Iğdır FK",
+    "Sivasspor",
+    "Vanspor FK",
+    "Adana Demirspor",
+    "Altınordu"
+  ],
 
   "UEFA Şampiyonlar Ligi":[],
 
@@ -4549,6 +4587,48 @@ function saveMatch(){
 
 
 /* =========================================================
+   TÜM MAÇLARI SİL
+========================================================= */
+
+function deleteAllMatches(){
+
+  if(!Array.isArray(matches) || matches.length === 0){
+    showResult("Silinecek maç bulunmuyor.", "error");
+    return;
+  }
+
+  const count = matches.length;
+
+  const confirmed = confirm(
+    `Kayıtlı ${count} maçın tamamı silinecek. Bu işlem geri alınamaz. Devam edilsin mi?`
+  );
+
+  if(!confirmed){
+    return;
+  }
+
+  matches = [];
+  editingId = null;
+
+  try{
+    localStorage.setItem(STORAGE_KEY, JSON.stringify([]));
+  }catch(error){
+    console.error("Tüm maçlar silinirken depolama hatası:", error);
+  }
+
+  clearForm();
+  updateStats();
+  renderMatchList();
+
+  showResult(
+    `${count} maçın tamamı başarıyla silindi.`,
+    "success"
+  );
+
+}
+
+
+/* =========================================================
    ÖRNEKLERİ YÜKLE
 ========================================================= */
 
@@ -4623,6 +4703,12 @@ document.addEventListener("click", function(event){
   if(id === "ornekleriYukleBtn"){
     event.preventDefault();
     loadExamples();
+    return;
+  }
+
+  if(id === "tumMaclariSilBtn"){
+    event.preventDefault();
+    deleteAllMatches();
     return;
   }
 
