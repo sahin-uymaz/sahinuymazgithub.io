@@ -3584,6 +3584,14 @@ function clearForm(){
     "";
 
 
+  const yeniTakimInput =
+    document.getElementById("yeniTakim");
+
+  if(yeniTakimInput){
+    yeniTakimInput.value = "";
+  }
+
+
   document
     .querySelectorAll(
       ".prediction-checkbox"
@@ -3599,6 +3607,7 @@ function clearForm(){
 
 
   updateSelectedInfo();
+  updateTeamOptions();
 
 }
 
@@ -4579,287 +4588,119 @@ function loadExamples(){
 
 
 /* =========================================================
-   EVENT: LİG
+   TÜM BUTON VE FORM ETKİLEŞİMLERİ
+   Tek merkezden yönetilir. Dinamik olarak oluşturulan
+   butonlar da burada güvenli şekilde yakalanır.
 ========================================================= */
 
-document
-  .getElementById(
-    "lig"
-  )
-  .addEventListener(
-    "change",
-    function(){
+document.addEventListener("click", function(event){
 
-      populateTeams();
+  const button = event.target.closest("button");
+  if(!button){ return; }
 
+  const id = button.id || "";
+
+  if(id === "kaydetBtn"){
+    event.preventDefault();
+    saveMatch();
+    return;
+  }
+
+  if(id === "yeniMacBtn"){
+    event.preventDefault();
+    clearForm();
+    showResult("Yeni maç formu hazırlandı.", "success");
+    return;
+  }
+
+  if(id === "temizleBtn"){
+    event.preventDefault();
+    clearForm();
+    showResult("Form tamamen temizlendi.", "success");
+    return;
+  }
+
+  if(id === "ornekleriYukleBtn"){
+    event.preventDefault();
+    loadExamples();
+    return;
+  }
+
+  if(id === "takimEkleBtn"){
+    event.preventDefault();
+    addTeam();
+    return;
+  }
+
+  const action = button.getAttribute("data-action");
+  if(action === "edit" || action === "delete"){
+    event.preventDefault();
+    event.stopPropagation();
+
+    const matchId = button.getAttribute("data-id");
+    if(!matchId){
+      showResult("Maç kimliği bulunamadı.", "error");
+      return;
     }
-  );
+
+    if(action === "edit"){
+      editMatch(matchId);
+      return;
+    }
+
+    if(action === "delete"){
+      deleteMatch(matchId);
+      return;
+    }
+  }
+
+  const removeIndex = button.getAttribute("data-remove-team");
+  if(removeIndex !== null){
+    event.preventDefault();
+    removeTeam(Number(removeIndex));
+    return;
+  }
+
+}, false);
 
 
 /* =========================================================
-   EVENT: EV SAHİBİ
+   SELECT DEĞİŞİKLİKLERİ
 ========================================================= */
 
-document
-  .getElementById(
-    "evSahibi"
-  )
-  .addEventListener(
-    "change",
-    function(){
+document.getElementById("lig").addEventListener("change", function(){
+  populateTeams();
+  updateTeamOptions();
+});
 
-      updateTeamOptions();
+document.getElementById("evSahibi").addEventListener("change", function(){
+  updateTeamOptions();
+});
 
-    }
-  );
+document.getElementById("deplasman").addEventListener("change", function(){
+  updateTeamOptions();
+});
 
 
 /* =========================================================
-   EVENT: DEPLASMAN
+   TAKIM GİRİŞİ — ENTER
 ========================================================= */
 
-document
-  .getElementById(
-    "deplasman"
-  )
-  .addEventListener(
-    "change",
-    function(){
-
-      updateTeamOptions();
-
-    }
-  );
-
-
-/* =========================================================
-   EVENT: TAKIM EKLE
-========================================================= */
-
-document
-  .getElementById(
-    "takimEkleBtn"
-  )
-  .addEventListener(
-    "click",
-    addTeam
-  );
-
-
-/* =========================================================
-   ENTER İLE TAKIM EKLE
-========================================================= */
-
-document
-  .getElementById(
-    "yeniTakim"
-  )
-  .addEventListener(
-    "keydown",
-    function(event){
-
-      if(
-        event.key === "Enter"
-      ){
-
-        event.preventDefault();
-
-        addTeam();
-
-      }
-
-    }
-  );
-
-
-/* =========================================================
-   TAKIM SİLME
-========================================================= */
-
-document
-  .getElementById(
-    "teamList"
-  )
-  .addEventListener(
-    "click",
-    function(event){
-
-      const button =
-        event.target.closest(
-          "button[data-remove-team]"
-        );
-
-
-      if(!button){
-
-        return;
-
-      }
-
-
-      const index =
-        Number(
-          button.dataset.removeTeam
-        );
-
-
-      removeTeam(index);
-
-    }
-  );
+document.getElementById("yeniTakim").addEventListener("keydown", function(event){
+  if(event.key === "Enter"){
+    event.preventDefault();
+    addTeam();
+  }
+});
 
 
 /* =========================================================
    CHECKBOX EVENTLERİ
 ========================================================= */
 
-document
-  .querySelectorAll(
-    ".prediction-checkbox"
-  )
-  .forEach(
-    checkbox => {
-
-      checkbox.addEventListener(
-        "change",
-        updateSelectedInfo
-      );
-
-    }
-  );
-
-
-/* =========================================================
-   KAYDET
-========================================================= */
-
-document
-  .getElementById(
-    "kaydetBtn"
-  )
-  .addEventListener(
-    "click",
-    saveMatch
-  );
-
-
-/* =========================================================
-   YENİ MAÇ
-========================================================= */
-
-document
-  .getElementById(
-    "yeniMacBtn"
-  )
-  .addEventListener(
-    "click",
-    clearForm
-  );
-
-
-/* =========================================================
-   TEMİZLE
-========================================================= */
-
-document
-  .getElementById(
-    "temizleBtn"
-  )
-  .addEventListener(
-    "click",
-    clearForm
-  );
-
-
-/* =========================================================
-   ÖRNEKLER
-========================================================= */
-
-document
-  .getElementById(
-    "ornekleriYukleBtn"
-  )
-  .addEventListener(
-    "click",
-    loadExamples
-  );
-
-
-/* =========================================================
-   MAÇ LİSTESİ BUTONLARI
-========================================================= */
-
-/*
-   MAÇ LİSTESİ BUTONLARI
-   Document seviyesinde dinlenir.
-   Böylece sonradan oluşturulan kartlardaki
-   Düzenle ve Sil butonları da kesin olarak çalışır.
-*/
-document.addEventListener(
-  "click",
-  function(event){
-
-    const button =
-      event.target.closest(
-        "#matchList button[data-action]"
-      );
-
-
-    if(!button){
-
-      return;
-
-    }
-
-
-    event.preventDefault();
-    event.stopPropagation();
-
-
-    const action =
-      button.getAttribute(
-        "data-action"
-      );
-
-
-    const id =
-      button.getAttribute(
-        "data-id"
-      );
-
-
-    if(!id){
-
-      showResult(
-        "Maç kimliği bulunamadı.",
-        "error"
-      );
-
-      return;
-
-    }
-
-
-    if(action === "edit"){
-
-      editMatch(id);
-
-      return;
-
-    }
-
-
-    if(action === "delete"){
-
-      deleteMatch(id);
-
-      return;
-
-    }
-
-  },
-  false
-);
+document.querySelectorAll(".prediction-checkbox").forEach(function(checkbox){
+  checkbox.addEventListener("change", updateSelectedInfo);
+});
 
 
 /* =========================================================
