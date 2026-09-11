@@ -2,2278 +2,1556 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Gündem | ŞAHİN UYMAZ</title>
+<title>ŞAHİN UYMAZ | Haber • Gündem • Yorum • Analiz</title>
 
-<meta name="description" content="Güncel gündem, siyaset, ekonomi, kamu, meclis, hukuk, toplum, dünya ve spor haberleri.">
-
-<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
-
-<script src="https://cdn.tailwindcss.com"></script>
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
 
 <style>
-
-:root{
-    --lacivert:#061b33;
-    --lacivert2:#0b2948;
-    --sari:#eab308;
-    --mavi:#168cff;
-    --beyaz:#ffffff;
-    --gri:#64748b;
-    --acik:#f5f7fa;
-    --kenar:#e2e8f0;
-}
-
 *{
+    margin:0;
+    padding:0;
     box-sizing:border-box;
 }
 
-html{
-    scroll-behavior:smooth;
+:root{
+    --lacivert:#081b33;
+    --mavi:#123f73;
+    --kirmizi:#d71920;
+    --turuncu:#f59e0b;
+    --acik:#f4f6f9;
+    --gri:#667085;
+    --border:#e4e7ec;
+    --white:#fff;
+    --text:#111827;
 }
 
 body{
-    margin:0;
+    font-family:Inter,Arial,sans-serif;
     background:var(--acik);
-    color:#0f172a;
-    font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    color:var(--text);
 }
 
-/* =========================
-   HEADER
-========================= */
+a{
+    text-decoration:none;
+    color:inherit;
+}
 
-.site-header{
-    position:sticky;
-    top:0;
-    z-index:1000;
-    background:rgba(6,27,51,.97);
-    backdrop-filter:blur(12px);
-    border-bottom:1px solid rgba(255,255,255,.08);
+button{
+    font-family:inherit;
+}
+
+/* TOPBAR */
+
+.topbar{
+    background:#061426;
+    color:#cbd5e1;
+    font-size:12px;
+    padding:8px 0;
+}
+
+.topbar-inner{
+    width:94%;
+    max-width:1400px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+}
+
+/* HEADER */
+
+.header{
+    background:#fff;
+    border-bottom:1px solid var(--border);
 }
 
 .header-inner{
-    max-width:1280px;
+    width:94%;
+    max-width:1400px;
+    min-height:88px;
     margin:auto;
-    padding:0 25px;
-    height:78px;
     display:flex;
     align-items:center;
     justify-content:space-between;
 }
 
-.brand{
-    text-decoration:none;
-    color:white;
-}
-
-.brand-name{
-    font-size:25px;
-    font-weight:900;
-    letter-spacing:.5px;
-}
-
-.brand-subtitle{
-    margin-top:2px;
-    color:#cbd5e1;
-    font-size:12px;
-    font-weight:500;
-}
-
-.main-nav{
+.logo{
     display:flex;
     align-items:center;
-    gap:5px;
+    gap:13px;
 }
 
-.main-nav a{
-    color:#e2e8f0;
-    text-decoration:none;
-    font-size:14px;
-    font-weight:600;
-    padding:11px 14px;
+.logo-image{
+    width:52px;
+    height:52px;
     border-radius:8px;
-    transition:.2s;
+    object-fit:contain;
+    background:#fff;
 }
 
-.main-nav a:hover,
-.main-nav a.active{
-    color:white;
-    background:rgba(255,255,255,.09);
+.logo-text strong{
+    display:block;
+    font-size:22px;
+    letter-spacing:-.5px;
 }
 
-.mobile-menu{
-    display:none;
-    border:0;
-    background:transparent;
-    color:white;
-    font-size:24px;
-    cursor:pointer;
+.logo-text span{
+    display:block;
+    font-size:10px;
+    color:#667085;
+    letter-spacing:1.5px;
+    margin-top:4px;
 }
 
-/* =========================
-   PAGE HERO
-========================= */
-
-.page-hero{
-    background:
-        linear-gradient(90deg,rgba(6,27,51,.98),rgba(6,27,51,.82)),
-        url("../images/gundem.jpg") center/cover;
-    min-height:330px;
+.nav{
     display:flex;
     align-items:center;
-}
-
-.page-hero-inner{
-    max-width:1280px;
-    width:100%;
-    margin:auto;
-    padding:65px 25px;
-}
-
-.hero-label{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    color:#111827;
-    background:var(--sari);
-    font-size:12px;
-    font-weight:800;
-    padding:8px 13px;
-    border-radius:6px;
-    margin-bottom:18px;
-}
-
-.page-hero h1{
-    color:white;
-    font-size:52px;
-    line-height:1.08;
-    font-weight:900;
-    margin:0 0 18px;
-    max-width:800px;
-}
-
-.page-hero p{
-    color:#dbeafe;
-    max-width:760px;
-    font-size:18px;
-    line-height:1.7;
-    margin:0;
-}
-
-/* =========================
-   CATEGORY BAR
-========================= */
-
-.category-wrapper{
-    background:white;
-    border-bottom:1px solid var(--kenar);
-}
-
-.category-inner{
-    max-width:1280px;
-    margin:auto;
-    padding:18px 25px;
-    display:flex;
-    gap:9px;
-    overflow-x:auto;
-    scrollbar-width:none;
-}
-
-.category-inner::-webkit-scrollbar{
-    display:none;
-}
-
-.category-btn{
-    flex:0 0 auto;
-    border:1px solid #dbe3ec;
-    background:white;
-    color:#334155;
-    padding:10px 16px;
-    border-radius:8px;
+    gap:22px;
     font-size:13px;
     font-weight:700;
-    cursor:pointer;
-    transition:.2s;
 }
 
-.category-btn:hover{
-    border-color:var(--mavi);
+.nav a{
+    transition:.2s;
+    padding:7px 9px;
+    border-radius:6px;
+}
+.nav a:nth-child(1){color:#9b1c1c}
+.nav a:nth-child(2){color:#a16207}
+.nav a:nth-child(3){color:#166534}
+.nav a:nth-child(4){color:#075985}
+.nav a:nth-child(5){color:#6b21a8}
+.nav a:nth-child(6){color:#0f766e}
+.nav a:nth-child(7){color:#374151}
+.nav a:hover{
+    color:#fff;
+    background:var(--lacivert);
+}
+
+
+
+.search{
+    width:38px;
+    height:38px;
+    border:1px solid var(--border);
+    border-radius:50%;
+    background:#fff;
+    cursor:pointer;
+}
+
+/* BREAKING */
+
+.breaking{
+    background:#fff;
+    border-bottom:1px solid var(--border);
+}
+
+.breaking-inner{
+    width:94%;
+    max-width:1400px;
+    height:46px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    overflow:hidden;
+}
+
+.breaking-label{
+    display:flex;
+    align-items:center;
+    gap:7px;
+    background:linear-gradient(135deg,#d71920,#a8070d);
+    color:white;
+    padding:8px 14px;
+    font-size:11px;
+    font-weight:900;
+    white-space:nowrap;
+    border-radius:5px;
+    box-shadow:0 0 0 0 rgba(215,25,32,.45);
+    animation:pulse 1.7s infinite, signalGlow 2s infinite;
+}
+.breaking-label:before{
+    content:"";
+    width:7px;
+    height:7px;
+    background:#fff;
+    border-radius:50%;
+    box-shadow:0 0 0 0 rgba(255,255,255,.7);
+    animation:signalDot 1.2s infinite;
+}
+@keyframes signalGlow{
+    0%,100%{box-shadow:0 0 0 0 rgba(215,25,32,.35)}
+    50%{box-shadow:0 0 0 7px rgba(215,25,32,0)}
+}
+@keyframes signalDot{
+    0%{box-shadow:0 0 0 0 rgba(255,255,255,.65)}
+    70%{box-shadow:0 0 0 7px rgba(255,255,255,0)}
+    100%{box-shadow:0 0 0 0 rgba(255,255,255,0)}
+}
+
+@keyframes pulse{
+    0%,100%{
+        opacity:1;
+    }
+    50%{
+        opacity:.72;
+    }
+}
+
+.breaking-text{
+    margin-left:15px;
+    font-size:13px;
+    font-weight:600;
+    white-space:nowrap;
+    overflow:hidden;
+}
+
+/* CONTAINER */
+
+.container{
+    width:94%;
+    max-width:1400px;
+    margin:28px auto 70px;
+}
+
+/* SECTION TITLE */
+
+.section-title{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:2px solid var(--lacivert);
+    padding-bottom:10px;
+    margin:38px 0 18px;
+}
+
+.section-title h2{
+    font-family:"Playfair Display",serif;
+    font-size:25px;
+}
+
+.section-title a{
+    font-size:11px;
+    font-weight:800;
     color:var(--mavi);
 }
 
-.category-btn.active{
-    background:var(--lacivert);
-    border-color:var(--lacivert);
-    color:white;
-}
-
 /* =========================
-   GENERAL
+   GÜNDEM SLIDER
 ========================= */
 
-.container{
-    max-width:1280px;
-    margin:auto;
-    padding:0 25px;
-}
-
-.section{
-    padding:55px 0;
-}
-
-.section-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:end;
-    margin-bottom:25px;
-}
-
-.section-title{
-    margin:0;
-    color:var(--lacivert);
-    font-size:30px;
-    font-weight:900;
-}
-
-.section-description{
-    margin:7px 0 0;
-    color:var(--gri);
-    font-size:15px;
-}
-
-/* =========================
-   FEATURED NEWS
-========================= */
-
-.featured{
-    display:grid;
-    grid-template-columns:1.45fr .85fr;
-    gap:25px;
-}
-
-.featured-main{
-    min-height:470px;
+.gundem-slider{
     position:relative;
+    min-height:460px;
     overflow:hidden;
-    border-radius:14px;
-    background:#000;
-    cursor:pointer;
+    border-radius:9px;
+    background:#091d35;
 }
 
-.featured-main img{
-    width:100%;
-    height:100%;
-    min-height:470px;
-    object-fit:cover;
-    transition:.5s;
-}
-
-.featured-main:hover img{
-    transform:scale(1.035);
-}
-
-.featured-overlay{
+.slide{
     position:absolute;
     inset:0;
-    background:linear-gradient(
-        to top,
-        rgba(6,27,51,.96),
-        rgba(6,27,51,.1) 70%
-    );
+    opacity:0;
+    visibility:hidden;
+    transition:opacity .7s ease;
+    display:grid;
+    grid-template-columns:1.7fr 1fr;
 }
 
-.featured-content{
-    position:absolute;
-    left:30px;
-    right:30px;
-    bottom:28px;
+.slide.active{
+    opacity:1;
+    visibility:visible;
 }
 
-.news-category{
+.slide-image{
+    background:
+        linear-gradient(90deg,rgba(8,27,51,.05),rgba(8,27,51,.75)),
+        linear-gradient(135deg,#315f8e,#0d213a);
+}
+
+.slide-content{
+    color:white;
+    padding:48px 42px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.slide-category{
     display:inline-block;
-    background:var(--sari);
-    color:#111827;
+    width:max-content;
+    background:var(--kirmizi);
+    padding:7px 11px;
+    font-size:10px;
+    font-weight:900;
+    letter-spacing:.7px;
+    margin-bottom:15px;
+}
+
+.slide-content h1{
+    font-family:"Playfair Display",serif;
+    font-size:39px;
+    line-height:1.08;
+    margin-bottom:15px;
+}
+
+.slide-content p{
+    color:#d9e3ee;
+    font-size:14px;
+    line-height:1.7;
+}
+
+.read-more{
+    width:max-content;
+    margin-top:22px;
+    padding:10px 16px;
+    background:#fff;
+    color:var(--lacivert);
+    border-radius:4px;
     font-size:11px;
     font-weight:900;
-    padding:7px 10px;
-    border-radius:5px;
-    text-transform:uppercase;
 }
 
-.featured-content h2{
-    color:white;
-    font-size:34px;
-    line-height:1.18;
-    font-weight:900;
-    margin:14px 0 10px;
+.slider-controls{
+    position:absolute;
+    bottom:22px;
+    left:22px;
+    display:flex;
+    gap:7px;
+    z-index:5;
 }
 
-.featured-content p{
-    color:#dbeafe;
-    font-size:15px;
-    line-height:1.6;
-    margin:0;
-}
-
-.news-date{
-    color:#94a3b8;
-    font-size:12px;
-    margin-top:13px;
-}
-
-.featured-side{
-    display:grid;
-    gap:18px;
-}
-
-.side-news{
-    display:grid;
-    grid-template-columns:150px 1fr;
-    min-height:142px;
-    background:white;
-    border:1px solid var(--kenar);
-    border-radius:12px;
-    overflow:hidden;
+.slider-dot{
+    width:9px;
+    height:9px;
+    border:0;
+    border-radius:50%;
+    background:rgba(255,255,255,.45);
     cursor:pointer;
-    transition:.25s;
 }
 
-.side-news:hover{
-    transform:translateY(-3px);
-    box-shadow:0 12px 28px rgba(15,23,42,.09);
+.slider-dot.active{
+    background:#fff;
+    transform:scale(1.2);
 }
 
-.side-news img{
-    width:100%;
-    height:100%;
-    min-height:142px;
-    object-fit:cover;
-}
-
-.side-content{
-    padding:17px;
-}
-
-.side-content h3{
-    color:var(--lacivert);
-    font-size:17px;
-    line-height:1.3;
-    margin:9px 0;
-    font-weight:800;
-}
-
-.side-content p{
-    color:var(--gri);
-    font-size:13px;
-    line-height:1.45;
-    margin:0;
-}
-
-/* =========================
-   NEWS GRID
-========================= */
+/* NEWS GRID */
 
 .news-grid{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:25px;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
 }
 
 .news-card{
-    background:white;
-    border:1px solid var(--kenar);
-    border-radius:14px;
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:7px;
     overflow:hidden;
     transition:.25s;
-    cursor:pointer;
 }
 
 .news-card:hover{
-    transform:translateY(-5px);
-    box-shadow:0 15px 35px rgba(15,23,42,.1);
+    transform:translateY(-3px);
+    box-shadow:0 10px 28px rgba(0,0,0,.08);
 }
 
 .news-image{
-    height:215px;
-    position:relative;
-    overflow:hidden;
-}
-
-.news-image img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    transition:.45s;
-}
-
-.news-card:hover .news-image img{
-    transform:scale(1.04);
-}
-
-.card-category{
-    position:absolute;
-    left:15px;
-    top:15px;
-    background:var(--sari);
-    color:#111827;
-    padding:7px 10px;
-    border-radius:5px;
-    font-size:10px;
-    font-weight:900;
-    text-transform:uppercase;
+    height:165px;
+    background:
+        linear-gradient(135deg,#234d78,#91a9c1);
 }
 
 .news-content{
-    padding:21px;
+    padding:17px;
+}
+
+.mini-cat{
+    color:var(--kirmizi);
+    font-size:10px;
+    font-weight:900;
+    letter-spacing:.5px;
+    margin-bottom:8px;
 }
 
 .news-content h3{
-    color:var(--lacivert);
-    font-size:20px;
-    line-height:1.3;
-    font-weight:850;
-    margin:0 0 11px;
+    font-family:"Playfair Display",serif;
+    font-size:18px;
+    line-height:1.25;
+    margin-bottom:8px;
 }
 
 .news-content p{
     color:var(--gri);
+    font-size:12px;
+    line-height:1.55;
+}
+
+/* YORUM */
+
+.commentary{
+    background:var(--lacivert);
+    color:#fff;
+    border-radius:8px;
+    padding:35px;
+    display:grid;
+    grid-template-columns:1fr 2fr;
+    gap:35px;
+}
+
+.commentary-label{
+    color:#9db9d7;
+    font-size:10px;
+    font-weight:900;
+    letter-spacing:1.5px;
+}
+
+.commentary h2{
+    font-family:"Playfair Display",serif;
+    font-size:34px;
+    margin-top:8px;
+}
+
+.commentary-text{
+    border-left:1px solid rgba(255,255,255,.2);
+    padding-left:35px;
+}
+
+.commentary-text h3{
+    font-family:"Playfair Display",serif;
+    font-size:25px;
+    margin-bottom:10px;
+}
+
+.commentary-text p{
+    color:#d9e4ef;
     font-size:14px;
-    line-height:1.65;
-    margin:0;
+    line-height:1.7;
 }
 
-.card-bottom{
-    margin-top:18px;
-    padding-top:15px;
-    border-top:1px solid #edf1f5;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
+/* SPORTS */
+
+.sports-box{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:24px;
 }
 
-.card-date{
-    color:#94a3b8;
-    font-size:11px;
+.sports-layout{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:24px;
 }
 
-.details{
-    color:var(--mavi);
+.sports-news{
+    padding-right:24px;
+    border-right:1px solid var(--border);
+}
+
+.sports-news h3{
+    font-family:"Playfair Display",serif;
+    font-size:27px;
+    margin:8px 0;
+}
+
+.sports-news p{
+    color:var(--gri);
     font-size:13px;
-    font-weight:800;
+    line-height:1.6;
+}
+
+/* SPOR SAYFASI YÖNLENDİRME */
+.sports-link-card{
+    background:linear-gradient(135deg,#081b33,#123f73);
+    color:#fff;
+    border-radius:10px;
+    padding:24px;
+    position:relative;
+    overflow:hidden;
+}
+.sports-link-card:after{
+    content:"⚽";
+    position:absolute;
+    right:-12px;
+    bottom:-25px;
+    font-size:100px;
+    opacity:.08;
+}
+.sports-link-card .prediction-label{
+    color:#8ed081;
+    font-size:10px;
+    font-weight:900;
+    letter-spacing:1px;
+}
+.sports-link-card h3{
+    font-family:"Playfair Display",serif;
+    font-size:21px;
+    margin:9px 0;
+}
+.sports-link-card p{
+    color:#d9e4ef;
+    font-size:12px;
+    line-height:1.6;
+}
+.sport-page-button{
+    display:inline-block;
+    margin-top:16px;
+    padding:11px 15px;
+    background:#12b76a;
+    color:#fff;
+    border-radius:5px;
+    font-size:11px;
+    font-weight:900;
     transition:.2s;
 }
+.sport-page-button:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px rgba(18,183,106,.25);
+}
+/* TWO COLUMN */
 
-.news-card:hover .details{
-    color:#0b65c2;
+.two-columns{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:24px;
 }
 
-/* =========================
-   NO RESULT
-========================= */
+/* GÜNÜN KONUSU */
 
-.no-result{
-    display:none;
-    text-align:center;
-    padding:70px 20px;
-    background:white;
-    border:1px solid var(--kenar);
-    border-radius:14px;
-    grid-column:1/-1;
+.topic{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:25px;
 }
 
-.no-result i{
-    color:#94a3b8;
-    font-size:45px;
-    margin-bottom:15px;
+.topic-label{
+    color:var(--kirmizi);
+    font-size:10px;
+    font-weight:900;
+    letter-spacing:1px;
 }
 
-.no-result h3{
-    color:var(--lacivert);
-    margin:0 0 7px;
-}
-
-.no-result p{
-    color:var(--gri);
-    margin:0;
-}
-
-/* =========================
-   MODAL
-========================= */
-
-.modal{
-    position:fixed;
-    inset:0;
-    z-index:2000;
-    background:rgba(2,10,20,.78);
-    backdrop-filter:blur(5px);
-    display:none;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-}
-
-.modal.show{
-    display:flex;
-}
-
-.modal-box{
-    width:min(900px,100%);
-    max-height:92vh;
-    overflow:auto;
-    background:white;
-    border-radius:15px;
-    box-shadow:0 25px 80px rgba(0,0,0,.35);
-}
-
-.modal-image{
-    width:100%;
-    height:360px;
-    object-fit:cover;
-}
-
-.modal-content{
-    padding:30px;
-}
-
-.modal-content h2{
-    color:var(--lacivert);
-    font-size:31px;
+.topic h3{
+    font-family:"Playfair Display",serif;
+    font-size:28px;
     line-height:1.2;
-    margin:13px 0;
+    margin:10px 0;
 }
 
-.modal-content p{
-    color:#475569;
-    font-size:16px;
-    line-height:1.8;
-    white-space:pre-line;
+.topic p{
+    color:var(--gri);
+    font-size:14px;
+    line-height:1.7;
 }
 
-.modal-close{
-    position:absolute;
-    top:20px;
-    right:25px;
-    width:42px;
-    height:42px;
-    border-radius:50%;
-    border:0;
-    background:white;
-    color:var(--lacivert);
-    font-size:20px;
+/* EN ÇOK OKUNAN */
+
+.most-read{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:22px;
+}
+
+.read-item{
+    display:flex;
+    gap:13px;
+    padding:13px 0;
+    border-bottom:1px solid var(--border);
+}
+
+.read-item:last-child{
+    border-bottom:0;
+}
+
+.read-number{
+    font-size:24px;
+    font-weight:900;
+    color:#d0d5dd;
+}
+
+.read-item h3{
+    font-size:13px;
+    line-height:1.4;
+}
+
+/* POLL */
+
+.poll{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:26px;
+}
+
+.poll h3{
+    font-family:"Playfair Display",serif;
+    font-size:25px;
+    margin-bottom:8px;
+}
+
+.poll p{
+    color:var(--gri);
+    font-size:13px;
+    margin-bottom:18px;
+}
+
+.poll-option{
+    display:block;
+    border:1px solid var(--border);
+    padding:12px;
+    border-radius:5px;
+    margin-bottom:8px;
+    font-size:13px;
     cursor:pointer;
-    box-shadow:0 5px 20px rgba(0,0,0,.2);
 }
 
-/* =========================
-   FOOTER
-========================= */
+.poll-option:hover{
+    border-color:var(--mavi);
+}
+
+/* UPDATE */
+
+.update{
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+    gap:7px;
+    color:#667085;
+    font-size:11px;
+    margin-top:20px;
+}
+
+.update-dot{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:#12b76a;
+}
+
+/* FOOTER */
 
 footer{
-    background:var(--lacivert);
-    color:white;
-    margin-top:30px;
+    background:#061426;
+    color:#fff;
+    padding:42px 0;
 }
 
 .footer-inner{
-    max-width:1280px;
+    width:94%;
+    max-width:1400px;
     margin:auto;
-    padding:55px 25px 25px;
-    display:grid;
-    grid-template-columns:1.4fr 1fr 1fr;
-    gap:45px;
+    display:flex;
+    justify-content:space-between;
 }
 
-.footer-title{
-    font-size:21px;
-    font-weight:900;
-    margin-bottom:12px;
+.footer-brand strong{
+    font-size:20px;
 }
 
-.footer-text{
-    color:#cbd5e1;
-    line-height:1.7;
-    font-size:14px;
-}
-
-.footer-heading{
-    font-size:15px;
-    font-weight:800;
-    margin-bottom:15px;
+.footer-brand p{
+    margin-top:7px;
+    color:#9eb0c5;
+    font-size:11px;
 }
 
 .footer-links{
     display:flex;
-    flex-direction:column;
-    gap:9px;
-}
-
-.footer-links a{
-    color:#cbd5e1;
-    text-decoration:none;
-    font-size:13px;
-}
-
-.footer-links a:hover{
-    color:white;
-}
-
-.footer-bottom{
-    max-width:1280px;
-    margin:auto;
-    padding:18px 25px;
-    border-top:1px solid rgba(255,255,255,.1);
-    color:#94a3b8;
-    font-size:12px;
-    display:flex;
-    justify-content:space-between;
     gap:20px;
+    color:#cbd5e1;
+    font-size:12px;
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
+/* MOBİL */
 
-@media(max-width:1000px){
+@media(max-width:1100px){
 
-    .main-nav{
-        display:none;
-    }
-
-    .mobile-menu{
-        display:block;
-    }
-
-    .featured{
-        grid-template-columns:1fr;
-    }
-
-    .featured-side{
-        grid-template-columns:1fr 1fr;
+    .nav{
+        gap:12px;
+        font-size:11px;
     }
 
     .news-grid{
         grid-template-columns:repeat(2,1fr);
     }
 
-    .footer-inner{
-        grid-template-columns:1fr 1fr;
-    }
 }
 
-@media(max-width:650px){
+@media(max-width:750px){
+
+    .topbar-inner{
+        justify-content:center;
+    }
+
+    .topbar-inner span:last-child{
+        display:none;
+    }
 
     .header-inner{
-        height:70px;
-        padding:0 18px;
+        min-height:72px;
     }
 
-    .brand-name{
-        font-size:21px;
+    .logo-image{
+        width:43px;
+        height:43px;
     }
 
-    .brand-subtitle{
-        font-size:10px;
+    .logo-text strong{
+        font-size:18px;
     }
 
-    .page-hero{
-        min-height:300px;
+    .logo-text span{
+        font-size:8px;
     }
 
-    .page-hero-inner{
-        padding:50px 20px;
+    .nav{
+        display:none;
     }
 
-    .page-hero h1{
-        font-size:38px;
+    .gundem-slider{
+        min-height:510px;
     }
 
-    .page-hero p{
-        font-size:15px;
-    }
-
-    .container{
-        padding:0 18px;
-    }
-
-    .section{
-        padding:40px 0;
-    }
-
-    .section-title{
-        font-size:25px;
-    }
-
-    .featured-main,
-    .featured-main img{
-        min-height:390px;
-    }
-
-    .featured-content{
-        left:20px;
-        right:20px;
-        bottom:20px;
-    }
-
-    .featured-content h2{
-        font-size:25px;
-    }
-
-    .featured-side{
+    .slide{
         grid-template-columns:1fr;
+    }
+
+    .slide-image{
+        min-height:180px;
+    }
+
+    .slide-content{
+        padding:25px;
+    }
+
+    .slide-content h1{
+        font-size:29px;
     }
 
     .news-grid{
         grid-template-columns:1fr;
     }
 
-    .news-image{
-        height:220px;
+    .commentary{
+        grid-template-columns:1fr;
+        gap:20px;
+    }
+
+    .commentary-text{
+        border-left:0;
+        border-top:1px solid rgba(255,255,255,.2);
+        padding-left:0;
+        padding-top:20px;
+    }
+
+    .sports-layout{
+        grid-template-columns:1fr;
+    }
+
+    .sports-news{
+        border-right:0;
+        border-bottom:1px solid var(--border);
+        padding-right:0;
+        padding-bottom:20px;
+    }
+
+    .two-columns{
+        grid-template-columns:1fr;
     }
 
     .footer-inner{
-        grid-template-columns:1fr;
-        padding:40px 20px 25px;
-    }
-
-    .footer-bottom{
         flex-direction:column;
-        padding:18px 20px;
+        gap:25px;
     }
 
-    .modal-image{
-        height:230px;
+    .footer-links{
+        flex-wrap:wrap;
     }
 
-    .modal-content{
-        padding:22px;
-    }
-
-    .modal-content h2{
-        font-size:25px;
-    }
 }
 
+</style>
+
+<style>
+.firebase-news-card{cursor:pointer}
+.firebase-modal-backdrop{
+    position:fixed;inset:0;z-index:9999;background:rgba(3,10,20,.82);
+    backdrop-filter:blur(7px);display:flex;align-items:center;justify-content:center;padding:20px;
+}
+.firebase-modal-box{
+    width:min(900px,100%);max-height:90vh;overflow:auto;background:#fff;
+    border-radius:10px;box-shadow:0 30px 80px rgba(0,0,0,.45);position:relative;
+}
+.firebase-modal-close{
+    position:absolute;right:14px;top:14px;z-index:2;width:38px;height:38px;
+    border:0;border-radius:50%;background:rgba(6,20,38,.85);color:#fff;font-size:25px;cursor:pointer;
+}
+.firebase-modal-image{
+    height:300px;background:#dbe3ec center/cover no-repeat;
+}
+.firebase-modal-body{padding:30px}
+.firebase-modal-cat{color:#d71920;font-size:11px;font-weight:900;letter-spacing:1px;margin-bottom:10px}
+.firebase-modal-body h2{font-family:"Playfair Display",serif;font-size:32px;line-height:1.15;margin:0 0 10px;color:#081b33}
+.firebase-modal-date{color:#667085;font-size:11px;margin-bottom:18px}
+.firebase-modal-summary{font-size:16px;font-weight:700;line-height:1.6;color:#334155;border-left:4px solid #123f73;padding-left:14px}
+.firebase-modal-content{font-size:14px;line-height:1.8;color:#344054;margin-top:18px;white-space:normal}
+@media(max-width:750px){
+ .firebase-modal-backdrop{padding:10px}
+ .firebase-modal-image{height:190px}
+ .firebase-modal-body{padding:20px}
+ .firebase-modal-body h2{font-size:25px}
+}
+
+.firebase-analysis{margin-top:22px;padding:18px;border-left:4px solid #123f73;background:#f4f7fb;border-radius:6px;}
+.firebase-analysis h3{margin:0 0 8px;color:#123f73;font-size:12px;letter-spacing:.8px;}
+.firebase-analysis p{margin:0;color:#344054;line-height:1.8;font-size:14px;}
 </style>
 </head>
 
 <body>
 
-<!-- =========================
-     HEADER
-========================= -->
+<!-- ÜST BİLGİ -->
 
-<header class="site-header">
-
-<div class="header-inner">
-
-<a href="../index.html" class="brand">
-
-<div class="brand-name">
-ŞAHİN UYMAZ
+<div class="topbar">
+    <div class="topbar-inner">
+        <span>ŞAHİN UYMAZ | Haber • Gündem • Yorum • Analiz</span>
+        <span id="date"></span>
+    </div>
 </div>
 
-<div class="brand-subtitle">
-Kamu Politikaları • Kamu Hizmetleri
-</div>
 
-</a>
+<!-- HEADER -->
 
-<nav class="main-nav">
+<header class="header">
 
-<a href="../index.html">
-<i class="fa-solid fa-house"></i> Ana Sayfa
-</a>
+    <div class="header-inner">
 
-<a href="gundem.html" class="active">
-<i class="fa-solid fa-newspaper"></i> Gündem
-</a>
+        <a href="index.html" class="logo">
 
-<a href="spor.html">
-<i class="fa-solid fa-futbol"></i> Spor
-</a>
+            <!-- LOGO -->
+            <img src="logo.png" class="logo-image" alt="Şahin UYMAZ">
 
-<a href="../hakkimda.html">
-Şahin UYMAZ
-</a>
+            <div class="logo-text">
+                <strong>ŞAHİN UYMAZ</strong>
+                <span>HABER • GÜNDEM • YORUM • ANALİZ</span>
+            </div>
 
-<a href="../saha-incelemeleri.html">
-Saha İncelemeleri
-</a>
+        </a>
 
-</nav>
 
-<button class="mobile-menu" onclick="toggleMenu()">
-<i class="fa-solid fa-bars"></i>
-</button>
+        <nav class="nav">
+            <a href="#siyaset">Siyaset</a>
+            <a href="#ekonomi">Ekonomi</a>
+            <a href="#saglik">Sağlık</a>
+            <a href="spor.html" class="sport-nav">⚽ Spor</a>
+            <a href="#dunya">Dünya</a>
+            <a href="#toplum">Toplum</a>
+            <a href="#yorum">Yorum</a>
 
-</div>
+            <button class="search">⌕</button>
+        </nav>
+
+    </div>
 
 </header>
 
 
+<!-- SON DAKİKA -->
+
+<div class="breaking">
+
+    <div class="breaking-inner">
+
+        <div class="breaking-label">
+            🔴 SON DAKİKA
+        </div>
+
+        <div class="breaking-text" id="breakingText">
+            Günün önemli gelişmeleri burada...
+        </div>
+
+    </div>
+
+</div>
+
+
+<main class="container">
+
+
 <!-- =========================
-     HERO
+     GÜNDEM SLIDER
 ========================= -->
 
-<section class="page-hero">
-
-<div class="page-hero-inner">
-
-<div class="hero-label">
-<i class="fa-solid fa-bolt"></i>
-GÜNCEL GÜNDEM
+<div class="section-title">
+    <h2>Gündem</h2>
+    <a href="#">TÜM GÜNDEM HABERLERİ →</a>
 </div>
 
-<h1>
-Gündemi izliyor,<br>
-gelişmeleri değerlendiriyoruz.
-</h1>
 
-<p>
-Siyaset, ekonomi, kamu hizmetleri, meclis,
-hukuk, toplum, dünya ve spor alanlarındaki
-gelişmeleri takip eden bağımsız haber ve
-değerlendirme platformu.
-</p>
+<section class="gundem-slider">
 
-</div>
+    <article class="slide active">
+
+        <div class="slide-image"></div>
+
+        <div class="slide-content">
+
+            <span class="slide-category">
+                GÜNDEM
+            </span>
+
+            <h1>
+                Türkiye'nin gündemindeki önemli gelişmeler
+            </h1>
+
+            <p>
+                Günün öne çıkan gelişmeleri, olayların arka planı
+                ve kamuoyuna yansımaları.
+            </p>
+
+            <a href="#" class="read-more">
+                HABERİ OKU →
+            </a>
+
+        </div>
+
+    </article>
+
+
+    <article class="slide">
+
+        <div class="slide-image"></div>
+
+        <div class="slide-content">
+
+            <span class="slide-category">
+                SON GELİŞME
+            </span>
+
+            <h1>
+                Günün en çok konuşulan konusu ne?
+            </h1>
+
+            <p>
+                Türkiye'nin gündemindeki gelişmeler farklı
+                yönleriyle değerlendiriliyor.
+            </p>
+
+            <a href="#" class="read-more">
+                DETAYLARI GÖR →
+            </a>
+
+        </div>
+
+    </article>
+
+
+    <article class="slide">
+
+        <div class="slide-image"></div>
+
+        <div class="slide-content">
+
+            <span class="slide-category">
+                ÖZEL HABER
+            </span>
+
+            <h1>
+                Gündemin arka planında neler yaşanıyor?
+            </h1>
+
+            <p>
+                Haberlerin yalnızca görünen kısmı değil,
+                arka planındaki gelişmeler.
+            </p>
+
+            <a href="#" class="read-more">
+                DEVAMINI OKU →
+            </a>
+
+        </div>
+
+    </article>
+
+
+    <div class="slider-controls">
+
+        <button class="slider-dot active" onclick="goSlide(0)"></button>
+        <button class="slider-dot" onclick="goSlide(1)"></button>
+        <button class="slider-dot" onclick="goSlide(2)"></button>
+
+    </div>
 
 </section>
 
 
 <!-- =========================
-     CATEGORY BAR
+     SİYASET
 ========================= -->
 
-<div class="category-wrapper">
-
-<div class="category-inner">
-
-<button class="category-btn active" data-category="TÜMÜ">
-Tümü
-</button>
-
-<button class="category-btn" data-category="GÜNDEM">
-Gündem
-</button>
-
-<button class="category-btn" data-category="SİYASET">
-Siyaset
-</button>
-
-<button class="category-btn" data-category="EKONOMİ">
-Ekonomi
-</button>
-
-<button class="category-btn" data-category="KAMU">
-Kamu
-</button>
-
-<button class="category-btn" data-category="MECLİS">
-Meclis
-</button>
-
-<button class="category-btn" data-category="HUKUK">
-Hukuk
-</button>
-
-<button class="category-btn" data-category="TOPLUM">
-Toplum
-</button>
-
-<button class="category-btn" data-category="DÜNYA">
-Dünya
-</button>
-
-<button class="category-btn" data-category="SAĞLIK">
-Sağlık
-</button>
-
-<button class="category-btn" data-category="SPOR">
-Spor
-</button>
-
+<div class="section-title" id="siyaset">
+    <h2>🏛️ Siyaset</h2>
+    <a href="#">TÜM HABERLER →</a>
 </div>
 
-</div>
+<section class="news-grid">
 
+    <article class="news-card">
+        <div class="news-image"></div>
+        <div class="news-content">
+            <div class="mini-cat">SİYASET</div>
+            <h3>Siyasi gündemde günün öne çıkan gelişmeleri</h3>
+            <p>Ankara'dan son gelişmeler ve gündemin ayrıntıları.</p>
+        </div>
+    </article>
 
-<!-- =========================
-     FEATURED
-========================= -->
+    <article class="news-card">
+        <div class="news-image"></div>
+        <div class="news-content">
+            <div class="mini-cat">ANKARA</div>
+            <h3>Meclis gündeminde dikkat çeken başlıklar</h3>
+            <p>Siyasetin gündemindeki önemli gelişmeler.</p>
+        </div>
+    </article>
 
-<main>
+    <article class="news-card">
+        <div class="news-image"></div>
+        <div class="news-content">
+            <div class="mini-cat">POLİTİKA</div>
+            <h3>Siyasette yeni dönemin dikkat çeken gelişmeleri</h3>
+            <p>Gündemin arka planına ilişkin değerlendirmeler.</p>
+        </div>
+    </article>
 
-<section class="section">
-
-<div class="container">
-
-<div class="section-header">
-
-<div>
-
-<h2 class="section-title">
-Öne Çıkan Gelişmeler
-</h2>
-
-<p class="section-description">
-Gündemin öne çıkan başlıkları
-</p>
-
-</div>
-
-</div>
-
-
-<div class="featured">
-
-<!-- ANA HABER -->
-
-<article class="featured-main"
-onclick="openNews(0)">
-
-<img
-src="../images/haber-01.jpg"
-alt="Meclis gündemi">
-
-<div class="featured-overlay"></div>
-
-<div class="featured-content">
-
-<span class="news-category">
-MECLİS
-</span>
-
-<h2>
-Yeni yasama döneminde Meclis gündemi şekilleniyor
-</h2>
-
-<p>
-Türkiye Büyük Millet Meclisi'nin yeni yasama döneminde
-gündeme gelmesi beklenen düzenlemeler ve kamu politikaları
-yakından takip ediliyor.
-</p>
-
-<div class="news-date">
-10 Eylül 2026
-</div>
-
-</div>
-
-</article>
-
-
-<!-- YAN HABERLER -->
-
-<div class="featured-side">
-
-<article class="side-news" onclick="openNews(1)">
-
-<img
-src="../images/haber-02.jpg"
-alt="Ekonomi">
-
-<div class="side-content">
-
-<span class="news-category">
-EKONOMİ
-</span>
-
-<h3>
-Ekonomide yeni dönem beklentileri
-</h3>
-
-<p>
-Ekonomik gelişmeler ve kamu politikalarındaki
-yeni adımlar izleniyor.
-</p>
-
-</div>
-
-</article>
-
-
-<article class="side-news" onclick="openNews(2)">
-
-<img
-src="../images/haber-03.jpg"
-alt="Siyaset">
-
-<div class="side-content">
-
-<span class="news-category">
-SİYASET
-</span>
-
-<h3>
-Siyasi gündemde yeni başlıklar
-</h3>
-
-<p>
-Türkiye'nin siyasi gündemindeki gelişmeler
-değerlendiriliyor.
-</p>
-
-</div>
-
-</article>
-
-
-<article class="side-news" onclick="openNews(3)">
-
-<img
-src="../images/haber-04.jpg"
-alt="Kamu">
-
-<div class="side-content">
-
-<span class="news-category">
-KAMU
-</span>
-
-<h3>
-Kamu hizmetlerinde yeni düzenlemeler
-</h3>
-
-<p>
-Kamu kurumlarını ilgilendiren gelişmeler
-takip ediliyor.
-</p>
-
-</div>
-
-</article>
-
-</div>
-
-</div>
-
-</div>
+    <article class="news-card">
+        <div class="news-image"></div>
+        <div class="news-content">
+            <div class="mini-cat">ANALİZ</div>
+            <h3>Siyasi gelişmeler vatandaş için ne ifade ediyor?</h3>
+            <p>Gelişmelere farklı bir bakış.</p>
+        </div>
+    </article>
 
 </section>
 
 
 <!-- =========================
-     HABERLER
+     EKONOMİ
 ========================= -->
 
-<section class="section" style="padding-top:0;">
-
-<div class="container">
-
-<div class="section-header">
-
-<div>
-
-<h2 class="section-title">
-Gündemden Son Haberler
-</h2>
-
-<p class="section-description">
-Güncel gelişmeler, araştırmalar ve değerlendirmeler
-</p>
-
+<div class="section-title" id="ekonomi">
+    <h2>💰 Ekonomi</h2>
+    <a href="#">TÜM HABERLER →</a>
 </div>
 
-</div>
-
-
-<div id="newsGrid" class="news-grid">
-
-
-<!-- HABER 1 -->
-
-<article class="news-card"
-data-category="SİYASET"
-onclick="openNews(4)">
-
-<div class="news-image">
-
-<img
-src="../images/haber-05.jpg"
-alt="Siyaset">
-
-<span class="card-category">
-SİYASET
-</span>
-
-</div>
-
-<div class="news-content">
-
-<h3>
-Siyasi gündemde dikkat çeken gelişmeler
-</h3>
-
-<p>
-Türkiye'nin siyasi gündemindeki son gelişmeler,
-açıklamalar ve değerlendirmeler.
-</p>
-
-<div class="card-bottom">
-
-<span class="card-date">
-10 Eylül 2026
-</span>
-
-<span class="details">
-Detaylar →
-</span>
-
-</div>
-
-</div>
-
-</article>
-
-
-<!-- HABER 2 -->
-
-<article class="news-card"
-data-category="EKONOMİ"
-onclick="openNews(5)">
-
-<div class="news-image">
-
-<img
-src="../images/haber-06.jpg"
-alt="Ekonomi">
-
-<span class="card-category">
-EKONOMİ
-</span>
-
-</div>
-
-<div class="news-content">
-
-<h3>
-Ekonomide gündemin öne çıkan başlıkları
-</h3>
-
-<p>
-Ekonomik göstergeler, kamu politikaları ve
-piyasalardaki son gelişmeler.
-</p>
-
-<div class="card-bottom">
-
-<span class="card-date">
-10 Eylül 2026
-</span>
-
-<span class="details">
-Detaylar →
-</span>
-
-</div>
-
-</div>
-
-</article>
-
-
-<!-- HABER 3 -->
-
-<article class="news-card"
-data-category="KAMU"
-onclick="openNews(6)">
-
-<div class="news-image">
-
-<img
-src="../images/haber-07.jpg"
-alt="Kamu">
-
-<span class="card-category">
-KAMU
-</span>
-
-</div>
-
-<div class="news-content">
-
-<h3>
-Kamu hizmetlerinde yeni uygulamalar
-</h3>
-
-<p>
-Kamu kurumları ve vatandaşları ilgilendiren
-yeni uygulamalar gündemde.
-</p>
-
-<div class="card-bottom">
-
-<span class="card-date">
-9 Eylül 2026
-</span>
-
-<span class="details">
-Detaylar →
-</span>
-
-</div>
-
-</div>
-
-</article>
-
-
-<!-- HABER 4 -->
-
-<article class="news-card"
-data-category="MECLİS"
-onclick="openNews(7)">
-
-<div class="news-image">
-
-<img
-src="../images/haber-08.jpg"
-alt="Meclis">
-
-<span class="card-category">
-MECLİS
-</span>
-
-</div>
-
-<div class="news-content">
-
-<h3>
-TBMM'de yeni yasama dönemi hazırlıkları
-</h3>
-
-<p>
-Meclis gündeminde yer alması beklenen düzenlemeler
-ve kanun teklifleri takip ediliyor.
-</p>
-
-<div class="card-bottom">
-
-<span class="card-date">
-9 Eylül 2026
-</span>
-
-<span class="details">
-Detaylar →
-</span>
-
-</div>
-
-</div>
-
-</article>
-
-
-<!-- HABER 5 -->
-
-<article class="news-card"
-data-category="HUKUK"
-onclick="openNews(8)">
-
-<div class="news-image">
-
-<img
-src="../images/haber-09.jpg"
-alt="Hukuk">
-
-<span class="card-category">
-HUKUK
-</span>
-
-</div>
-
-<div class="news-content">
-
-<h3>
-Hukuk alanındaki gelişmeler
-</h3>
-
-<p>
-Yeni düzenlemeler, yargı gündemi ve vatandaşları
-ilgilendiren hukuki gelişmeler.
-</p>
-
-<div class="card-bottom">
-
-<span class="card-date">
-8 Eylül 2026
-</span>
-
-<span class="details">
-Detaylar →
-</span>
-
-</div>
-
-</div>
-
-</article>
-
-
-<!-- HABER 6 -->
-
-<article class="news-card"
-data-category="TOPLUM"
-onclick="openNews(9)">
-
-<div class="news-image">
-
-<img
-src="../images/haber-10.jpg"
-alt="Toplum">
-
-<span class="card-category">
-TOPLUM
-</span>
-
-</div>
-
-<div class="news-content">
-
-<h3>
-Toplumsal yaşamı ilgilendiren gelişmeler
-</h3>
-
-<p>
-Vatandaşların günlük yaşamını etkileyen sosyal
-gelişmeler ve kamu çalışmaları.
-</p>
-
-<div class="card-bottom">
-
-<span class="card-date">
-8 Eylül 2026
-</span>
-
-<span class="details">
-Detaylar →
-</span>
-
-</div>
-
-</div>
-
-</article>
-
-
-<!-- HABER 7 -->
-
-<article class="news-card"
-data-category="DÜNYA"
-onclick="openNews(10)">
-
-<div class="news-image">
-
-<img
-src="../images/haber-11.jpg"
-alt="Dünya">
-
-<span class="card-category">
-DÜNYA
-</span>
-
-</div>
-
-<div class="news-content">
-
-<h3>
-Dünyadan gündeme yansıyan gelişmeler
-</h3>
-
-<p>
-Uluslararası alandaki önemli gelişmeler ve
-Türkiye'ye yansımaları.
-</p>
-
-<div class="card-bottom">
-
-<span class="card-date">
-7 Eylül 2026
-</span>
-
-<span class="details">
-Detaylar →
-</span>
-
-</div>
-
-</div>
-
-</article>
-
-
-<!-- HABER 8 -->
-
-<article class="news-card"
-data-category="SAĞLIK"
-onclick="openNews(11)">
-
-<div class="news-image">
-
-<img
-src="../images/haber-12.jpg"
-alt="Sağlık">
-
-<span class="card-category">
-SAĞLIK
-</span>
-
-</div>
-
-<div class="news-content">
-
-<h3>
-Sağlık hizmetlerinde gündeme gelen başlıklar
-</h3>
-
-<p>
-Sağlık politikaları, vatandaşların hizmetlere
-erişimi ve yeni uygulamalar.
-</p>
-
-<div class="card-bottom">
-
-<span class="card-date">
-7 Eylül 2026
-</span>
-
-<span class="details">
-Detaylar →
-</span>
-
-</div>
-
-</div>
-
-</article>
-
-
-<!-- HABER 9 -->
-
-<article class="news-card"
-data-category="SPOR"
-onclick="openNews(12)">
-
-<div class="news-image">
-
-<img
-src="../images/haber-13.jpg"
-alt="Spor">
-
-<span class="card-category">
-SPOR
-</span>
-
-</div>
-
-<div class="news-content">
-
-<h3>
-Spor dünyasından son gelişmeler
-</h3>
-
-<p>
-Türkiye ve dünyadan spor gündeminin önemli
-başlıkları.
-</p>
-
-<div class="card-bottom">
-
-<span class="card-date">
-6 Eylül 2026
-</span>
-
-<span class="details">
-Detaylar →
-</span>
-
-</div>
-
-</div>
-
-</article>
-
-
-<!-- HABER 10 -->
-
-<article class="news-card"
-data-category="GÜNDEM"
-onclick="openNews(13)">
-
-<div class="news-image">
-
-<img
-src="../images/haber-14.jpg"
-alt="Gündem">
-
-<span class="card-category">
-GÜNDEM
-</span>
-
-</div>
-
-<div class="news-content">
-
-<h3>
-Türkiye gündeminin öne çıkan başlıkları
-</h3>
-
-<p>
-Gün içerisinde gündeme gelen önemli gelişmeler
-ve açıklamalar.
-</p>
-
-<div class="card-bottom">
-
-<span class="card-date">
-6 Eylül 2026
-</span>
-
-<span class="details">
-Detaylar →
-</span>
-
-</div>
-
-</div>
-
-</article>
-
-
-<!-- HABER 11 -->
-
-<article class="news-card"
-data-category="KAMU"
-onclick="openNews(14)">
-
-<div class="news-image">
-
-<img
-src="../images/haber-15.jpg"
-alt="Kamu hizmetleri">
-
-<span class="card-category">
-KAMU
-</span>
-
-</div>
-
-<div class="news-content">
-
-<h3>
-Vatandaş ve kamu hizmetleri
-</h3>
-
-<p>
-Kamu hizmetlerinin vatandaşlara ulaşması,
-erişilebilirlik ve hizmet kalitesi.
-</p>
-
-<div class="card-bottom">
-
-<span class="card-date">
-5 Eylül 2026
-</span>
-
-<span class="details">
-Detaylar →
-</span>
-
-</div>
-
-</div>
-
-</article>
-
-
-<!-- HABER 12 -->
-
-<article class="news-card"
-data-category="EKONOMİ"
-onclick="openNews(15)">
-
-<div class="news-image">
-
-<img
-src="../images/haber-16.jpg"
-alt="Ekonomi">
-
-<span class="card-category">
-EKONOMİ
-</span>
-
-</div>
-
-<div class="news-content">
-
-<h3>
-Ekonomik politikalar ve vatandaş
-</h3>
-
-<p>
-Ekonomik kararların vatandaşların günlük yaşamına
-etkileri üzerine gelişmeler.
-</p>
-
-<div class="card-bottom">
-
-<span class="card-date">
-5 Eylül 2026
-</span>
-
-<span class="details">
-Detaylar →
-</span>
-
-</div>
-
-</div>
-
-</article>
-
-
-<!-- HABER 13 -->
-
-<article class="news-card"
-data-category="SİYASET"
-onclick="openNews(16)">
-
-<div class="news-image">
-
-<img
-src="../images/haber-17.jpg"
-alt="Siyaset">
-
-<span class="card-category">
-SİYASET
-</span>
-
-</div>
-
-<div class="news-content">
-
-<h3>
-Siyaset gündeminde yeni değerlendirmeler
-</h3>
-
-<p>
-Siyasi partilerin açıklamaları ve kamuoyuna
-yansıyan gelişmeler.
-</p>
-
-<div class="card-bottom">
-
-<span class="card-date">
-4 Eylül 2026
-</span>
-
-<span class="details">
-Detaylar →
-</span>
-
-</div>
-
-</div>
-
-</article>
-
-
-<!-- HABER 14 -->
-
-<article class="news-card"
-data-category="MECLİS"
-onclick="openNews(17)">
-
-<div class="news-image">
-
-<img
-src="../images/haber-18.jpg"
-alt="Meclis">
-
-<span class="card-category">
-MECLİS
-</span>
-
-</div>
-
-<div class="news-content">
-
-<h3>
-Meclis komisyonlarında gündem
-</h3>
-
-<p>
-Komisyonlarda görüşülen düzenlemeler ve
-yasama çalışmalarından gelişmeler.
-</p>
-
-<div class="card-bottom">
-
-<span class="card-date">
-4 Eylül 2026
-</span>
-
-<span class="details">
-Detaylar →
-</span>
-
-</div>
-
-</div>
-
-</article>
-
-
-<!-- HABER 15 -->
-
-<article class="news-card"
-data-category="TOPLUM"
-onclick="openNews(18)">
-
-<div class="news-image">
-
-<img
-src="../images/haber-19.jpg"
-alt="Toplum">
-
-<span class="card-category">
-TOPLUM
-</span>
-
-</div>
-
-<div class="news-content">
-
-<h3>
-Toplumsal gelişmeler ve vatandaş gündemi
-</h3>
-
-<p>
-Toplumun farklı kesimlerini ilgilendiren
-güncel gelişmeler.
-</p>
-
-<div class="card-bottom">
-
-<span class="card-date">
-3 Eylül 2026
-</span>
-
-<span class="details">
-Detaylar →
-</span>
-
-</div>
-
-</div>
-
-</article>
-
-
-</div>
-
-
-<div id="noResult" class="no-result">
-
-<i class="fa-solid fa-newspaper"></i>
-
-<h3>
-Bu kategoride henüz haber bulunmuyor
-</h3>
-
-<p>
-Yeni haberler eklendiğinde burada görüntülenecektir.
-</p>
-
-</div>
-
-</div>
+<section class="news-grid">
+
+    <article class="news-card">
+        <div class="news-image"></div>
+        <div class="news-content">
+            <div class="mini-cat">EKONOMİ</div>
+            <h3>Ekonomide günün öne çıkan gelişmeleri</h3>
+            <p>Ekonomi gündemindeki önemli gelişmeler.</p>
+        </div>
+    </article>
+
+    <article class="news-card">
+        <div class="news-image"></div>
+        <div class="news-content">
+            <div class="mini-cat">PİYASALAR</div>
+            <h3>Piyasalarda bugün dikkat çeken gelişmeler</h3>
+            <p>Ekonomi ve piyasalardan son gelişmeler.</p>
+        </div>
+    </article>
+
+    <article class="news-card">
+        <div class="news-image"></div>
+        <div class="news-content">
+            <div class="mini-cat">VATANDAŞ</div>
+            <h3>Ekonomik gelişmeler vatandaşı nasıl etkiliyor?</h3>
+            <p>Ekonominin günlük yaşama yansımaları.</p>
+        </div>
+    </article>
+
+    <article class="news-card">
+        <div class="news-image"></div>
+        <div class="news-content">
+            <div class="mini-cat">ANALİZ</div>
+            <h3>Ekonomide rakamların arkasında ne var?</h3>
+            <p>Ekonomik gelişmelere analizli bakış.</p>
+        </div>
+    </article>
 
 </section>
+
+
+<!-- =========================
+     SAĞLIK
+========================= -->
+
+<div class="section-title" id="saglik">
+    <h2>🏥 Sağlık</h2>
+    <a href="#">TÜM HABERLER →</a>
+</div>
+
+<section class="news-grid">
+
+    <article class="news-card">
+        <div class="news-image"></div>
+        <div class="news-content">
+            <div class="mini-cat">SAĞLIK</div>
+            <h3>Sağlık gündeminden önemli gelişmeler</h3>
+            <p>Sağlık alanındaki güncel gelişmeler.</p>
+        </div>
+    </article>
+
+    <article class="news-card">
+        <div class="news-image"></div>
+        <div class="news-content">
+            <div class="mini-cat">BİLİM</div>
+            <h3>Bilim dünyasından dikkat çeken gelişmeler</h3>
+            <p>Bilim ve sağlık alanından haberler.</p>
+        </div>
+    </article>
+
+    <article class="news-card">
+        <div class="news-image"></div>
+        <div class="news-content">
+            <div class="mini-cat">TOPLUM</div>
+            <h3>Sağlık hizmetlerinde vatandaşın gündemi</h3>
+            <p>Vatandaşların sağlık gündemi.</p>
+        </div>
+    </article>
+
+    <article class="news-card">
+        <div class="news-image"></div>
+        <div class="news-content">
+            <div class="mini-cat">YAŞAM</div>
+            <h3>Günlük yaşamda sağlık ve yaşam kalitesi</h3>
+            <p>Yaşama ilişkin dikkat çeken bilgiler.</p>
+        </div>
+    </article>
+
+</section>
+
+
+<!-- =========================
+     SPOR
+========================= -->
+
+<div class="section-title" id="spor">
+    <h2>⚽ Spor</h2>
+    <a href="#">TÜM SPOR HABERLERİ →</a>
+</div>
+
+
+<section class="sports-box">
+
+    <div class="sports-layout">
+
+        <article class="sports-news">
+
+            <div class="mini-cat">
+                SPOR GÜNDEMİ
+            </div>
+
+            <h3>
+                Sporda günün öne çıkan gelişmeleri
+            </h3>
+
+            <p>
+                Futbol, basketbol ve diğer spor branşlarından günün önemli haberleri.
+                <br><br><strong>⚽ Maç yorumları ve tahminler Spor menümüzde.</strong>
+            </p>
+
+        </article>
+        <aside class="sports-link-card">
+            <div class="prediction-label">⚽ ŞAHİN UYMAZ SPOR</div>
+            <h3>Maç yorumları ve özel tahminler</h3>
+            <p>
+                Futbol maçlarına ilişkin özel yorumlar, maç öncesi analizler
+                ve tahmin seçenekleri için Spor sayfamızı ziyaret edebilirsiniz.
+            </p>
+            <a class="sport-page-button" href="spor.html">
+                SPOR MENÜSÜNE GİT →
+            </a>
+        </aside>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     DÜNYA
+========================= -->
+
+<div class="section-title" id="dunya">
+    <h2>🌍 Dünya</h2>
+    <a href="#">TÜM HABERLER →</a>
+</div>
+
+<section class="news-grid">
+
+    <article class="news-card">
+        <div class="news-image"></div>
+        <div class="news-content">
+            <div class="mini-cat">DÜNYA</div>
+            <h3>Dünyada günün öne çıkan gelişmeleri</h3>
+            <p>Uluslararası gündemden önemli haberler.</p>
+        </div>
+    </article>
+
+    <article class="news-card">
+        <div class="news-image"></div>
+        <div class="news-content">
+            <div class="mini-cat">DIŞ POLİTİKA</div>
+            <h3>Bölgesel gelişmeler yakından izleniyor</h3>
+            <p>Dış politika gündeminden gelişmeler.</p>
+        </div>
+    </article>
+
+    <article class="news-card">
+        <div class="news-image"></div>
+        <div class="news-content">
+            <div class="mini-cat">ULUSLARARASI</div>
+            <h3>Dünya gündemindeki kritik başlıklar</h3>
+            <p>Uluslararası gelişmelerden son bilgiler.</p>
+        </div>
+    </article>
+
+    <article class="news-card">
+        <div class="news-image"></div>
+        <div class="news-content">
+            <div class="mini-cat">ANALİZ</div>
+            <h3>Dünyadaki gelişmeler Türkiye'yi nasıl etkiliyor?</h3>
+            <p>Gelişmelere Türkiye açısından bakış.</p>
+        </div>
+    </article>
+
+</section>
+
+
+<!-- =========================
+     TOPLUM
+========================= -->
+
+<div class="section-title" id="toplum">
+    <h2>👥 Toplum</h2>
+    <a href="#">TÜM HABERLER →</a>
+</div>
+
+<section class="news-grid">
+
+    <article class="news-card">
+        <div class="news-image"></div>
+        <div class="news-content">
+            <div class="mini-cat">TOPLUM</div>
+            <h3>Vatandaşın gündeminde bugün ne var?</h3>
+            <p>Toplumdan ve vatandaşın gündeminden gelişmeler.</p>
+        </div>
+    </article>
+
+    <article class="news-card">
+        <div class="news-image"></div>
+        <div class="news-content">
+            <div class="mini-cat">EĞİTİM</div>
+            <h3>Eğitim gündeminden önemli gelişmeler</h3>
+            <p>Öğrenci ve aileleri ilgilendiren gelişmeler.</p>
+        </div>
+    </article>
+
+    <article class="news-card">
+        <div class="news-image"></div>
+        <div class="news-content">
+            <div class="mini-cat">VATANDAŞ</div>
+            <h3>Vatandaş ne düşünüyor?</h3>
+            <p>Sahadan gelen görüşler ve değerlendirmeler.</p>
+        </div>
+    </article>
+
+    <article class="news-card">
+        <div class="news-image"></div>
+        <div class="news-content">
+            <div class="mini-cat">YAŞAM</div>
+            <h3>Toplumsal yaşamdan dikkat çeken gelişmeler</h3>
+            <p>Gündelik hayatın içinden haberler.</p>
+        </div>
+    </article>
+
+</section>
+
+
+<!-- =========================
+     ŞAHİN UYMAZ YORUMLUYOR
+========================= -->
+
+<div class="section-title" id="yorum">
+    <h2>✍️ Şahin UYMAZ Yorumluyor</h2>
+</div>
+
+
+<section class="commentary">
+
+    <div>
+
+        <div class="commentary-label">
+            GÜNÜN YORUMU
+        </div>
+
+        <h2>
+            Şahin UYMAZ
+        </h2>
+
+    </div>
+
+
+    <div class="commentary-text">
+
+        <h3>
+            Gündemin arka planında ne var?
+        </h3>
+
+        <p>
+            Güncel gelişmeleri yalnızca aktarmak değil;
+            olayların nedenlerini, sonuçlarını ve vatandaş
+            üzerindeki etkilerini değerlendirmek.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     GÜNÜN KONUSU + ÇOK OKUNAN
+========================= -->
+
+<div class="two-columns">
+
+
+    <div>
+
+        <div class="section-title">
+            <h2>📊 Günün Konusu</h2>
+        </div>
+
+        <article class="topic">
+
+            <div class="topic-label">
+                BUGÜNÜN ANA GÜNDEMİ
+            </div>
+
+            <h3>
+                Türkiye bugün en çok neyi konuşuyor?
+            </h3>
+
+            <p>
+                Günün en önemli konusu burada ayrıntılı şekilde
+                ele alınacak. Haber, arka plan, değerlendirme
+                ve vatandaş açısından sonuçları tek yerde.
+            </p>
+
+        </article>
+
+    </div>
+
+
+    <div>
+
+        <div class="section-title">
+            <h2>🔥 Günün En Çok Okunanları</h2>
+        </div>
+
+        <div class="most-read">
+
+            <div class="read-item">
+                <div class="read-number">01</div>
+                <h3>Günün en çok merak edilen gelişmesi</h3>
+            </div>
+
+            <div class="read-item">
+                <div class="read-number">02</div>
+                <h3>Siyaset gündemindeki önemli gelişme</h3>
+            </div>
+
+            <div class="read-item">
+                <div class="read-number">03</div>
+                <h3>Ekonomide vatandaşın merak ettiği konu</h3>
+            </div>
+
+            <div class="read-item">
+                <div class="read-number">04</div>
+                <h3>Şahin UYMAZ'ın günün yorumu</h3>
+            </div>
+
+            <div class="read-item">
+                <div class="read-number">05</div>
+                <h3>Günün dikkat çeken haberi</h3>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     OKUR ANKETİ
+========================= -->
+
+<div class="section-title">
+    <h2>❓ Okur Anketi</h2>
+</div>
+
+
+<section class="poll">
+
+    <h3>
+        Sizce günün en önemli gündem maddesi hangisi?
+    </h3>
+
+    <p>
+        Görüşünüzü paylaşın.
+    </p>
+
+    <label class="poll-option">
+        <input type="radio" name="poll">
+        Ekonomi
+    </label>
+
+    <label class="poll-option">
+        <input type="radio" name="poll">
+        Siyaset
+    </label>
+
+    <label class="poll-option">
+        <input type="radio" name="poll">
+        Sağlık
+    </label>
+
+    <label class="poll-option">
+        <input type="radio" name="poll">
+        Toplum
+    </label>
+
+    <label class="poll-option">
+        <input type="radio" name="poll">
+        Dünya
+    </label>
+
+</section>
+
+
+<!-- SON GÜNCELLEME -->
+
+<div class="update">
+
+    <span class="update-dot"></span>
+
+    <span>
+        Son güncelleme:
+        <strong id="updateTime"></strong>
+    </span>
+
+</div>
 
 </main>
 
 
-<!-- =========================
-     MODAL
-========================= -->
-
-<div id="newsModal" class="modal">
-
-<button class="modal-close" onclick="closeNews()">
-<i class="fa-solid fa-xmark"></i>
-</button>
-
-<div class="modal-box">
-
-<img
-id="modalImage"
-class="modal-image"
-src=""
-alt="Haber görseli">
-
-<div class="modal-content">
-
-<span
-id="modalCategory"
-class="news-category">
-</span>
-
-<h2 id="modalTitle"></h2>
-
-<div
-id="modalDate"
-class="news-date">
-</div>
-
-<p id="modalText"></p>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- =========================
-     FOOTER
-========================= -->
+<!-- FOOTER -->
 
 <footer>
 
-<div class="footer-inner">
+    <div class="footer-inner">
 
-<div>
+        <div class="footer-brand">
+            <strong>ŞAHİN UYMAZ</strong>
+            <p>Haber • Gündem • Yorum • Analiz</p>
+        </div>
 
-<div class="footer-title">
-ŞAHİN UYMAZ
-</div>
+        <div class="footer-links">
+            <a href="#">Hakkımda</a>
+            <a href="#">İletişim</a>
+            <a href="#">Gizlilik</a>
+            <a href="#">KVKK</a>
+        </div>
 
-<p class="footer-text">
-Kamu politikaları, kamu hizmetleri,
-araştırma, izleme ve değerlendirme
-çalışmaları kapsamında gündemdeki
-gelişmeleri takip ediyoruz.
-</p>
-
-</div>
-
-
-<div>
-
-<div class="footer-heading">
-Gündem
-</div>
-
-<div class="footer-links">
-
-<a href="gundem.html">
-Gündem
-</a>
-
-<a href="spor.html">
-Spor
-</a>
-
-<a href="../saha-incelemeleri.html">
-Saha İncelemeleri
-</a>
-
-<a href="../hakkimda.html">
-Hakkımda
-</a>
-
-</div>
-
-</div>
-
-
-<div>
-
-<div class="footer-heading">
-Çalışma Alanları
-</div>
-
-<div class="footer-links">
-
-<a href="#">
-Kamu Politikaları
-</a>
-
-<a href="#">
-Kamu Hizmetleri
-</a>
-
-<a href="#">
-Araştırma
-</a>
-
-<a href="#">
-İzleme
-</a>
-
-<a href="#">
-Değerlendirme
-</a>
-
-</div>
-
-</div>
-
-</div>
-
-
-<div class="footer-bottom">
-
-<span>
-© 2026 Şahin UYMAZ. Tüm hakları saklıdır.
-</span>
-
-<span>
-Bağımsız Araştırma ve İzleme
-</span>
-
-</div>
+    </div>
 
 </footer>
 
 
-<script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
 
-/* =====================================================
-   HABERLER
-   =====================================================
+const firebaseConfig = {
+    apiKey: "AIzaSyBB5ZU8vHp1DyMgWYtyBwnPb24BymmH6JU",
+    authDomain: "gundem-1b5f1.firebaseapp.com",
+    databaseURL: "https://gundem-1b5f1-default-rtdb.firebaseio.com",
+    projectId: "gundem-1b5f1",
+    storageBucket: "gundem-1b5f1.firebasestorage.app",
+    messagingSenderId: "664877397298",
+    appId: "1:664877397298:web:d16b8729164d64ea25d32b",
+    measurementId: "G-EFD2XH97NG"
+};
 
-   BURADAN HABERLERİ SEN EKLEYECEKSİN.
+const app=initializeApp(firebaseConfig);
+const db=getDatabase(app);
+let allNews=[];
+let currentSlide=0;
+let slideTimer=null;
+let breakingTimer=null;
 
-   Görseller:
-   ../images/haber-01.jpg
-   ../images/haber-02.jpg
-   ../images/haber-03.jpg
+const categoryLabels={gundem:"GÜNDEM",siyaset:"SİYASET",ekonomi:"EKONOMİ",saglik:"SAĞLIK",spor:"SPOR",dunya:"DÜNYA",toplum:"TOPLUM",yorum:"YORUM"};
 
-   şeklinde ayrı dosya olarak tutulur.
+function escapeHTML(value){return String(value??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");}
+function formatDate(value){if(!value)return "";const p=String(value).split("-");return p.length===3?`${p[2]}.${p[1]}.${p[0]}`:value;}
+function publishedNews(){return allNews.filter(n=>n&&(n.published===true||n.published==="true")).sort((a,b)=>String(b.newsDate||b.createdAt||"").localeCompare(String(a.newsDate||a.createdAt||"")));}
+function imageStyle(image){if(!image)return "";return `background-image:linear-gradient(90deg,rgba(8,27,51,.05),rgba(8,27,51,.75)),url("${String(image).replace(/"/g,'&quot;')}");background-size:cover;background-position:center;`;}
 
-   Böylece görseli HTML içine gömmeyiz.
-===================================================== */
-
-const newsData = [
-
-{
-    category:"MECLİS",
-    title:"Yeni yasama döneminde Meclis gündemi şekilleniyor",
-    date:"10 Eylül 2026",
-    image:"../images/haber-01.jpg",
-    text:"Türkiye Büyük Millet Meclisi'nin yeni yasama döneminde gündeme gelmesi beklenen düzenlemeler ve kamu politikaları yakından takip ediliyor."
-},
-
-{
-    category:"EKONOMİ",
-    title:"Ekonomide yeni dönem beklentileri",
-    date:"10 Eylül 2026",
-    image:"../images/haber-02.jpg",
-    text:"Ekonomik gelişmeler ve kamu politikalarındaki yeni adımlar izleniyor."
-},
-
-{
-    category:"SİYASET",
-    title:"Siyasi gündemde yeni başlıklar",
-    date:"10 Eylül 2026",
-    image:"../images/haber-03.jpg",
-    text:"Türkiye'nin siyasi gündemindeki gelişmeler değerlendiriliyor."
-},
-
-{
-    category:"KAMU",
-    title:"Kamu hizmetlerinde yeni düzenlemeler",
-    date:"9 Eylül 2026",
-    image:"../images/haber-04.jpg",
-    text:"Kamu kurumlarını ilgilendiren gelişmeler takip ediliyor."
-},
-
-{
-    category:"SİYASET",
-    title:"Siyasi gündemde dikkat çeken gelişmeler",
-    date:"10 Eylül 2026",
-    image:"../images/haber-05.jpg",
-    text:"Türkiye'nin siyasi gündemindeki son gelişmeler, açıklamalar ve değerlendirmeler."
-},
-
-{
-    category:"EKONOMİ",
-    title:"Ekonomide gündemin öne çıkan başlıkları",
-    date:"10 Eylül 2026",
-    image:"../images/haber-06.jpg",
-    text:"Ekonomik göstergeler, kamu politikaları ve piyasalardaki son gelişmeler."
-},
-
-{
-    category:"KAMU",
-    title:"Kamu hizmetlerinde yeni uygulamalar",
-    date:"9 Eylül 2026",
-    image:"../images/haber-07.jpg",
-    text:"Kamu kurumları ve vatandaşları ilgilendiren yeni uygulamalar gündemde."
-},
-
-{
-    category:"MECLİS",
-    title:"TBMM'de yeni yasama dönemi hazırlıkları",
-    date:"9 Eylül 2026",
-    image:"../images/haber-08.jpg",
-    text:"Meclis gündeminde yer alması beklenen düzenlemeler ve kanun teklifleri takip ediliyor."
-},
-
-{
-    category:"HUKUK",
-    title:"Hukuk alanındaki gelişmeler",
-    date:"8 Eylül 2026",
-    image:"../images/haber-09.jpg",
-    text:"Yeni düzenlemeler, yargı gündemi ve vatandaşları ilgilendiren hukuki gelişmeler."
-},
-
-{
-    category:"TOPLUM",
-    title:"Toplumsal yaşamı ilgilendiren gelişmeler",
-    date:"8 Eylül 2026",
-    image:"../images/haber-10.jpg",
-    text:"Vatandaşların günlük yaşamını etkileyen sosyal gelişmeler ve kamu çalışmaları."
-},
-
-{
-    category:"DÜNYA",
-    title:"Dünyadan gündeme yansıyan gelişmeler",
-    date:"7 Eylül 2026",
-    image:"../images/haber-11.jpg",
-    text:"Uluslararası alandaki önemli gelişmeler ve Türkiye'ye yansımaları."
-},
-
-{
-    category:"SAĞLIK",
-    title:"Sağlık hizmetlerinde gündeme gelen başlıklar",
-    date:"7 Eylül 2026",
-    image:"../images/haber-12.jpg",
-    text:"Sağlık politikaları, vatandaşların hizmetlere erişimi ve yeni uygulamalar."
-},
-
-{
-    category:"SPOR",
-    title:"Spor dünyasından son gelişmeler",
-    date:"6 Eylül 2026",
-    image:"../images/haber-13.jpg",
-    text:"Türkiye ve dünyadan spor gündeminin önemli başlıkları."
-},
-
-{
-    category:"GÜNDEM",
-    title:"Türkiye gündeminin öne çıkan başlıkları",
-    date:"6 Eylül 2026",
-    image:"../images/haber-14.jpg",
-    text:"Gün içerisinde gündeme gelen önemli gelişmeler ve açıklamalar."
-},
-
-{
-    category:"KAMU",
-    title:"Vatandaş ve kamu hizmetleri",
-    date:"5 Eylül 2026",
-    image:"../images/haber-15.jpg",
-    text:"Kamu hizmetlerinin vatandaşlara ulaşması, erişilebilirlik ve hizmet kalitesi."
-},
-
-{
-    category:"EKONOMİ",
-    title:"Ekonomik politikalar ve vatandaş",
-    date:"5 Eylül 2026",
-    image:"../images/haber-16.jpg",
-    text:"Ekonomik kararların vatandaşların günlük yaşamına etkileri üzerine gelişmeler."
-},
-
-{
-    category:"SİYASET",
-    title:"Siyaset gündeminde yeni değerlendirmeler",
-    date:"4 Eylül 2026",
-    image:"../images/haber-17.jpg",
-    text:"Siyasi partilerin açıklamaları ve kamuoyuna yansıyan gelişmeler."
-},
-
-{
-    category:"MECLİS",
-    title:"Meclis komisyonlarında gündem",
-    date:"4 Eylül 2026",
-    image:"../images/haber-18.jpg",
-    text:"Komisyonlarda görüşülen düzenlemeler ve yasama çalışmalarından gelişmeler."
-},
-
-{
-    category:"TOPLUM",
-    title:"Toplumsal gelişmeler ve vatandaş gündemi",
-    date:"3 Eylül 2026",
-    image:"../images/haber-19.jpg",
-    text:"Toplumun farklı kesimlerini ilgilendiren güncel gelişmeler."
+function openNews(item){
+    if(!item)return;
+    const old=document.getElementById("firebaseNewsModal");if(old)old.remove();
+    const sections=[];
+    if(item.summary)sections.push(`<p class="firebase-modal-summary">${escapeHTML(item.summary)}</p>`);
+    if(item.content)sections.push(`<div class="firebase-modal-content">${escapeHTML(item.content).replace(/\n/g,"<br>")}</div>`);
+    if(item.thought)sections.push(`<section class="firebase-analysis"><h3>YAZARIN DÜŞÜNCESİ</h3><p>${escapeHTML(item.thought).replace(/\n/g,"<br>")}</p></section>`);
+    if(item.analysis)sections.push(`<section class="firebase-analysis"><h3>ANALİZ</h3><p>${escapeHTML(item.analysis).replace(/\n/g,"<br>")}</p></section>`);
+    if(item.prediction)sections.push(`<section class="firebase-analysis"><h3>KİŞİSEL TAHMİN / ÖNGÖRÜ</h3><p>${escapeHTML(item.prediction).replace(/\n/g,"<br>")}</p></section>`);
+    const modal=document.createElement("div");modal.id="firebaseNewsModal";
+    modal.innerHTML=`<div class="firebase-modal-backdrop"><div class="firebase-modal-box"><button class="firebase-modal-close" aria-label="Kapat">×</button><div class="firebase-modal-image" style="${item.image?`background-image:url("${String(item.image).replace(/"/g,'&quot;')}");`:''}"></div><div class="firebase-modal-body"><div class="firebase-modal-cat">${escapeHTML(categoryLabels[item.category]||item.category||"HABER")}</div><h2>${escapeHTML(item.title)}</h2><div class="firebase-modal-date">${formatDate(item.newsDate)}${item.source?" • "+escapeHTML(item.source):""}</div>${sections.join("")}</div></div></div>`;
+    document.body.appendChild(modal);
+    const close=()=>modal.remove();modal.querySelector(".firebase-modal-close").onclick=close;modal.querySelector(".firebase-modal-backdrop").onclick=e=>{if(e.target===e.currentTarget)close();};
+    const esc=e=>{if(e.key==="Escape"){close();document.removeEventListener("keydown",esc);}};document.addEventListener("keydown",esc);
 }
 
-];
-
-
-/* =====================================================
-   KATEGORİ FİLTRESİ
-===================================================== */
-
-const categoryButtons =
-document.querySelectorAll(".category-btn");
-
-const cards =
-document.querySelectorAll(".news-card");
-
-const noResult =
-document.getElementById("noResult");
-
-
-categoryButtons.forEach(button => {
-
-button.addEventListener("click", function(){
-
-categoryButtons.forEach(btn =>
-    btn.classList.remove("active")
-);
-
-this.classList.add("active");
-
-const category =
-this.dataset.category;
-
-let visible = 0;
-
-cards.forEach(card => {
-
-if(
-category === "TÜMÜ" ||
-card.dataset.category === category
-){
-
-card.style.display = "";
-
-visible++;
-
-}else{
-
-card.style.display = "none";
-
+function renderSlider(){
+    const slider=document.querySelector(".gundem-slider");if(!slider)return;
+    const items=publishedNews().filter(n=>n.slider);const data=(items.length?items:publishedNews()).slice(0,3);if(!data.length)return;
+    slider.querySelectorAll(".slide").forEach(x=>x.remove());const controls=slider.querySelector(".slider-controls");
+    data.forEach((item,index)=>{const article=document.createElement("article");article.className="slide"+(index===0?" active":"");article.innerHTML=`<div class="slide-image" style="${imageStyle(item.image)}"></div><div class="slide-content"><span class="slide-category">${escapeHTML(categoryLabels[item.category]||"HABER")}</span><h1>${escapeHTML(item.title)}</h1><p>${escapeHTML(item.summary||item.content||"")}</p><a href="#" class="read-more">HABERİ OKU →</a></div>`;article.querySelector(".read-more").onclick=e=>{e.preventDefault();openNews(item);};slider.insertBefore(article,controls);});
+    controls.innerHTML=data.map((_,i)=>`<button class="slider-dot${i===0?" active":""}" data-slide="${i}"></button>`).join("");controls.querySelectorAll(".slider-dot").forEach(btn=>btn.onclick=()=>goSlide(Number(btn.dataset.slide)));
+    currentSlide=0;clearInterval(slideTimer);if(data.length>1)slideTimer=setInterval(()=>goSlide((currentSlide+1)%data.length),6000);
 }
-
-});
-
-noResult.style.display =
-visible === 0 ? "block" : "none";
-
-});
-
-});
-
-
-/* =====================================================
-   HABER DETAYI
-===================================================== */
-
-function openNews(index){
-
-const news = newsData[index];
-
-if(!news){
-    return;
+function goSlide(index){const slides=document.querySelectorAll(".gundem-slider .slide"),dots=document.querySelectorAll(".gundem-slider .slider-dot");if(!slides.length)return;slides.forEach(s=>s.classList.remove("active"));dots.forEach(d=>d.classList.remove("active"));currentSlide=Math.max(0,Math.min(index,slides.length-1));slides[currentSlide].classList.add("active");if(dots[currentSlide])dots[currentSlide].classList.add("active");}
+function renderCategory(category){const heading=document.getElementById(category);if(!heading)return;const grid=heading.nextElementSibling;if(!grid||!grid.classList.contains("news-grid"))return;const items=publishedNews().filter(n=>n.category===category).slice(0,6);if(!items.length){grid.innerHTML=`<article class="news-card"><div class="news-content"><div class="mini-cat">${categoryLabels[category]||category.toUpperCase()}</div><h3>Bu kategoride henüz yayınlanmış haber bulunmuyor.</h3><p>Yeni haberler yayınlandığında bu bölüm otomatik olarak güncellenecektir.</p></div></article>`;return;}grid.innerHTML=items.map(item=>`<article class="news-card firebase-news-card" data-news-id="${escapeHTML(item.id)}"><div class="news-image" style="${imageStyle(item.image)}"></div><div class="news-content"><div class="mini-cat">${escapeHTML(categoryLabels[category]||category.toUpperCase())}</div><h3>${escapeHTML(item.title)}</h3><p>${escapeHTML(item.summary||item.content||"")}</p><div style="margin-top:11px;color:#123f73;font-size:10px;font-weight:800">${formatDate(item.newsDate)} · DETAYLAR →</div></div></article>`).join("");grid.querySelectorAll(".firebase-news-card").forEach(card=>card.onclick=()=>openNews(items.find(n=>n.id===card.dataset.newsId)));
 }
+function renderSports(){const items=publishedNews().filter(n=>n.category==="spor").slice(0,1);if(!items.length)return;const item=items[0],box=document.querySelector(".sports-box .sports-news");if(!box)return;box.innerHTML=`<div class="mini-cat">SPOR GÜNDEMİ</div><h3>${escapeHTML(item.title)}</h3><p>${escapeHTML(item.summary||item.content||"")}</p><button id="sportNewsOpen" style="margin-top:14px;border:0;background:#123f73;color:#fff;padding:10px 14px;border-radius:5px;font-size:11px;font-weight:900;cursor:pointer">HABERİ OKU →</button>`;document.getElementById("sportNewsOpen").onclick=()=>openNews(item);}
+function renderBreaking(){clearInterval(breakingTimer);const items=publishedNews().filter(n=>n.breaking),box=document.getElementById("breakingText");if(!box)return;if(!items.length){box.textContent="Günün önemli gelişmeleri burada...";return;}let i=0;const texts=items.map(n=>n.title);box.textContent=texts[0];if(texts.length>1)breakingTimer=setInterval(()=>{i=(i+1)%texts.length;box.textContent=texts[i];},4000);}
+function renderAll(){renderSlider();["siyaset","ekonomi","saglik","dunya","toplum","yorum"].forEach(renderCategory);renderSports();renderBreaking();const update=document.getElementById("updateTime");if(update)update.textContent=new Date().toLocaleTimeString("tr-TR",{hour:"2-digit",minute:"2-digit"});}
 
-document.getElementById("modalImage").src =
-news.image;
+const now=new Date();const dateEl=document.getElementById("date");if(dateEl)dateEl.textContent=now.toLocaleDateString("tr-TR",{day:"2-digit",month:"long",year:"numeric"});
 
-document.getElementById("modalCategory").textContent =
-news.category;
-
-document.getElementById("modalTitle").textContent =
-news.title;
-
-document.getElementById("modalDate").textContent =
-news.date;
-
-document.getElementById("modalText").textContent =
-news.text;
-
-document.getElementById("newsModal")
-.classList.add("show");
-
-document.body.style.overflow="hidden";
-
-}
-
-
-/* =====================================================
-   MODAL KAPAT
-===================================================== */
-
-function closeNews(){
-
-document.getElementById("newsModal")
-.classList.remove("show");
-
-document.body.style.overflow="";
-
-}
-
-
-document.getElementById("newsModal")
-.addEventListener("click",function(e){
-
-if(e.target === this){
-    closeNews();
-}
-
-});
-
-
-document.addEventListener("keydown",function(e){
-
-if(e.key === "Escape"){
-    closeNews();
-}
-
-});
-
-
-/* =====================================================
-   MOBİL MENÜ
-===================================================== */
-
-function toggleMenu(){
-
-const nav =
-document.querySelector(".main-nav");
-
-if(nav.style.display === "flex"){
-
-nav.style.display = "";
-
-}else{
-
-nav.style.display = "flex";
-nav.style.position = "absolute";
-nav.style.top = "70px";
-nav.style.left = "0";
-nav.style.right = "0";
-nav.style.background = "#061b33";
-nav.style.padding = "15px";
-nav.style.flexDirection = "column";
-nav.style.alignItems = "stretch";
-
-}
-
-}
-
+onValue(ref(db,"news"),snapshot=>{const data=snapshot.val()||{};allNews=Object.entries(data).map(([id,item])=>({id,...item}));renderAll();},error=>{console.error(error);const box=document.getElementById("breakingText");if(box)box.textContent="Haber verileri şu anda alınamıyor.";});
+window.goSlide=goSlide;
 </script>
 
 </body>
