@@ -2879,23 +2879,49 @@ function saveData(
   showMessage = true
 ){
 
-  localStorage.setItem(
-    STORAGE_KEY,
-    JSON.stringify(matches)
-  );
+  let saved = true;
+
+
+  try{
+
+    localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify(matches)
+    );
+
+  }catch(error){
+
+    saved = false;
+
+    console.error(
+      "Maç verileri localStorage'a kaydedilemedi:",
+      error
+    );
+
+  }
 
 
   updateStats();
-
   renderMatchList();
 
 
   if(showMessage){
 
-    showResult(
-      "Maç bilgileri başarıyla kaydedildi.",
-      "success"
-    );
+    if(saved){
+
+      showResult(
+        "Maç bilgileri başarıyla kaydedildi.",
+        "success"
+      );
+
+    }else{
+
+      showResult(
+        "Maç ekranda güncellendi ancak tarayıcı depolama alanına kaydedilemedi.",
+        "error"
+      );
+
+    }
 
   }
 
@@ -3721,11 +3747,16 @@ function deleteMatch(id){
   const match =
     matches.find(
       item =>
-        item.id === id
+        String(item.id) === String(id)
     );
 
 
   if(!match){
+
+    showResult(
+      "Silinecek maç bulunamadı.",
+      "error"
+    );
 
     return;
 
@@ -3733,7 +3764,7 @@ function deleteMatch(id){
 
 
   const confirmed =
-    confirm(
+    window.confirm(
       `"${match.home} - ${match.away}" maçını silmek istediğinize emin misiniz?`
     );
 
@@ -3745,10 +3776,14 @@ function deleteMatch(id){
   }
 
 
+  /*
+     ÖNCE BELLEKTE SİL:
+     Böylece kayıt silindikten sonra liste hemen yenilenir.
+  */
   matches =
     matches.filter(
       item =>
-        item.id !== id
+        String(item.id) !== String(id)
     );
 
 
@@ -3759,13 +3794,39 @@ function deleteMatch(id){
   }
 
 
-  saveData();
+  /*
+     LİSTEYİ ÖNCE YENİLE.
+     localStorage sorunu olsa bile Sil butonu çalışmaya devam eder.
+  */
+  renderMatchList();
+  updateStats();
 
 
-  showResult(
-    "Maç başarıyla silindi.",
-    "success"
-  );
+  try{
+
+    localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify(matches)
+    );
+
+    showResult(
+      "Maç başarıyla silindi.",
+      "success"
+    );
+
+  }catch(error){
+
+    console.error(
+      "Maç silindi ancak kayıt depolanamadı:",
+      error
+    );
+
+    showResult(
+      "Maç ekrandan silindi; ancak tarayıcı depolama alanına kaydedilemedi. Sayfayı kapatmadan önce depolama alanını kontrol edin.",
+      "error"
+    );
+
+  }
 
 }
 
@@ -4728,54 +4789,77 @@ document
    MAÇ LİSTESİ BUTONLARI
 ========================================================= */
 
-document
-  .getElementById(
-    "matchList"
-  )
-  .addEventListener(
-    "click",
-    function(event){
+/*
+   MAÇ LİSTESİ BUTONLARI
+   Document seviyesinde dinlenir.
+   Böylece sonradan oluşturulan kartlardaki
+   Düzenle ve Sil butonları da kesin olarak çalışır.
+*/
+document.addEventListener(
+  "click",
+  function(event){
 
-      const button =
-        event.target.closest(
-          "button[data-action]"
-        );
-
-
-      if(!button){
-
-        return;
-
-      }
+    const button =
+      event.target.closest(
+        "#matchList button[data-action]"
+      );
 
 
-      const id =
-        button.dataset.id;
+    if(!button){
 
-
-      if(
-        button.dataset.action
-        ===
-        "edit"
-      ){
-
-        editMatch(id);
-
-      }
-
-
-      if(
-        button.dataset.action
-        ===
-        "delete"
-      ){
-
-        deleteMatch(id);
-
-      }
+      return;
 
     }
-  );
+
+
+    event.preventDefault();
+    event.stopPropagation();
+
+
+    const action =
+      button.getAttribute(
+        "data-action"
+      );
+
+
+    const id =
+      button.getAttribute(
+        "data-id"
+      );
+
+
+    if(!id){
+
+      showResult(
+        "Maç kimliği bulunamadı.",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    if(action === "edit"){
+
+      editMatch(id);
+
+      return;
+
+    }
+
+
+    if(action === "delete"){
+
+      deleteMatch(id);
+
+      return;
+
+    }
+
+  },
+  false
+);
 
 
 /* =========================================================
