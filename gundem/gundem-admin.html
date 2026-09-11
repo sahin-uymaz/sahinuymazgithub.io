@@ -4,78 +4,106 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ŞAHİN UYMAZ | Haber • Gündem • Yorum • Analiz</title>
+<title>Gündem Yönetim Merkezi | ŞAHİN UYMAZ</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 <style>
+
+:root{
+    --bg:#080b12;
+    --panel:#101521;
+    --panel2:#151b29;
+    --border:#273044;
+    --text:#f5f7fb;
+    --muted:#98a2b3;
+    --blue:#2563eb;
+    --blue2:#1d4ed8;
+    --green:#16a34a;
+    --red:#dc2626;
+    --orange:#f59e0b;
+    --purple:#7c3aed;
+    --shadow:0 15px 45px rgba(0,0,0,.28);
+}
+
 *{
-    margin:0;
-    padding:0;
     box-sizing:border-box;
 }
 
-:root{
-    --lacivert:#081b33;
-    --mavi:#123f73;
-    --kirmizi:#d71920;
-    --turuncu:#f59e0b;
-    --acik:#f4f6f9;
-    --gri:#667085;
-    --border:#e4e7ec;
-    --white:#fff;
-    --text:#111827;
+html{
+    scroll-behavior:smooth;
 }
 
 body{
-    font-family:Inter,Arial,sans-serif;
-    background:var(--acik);
+    margin:0;
+    background:
+        radial-gradient(circle at top right,rgba(37,99,235,.10),transparent 30%),
+        var(--bg);
     color:var(--text);
+    font-family:Inter,Arial,sans-serif;
 }
 
-a{
-    text-decoration:none;
-    color:inherit;
+button,
+input,
+textarea,
+select{
+    font:inherit;
 }
 
 button{
-    font-family:inherit;
+    cursor:pointer;
 }
 
-/* TOPBAR */
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+/* =========================
+   HEADER
+========================= */
 
 .topbar{
-    background:#061426;
-    color:#cbd5e1;
-    font-size:12px;
-    padding:8px 0;
+    background:#05070c;
+    border-bottom:1px solid var(--border);
 }
 
 .topbar-inner{
-    width:94%;
     max-width:1400px;
     margin:auto;
+    min-height:38px;
+    padding:0 25px;
     display:flex;
+    align-items:center;
     justify-content:space-between;
+    color:#8f99aa;
+    font-size:12px;
 }
 
-/* HEADER */
-
 .header{
-    background:#fff;
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:rgba(8,11,18,.94);
+    backdrop-filter:blur(15px);
     border-bottom:1px solid var(--border);
 }
 
 .header-inner{
-    width:94%;
     max-width:1400px;
-    min-height:88px;
     margin:auto;
+    min-height:82px;
+    padding:0 25px;
     display:flex;
     align-items:center;
     justify-content:space-between;
+    gap:25px;
 }
 
 .logo{
@@ -85,607 +113,723 @@ button{
 }
 
 .logo-image{
-    width:52px;
-    height:52px;
-    border-radius:8px;
-    object-fit:contain;
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    object-fit:cover;
     background:#fff;
+}
+
+.logo-text{
+    display:flex;
+    flex-direction:column;
 }
 
 .logo-text strong{
-    display:block;
-    font-size:22px;
-    letter-spacing:-.5px;
+    font-family:"Playfair Display",serif;
+    font-size:21px;
+    letter-spacing:.5px;
 }
 
 .logo-text span{
-    display:block;
-    font-size:10px;
-    color:#667085;
-    letter-spacing:1.5px;
-    margin-top:4px;
+    font-size:9px;
+    letter-spacing:1.4px;
+    color:#7f8ba0;
+    margin-top:3px;
 }
 
-.nav{
+.header-actions{
     display:flex;
     align-items:center;
-    gap:22px;
-    font-size:13px;
-    font-weight:700;
+    gap:10px;
 }
 
-.nav a{
-    transition:.2s;
-    padding:7px 9px;
-    border-radius:6px;
-}
-.nav a:nth-child(1){color:#9b1c1c}
-.nav a:nth-child(2){color:#a16207}
-.nav a:nth-child(3){color:#166534}
-.nav a:nth-child(4){color:#075985}
-.nav a:nth-child(5){color:#6b21a8}
-.nav a:nth-child(6){color:#0f766e}
-.nav a:nth-child(7){color:#374151}
-.nav a:hover{
-    color:#fff;
-    background:var(--lacivert);
-}
-
-
-
-.search{
-    width:38px;
-    height:38px;
+.header-btn{
     border:1px solid var(--border);
-    border-radius:50%;
-    background:#fff;
-    cursor:pointer;
+    background:#111725;
+    color:#dce3ee;
+    padding:10px 15px;
+    border-radius:9px;
+    transition:.2s;
 }
 
-/* BREAKING */
-
-.breaking{
-    background:#fff;
-    border-bottom:1px solid var(--border);
+.header-btn:hover{
+    border-color:var(--blue);
+    background:#17213a;
 }
 
-.breaking-inner{
-    width:94%;
-    max-width:1400px;
-    height:46px;
-    margin:auto;
-    display:flex;
-    align-items:center;
-    overflow:hidden;
-}
-
-.breaking-label{
-    display:flex;
-    align-items:center;
-    gap:7px;
-    background:linear-gradient(135deg,#d71920,#a8070d);
-    color:white;
-    padding:8px 14px;
-    font-size:11px;
-    font-weight:900;
-    white-space:nowrap;
-    border-radius:5px;
-    box-shadow:0 0 0 0 rgba(215,25,32,.45);
-    animation:pulse 1.7s infinite, signalGlow 2s infinite;
-}
-.breaking-label:before{
-    content:"";
-    width:7px;
-    height:7px;
-    background:#fff;
-    border-radius:50%;
-    box-shadow:0 0 0 0 rgba(255,255,255,.7);
-    animation:signalDot 1.2s infinite;
-}
-@keyframes signalGlow{
-    0%,100%{box-shadow:0 0 0 0 rgba(215,25,32,.35)}
-    50%{box-shadow:0 0 0 7px rgba(215,25,32,0)}
-}
-@keyframes signalDot{
-    0%{box-shadow:0 0 0 0 rgba(255,255,255,.65)}
-    70%{box-shadow:0 0 0 7px rgba(255,255,255,0)}
-    100%{box-shadow:0 0 0 0 rgba(255,255,255,0)}
-}
-
-@keyframes pulse{
-    0%,100%{
-        opacity:1;
-    }
-    50%{
-        opacity:.72;
-    }
-}
-
-.breaking-text{
-    margin-left:15px;
-    font-size:13px;
-    font-weight:600;
-    white-space:nowrap;
-    overflow:hidden;
-}
-
-/* CONTAINER */
-
-.container{
-    width:94%;
-    max-width:1400px;
-    margin:28px auto 70px;
-}
-
-/* SECTION TITLE */
-
-.section-title{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    border-bottom:2px solid var(--lacivert);
-    padding-bottom:10px;
-    margin:38px 0 18px;
-}
-
-.section-title h2{
-    font-family:"Playfair Display",serif;
-    font-size:25px;
-}
-
-.section-title a{
-    font-size:11px;
-    font-weight:800;
-    color:var(--mavi);
+.header-btn.primary{
+    background:var(--blue);
+    border-color:var(--blue);
+    color:#fff;
 }
 
 /* =========================
-   GÜNDEM SLIDER
+   ANA CONTAINER
 ========================= */
 
-.gundem-slider{
-    position:relative;
-    min-height:460px;
-    overflow:hidden;
+.container{
+    max-width:1400px;
+    margin:auto;
+    padding:30px 25px 80px;
+}
+
+/* =========================
+   PAGE INTRO
+========================= */
+
+.page-intro{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:25px;
+    margin-bottom:25px;
+}
+
+.page-intro h1{
+    margin:0;
+    font-family:"Playfair Display",serif;
+    font-size:38px;
+}
+
+.page-intro p{
+    margin:8px 0 0;
+    color:var(--muted);
+    font-size:14px;
+}
+
+.dashboard-info{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.info-box{
+    min-width:125px;
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:13px 17px;
+}
+
+.info-box span{
+    display:block;
+    color:var(--muted);
+    font-size:11px;
+    margin-bottom:5px;
+}
+
+.info-box strong{
+    font-size:22px;
+}
+
+/* =========================
+   CATEGORY NAV
+========================= */
+
+.category-nav{
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    padding:4px 2px 16px;
+    margin-bottom:15px;
+}
+
+.category-nav::-webkit-scrollbar{
+    height:5px;
+}
+
+.category-nav::-webkit-scrollbar-thumb{
+    background:#2b3548;
+    border-radius:20px;
+}
+
+.category-nav button{
+    white-space:nowrap;
+    background:#101622;
+    color:#aeb7c7;
+    border:1px solid var(--border);
+    padding:10px 15px;
     border-radius:9px;
-    background:#091d35;
 }
 
-.slide{
-    position:absolute;
-    inset:0;
-    opacity:0;
-    visibility:hidden;
-    transition:opacity .7s ease;
-    display:grid;
-    grid-template-columns:1.7fr 1fr;
+.category-nav button:hover,
+.category-nav button.active{
+    background:var(--blue);
+    border-color:var(--blue);
+    color:#fff;
 }
 
-.slide.active{
-    opacity:1;
-    visibility:visible;
-}
+/* =========================
+   CATEGORY SECTION
+========================= */
 
-.slide-image{
-    background:
-        linear-gradient(90deg,rgba(8,27,51,.05),rgba(8,27,51,.75)),
-        linear-gradient(135deg,#315f8e,#0d213a);
-}
-
-.slide-content{
-    color:white;
-    padding:48px 42px;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-}
-
-.slide-category{
-    display:inline-block;
-    width:max-content;
-    background:var(--kirmizi);
-    padding:7px 11px;
-    font-size:10px;
-    font-weight:900;
-    letter-spacing:.7px;
-    margin-bottom:15px;
-}
-
-.slide-content h1{
-    font-family:"Playfair Display",serif;
-    font-size:39px;
-    line-height:1.08;
-    margin-bottom:15px;
-}
-
-.slide-content p{
-    color:#d9e3ee;
-    font-size:14px;
-    line-height:1.7;
-}
-
-.read-more{
-    width:max-content;
-    margin-top:22px;
-    padding:10px 16px;
-    background:#fff;
-    color:var(--lacivert);
-    border-radius:4px;
-    font-size:11px;
-    font-weight:900;
-}
-
-.slider-controls{
-    position:absolute;
-    bottom:22px;
-    left:22px;
-    display:flex;
-    gap:7px;
-    z-index:5;
-}
-
-.slider-dot{
-    width:9px;
-    height:9px;
-    border:0;
-    border-radius:50%;
-    background:rgba(255,255,255,.45);
-    cursor:pointer;
-}
-
-.slider-dot.active{
-    background:#fff;
-    transform:scale(1.2);
-}
-
-/* NEWS GRID */
-
-.news-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:18px;
-}
-
-.news-card{
-    background:#fff;
+.category-section{
+    background:var(--panel);
     border:1px solid var(--border);
-    border-radius:7px;
+    border-radius:16px;
+    margin-bottom:20px;
     overflow:hidden;
-    transition:.25s;
+    box-shadow:var(--shadow);
 }
 
-.news-card:hover{
-    transform:translateY(-3px);
-    box-shadow:0 10px 28px rgba(0,0,0,.08);
-}
-
-.news-image{
-    height:165px;
-    background:
-        linear-gradient(135deg,#234d78,#91a9c1);
-}
-
-.news-content{
-    padding:17px;
-}
-
-.mini-cat{
-    color:var(--kirmizi);
-    font-size:10px;
-    font-weight:900;
-    letter-spacing:.5px;
-    margin-bottom:8px;
-}
-
-.news-content h3{
-    font-family:"Playfair Display",serif;
-    font-size:18px;
-    line-height:1.25;
-    margin-bottom:8px;
-}
-
-.news-content p{
-    color:var(--gri);
-    font-size:12px;
-    line-height:1.55;
-}
-
-/* YORUM */
-
-.commentary{
-    background:var(--lacivert);
-    color:#fff;
-    border-radius:8px;
-    padding:35px;
-    display:grid;
-    grid-template-columns:1fr 2fr;
-    gap:35px;
-}
-
-.commentary-label{
-    color:#9db9d7;
-    font-size:10px;
-    font-weight:900;
-    letter-spacing:1.5px;
-}
-
-.commentary h2{
-    font-family:"Playfair Display",serif;
-    font-size:34px;
-    margin-top:8px;
-}
-
-.commentary-text{
-    border-left:1px solid rgba(255,255,255,.2);
-    padding-left:35px;
-}
-
-.commentary-text h3{
-    font-family:"Playfair Display",serif;
-    font-size:25px;
-    margin-bottom:10px;
-}
-
-.commentary-text p{
-    color:#d9e4ef;
-    font-size:14px;
-    line-height:1.7;
-}
-
-/* SPORTS */
-
-.sports-box{
-    background:#fff;
-    border:1px solid var(--border);
-    border-radius:8px;
-    padding:24px;
-}
-
-.sports-layout{
-    display:grid;
-    grid-template-columns:2fr 1fr;
-    gap:24px;
-}
-
-.sports-news{
-    padding-right:24px;
-    border-right:1px solid var(--border);
-}
-
-.sports-news h3{
-    font-family:"Playfair Display",serif;
-    font-size:27px;
-    margin:8px 0;
-}
-
-.sports-news p{
-    color:var(--gri);
-    font-size:13px;
-    line-height:1.6;
-}
-
-/* SPOR SAYFASI YÖNLENDİRME */
-.sports-link-card{
-    background:linear-gradient(135deg,#081b33,#123f73);
-    color:#fff;
-    border-radius:10px;
-    padding:24px;
-    position:relative;
-    overflow:hidden;
-}
-.sports-link-card:after{
-    content:"⚽";
-    position:absolute;
-    right:-12px;
-    bottom:-25px;
-    font-size:100px;
-    opacity:.08;
-}
-.sports-link-card .prediction-label{
-    color:#8ed081;
-    font-size:10px;
-    font-weight:900;
-    letter-spacing:1px;
-}
-.sports-link-card h3{
-    font-family:"Playfair Display",serif;
-    font-size:21px;
-    margin:9px 0;
-}
-.sports-link-card p{
-    color:#d9e4ef;
-    font-size:12px;
-    line-height:1.6;
-}
-.sport-page-button{
-    display:inline-block;
-    margin-top:16px;
-    padding:11px 15px;
-    background:#12b76a;
-    color:#fff;
-    border-radius:5px;
-    font-size:11px;
-    font-weight:900;
-    transition:.2s;
-}
-.sport-page-button:hover{
-    transform:translateY(-2px);
-    box-shadow:0 8px 20px rgba(18,183,106,.25);
-}
-/* TWO COLUMN */
-
-.two-columns{
-    display:grid;
-    grid-template-columns:2fr 1fr;
-    gap:24px;
-}
-
-/* GÜNÜN KONUSU */
-
-.topic{
-    background:#fff;
-    border:1px solid var(--border);
-    border-radius:8px;
-    padding:25px;
-}
-
-.topic-label{
-    color:var(--kirmizi);
-    font-size:10px;
-    font-weight:900;
-    letter-spacing:1px;
-}
-
-.topic h3{
-    font-family:"Playfair Display",serif;
-    font-size:28px;
-    line-height:1.2;
-    margin:10px 0;
-}
-
-.topic p{
-    color:var(--gri);
-    font-size:14px;
-    line-height:1.7;
-}
-
-/* EN ÇOK OKUNAN */
-
-.most-read{
-    background:#fff;
-    border:1px solid var(--border);
-    border-radius:8px;
-    padding:22px;
-}
-
-.read-item{
+.category-header{
+    min-height:72px;
+    padding:0 22px;
     display:flex;
-    gap:13px;
-    padding:13px 0;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    background:
+        linear-gradient(90deg,rgba(37,99,235,.08),transparent);
     border-bottom:1px solid var(--border);
 }
 
-.read-item:last-child{
-    border-bottom:0;
+.category-title{
+    display:flex;
+    align-items:center;
+    gap:12px;
 }
 
-.read-number{
-    font-size:24px;
-    font-weight:900;
-    color:#d0d5dd;
+.category-icon{
+    width:42px;
+    height:42px;
+    border-radius:10px;
+    display:grid;
+    place-items:center;
+    background:#17213a;
+    color:#60a5fa;
+    font-size:18px;
 }
 
-.read-item h3{
-    font-size:13px;
-    line-height:1.4;
+.category-title h2{
+    margin:0;
+    font-size:19px;
 }
 
-/* POLL */
-
-.poll{
-    background:#fff;
-    border:1px solid var(--border);
-    border-radius:8px;
-    padding:26px;
-}
-
-.poll h3{
-    font-family:"Playfair Display",serif;
-    font-size:25px;
-    margin-bottom:8px;
-}
-
-.poll p{
-    color:var(--gri);
-    font-size:13px;
-    margin-bottom:18px;
-}
-
-.poll-option{
+.category-title span{
     display:block;
-    border:1px solid var(--border);
-    padding:12px;
-    border-radius:5px;
-    margin-bottom:8px;
-    font-size:13px;
+    margin-top:3px;
+    font-size:11px;
+    color:var(--muted);
+}
+
+.add-news-btn{
+    border:0;
+    background:var(--blue);
+    color:#fff;
+    padding:11px 17px;
+    border-radius:9px;
+    font-weight:700;
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.add-news-btn:hover{
+    background:var(--blue2);
+}
+
+/* =========================
+   ADD FORM
+========================= */
+
+.add-form{
+    display:none;
+    padding:22px;
+    background:#0c111c;
+    border-bottom:1px solid var(--border);
+}
+
+.add-form.open{
+    display:block;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:280px 1fr;
+    gap:22px;
+}
+
+.image-area{
+    min-width:0;
+}
+
+.image-upload{
+    position:relative;
+    min-height:245px;
+    border:1px dashed #3a465d;
+    border-radius:13px;
+    background:#101622;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    transition:.2s;
+}
+
+.image-upload:hover{
+    border-color:var(--blue);
+}
+
+.image-upload input{
+    position:absolute;
+    inset:0;
+    opacity:0;
     cursor:pointer;
 }
 
-.poll-option:hover{
-    border-color:var(--mavi);
+.image-placeholder{
+    text-align:center;
+    color:#8490a4;
+    padding:20px;
 }
 
-/* UPDATE */
-
-.update{
-    display:flex;
-    justify-content:flex-end;
-    align-items:center;
-    gap:7px;
-    color:#667085;
-    font-size:11px;
-    margin-top:20px;
+.image-placeholder i{
+    display:block;
+    font-size:38px;
+    margin-bottom:12px;
+    color:#52617a;
 }
 
-.update-dot{
-    width:7px;
-    height:7px;
+.image-preview{
+    display:none;
+    width:100%;
+    height:100%;
+    min-height:245px;
+    object-fit:cover;
+}
+
+.image-preview.show{
+    display:block;
+}
+
+.remove-image{
+    display:none;
+    position:absolute;
+    top:10px;
+    right:10px;
+    width:34px;
+    height:34px;
+    border:0;
     border-radius:50%;
-    background:#12b76a;
-}
-
-/* FOOTER */
-
-footer{
-    background:#061426;
+    background:rgba(220,38,38,.95);
     color:#fff;
-    padding:42px 0;
+    z-index:3;
 }
 
-.footer-inner{
-    width:94%;
-    max-width:1400px;
-    margin:auto;
+.remove-image.show{
+    display:block;
+}
+
+.form-fields{
+    display:grid;
+    gap:14px;
+}
+
+.field{
+    display:grid;
+    gap:7px;
+}
+
+.field label{
+    font-size:12px;
+    font-weight:700;
+    color:#cbd3df;
+}
+
+.field input,
+.field textarea,
+.field select{
+    width:100%;
+    background:#111827;
+    color:#fff;
+    border:1px solid #2b3548;
+    border-radius:9px;
+    padding:12px 13px;
+    outline:none;
+    transition:.2s;
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus{
+    border-color:var(--blue);
+    box-shadow:0 0 0 3px rgba(37,99,235,.12);
+}
+
+.field textarea{
+    resize:vertical;
+    min-height:105px;
+    line-height:1.6;
+}
+
+.field textarea.content{
+    min-height:220px;
+}
+
+.two-fields{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+}
+
+.options{
     display:flex;
-    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:3px;
 }
 
-.footer-brand strong{
-    font-size:20px;
+.option{
+    position:relative;
 }
 
-.footer-brand p{
-    margin-top:7px;
-    color:#9eb0c5;
-    font-size:11px;
+.option input{
+    position:absolute;
+    opacity:0;
 }
 
-.footer-links{
+.option label{
     display:flex;
-    gap:20px;
-    color:#cbd5e1;
+    align-items:center;
+    gap:8px;
+    background:#111827;
+    border:1px solid #2b3548;
+    padding:9px 12px;
+    border-radius:8px;
+    cursor:pointer;
+    color:#b7c0ce;
     font-size:12px;
 }
 
-/* MOBİL */
+.option input:checked + label{
+    background:rgba(37,99,235,.15);
+    border-color:var(--blue);
+    color:#fff;
+}
 
-@media(max-width:1100px){
+.option input:checked + label i{
+    color:#60a5fa;
+}
 
-    .nav{
-        gap:12px;
-        font-size:11px;
+.form-actions{
+    display:flex;
+    justify-content:flex-end;
+    gap:10px;
+    margin-top:8px;
+}
+
+.btn{
+    border:1px solid var(--border);
+    border-radius:9px;
+    padding:11px 17px;
+    font-weight:700;
+}
+
+.btn-cancel{
+    background:#151b27;
+    color:#c8d0dc;
+}
+
+.btn-save{
+    background:var(--green);
+    border-color:var(--green);
+    color:#fff;
+}
+
+.btn-save:hover{
+    filter:brightness(1.08);
+}
+
+/* =========================
+   NEWS LIST
+========================= */
+
+.news-list{
+    padding:20px 22px;
+}
+
+.news-empty{
+    padding:35px 20px;
+    text-align:center;
+    border:1px dashed #303b50;
+    border-radius:12px;
+    color:#727f93;
+}
+
+.news-empty i{
+    display:block;
+    font-size:28px;
+    margin-bottom:10px;
+}
+
+.news-item{
+    display:grid;
+    grid-template-columns:180px 1fr auto;
+    gap:18px;
+    padding:15px;
+    background:#0d131e;
+    border:1px solid #252f42;
+    border-radius:13px;
+    margin-bottom:12px;
+}
+
+.news-item:last-child{
+    margin-bottom:0;
+}
+
+.news-image{
+    width:180px;
+    height:125px;
+    border-radius:9px;
+    overflow:hidden;
+    background:#151c2a;
+}
+
+.news-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.news-details{
+    min-width:0;
+}
+
+.news-meta{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:6px;
+    margin-bottom:8px;
+}
+
+.badge{
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    padding:4px 7px;
+    border-radius:5px;
+    font-size:9px;
+    font-weight:800;
+    letter-spacing:.4px;
+}
+
+.badge-category{
+    background:rgba(37,99,235,.15);
+    color:#60a5fa;
+}
+
+.badge-published{
+    background:rgba(22,163,74,.15);
+    color:#4ade80;
+}
+
+.badge-draft{
+    background:rgba(148,163,184,.12);
+    color:#94a3b8;
+}
+
+.badge-slider{
+    background:rgba(124,58,237,.15);
+    color:#a78bfa;
+}
+
+.badge-featured{
+    background:rgba(245,158,11,.15);
+    color:#fbbf24;
+}
+
+.badge-breaking{
+    background:rgba(220,38,38,.15);
+    color:#f87171;
+}
+
+.news-details h3{
+    margin:0 0 7px;
+    font-family:"Playfair Display",serif;
+    font-size:20px;
+    line-height:1.25;
+}
+
+.news-details p{
+    margin:0;
+    color:#909bad;
+    font-size:12px;
+    line-height:1.55;
+    display:-webkit-box;
+    -webkit-line-clamp:2;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+}
+
+.news-date{
+    margin-top:9px;
+    color:#667287;
+    font-size:10px;
+}
+
+.news-actions{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+    justify-content:center;
+}
+
+.action-btn{
+    border:1px solid #2c374b;
+    background:#141b28;
+    color:#cbd5e1;
+    border-radius:7px;
+    padding:8px 11px;
+    font-size:11px;
+    white-space:nowrap;
+}
+
+.action-btn:hover{
+    border-color:var(--blue);
+    color:#fff;
+}
+
+.action-btn.edit:hover{
+    background:rgba(37,99,235,.15);
+}
+
+.action-btn.delete:hover{
+    background:rgba(220,38,38,.15);
+    border-color:var(--red);
+    color:#f87171;
+}
+
+/* =========================
+   EDIT MODAL
+========================= */
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:500;
+    background:rgba(0,0,0,.78);
+    backdrop-filter:blur(7px);
+    padding:25px;
+    overflow-y:auto;
+}
+
+.modal.show{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.modal-box{
+    width:100%;
+    max-width:950px;
+    background:#0e141f;
+    border:1px solid var(--border);
+    border-radius:16px;
+    box-shadow:0 30px 80px rgba(0,0,0,.5);
+    overflow:hidden;
+}
+
+.modal-header{
+    padding:17px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    border-bottom:1px solid var(--border);
+}
+
+.modal-header h2{
+    margin:0;
+    font-size:18px;
+}
+
+.modal-close{
+    width:35px;
+    height:35px;
+    border:1px solid var(--border);
+    background:#151b27;
+    color:#fff;
+    border-radius:8px;
+}
+
+.modal-body{
+    padding:20px;
+}
+
+/* =========================
+   TOAST
+========================= */
+
+.toast{
+    position:fixed;
+    right:25px;
+    bottom:25px;
+    z-index:1000;
+    min-width:280px;
+    max-width:400px;
+    background:#111827;
+    border:1px solid #334155;
+    border-left:4px solid var(--green);
+    color:#fff;
+    padding:14px 17px;
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    transform:translateY(30px);
+    opacity:0;
+    pointer-events:none;
+    transition:.25s;
+}
+
+.toast.show{
+    transform:translateY(0);
+    opacity:1;
+}
+
+.toast.error{
+    border-left-color:var(--red);
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:900px){
+
+    .page-intro{
+        flex-direction:column;
+        align-items:flex-start;
     }
 
-    .news-grid{
-        grid-template-columns:repeat(2,1fr);
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .news-item{
+        grid-template-columns:130px 1fr;
+    }
+
+    .news-image{
+        width:130px;
+        height:100px;
+    }
+
+    .news-actions{
+        grid-column:1/-1;
+        flex-direction:row;
+        flex-wrap:wrap;
+        justify-content:flex-start;
     }
 
 }
 
-@media(max-width:750px){
+@media(max-width:650px){
 
     .topbar-inner{
         justify-content:center;
+        padding:0 12px;
     }
 
     .topbar-inner span:last-child{
@@ -693,804 +837,865 @@ footer{
     }
 
     .header-inner{
-        min-height:72px;
+        min-height:70px;
+        padding:0 14px;
     }
 
     .logo-image{
-        width:43px;
-        height:43px;
+        width:40px;
+        height:40px;
     }
 
     .logo-text strong{
-        font-size:18px;
+        font-size:17px;
     }
 
     .logo-text span{
-        font-size:8px;
+        font-size:7px;
     }
 
-    .nav{
+    .header-actions .header-btn span{
         display:none;
     }
 
-    .gundem-slider{
-        min-height:510px;
+    .header-btn{
+        width:40px;
+        height:40px;
+        padding:0;
+        display:grid;
+        place-items:center;
     }
 
-    .slide{
-        grid-template-columns:1fr;
+    .container{
+        padding:20px 12px 60px;
     }
 
-    .slide-image{
-        min-height:180px;
-    }
-
-    .slide-content{
-        padding:25px;
-    }
-
-    .slide-content h1{
+    .page-intro h1{
         font-size:29px;
     }
 
-    .news-grid{
+    .dashboard-info{
+        width:100%;
+        display:grid;
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .info-box{
+        min-width:0;
+    }
+
+    .category-header{
+        padding:13px;
+    }
+
+    .category-title h2{
+        font-size:16px;
+    }
+
+    .category-title span{
+        font-size:9px;
+    }
+
+    .category-icon{
+        width:36px;
+        height:36px;
+    }
+
+    .add-news-btn{
+        padding:9px 11px;
+        font-size:10px;
+    }
+
+    .add-news-btn span{
+        display:none;
+    }
+
+    .add-form{
+        padding:13px;
+    }
+
+    .two-fields{
         grid-template-columns:1fr;
     }
 
-    .commentary{
-        grid-template-columns:1fr;
-        gap:20px;
+    .news-list{
+        padding:13px;
     }
 
-    .commentary-text{
-        border-left:0;
-        border-top:1px solid rgba(255,255,255,.2);
-        padding-left:0;
-        padding-top:20px;
-    }
-
-    .sports-layout{
+    .news-item{
         grid-template-columns:1fr;
     }
 
-    .sports-news{
-        border-right:0;
-        border-bottom:1px solid var(--border);
-        padding-right:0;
-        padding-bottom:20px;
+    .news-image{
+        width:100%;
+        height:180px;
     }
 
-    .two-columns{
-        grid-template-columns:1fr;
+    .news-details h3{
+        font-size:18px;
     }
 
-    .footer-inner{
+    .news-actions{
+        grid-column:auto;
+    }
+
+    .action-btn{
+        flex:1;
+    }
+
+    .form-actions{
         flex-direction:column;
-        gap:25px;
     }
 
-    .footer-links{
-        flex-wrap:wrap;
+    .form-actions button{
+        width:100%;
+    }
+
+    .modal{
+        padding:10px;
     }
 
 }
 
-</style>
 
-<style>
-.firebase-news-card{cursor:pointer}
-.firebase-modal-backdrop{
-    position:fixed;inset:0;z-index:9999;background:rgba(3,10,20,.82);
-    backdrop-filter:blur(7px);display:flex;align-items:center;justify-content:center;padding:20px;
-}
-.firebase-modal-box{
-    width:min(900px,100%);max-height:90vh;overflow:auto;background:#fff;
-    border-radius:10px;box-shadow:0 30px 80px rgba(0,0,0,.45);position:relative;
-}
-.firebase-modal-close{
-    position:absolute;right:14px;top:14px;z-index:2;width:38px;height:38px;
-    border:0;border-radius:50%;background:rgba(6,20,38,.85);color:#fff;font-size:25px;cursor:pointer;
-}
-.firebase-modal-image{
-    height:300px;background:#dbe3ec center/cover no-repeat;
-}
-.firebase-modal-body{padding:30px}
-.firebase-modal-cat{color:#d71920;font-size:11px;font-weight:900;letter-spacing:1px;margin-bottom:10px}
-.firebase-modal-body h2{font-family:"Playfair Display",serif;font-size:32px;line-height:1.15;margin:0 0 10px;color:#081b33}
-.firebase-modal-date{color:#667085;font-size:11px;margin-bottom:18px}
-.firebase-modal-summary{font-size:16px;font-weight:700;line-height:1.6;color:#334155;border-left:4px solid #123f73;padding-left:14px}
-.firebase-modal-content{font-size:14px;line-height:1.8;color:#344054;margin-top:18px;white-space:normal}
-@media(max-width:750px){
- .firebase-modal-backdrop{padding:10px}
- .firebase-modal-image{height:190px}
- .firebase-modal-body{padding:20px}
- .firebase-modal-body h2{font-size:25px}
-}
-
-.firebase-analysis{margin-top:22px;padding:18px;border-left:4px solid #123f73;background:#f4f7fb;border-radius:6px;}
-.firebase-analysis h3{margin:0 0 8px;color:#123f73;font-size:12px;letter-spacing:.8px;}
-.firebase-analysis p{margin:0;color:#344054;line-height:1.8;font-size:14px;}
+/* =========================
+   FIREBASE ADMIN LOGIN
+========================= */
+#adminApp{display:none;}
+.auth-overlay{position:fixed;inset:0;z-index:99999;display:grid;place-items:center;background:radial-gradient(circle at top right,rgba(37,99,235,.18),transparent 35%),#05070c;padding:20px;}
+.auth-card{width:min(460px,100%);background:#101521;border:1px solid #273044;border-radius:18px;box-shadow:0 30px 100px rgba(0,0,0,.55);padding:30px;}
+.auth-brand{display:flex;align-items:center;gap:13px;margin-bottom:24px;}
+.auth-brand i{width:48px;height:48px;border-radius:12px;display:grid;place-items:center;background:#2563eb;color:#fff;font-size:21px;}
+.auth-brand h2{margin:0;font-family:"Playfair Display",serif;font-size:24px;}
+.auth-brand p{margin:4px 0 0;color:#98a2b3;font-size:11px;}
+.auth-field{display:grid;gap:7px;margin-bottom:14px;}
+.auth-field label{font-size:12px;font-weight:700;color:#cbd3df;}
+.auth-field input{width:100%;background:#0b101a;color:#fff;border:1px solid #2b3548;border-radius:9px;padding:13px;outline:none;}
+.auth-field input:focus{border-color:#2563eb;box-shadow:0 0 0 3px rgba(37,99,235,.12);}
+.auth-login{width:100%;border:0;background:#2563eb;color:#fff;padding:13px;border-radius:9px;font-weight:800;margin-top:5px;}
+.auth-login:disabled{opacity:.6;cursor:not-allowed;}
+.auth-message{min-height:20px;margin-top:12px;font-size:12px;color:#f87171;}
+.auth-note{margin:18px 0 0;padding:12px;border:1px solid #273044;border-radius:10px;color:#98a2b3;font-size:11px;line-height:1.6;}
+.auth-user{display:none;align-items:center;gap:10px;color:#98a2b3;font-size:11px;}
+.auth-user strong{color:#fff;}
+.logout-btn{border:1px solid #7f1d1d;background:#450a0a;color:#fecaca;padding:9px 12px;border-radius:8px;font-weight:700;cursor:pointer;}
+.firebase-status{display:none;margin:0 0 18px;padding:12px 14px;border:1px solid #273044;border-radius:10px;background:#0d131f;color:#9fb0c8;font-size:12px;}
+.firebase-status.ok{display:block;border-color:#14532d;color:#bbf7d0;background:#052e16;}
+.firebase-status.error{display:block;border-color:#7f1d1d;color:#fecaca;background:#450a0a;}
 </style>
 </head>
 
 <body>
+<div class="auth-overlay" id="authOverlay">
+  <div class="auth-card">
+    <div class="auth-brand">
+      <i class="fa-solid fa-lock"></i>
+      <div><h2>Gündem Yönetim Merkezi</h2><p>ŞAHİN UYMAZ • Yetkili giriş</p></div>
+    </div>
+    <form id="loginForm">
+      <div class="auth-field"><label for="loginEmail">E-POSTA</label><input id="loginEmail" type="email" autocomplete="username" required></div>
+      <div class="auth-field"><label for="loginPassword">ŞİFRE</label><input id="loginPassword" type="password" autocomplete="current-password" required></div>
+      <button class="auth-login" id="loginButton" type="submit">GİRİŞ YAP</button>
+      <div class="auth-message" id="loginMessage"></div>
+    </form>
+    <div class="auth-note">Bu panel yalnızca Firebase Authentication ile yetkilendirilmiş kullanıcı içindir. Ziyaretçiler bu panelden haber ekleyemez, düzenleyemez veya silemez.</div>
+  </div>
+</div>
 
-<!-- ÜST BİLGİ -->
+<div id="adminApp">
+
+<!-- =========================
+     TOP BAR
+========================= -->
 
 <div class="topbar">
     <div class="topbar-inner">
-        <span>ŞAHİN UYMAZ | Haber • Gündem • Yorum • Analiz</span>
-        <span id="date"></span>
+
+        <span>
+            ŞAHİN UYMAZ | GÜNDEM YÖNETİM MERKEZİ
+        </span>
+
+        <span id="currentDate"></span>
+
     </div>
 </div>
 
 
-<!-- HEADER -->
+<!-- =========================
+     HEADER
+========================= -->
 
 <header class="header">
 
     <div class="header-inner">
 
-        <a href="index.html" class="logo">
+        <a href="../index.html" class="logo">
 
-            <!-- LOGO -->
-            <img src="logo.png" class="logo-image" alt="Şahin UYMAZ">
+            <img
+                src="../logo.png"
+                class="logo-image"
+                alt="Şahin UYMAZ">
 
             <div class="logo-text">
+
                 <strong>ŞAHİN UYMAZ</strong>
-                <span>HABER • GÜNDEM • YORUM • ANALİZ</span>
+
+                <span>
+                    HABER • GÜNDEM • YORUM • ANALİZ
+                </span>
+
             </div>
 
         </a>
 
 
-        <nav class="nav">
-            <a href="#siyaset">Siyaset</a>
-            <a href="#ekonomi">Ekonomi</a>
-            <a href="#saglik">Sağlık</a>
-            <a href="spor.html" class="sport-nav">⚽ Spor</a>
-            <a href="#dunya">Dünya</a>
-            <a href="#toplum">Toplum</a>
-            <a href="#yorum">Yorum</a>
+        <div class="header-actions">
+            <div class="auth-user" id="authUser"><strong id="authUserEmail"></strong><button class="logout-btn" id="logoutButton" type="button">ÇIKIŞ</button></div>
 
-            <button class="search">⌕</button>
-        </nav>
+            <a
+                href="gundem.html"
+                class="header-btn"
+                target="_blank">
+
+                <i class="fa-solid fa-newspaper"></i>
+
+                <span>Gündem Sayfası</span>
+
+            </a>
+
+
+            <a
+                href="../index.html"
+                class="header-btn primary">
+
+                <i class="fa-solid fa-house"></i>
+
+                <span>Ana Sayfa</span>
+
+            </a>
+
+        </div>
 
     </div>
 
 </header>
 
 
-<!-- SON DAKİKA -->
-
-<div class="breaking">
-
-    <div class="breaking-inner">
-
-        <div class="breaking-label">
-            🔴 SON DAKİKA
-        </div>
-
-        <div class="breaking-text" id="breakingText">
-            Günün önemli gelişmeleri burada...
-        </div>
-
-    </div>
-
-</div>
-
+<!-- =========================
+     MAIN
+========================= -->
 
 <main class="container">
 
-
-<!-- =========================
-     GÜNDEM SLIDER
-========================= -->
-
-<div class="section-title">
-    <h2>Gündem</h2>
-    <a href="#">TÜM GÜNDEM HABERLERİ →</a>
-</div>
+<div class="firebase-status" id="firebaseStatus"></div>
 
 
-<section class="gundem-slider">
+    <!-- INTRO -->
 
-    <article class="slide active">
+    <section class="page-intro">
 
-        <div class="slide-image"></div>
+        <div>
 
-        <div class="slide-content">
-
-            <span class="slide-category">
-                GÜNDEM
-            </span>
-
-            <h1>
-                Türkiye'nin gündemindeki önemli gelişmeler
-            </h1>
+            <h1>Gündem Yönetim Merkezi</h1>
 
             <p>
-                Günün öne çıkan gelişmeleri, olayların arka planı
-                ve kamuoyuna yansımaları.
+                Haberleri kendi kategorilerinde hazırlayın,
+                kaydedin ve yönetin.
             </p>
 
-            <a href="#" class="read-more">
-                HABERİ OKU →
-            </a>
-
         </div>
 
-    </article>
 
+        <div class="dashboard-info">
 
-    <article class="slide">
-
-        <div class="slide-image"></div>
-
-        <div class="slide-content">
-
-            <span class="slide-category">
-                SON GELİŞME
-            </span>
-
-            <h1>
-                Günün en çok konuşulan konusu ne?
-            </h1>
-
-            <p>
-                Türkiye'nin gündemindeki gelişmeler farklı
-                yönleriyle değerlendiriliyor.
-            </p>
-
-            <a href="#" class="read-more">
-                DETAYLARI GÖR →
-            </a>
-
-        </div>
-
-    </article>
-
-
-    <article class="slide">
-
-        <div class="slide-image"></div>
-
-        <div class="slide-content">
-
-            <span class="slide-category">
-                ÖZEL HABER
-            </span>
-
-            <h1>
-                Gündemin arka planında neler yaşanıyor?
-            </h1>
-
-            <p>
-                Haberlerin yalnızca görünen kısmı değil,
-                arka planındaki gelişmeler.
-            </p>
-
-            <a href="#" class="read-more">
-                DEVAMINI OKU →
-            </a>
-
-        </div>
-
-    </article>
-
-
-    <div class="slider-controls">
-
-        <button class="slider-dot active" onclick="goSlide(0)"></button>
-        <button class="slider-dot" onclick="goSlide(1)"></button>
-        <button class="slider-dot" onclick="goSlide(2)"></button>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     SİYASET
-========================= -->
-
-<div class="section-title" id="siyaset">
-    <h2>🏛️ Siyaset</h2>
-    <a href="#">TÜM HABERLER →</a>
-</div>
-
-<section class="news-grid">
-
-    <article class="news-card">
-        <div class="news-image"></div>
-        <div class="news-content">
-            <div class="mini-cat">SİYASET</div>
-            <h3>Siyasi gündemde günün öne çıkan gelişmeleri</h3>
-            <p>Ankara'dan son gelişmeler ve gündemin ayrıntıları.</p>
-        </div>
-    </article>
-
-    <article class="news-card">
-        <div class="news-image"></div>
-        <div class="news-content">
-            <div class="mini-cat">ANKARA</div>
-            <h3>Meclis gündeminde dikkat çeken başlıklar</h3>
-            <p>Siyasetin gündemindeki önemli gelişmeler.</p>
-        </div>
-    </article>
-
-    <article class="news-card">
-        <div class="news-image"></div>
-        <div class="news-content">
-            <div class="mini-cat">POLİTİKA</div>
-            <h3>Siyasette yeni dönemin dikkat çeken gelişmeleri</h3>
-            <p>Gündemin arka planına ilişkin değerlendirmeler.</p>
-        </div>
-    </article>
-
-    <article class="news-card">
-        <div class="news-image"></div>
-        <div class="news-content">
-            <div class="mini-cat">ANALİZ</div>
-            <h3>Siyasi gelişmeler vatandaş için ne ifade ediyor?</h3>
-            <p>Gelişmelere farklı bir bakış.</p>
-        </div>
-    </article>
-
-</section>
-
-
-<!-- =========================
-     EKONOMİ
-========================= -->
-
-<div class="section-title" id="ekonomi">
-    <h2>💰 Ekonomi</h2>
-    <a href="#">TÜM HABERLER →</a>
-</div>
-
-<section class="news-grid">
-
-    <article class="news-card">
-        <div class="news-image"></div>
-        <div class="news-content">
-            <div class="mini-cat">EKONOMİ</div>
-            <h3>Ekonomide günün öne çıkan gelişmeleri</h3>
-            <p>Ekonomi gündemindeki önemli gelişmeler.</p>
-        </div>
-    </article>
-
-    <article class="news-card">
-        <div class="news-image"></div>
-        <div class="news-content">
-            <div class="mini-cat">PİYASALAR</div>
-            <h3>Piyasalarda bugün dikkat çeken gelişmeler</h3>
-            <p>Ekonomi ve piyasalardan son gelişmeler.</p>
-        </div>
-    </article>
-
-    <article class="news-card">
-        <div class="news-image"></div>
-        <div class="news-content">
-            <div class="mini-cat">VATANDAŞ</div>
-            <h3>Ekonomik gelişmeler vatandaşı nasıl etkiliyor?</h3>
-            <p>Ekonominin günlük yaşama yansımaları.</p>
-        </div>
-    </article>
-
-    <article class="news-card">
-        <div class="news-image"></div>
-        <div class="news-content">
-            <div class="mini-cat">ANALİZ</div>
-            <h3>Ekonomide rakamların arkasında ne var?</h3>
-            <p>Ekonomik gelişmelere analizli bakış.</p>
-        </div>
-    </article>
-
-</section>
-
-
-<!-- =========================
-     SAĞLIK
-========================= -->
-
-<div class="section-title" id="saglik">
-    <h2>🏥 Sağlık</h2>
-    <a href="#">TÜM HABERLER →</a>
-</div>
-
-<section class="news-grid">
-
-    <article class="news-card">
-        <div class="news-image"></div>
-        <div class="news-content">
-            <div class="mini-cat">SAĞLIK</div>
-            <h3>Sağlık gündeminden önemli gelişmeler</h3>
-            <p>Sağlık alanındaki güncel gelişmeler.</p>
-        </div>
-    </article>
-
-    <article class="news-card">
-        <div class="news-image"></div>
-        <div class="news-content">
-            <div class="mini-cat">BİLİM</div>
-            <h3>Bilim dünyasından dikkat çeken gelişmeler</h3>
-            <p>Bilim ve sağlık alanından haberler.</p>
-        </div>
-    </article>
-
-    <article class="news-card">
-        <div class="news-image"></div>
-        <div class="news-content">
-            <div class="mini-cat">TOPLUM</div>
-            <h3>Sağlık hizmetlerinde vatandaşın gündemi</h3>
-            <p>Vatandaşların sağlık gündemi.</p>
-        </div>
-    </article>
-
-    <article class="news-card">
-        <div class="news-image"></div>
-        <div class="news-content">
-            <div class="mini-cat">YAŞAM</div>
-            <h3>Günlük yaşamda sağlık ve yaşam kalitesi</h3>
-            <p>Yaşama ilişkin dikkat çeken bilgiler.</p>
-        </div>
-    </article>
-
-</section>
-
-
-<!-- =========================
-     SPOR
-========================= -->
-
-<div class="section-title" id="spor">
-    <h2>⚽ Spor</h2>
-    <a href="#">TÜM SPOR HABERLERİ →</a>
-</div>
-
-
-<section class="sports-box">
-
-    <div class="sports-layout">
-
-        <article class="sports-news">
-
-            <div class="mini-cat">
-                SPOR GÜNDEMİ
+            <div class="info-box">
+                <span>TOPLAM HABER</span>
+                <strong id="totalNews">0</strong>
             </div>
 
-            <h3>
-                Sporda günün öne çıkan gelişmeleri
-            </h3>
-
-            <p>
-                Futbol, basketbol ve diğer spor branşlarından günün önemli haberleri.
-                <br><br><strong>⚽ Maç yorumları ve tahminler Spor menümüzde.</strong>
-            </p>
-
-        </article>
-        <aside class="sports-link-card">
-            <div class="prediction-label">⚽ ŞAHİN UYMAZ SPOR</div>
-            <h3>Maç yorumları ve özel tahminler</h3>
-            <p>
-                Futbol maçlarına ilişkin özel yorumlar, maç öncesi analizler
-                ve tahmin seçenekleri için Spor sayfamızı ziyaret edebilirsiniz.
-            </p>
-            <a class="sport-page-button" href="spor.html">
-                SPOR MENÜSÜNE GİT →
-            </a>
-        </aside>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     DÜNYA
-========================= -->
-
-<div class="section-title" id="dunya">
-    <h2>🌍 Dünya</h2>
-    <a href="#">TÜM HABERLER →</a>
-</div>
-
-<section class="news-grid">
-
-    <article class="news-card">
-        <div class="news-image"></div>
-        <div class="news-content">
-            <div class="mini-cat">DÜNYA</div>
-            <h3>Dünyada günün öne çıkan gelişmeleri</h3>
-            <p>Uluslararası gündemden önemli haberler.</p>
-        </div>
-    </article>
-
-    <article class="news-card">
-        <div class="news-image"></div>
-        <div class="news-content">
-            <div class="mini-cat">DIŞ POLİTİKA</div>
-            <h3>Bölgesel gelişmeler yakından izleniyor</h3>
-            <p>Dış politika gündeminden gelişmeler.</p>
-        </div>
-    </article>
-
-    <article class="news-card">
-        <div class="news-image"></div>
-        <div class="news-content">
-            <div class="mini-cat">ULUSLARARASI</div>
-            <h3>Dünya gündemindeki kritik başlıklar</h3>
-            <p>Uluslararası gelişmelerden son bilgiler.</p>
-        </div>
-    </article>
-
-    <article class="news-card">
-        <div class="news-image"></div>
-        <div class="news-content">
-            <div class="mini-cat">ANALİZ</div>
-            <h3>Dünyadaki gelişmeler Türkiye'yi nasıl etkiliyor?</h3>
-            <p>Gelişmelere Türkiye açısından bakış.</p>
-        </div>
-    </article>
-
-</section>
-
-
-<!-- =========================
-     TOPLUM
-========================= -->
-
-<div class="section-title" id="toplum">
-    <h2>👥 Toplum</h2>
-    <a href="#">TÜM HABERLER →</a>
-</div>
-
-<section class="news-grid">
-
-    <article class="news-card">
-        <div class="news-image"></div>
-        <div class="news-content">
-            <div class="mini-cat">TOPLUM</div>
-            <h3>Vatandaşın gündeminde bugün ne var?</h3>
-            <p>Toplumdan ve vatandaşın gündeminden gelişmeler.</p>
-        </div>
-    </article>
-
-    <article class="news-card">
-        <div class="news-image"></div>
-        <div class="news-content">
-            <div class="mini-cat">EĞİTİM</div>
-            <h3>Eğitim gündeminden önemli gelişmeler</h3>
-            <p>Öğrenci ve aileleri ilgilendiren gelişmeler.</p>
-        </div>
-    </article>
-
-    <article class="news-card">
-        <div class="news-image"></div>
-        <div class="news-content">
-            <div class="mini-cat">VATANDAŞ</div>
-            <h3>Vatandaş ne düşünüyor?</h3>
-            <p>Sahadan gelen görüşler ve değerlendirmeler.</p>
-        </div>
-    </article>
-
-    <article class="news-card">
-        <div class="news-image"></div>
-        <div class="news-content">
-            <div class="mini-cat">YAŞAM</div>
-            <h3>Toplumsal yaşamdan dikkat çeken gelişmeler</h3>
-            <p>Gündelik hayatın içinden haberler.</p>
-        </div>
-    </article>
-
-</section>
-
-
-<!-- =========================
-     ŞAHİN UYMAZ YORUMLUYOR
-========================= -->
-
-<div class="section-title" id="yorum">
-    <h2>✍️ Şahin UYMAZ Yorumluyor</h2>
-</div>
-
-
-<section class="commentary">
-
-    <div>
-
-        <div class="commentary-label">
-            GÜNÜN YORUMU
-        </div>
-
-        <h2>
-            Şahin UYMAZ
-        </h2>
-
-    </div>
-
-
-    <div class="commentary-text">
-
-        <h3>
-            Gündemin arka planında ne var?
-        </h3>
-
-        <p>
-            Güncel gelişmeleri yalnızca aktarmak değil;
-            olayların nedenlerini, sonuçlarını ve vatandaş
-            üzerindeki etkilerini değerlendirmek.
-        </p>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     GÜNÜN KONUSU + ÇOK OKUNAN
-========================= -->
-
-<div class="two-columns">
-
-
-    <div>
-
-        <div class="section-title">
-            <h2>📊 Günün Konusu</h2>
-        </div>
-
-        <article class="topic">
-
-            <div class="topic-label">
-                BUGÜNÜN ANA GÜNDEMİ
+            <div class="info-box">
+                <span>YAYINDA</span>
+                <strong id="publishedNews">0</strong>
             </div>
 
-            <h3>
-                Türkiye bugün en çok neyi konuşuyor?
-            </h3>
-
-            <p>
-                Günün en önemli konusu burada ayrıntılı şekilde
-                ele alınacak. Haber, arka plan, değerlendirme
-                ve vatandaş açısından sonuçları tek yerde.
-            </p>
-
-        </article>
-
-    </div>
-
-
-    <div>
-
-        <div class="section-title">
-            <h2>🔥 Günün En Çok Okunanları</h2>
-        </div>
-
-        <div class="most-read">
-
-            <div class="read-item">
-                <div class="read-number">01</div>
-                <h3>Günün en çok merak edilen gelişmesi</h3>
+            <div class="info-box">
+                <span>SLIDER</span>
+                <strong id="sliderNews">0</strong>
             </div>
 
-            <div class="read-item">
-                <div class="read-number">02</div>
-                <h3>Siyaset gündemindeki önemli gelişme</h3>
-            </div>
-
-            <div class="read-item">
-                <div class="read-number">03</div>
-                <h3>Ekonomide vatandaşın merak ettiği konu</h3>
-            </div>
-
-            <div class="read-item">
-                <div class="read-number">04</div>
-                <h3>Şahin UYMAZ'ın günün yorumu</h3>
-            </div>
-
-            <div class="read-item">
-                <div class="read-number">05</div>
-                <h3>Günün dikkat çeken haberi</h3>
+            <div class="info-box">
+                <span>SON DAKİKA</span>
+                <strong id="breakingNews">0</strong>
             </div>
 
         </div>
 
-    </div>
-
-</div>
+    </section>
 
 
-<!-- =========================
-     OKUR ANKETİ
-========================= -->
+    <!-- CATEGORY QUICK NAV -->
 
-<div class="section-title">
-    <h2>❓ Okur Anketi</h2>
-</div>
+    <nav class="category-nav">
 
+        <button
+            class="active"
+            onclick="scrollToCategory('gundem')">
 
-<section class="poll">
+            Gündem
 
-    <h3>
-        Sizce günün en önemli gündem maddesi hangisi?
-    </h3>
+        </button>
 
-    <p>
-        Görüşünüzü paylaşın.
-    </p>
+        <button onclick="scrollToCategory('siyaset')">
+            Siyaset
+        </button>
 
-    <label class="poll-option">
-        <input type="radio" name="poll">
-        Ekonomi
-    </label>
+        <button onclick="scrollToCategory('ekonomi')">
+            Ekonomi
+        </button>
 
-    <label class="poll-option">
-        <input type="radio" name="poll">
-        Siyaset
-    </label>
+        <button onclick="scrollToCategory('saglik')">
+            Sağlık
+        </button>
 
-    <label class="poll-option">
-        <input type="radio" name="poll">
-        Sağlık
-    </label>
+        <button onclick="scrollToCategory('spor')">
+            Spor
+        </button>
 
-    <label class="poll-option">
-        <input type="radio" name="poll">
-        Toplum
-    </label>
+        <button onclick="scrollToCategory('dunya')">
+            Dünya
+        </button>
 
-    <label class="poll-option">
-        <input type="radio" name="poll">
-        Dünya
-    </label>
+        <button onclick="scrollToCategory('toplum')">
+            Toplum
+        </button>
 
-</section>
+        <button onclick="scrollToCategory('yorum')">
+            Yorum
+        </button>
+
+    </nav>
 
 
-<!-- SON GÜNCELLEME -->
+    <!-- =========================
+         GÜNDEM
+    ========================= -->
 
-<div class="update">
+    <section
+        class="category-section"
+        id="category-gundem">
 
-    <span class="update-dot"></span>
+        <div class="category-header">
 
-    <span>
-        Son güncelleme:
-        <strong id="updateTime"></strong>
-    </span>
+            <div class="category-title">
 
-</div>
+                <div class="category-icon">
+                    <i class="fa-solid fa-newspaper"></i>
+                </div>
+
+                <div>
+
+                    <h2>Gündem</h2>
+
+                    <span>
+                        Ana gündem haberleri
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="add-news-btn"
+                onclick="toggleForm('gundem')">
+
+                <i class="fa-solid fa-plus"></i>
+
+                <span>HABER EKLE</span>
+
+            </button>
+
+        </div>
+
+
+        <div
+            class="add-form"
+            id="form-gundem">
+
+            <!-- FORM JS TARAFINDAN OLUŞTURULACAK -->
+
+        </div>
+
+
+        <div
+            class="news-list"
+            id="list-gundem">
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         SİYASET
+    ========================= -->
+
+    <section
+        class="category-section"
+        id="category-siyaset">
+
+        <div class="category-header">
+
+            <div class="category-title">
+
+                <div class="category-icon">
+                    <i class="fa-solid fa-landmark"></i>
+                </div>
+
+                <div>
+
+                    <h2>Siyaset</h2>
+
+                    <span>
+                        Siyasi gelişmeler ve politika
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="add-news-btn"
+                onclick="toggleForm('siyaset')">
+
+                <i class="fa-solid fa-plus"></i>
+
+                <span>HABER EKLE</span>
+
+            </button>
+
+        </div>
+
+
+        <div
+            class="add-form"
+            id="form-siyaset">
+
+        </div>
+
+
+        <div
+            class="news-list"
+            id="list-siyaset">
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         EKONOMİ
+    ========================= -->
+
+    <section
+        class="category-section"
+        id="category-ekonomi">
+
+        <div class="category-header">
+
+            <div class="category-title">
+
+                <div class="category-icon">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+
+                <div>
+
+                    <h2>Ekonomi</h2>
+
+                    <span>
+                        Ekonomi, finans ve piyasa haberleri
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="add-news-btn"
+                onclick="toggleForm('ekonomi')">
+
+                <i class="fa-solid fa-plus"></i>
+
+                <span>HABER EKLE</span>
+
+            </button>
+
+        </div>
+
+
+        <div
+            class="add-form"
+            id="form-ekonomi">
+
+        </div>
+
+
+        <div
+            class="news-list"
+            id="list-ekonomi">
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         SAĞLIK
+    ========================= -->
+
+    <section
+        class="category-section"
+        id="category-saglik">
+
+        <div class="category-header">
+
+            <div class="category-title">
+
+                <div class="category-icon">
+                    <i class="fa-solid fa-heart-pulse"></i>
+                </div>
+
+                <div>
+
+                    <h2>Sağlık</h2>
+
+                    <span>
+                        Sağlık ve yaşam haberleri
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="add-news-btn"
+                onclick="toggleForm('saglik')">
+
+                <i class="fa-solid fa-plus"></i>
+
+                <span>HABER EKLE</span>
+
+            </button>
+
+        </div>
+
+
+        <div
+            class="add-form"
+            id="form-saglik">
+
+        </div>
+
+
+        <div
+            class="news-list"
+            id="list-saglik">
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         SPOR
+    ========================= -->
+
+    <section
+        class="category-section"
+        id="category-spor">
+
+        <div class="category-header">
+
+            <div class="category-title">
+
+                <div class="category-icon">
+                    <i class="fa-solid fa-futbol"></i>
+                </div>
+
+                <div>
+
+                    <h2>Spor</h2>
+
+                    <span>
+                        Spor haberleri
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="add-news-btn"
+                onclick="toggleForm('spor')">
+
+                <i class="fa-solid fa-plus"></i>
+
+                <span>HABER EKLE</span>
+
+            </button>
+
+        </div>
+
+
+        <div
+            class="add-form"
+            id="form-spor">
+
+        </div>
+
+
+        <div
+            class="news-list"
+            id="list-spor">
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         DÜNYA
+    ========================= -->
+
+    <section
+        class="category-section"
+        id="category-dunya">
+
+        <div class="category-header">
+
+            <div class="category-title">
+
+                <div class="category-icon">
+                    <i class="fa-solid fa-earth-americas"></i>
+                </div>
+
+                <div>
+
+                    <h2>Dünya</h2>
+
+                    <span>
+                        Dünyadan gelişmeler
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="add-news-btn"
+                onclick="toggleForm('dunya')">
+
+                <i class="fa-solid fa-plus"></i>
+
+                <span>HABER EKLE</span>
+
+            </button>
+
+        </div>
+
+
+        <div
+            class="add-form"
+            id="form-dunya">
+
+        </div>
+
+
+        <div
+            class="news-list"
+            id="list-dunya">
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         TOPLUM
+    ========================= -->
+
+    <section
+        class="category-section"
+        id="category-toplum">
+
+        <div class="category-header">
+
+            <div class="category-title">
+
+                <div class="category-icon">
+                    <i class="fa-solid fa-people-group"></i>
+                </div>
+
+                <div>
+
+                    <h2>Toplum</h2>
+
+                    <span>
+                        Toplumsal gelişmeler
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="add-news-btn"
+                onclick="toggleForm('toplum')">
+
+                <i class="fa-solid fa-plus"></i>
+
+                <span>HABER EKLE</span>
+
+            </button>
+
+        </div>
+
+
+        <div
+            class="add-form"
+            id="form-toplum">
+
+        </div>
+
+
+        <div
+            class="news-list"
+            id="list-toplum">
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         YORUM
+    ========================= -->
+
+    <section
+        class="category-section"
+        id="category-yorum">
+
+        <div class="category-header">
+
+            <div class="category-title">
+
+                <div class="category-icon">
+                    <i class="fa-solid fa-comment-dots"></i>
+                </div>
+
+                <div>
+
+                    <h2>Yorum</h2>
+
+                    <span>
+                        Şahin UYMAZ yorumları ve analizleri
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="add-news-btn"
+                onclick="toggleForm('yorum')">
+
+                <i class="fa-solid fa-plus"></i>
+
+                <span>YAZI EKLE</span>
+
+            </button>
+
+        </div>
+
+
+        <div
+            class="add-form"
+            id="form-yorum">
+
+        </div>
+
+
+        <div
+            class="news-list"
+            id="list-yorum">
+
+        </div>
+
+    </section>
+
 
 </main>
 
 
-<!-- FOOTER -->
+<!-- =========================
+     EDIT MODAL
+========================= -->
 
-<footer>
+<div
+    class="modal"
+    id="editModal">
 
-    <div class="footer-inner">
+    <div class="modal-box">
 
-        <div class="footer-brand">
-            <strong>ŞAHİN UYMAZ</strong>
-            <p>Haber • Gündem • Yorum • Analiz</p>
+        <div class="modal-header">
+
+            <h2>
+                Haberi Düzenle
+            </h2>
+
+            <button
+                class="modal-close"
+                onclick="closeEditModal()">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
         </div>
 
-        <div class="footer-links">
-            <a href="#">Hakkımda</a>
-            <a href="#">İletişim</a>
-            <a href="#">Gizlilik</a>
-            <a href="#">KVKK</a>
+
+        <div
+            class="modal-body"
+            id="editModalBody">
+
         </div>
 
     </div>
 
-</footer>
+</div>
+
+
+<!-- TOAST -->
+
+<div
+    class="toast"
+    id="toast">
+
+</div>
 
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
-import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
+import { getDatabase, ref, push, set, update, remove, onValue } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
+import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBB5ZU8vHp1DyMgWYtyBwnPb24BymmH6JU",
@@ -1503,56 +1708,136 @@ const firebaseConfig = {
     measurementId: "G-EFD2XH97NG"
 };
 
-const app=initializeApp(firebaseConfig);
-const db=getDatabase(app);
-let allNews=[];
-let currentSlide=0;
-let slideTimer=null;
-let breakingTimer=null;
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+const auth = getAuth(app);
+const newsRef = ref(db, "news");
 
-const categoryLabels={gundem:"GÜNDEM",siyaset:"SİYASET",ekonomi:"EKONOMİ",saglik:"SAĞLIK",spor:"SPOR",dunya:"DÜNYA",toplum:"TOPLUM",yorum:"YORUM"};
+const categories = {
+    gundem:{title:"Gündem",label:"GÜNDEM"},
+    siyaset:{title:"Siyaset",label:"SİYASET"},
+    ekonomi:{title:"Ekonomi",label:"EKONOMİ"},
+    saglik:{title:"Sağlık",label:"SAĞLIK"},
+    spor:{title:"Spor",label:"SPOR"},
+    dunya:{title:"Dünya",label:"DÜNYA"},
+    toplum:{title:"Toplum",label:"TOPLUM"},
+    yorum:{title:"Yorum",label:"YORUM"}
+};
 
-function escapeHTML(value){return String(value??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");}
-function formatDate(value){if(!value)return "";const p=String(value).split("-");return p.length===3?`${p[2]}.${p[1]}.${p[0]}`:value;}
-function publishedNews(){return allNews.filter(n=>n&&(n.published===true||n.published==="true")).sort((a,b)=>String(b.newsDate||b.createdAt||"").localeCompare(String(a.newsDate||a.createdAt||"")));}
-function imageStyle(image){if(!image)return "";return `background-image:linear-gradient(90deg,rgba(8,27,51,.05),rgba(8,27,51,.75)),url("${String(image).replace(/"/g,'&quot;')}");background-size:cover;background-position:center;`;}
+let news=[];
+let toastTimer;
+let dataUnsubscribe=null;
 
-function openNews(item){
-    if(!item)return;
-    const old=document.getElementById("firebaseNewsModal");if(old)old.remove();
-    const sections=[];
-    if(item.summary)sections.push(`<p class="firebase-modal-summary">${escapeHTML(item.summary)}</p>`);
-    if(item.content)sections.push(`<div class="firebase-modal-content">${escapeHTML(item.content).replace(/\n/g,"<br>")}</div>`);
-    if(item.thought)sections.push(`<section class="firebase-analysis"><h3>YAZARIN DÜŞÜNCESİ</h3><p>${escapeHTML(item.thought).replace(/\n/g,"<br>")}</p></section>`);
-    if(item.analysis)sections.push(`<section class="firebase-analysis"><h3>ANALİZ</h3><p>${escapeHTML(item.analysis).replace(/\n/g,"<br>")}</p></section>`);
-    if(item.prediction)sections.push(`<section class="firebase-analysis"><h3>KİŞİSEL TAHMİN / ÖNGÖRÜ</h3><p>${escapeHTML(item.prediction).replace(/\n/g,"<br>")}</p></section>`);
-    const modal=document.createElement("div");modal.id="firebaseNewsModal";
-    modal.innerHTML=`<div class="firebase-modal-backdrop"><div class="firebase-modal-box"><button class="firebase-modal-close" aria-label="Kapat">×</button><div class="firebase-modal-image" style="${item.image?`background-image:url("${String(item.image).replace(/"/g,'&quot;')}");`:''}"></div><div class="firebase-modal-body"><div class="firebase-modal-cat">${escapeHTML(categoryLabels[item.category]||item.category||"HABER")}</div><h2>${escapeHTML(item.title)}</h2><div class="firebase-modal-date">${formatDate(item.newsDate)}${item.source?" • "+escapeHTML(item.source):""}</div>${sections.join("")}</div></div></div>`;
-    document.body.appendChild(modal);
-    const close=()=>modal.remove();modal.querySelector(".firebase-modal-close").onclick=close;modal.querySelector(".firebase-modal-backdrop").onclick=e=>{if(e.target===e.currentTarget)close();};
-    const esc=e=>{if(e.key==="Escape"){close();document.removeEventListener("keydown",esc);}};document.addEventListener("keydown",esc);
+const $=id=>document.getElementById(id);
+$('currentDate').textContent=new Date().toLocaleDateString('tr-TR',{day:'2-digit',month:'long',year:'numeric'});
+
+function todayForInput(){
+    const d=new Date();
+    return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
 }
+function escapeHTML(value){return String(value??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;');}
+function escapeAttribute(value){return escapeHTML(value);}
+function formatDate(date){if(!date)return '';const p=String(date).split('-');return p.length===3?`${p[2]}.${p[1]}.${p[0]}`:date;}
+function showToast(message,error=false){const t=$('toast');t.textContent=message;t.classList.toggle('error',error);t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),3500);}
+function setStatus(message,error=false){const s=$('firebaseStatus');s.textContent=message;s.className='firebase-status '+(error?'error':'ok');}
 
-function renderSlider(){
-    const slider=document.querySelector(".gundem-slider");if(!slider)return;
-    const items=publishedNews().filter(n=>n.slider);const data=(items.length?items:publishedNews()).slice(0,3);if(!data.length)return;
-    slider.querySelectorAll(".slide").forEach(x=>x.remove());const controls=slider.querySelector(".slider-controls");
-    data.forEach((item,index)=>{const article=document.createElement("article");article.className="slide"+(index===0?" active":"");article.innerHTML=`<div class="slide-image" style="${imageStyle(item.image)}"></div><div class="slide-content"><span class="slide-category">${escapeHTML(categoryLabels[item.category]||"HABER")}</span><h1>${escapeHTML(item.title)}</h1><p>${escapeHTML(item.summary||item.content||"")}</p><a href="#" class="read-more">HABERİ OKU →</a></div>`;article.querySelector(".read-more").onclick=e=>{e.preventDefault();openNews(item);};slider.insertBefore(article,controls);});
-    controls.innerHTML=data.map((_,i)=>`<button class="slider-dot${i===0?" active":""}" data-slide="${i}"></button>`).join("");controls.querySelectorAll(".slider-dot").forEach(btn=>btn.onclick=()=>goSlide(Number(btn.dataset.slide)));
-    currentSlide=0;clearInterval(slideTimer);if(data.length>1)slideTimer=setInterval(()=>goSlide((currentSlide+1)%data.length),6000);
+function buildForm(category){
+    const form=$(`form-${category}`);
+    form.innerHTML=`
+      <div class="form-grid">
+        <div class="image-area">
+          <div class="image-upload">
+            <input id="image-${category}" type="file" accept="image/*" onchange="previewImage('${category}')">
+            <div class="image-placeholder" id="placeholder-${category}"><i class="fa-regular fa-image"></i><strong>GÖRSEL EKLE</strong><br><small>JPG / PNG / WEBP • Otomatik küçültülür</small></div>
+            <img class="image-preview" id="preview-${category}" alt="Önizleme">
+            <button class="remove-image" id="remove-${category}" type="button" onclick="removeImage('${category}')">×</button>
+          </div>
+        </div>
+        <div class="form-fields">
+          <div class="field"><label>HABER BAŞLIĞI</label><input id="title-${category}" maxlength="180" placeholder="Haber başlığını yazın"></div>
+          <div class="field"><label>KISA AÇIKLAMA / SPOT</label><textarea id="summary-${category}" maxlength="500" placeholder="Ana sayfada görünecek kısa özet"></textarea></div>
+          <div class="field"><label>HABER METNİ</label><textarea class="content" id="content-${category}" placeholder="Haberin ayrıntılı metnini yazın"></textarea></div>
+          <div class="field"><label>YAZARIN DÜŞÜNCESİ</label><textarea id="thought-${category}" placeholder="İsteğe bağlı"></textarea></div>
+          <div class="field"><label>ANALİZ</label><textarea id="analysis-${category}" placeholder="İsteğe bağlı"></textarea></div>
+          <div class="field"><label>KİŞİSEL TAHMİN / ÖNGÖRÜ</label><textarea id="prediction-${category}" placeholder="İsteğe bağlı"></textarea></div>
+          <div class="two-fields">
+            <div class="field"><label>HABER TARİHİ</label><input type="date" id="date-${category}" value="${todayForInput()}"></div>
+            <div class="field"><label>KAYNAK</label><input id="source-${category}" placeholder="İsteğe bağlı"></div>
+          </div>
+          <div class="field"><label>YAYIN AYARLARI</label><div class="options">
+            <div class="option"><input type="checkbox" id="published-${category}" checked><label for="published-${category}"><i class="fa-solid fa-eye"></i> Yayında</label></div>
+            <div class="option"><input type="checkbox" id="featured-${category}"><label for="featured-${category}"><i class="fa-solid fa-star"></i> Öne Çıkan</label></div>
+            <div class="option"><input type="checkbox" id="slider-${category}"><label for="slider-${category}"><i class="fa-solid fa-images"></i> Gündem Slider</label></div>
+            <div class="option"><input type="checkbox" id="breaking-${category}"><label for="breaking-${category}"><i class="fa-solid fa-bolt"></i> Son Dakika</label></div>
+          </div></div>
+          <div class="form-actions"><button class="btn btn-cancel" type="button" onclick="clearForm('${category}');closeForm('${category}')">Vazgeç</button><button class="btn btn-save" type="button" onclick="saveNews('${category}')"><i class="fa-solid fa-cloud-arrow-up"></i> HABERİ KAYDET</button></div>
+        </div>
+      </div>`;
 }
-function goSlide(index){const slides=document.querySelectorAll(".gundem-slider .slide"),dots=document.querySelectorAll(".gundem-slider .slider-dot");if(!slides.length)return;slides.forEach(s=>s.classList.remove("active"));dots.forEach(d=>d.classList.remove("active"));currentSlide=Math.max(0,Math.min(index,slides.length-1));slides[currentSlide].classList.add("active");if(dots[currentSlide])dots[currentSlide].classList.add("active");}
-function renderCategory(category){const heading=document.getElementById(category);if(!heading)return;const grid=heading.nextElementSibling;if(!grid||!grid.classList.contains("news-grid"))return;const items=publishedNews().filter(n=>n.category===category).slice(0,6);if(!items.length){grid.innerHTML=`<article class="news-card"><div class="news-content"><div class="mini-cat">${categoryLabels[category]||category.toUpperCase()}</div><h3>Bu kategoride henüz yayınlanmış haber bulunmuyor.</h3><p>Yeni haberler yayınlandığında bu bölüm otomatik olarak güncellenecektir.</p></div></article>`;return;}grid.innerHTML=items.map(item=>`<article class="news-card firebase-news-card" data-news-id="${escapeHTML(item.id)}"><div class="news-image" style="${imageStyle(item.image)}"></div><div class="news-content"><div class="mini-cat">${escapeHTML(categoryLabels[category]||category.toUpperCase())}</div><h3>${escapeHTML(item.title)}</h3><p>${escapeHTML(item.summary||item.content||"")}</p><div style="margin-top:11px;color:#123f73;font-size:10px;font-weight:800">${formatDate(item.newsDate)} · DETAYLAR →</div></div></article>`).join("");grid.querySelectorAll(".firebase-news-card").forEach(card=>card.onclick=()=>openNews(items.find(n=>n.id===card.dataset.newsId)));
+Object.keys(categories).forEach(buildForm);
+
+function toggleForm(category){
+    const form=$(`form-${category}`);const open=form.classList.contains('open');
+    document.querySelectorAll('.add-form').forEach(x=>x.classList.remove('open'));
+    if(!open){form.classList.add('open');setTimeout(()=>form.scrollIntoView({behavior:'smooth',block:'center'}),50);}
 }
-function renderSports(){const items=publishedNews().filter(n=>n.category==="spor").slice(0,1);if(!items.length)return;const item=items[0],box=document.querySelector(".sports-box .sports-news");if(!box)return;box.innerHTML=`<div class="mini-cat">SPOR GÜNDEMİ</div><h3>${escapeHTML(item.title)}</h3><p>${escapeHTML(item.summary||item.content||"")}</p><button id="sportNewsOpen" style="margin-top:14px;border:0;background:#123f73;color:#fff;padding:10px 14px;border-radius:5px;font-size:11px;font-weight:900;cursor:pointer">HABERİ OKU →</button>`;document.getElementById("sportNewsOpen").onclick=()=>openNews(item);}
-function renderBreaking(){clearInterval(breakingTimer);const items=publishedNews().filter(n=>n.breaking),box=document.getElementById("breakingText");if(!box)return;if(!items.length){box.textContent="Günün önemli gelişmeleri burada...";return;}let i=0;const texts=items.map(n=>n.title);box.textContent=texts[0];if(texts.length>1)breakingTimer=setInterval(()=>{i=(i+1)%texts.length;box.textContent=texts[i];},4000);}
-function renderAll(){renderSlider();["siyaset","ekonomi","saglik","dunya","toplum","yorum"].forEach(renderCategory);renderSports();renderBreaking();const update=document.getElementById("updateTime");if(update)update.textContent=new Date().toLocaleTimeString("tr-TR",{hour:"2-digit",minute:"2-digit"});}
+function closeForm(category){$(`form-${category}`).classList.remove('open');}
+function previewImage(category){
+    const input=$(`image-${category}`),preview=$(`preview-${category}`),placeholder=$(`placeholder-${category}`),remove=$(`remove-${category}`);
+    if(!input.files?.[0])return;
+    const reader=new FileReader();reader.onload=e=>{preview.src=e.target.result;preview.classList.add('show');placeholder.style.display='none';remove.classList.add('show');};reader.readAsDataURL(input.files[0]);
+}
+function removeImage(category){const input=$(`image-${category}`),preview=$(`preview-${category}`),placeholder=$(`placeholder-${category}`),remove=$(`remove-${category}`);input.value='';preview.src='';preview.classList.remove('show');placeholder.style.display='block';remove.classList.remove('show');}
+function readImage(category){return new Promise(resolve=>{const input=$(`image-${category}`);if(!input.files?.[0])return resolve('');const r=new FileReader();r.onload=e=>resolve(e.target.result);r.onerror=()=>resolve('');r.readAsDataURL(input.files[0]);});}
+function compressImage(dataUrl,maxWidth=1200,quality=.68){return new Promise(resolve=>{if(!dataUrl||!dataUrl.startsWith('data:image/'))return resolve(dataUrl||'');const img=new Image();img.onload=()=>{const scale=Math.min(1,maxWidth/img.width);const c=document.createElement('canvas');c.width=Math.max(1,Math.round(img.width*scale));c.height=Math.max(1,Math.round(img.height*scale));c.getContext('2d').drawImage(img,0,0,c.width,c.height);resolve(c.toDataURL('image/jpeg',quality));};img.onerror=()=>resolve(dataUrl);img.src=dataUrl;});}
 
-const now=new Date();const dateEl=document.getElementById("date");if(dateEl)dateEl.textContent=now.toLocaleDateString("tr-TR",{day:"2-digit",month:"long",year:"numeric"});
+async function saveNews(category){
+    if(!auth.currentUser)return showToast('Önce yönetici olarak giriş yapın.',true);
+    const title=$(`title-${category}`).value.trim(),summary=$(`summary-${category}`).value.trim(),content=$(`content-${category}`).value.trim();
+    if(!title)return showToast('Lütfen haber başlığını yazın.',true);
+    if(!content)return showToast('Lütfen haber metnini yazın.',true);
+    try{
+        let image=await readImage(category);image=await compressImage(image);
+        const item={title,summary,content,thought:$(`thought-${category}`).value.trim(),analysis:$(`analysis-${category}`).value.trim(),prediction:$(`prediction-${category}`).value.trim(),category,newsDate:$(`date-${category}`).value||todayForInput(),source:$(`source-${category}`).value.trim(),published:$(`published-${category}`).checked,featured:$(`featured-${category}`).checked,slider:$(`slider-${category}`).checked,breaking:$(`breaking-${category}`).checked,image,createdAt:new Date().toISOString(),updatedAt:new Date().toISOString()};
+        const newRef=push(newsRef);item.id=newRef.key;await set(newRef,item);clearForm(category);closeForm(category);showToast('Haber Firebase veritabanına kaydedildi.');
+    }catch(e){console.error(e);showToast('Kayıt başarısız: '+(e.message||e),true);}
+}
+function clearForm(category){
+    ['title','summary','content','thought','analysis','prediction','source'].forEach(x=>{const el=$(`${x}-${category}`);if(el)el.value='';});
+    $(`date-${category}`).value=todayForInput();$(`published-${category}`).checked=true;$(`featured-${category}`).checked=false;$(`slider-${category}`).checked=false;$(`breaking-${category}`).checked=false;removeImage(category);
+}
+function renderAll(){Object.keys(categories).forEach(renderCategory);updateStats();}
+function renderCategory(category){const list=$(`list-${category}`);const items=news.filter(n=>n.category===category).sort((a,b)=>String(b.createdAt||'').localeCompare(String(a.createdAt||'')));if(!items.length){list.innerHTML='<div class="news-empty"><i class="fa-regular fa-newspaper"></i> Bu bölümde henüz haber bulunmuyor.</div>';return;}list.innerHTML=items.map(createNewsHTML).join('');}
+function createNewsHTML(item){const c=categories[item.category]||{label:'HABER'};const image=item.image?`<img src="${escapeAttribute(item.image)}" alt="${escapeAttribute(item.title)}">`:'<div style="height:100%;display:grid;place-items:center;color:#536075;font-size:30px"><i class="fa-regular fa-image"></i></div>';return `<article class="news-item"><div class="news-image">${image}</div><div class="news-details"><div class="news-meta"><span class="badge badge-category">${c.label}</span>${item.published?'<span class="badge badge-published">YAYINDA</span>':'<span class="badge badge-draft">TASLAK</span>'}${item.slider?'<span class="badge badge-slider">SLIDER</span>':''}${item.featured?'<span class="badge badge-featured">ÖNE ÇIKAN</span>':''}${item.breaking?'<span class="badge badge-breaking">SON DAKİKA</span>':''}</div><h3>${escapeHTML(item.title)}</h3><p>${escapeHTML(item.summary||item.content)}</p><div class="news-date">${formatDate(item.newsDate)}${item.source?' • '+escapeHTML(item.source):''}</div></div><div class="news-actions"><button class="action-btn edit" onclick="editNews('${item.id}')">Düzenle</button><button class="action-btn" onclick="togglePublished('${item.id}')">${item.published?'Yayından Al':'Yayınla'}</button><button class="action-btn delete" onclick="deleteNews('${item.id}')">Sil</button></div></article>`;}
+function editNews(id){
+    const item=news.find(n=>n.id===id);if(!item)return;const modal=$('editModal'),body=$('editModalBody');
+    body.innerHTML=`<div class="form-fields"><div class="field"><label>HABER BAŞLIĞI</label><input id="edit-title" value="${escapeAttribute(item.title)}"></div><div class="field"><label>KISA AÇIKLAMA / SPOT</label><textarea id="edit-summary">${escapeHTML(item.summary||'')}</textarea></div><div class="field"><label>HABER METNİ</label><textarea class="content" id="edit-content">${escapeHTML(item.content||'')}</textarea></div><div class="field"><label>YAZARIN DÜŞÜNCESİ</label><textarea id="edit-thought">${escapeHTML(item.thought||'')}</textarea></div><div class="field"><label>ANALİZ</label><textarea id="edit-analysis">${escapeHTML(item.analysis||'')}</textarea></div><div class="field"><label>KİŞİSEL TAHMİN / ÖNGÖRÜ</label><textarea id="edit-prediction">${escapeHTML(item.prediction||'')}</textarea></div><div class="two-fields"><div class="field"><label>KATEGORİ</label><select id="edit-category">${Object.keys(categories).map(cat=>`<option value="${cat}" ${item.category===cat?'selected':''}>${categories[cat].title}</option>`).join('')}</select></div><div class="field"><label>HABER TARİHİ</label><input type="date" id="edit-date" value="${item.newsDate||todayForInput()}"></div></div><div class="field"><label>KAYNAK</label><input id="edit-source" value="${escapeAttribute(item.source||'')}"></div><div class="field"><label>YAYIN AYARLARI</label><div class="options"><div class="option"><input type="checkbox" id="edit-published" ${item.published?'checked':''}><label for="edit-published">Yayında</label></div><div class="option"><input type="checkbox" id="edit-featured" ${item.featured?'checked':''}><label for="edit-featured">Öne Çıkan</label></div><div class="option"><input type="checkbox" id="edit-slider" ${item.slider?'checked':''}><label for="edit-slider">Gündem Slider</label></div><div class="option"><input type="checkbox" id="edit-breaking" ${item.breaking?'checked':''}><label for="edit-breaking">Son Dakika</label></div></div></div><div class="form-actions"><button class="btn btn-cancel" onclick="closeEditModal()">Vazgeç</button><button class="btn btn-save" onclick="updateNews('${item.id}')">DEĞİŞİKLİKLERİ KAYDET</button></div></div>`;modal.classList.add('show');
+}
+function closeEditModal(){$('editModal').classList.remove('show');}
+async function updateNews(id){const item=news.find(n=>n.id===id);if(!item)return;const updated={title:$('edit-title').value.trim(),summary:$('edit-summary').value.trim(),content:$('edit-content').value.trim(),thought:$('edit-thought').value.trim(),analysis:$('edit-analysis').value.trim(),prediction:$('edit-prediction').value.trim(),category:$('edit-category').value,newsDate:$('edit-date').value,source:$('edit-source').value.trim(),published:$('edit-published').checked,featured:$('edit-featured').checked,slider:$('edit-slider').checked,breaking:$('edit-breaking').checked,image:item.image||'',createdAt:item.createdAt||new Date().toISOString(),updatedAt:new Date().toISOString()};if(!updated.title||!updated.content)return showToast('Başlık ve haber metni zorunludur.',true);try{await update(ref(db,'news/'+id),updated);closeEditModal();showToast('Haber güncellendi.');}catch(e){showToast('Güncelleme başarısız: '+(e.message||e),true);}}
+async function togglePublished(id){const item=news.find(n=>n.id===id);if(!item)return;try{await update(ref(db,'news/'+id),{published:!item.published,updatedAt:new Date().toISOString()});showToast(!item.published?'Haber yayına alındı.':'Haber yayından kaldırıldı.');}catch(e){showToast('Yayın durumu değiştirilemedi.',true);}}
+async function deleteNews(id){const item=news.find(n=>n.id===id);if(!item||!confirm(`"${item.title}" haberini silmek istediğinize emin misiniz?`))return;try{await remove(ref(db,'news/'+id));showToast('Haber silindi.');}catch(e){showToast('Haber silinemedi: '+(e.message||e),true);}}
+function updateStats(){$('totalNews').textContent=news.length;$('publishedNews').textContent=news.filter(n=>n.published).length;$('sliderNews').textContent=news.filter(n=>n.slider).length;$('breakingNews').textContent=news.filter(n=>n.breaking).length;}
+function scrollToCategory(category){const s=$('category-'+category);if(!s)return;s.scrollIntoView({behavior:'smooth',block:'start'});document.querySelectorAll('.category-nav button').forEach(b=>b.classList.remove('active'));const map=Object.keys(categories),i=map.indexOf(category);const bs=document.querySelectorAll('.category-nav button');if(i>=0&&bs[i])bs[i].classList.add('active');}
 
-onValue(ref(db,"news"),snapshot=>{const data=snapshot.val()||{};allNews=Object.entries(data).map(([id,item])=>({id,...item}));renderAll();},error=>{console.error(error);const box=document.getElementById("breakingText");if(box)box.textContent="Haber verileri şu anda alınamıyor.";});
-window.goSlide=goSlide;
+$('loginForm').addEventListener('submit',async e=>{e.preventDefault();const email=$('loginEmail').value.trim(),password=$('loginPassword').value;const btn=$('loginButton');const msg=$('loginMessage');btn.disabled=true;msg.textContent='Giriş kontrol ediliyor...';try{await signInWithEmailAndPassword(auth,email,password);msg.textContent='';}catch(err){console.error(err);msg.textContent='Giriş başarısız. E-posta veya şifreyi kontrol edin.';}finally{btn.disabled=false;}});
+$('logoutButton').addEventListener('click',()=>signOut(auth));
+$('editModal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeEditModal();});
+
+onAuthStateChanged(auth,user=>{
+    if(user){
+        $('authOverlay').style.display='none';$('adminApp').style.display='block';$('authUser').style.display='flex';$('authUserEmail').textContent=user.email||'Yetkili kullanıcı';setStatus('Firebase bağlantısı kuruldu. Haberler buluttaki veritabanından okunuyor.');
+        if(dataUnsubscribe)dataUnsubscribe();
+        dataUnsubscribe=onValue(newsRef,snapshot=>{const data=snapshot.val()||{};news=Object.entries(data).map(([id,item])=>({id,...item}));renderAll();},error=>{console.error(error);setStatus('Firebase verileri okunamadı: '+(error.message||error),true);});
+    }else{
+        if(dataUnsubscribe){dataUnsubscribe();dataUnsubscribe=null;}
+        $('adminApp').style.display='none';$('authOverlay').style.display='grid';$('authUser').style.display='none';$('loginPassword').value='';
+    }
+});
+
+Object.assign(window,{toggleForm,closeForm,previewImage,removeImage,saveNews,clearForm,editNews,closeEditModal,updateNews,togglePublished,deleteNews,scrollToCategory,showToast});
 </script>
 
+</div>
 </body>
 </html>
