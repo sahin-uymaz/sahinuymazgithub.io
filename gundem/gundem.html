@@ -1515,8 +1515,17 @@ const categoryLabels={gundem:"GÜNDEM",siyaset:"SİYASET",ekonomi:"EKONOMİ",sag
 function escapeHTML(value){return String(value??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");}
 function formatDate(value){if(!value)return "";const p=String(value).split("-");return p.length===3?`${p[2]}.${p[1]}.${p[0]}`:value;}
 function publishedNews(){return allNews.filter(n=>n&&(n.published===true||n.published==="true")).sort((a,b)=>String(b.newsDate||b.createdAt||"").localeCompare(String(a.newsDate||a.createdAt||"")));}
-function imageStyle(image){if(!image)return "";return `background-image:linear-gradient(90deg,rgba(8,27,51,.05),rgba(8,27,51,.75)),url("${String(image).replace(/"/g,'&quot;')}");background-size:cover;background-position:center;`;}
+function imageStyle(image){
+    if(!image) return "";
 
+    return `
+        background-image:
+        linear-gradient(90deg,rgba(8,27,51,.05),rgba(8,27,51,.75)),
+        url('${String(image).replace(/'/g, "\\'")}');
+        background-size:cover;
+        background-position:center;
+    `;
+}
 function openNews(item){
     if(!item)return;
     const old=document.getElementById("firebaseNewsModal");if(old)old.remove();
