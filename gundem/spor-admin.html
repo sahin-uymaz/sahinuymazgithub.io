@@ -1541,35 +1541,18 @@ select:disabled{
 
 
         <select id="lig">
-
-          <option value="Süper Lig">
-            Süper Lig
-          </option>
-
-          <option value="1. Lig">
-            1. Lig
-          </option>
-
-          <option value="UEFA Şampiyonlar Ligi">
-            UEFA Şampiyonlar Ligi
-          </option>
-
-          <option value="UEFA Avrupa Ligi">
-            UEFA Avrupa Ligi
-          </option>
-
-          <option value="UEFA Konferans Ligi">
-            UEFA Konferans Ligi
-          </option>
-
-          <option value="Kupa Maçları">
-            Kupa Maçları
-          </option>
-
-          <option value="Diğer Maçlar">
-            Diğer Maçlar
-          </option>
-
+          <option value="Süper Lig">Süper Lig</option>
+          <option value="1. Lig">1. Lig</option>
+          <option value="Premier League">Premier League</option>
+          <option value="La Liga">La Liga</option>
+          <option value="Serie A">Serie A</option>
+          <option value="Bundesliga">Bundesliga</option>
+          <option value="Ligue 1">Ligue 1</option>
+          <option value="UEFA Şampiyonlar Ligi">UEFA Şampiyonlar Ligi</option>
+          <option value="UEFA Avrupa Ligi">UEFA Avrupa Ligi</option>
+          <option value="UEFA Konferans Ligi">UEFA Konferans Ligi</option>
+          <option value="Kupa Maçları">Kupa Maçları</option>
+          <option value="Diğer Maçlar">Diğer Maçlar</option>
         </select>
 
       </div>
@@ -2256,59 +2239,93 @@ const PREDICTION_TYPES = [
 const DEFAULT_TEAMS = {
 
   "Süper Lig":[
-
-    "Galatasaray",
-
-    "Fenerbahçe",
-
-    "Trabzonspor",
-
-    "Beşiktaş",
-
-    "İstanbul Başakşehir",
-
-    "Göztepe",
-
-    "Samsunspor",
-
-    "Çaykur Rizespor",
-
-    "Tümosan Konyaspor",
-
-    "Kocaelispor",
-
-    "Corendon Alanyaspor",
-
-    "Gaziantep FK",
-
-    "Gençlerbirliği",
-
-    "Kasımpaşa",
-
-    "Eyüpspor",
-
-    "Amed Sportif Faaliyetler",
-
-    "Erzurumspor FK",
-
-    "Arca Çorum FK"
-
+    "Galatasaray","Fenerbahçe","Trabzonspor","Beşiktaş",
+    "İstanbul Başakşehir","Göztepe","Samsunspor","Çaykur Rizespor",
+    "Tümosan Konyaspor","Kocaelispor","Corendon Alanyaspor","Gaziantep FK",
+    "Gençlerbirliği","Kasımpaşa","Eyüpspor","Amed Sportif Faaliyetler",
+    "Erzurumspor FK","Arca Çorum FK"
   ],
 
-  "1. Lig":[],
+  "1. Lig":[
+    "Antalyaspor","Bandırmaspor","Batman Petrolspor","Bodrum FK",
+    "Boluspor","Bursaspor","Esenler Erokspor","Fatih Karagümrük",
+    "Iğdır FK","İstanbulspor","Kayserispor","Keçiörengücü",
+    "Manisa FK","Mardin 1969 Spor","Muğlaspor","Pendikspor",
+    "Sarıyer","Sivasspor","Ümraniyespor","Vanspor FK"
+  ],
 
-  "UEFA Şampiyonlar Ligi":[],
+  "Premier League":[
+    "AFC Bournemouth","Arsenal","Aston Villa","Brentford",
+    "Brighton & Hove Albion","Chelsea","Coventry City","Crystal Palace",
+    "Everton","Fulham","Hull City","Ipswich Town","Leeds United",
+    "Liverpool","Manchester City","Manchester United","Newcastle United",
+    "Nottingham Forest","Sunderland","Tottenham Hotspur"
+  ],
 
-  "UEFA Avrupa Ligi":[],
+  "La Liga":[
+    "Athletic Bilbao","Atlético de Madrid","CA Osasuna","Celta Vigo",
+    "Deportivo Alavés","Elche CF","FC Barcelona","Getafe CF","Levante UD",
+    "Málaga CF","Racing Santander","Rayo Vallecano","RC Deportivo",
+    "RCD Espanyol","Real Betis","Real Madrid","Real Sociedad","Sevilla FC",
+    "Valencia CF","Villarreal CF"
+  ],
 
-  "UEFA Konferans Ligi":[],
+  "Serie A":[
+    "AC Milan","AC Monza","AS Roma","Atalanta","Bologna","Cagliari",
+    "Como","Fiorentina","Frosinone","Genoa","Inter","Juventus","Lazio",
+    "Lecce","Napoli","Parma","Sassuolo","Torino","Udinese","Venezia"
+  ],
+
+  "Bundesliga":[
+    "FC Augsburg","1. FC Union Berlin","Werder Bremen","Borussia Dortmund",
+    "SV Elversberg","Eintracht Frankfurt","SC Freiburg","Hamburger SV",
+    "TSG Hoffenheim","1. FC Köln","RB Leipzig","Bayer Leverkusen",
+    "1. FSV Mainz 05","Borussia Mönchengladbach","FC Bayern München",
+    "SC Paderborn 07","FC Schalke 04","VfB Stuttgart"
+  ],
+
+  "Ligue 1":[
+    "Angers SCO","AJ Auxerre","Stade Brestois 29","Le Havre AC","Le Mans FC",
+    "RC Lens","LOSC Lille","FC Lorient","Olympique Lyonnais",
+    "Olympique de Marseille","AS Monaco","OGC Nice","Paris FC",
+    "Paris Saint-Germain","Stade Rennais FC","RC Strasbourg Alsace",
+    "Toulouse FC","ESTAC Troyes"
+  ],
+
+  "UEFA Şampiyonlar Ligi":[
+    "AEK Athens","Arsenal","Aston Villa","Atlético de Madrid","Barcelona",
+    "Bayern München","Bodø/Glimt","Borussia Dortmund","Club Brugge","Como",
+    "Fenerbahçe","Feyenoord","Galatasaray","Inter","LASK","RB Leipzig",
+    "Lens","Lille","Liverpool","Manchester City","Manchester United","Napoli",
+    "Paris Saint-Germain","Porto","PSV","Real Betis","Real Madrid","Roma",
+    "Sabah FK","Shakhtar Donetsk","Slavia Praha","Slovan Bratislava",
+    "Sporting CP","VfB Stuttgart","Viking","Villarreal"
+  ],
+
+  "UEFA Avrupa Ligi":[
+    "Crystal Palace","Bournemouth","Sunderland","AC Milan","Juventus",
+    "Real Sociedad","Celta Vigo","Hoffenheim","Bayer Leverkusen",
+    "Olympique de Marseille","Rennes","AZ Alkmaar","Torreense","Celje",
+    "Celtic","Dinamo Zagreb","Hapoel Be'er Sheva","Levski Sofia","Lyon",
+    "NEC Nijmegen","Olympiacos","Sparta Praha","Sturm Graz","Union Saint-Gilloise",
+    "Anderlecht","Ararat-Armenia","Benfica","Beşiktaş","Ferencváros",
+    "Jagiellonia","Lech Poznań","Lillestrøm","Omonia","Red Bull Salzburg",
+    "Viktoria Plzeň"
+  ],
+
+  "UEFA Konferans Ligi":[
+    "Brighton & Hove Albion","Atalanta","Getafe CF","SC Freiburg","AS Monaco",
+    "Braga","Ajax","FC Twente","Gent","Sint-Truiden","Trabzonspor","Jablonec",
+    "Panathinaikos","Aarhus","FC Copenhagen","Midtjylland","Nordsjælland",
+    "Brann","Pafos","Lugano","Thun","Hearts","Mjällby","Hajduk Split",
+    "Crvena zvezda","Universitatea Craiova","Kairat Almaty","CSKA Sofia",
+    "KuPS","Borac Banja Luka","Riga FC","Egnatia","Kauno Žalgiris",
+    "Lincoln Red Imps","Inter Escaldes","Iberia Tbilisi"
+  ],
 
   "Kupa Maçları":[],
-
   "Diğer Maçlar":[]
-
 };
-
 
 /* =========================================================
    ÖRNEK MAÇLAR
@@ -3526,80 +3543,53 @@ function clearForm(){
 
   editingId = null;
 
+  const formTitle = document.getElementById("formBaslik");
+  const saveButton = document.getElementById("kaydetBtn");
+  const league = document.getElementById("lig");
+  const date = document.getElementById("tarih");
+  const time = document.getElementById("saat");
+  const home = document.getElementById("evSahibi");
+  const away = document.getElementById("deplasman");
+  const analysis = document.getElementById("aciklama");
+  const publish = document.getElementById("yayinda");
+  const teamInput = document.getElementById("yeniTakim");
 
-  document.getElementById(
-    "formBaslik"
-  ).textContent =
-    "Yeni Maç Oluştur";
+  formTitle.textContent = "Yeni Maç Oluştur";
+  saveButton.innerHTML = '<i class="fa-solid fa-floppy-disk"></i> Maçı Kaydet';
 
+  league.value = "Süper Lig";
+  date.value = "";
+  time.value = "";
+  analysis.value = "";
+  publish.checked = true;
 
-  document.getElementById(
-    "kaydetBtn"
-  ).innerHTML =
-    '<i class="fa-solid fa-floppy-disk"></i> Maçı Kaydet';
+  document.querySelectorAll(".prediction-checkbox").forEach(checkbox => {
+    checkbox.checked = false;
+  });
 
-
-  document.getElementById(
-    "lig"
-  ).value =
-    "Süper Lig";
-
-
-  document.getElementById(
-    "tarih"
-  ).value =
-    "";
-
-
-  document.getElementById(
-    "saat"
-  ).value =
-    "";
-
-
-  document.getElementById(
-    "aciklama"
-  ).value =
-    "";
-
-
-  document.getElementById(
-    "yayinda"
-  ).checked =
-    true;
-
+  if(teamInput){
+    teamInput.value = "";
+  }
 
   populateTeams();
 
+  home.value = "";
+  away.value = "";
 
-  document.getElementById(
-    "evSahibi"
-  ).value =
-    "";
-
-
-  document.getElementById(
-    "deplasman"
-  ).value =
-    "";
-
-
-  document
-    .querySelectorAll(
-      ".prediction-checkbox"
-    )
-    .forEach(
-      checkbox => {
-
-        checkbox.checked =
-          false;
-
-      }
-    );
-
-
+  updateTeamOptions();
   updateSelectedInfo();
 
+  const warning = document.getElementById("teamWarning");
+  if(warning){
+    warning.classList.remove("show");
+  }
+
+  showResult("Form temizlendi. Yeni maç girebilirsiniz.", "success");
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
 }
 
 
@@ -3929,6 +3919,12 @@ function getLeagueClass(league){
 
   }
 
+
+  if(league === "Premier League") return "league-super";
+  if(league === "La Liga") return "league-ucl";
+  if(league === "Serie A") return "league-uel";
+  if(league === "Bundesliga") return "league-uecl";
+  if(league === "Ligue 1") return "league-cup";
 
   if(
     league === "UEFA Şampiyonlar Ligi"
