@@ -88,10 +88,9 @@ body{
     margin-bottom:25px;
 }
 
-/* 4 Kolonlu Izgara Düzeni */
 .form-grid{
     display:grid;
-    grid-template-columns:1fr 1fr 1fr 1.2fr;
+    grid-template-columns:1fr 1fr 1.2fr 1.2fr;
     gap:16px;
 }
 
@@ -141,7 +140,7 @@ select:disabled{
 .date-shortcuts{
     display:flex;
     flex-wrap:wrap;
-    gap:6px;
+    gap:5px;
     margin-top:9px;
 }
 
@@ -150,7 +149,7 @@ select:disabled{
     background:#101e31;
     color:#cbd3de;
     border-radius:6px;
-    padding:6px 10px;
+    padding:5px 8px;
     cursor:pointer;
     font-size:11px;
     transition:.2s;
@@ -334,9 +333,6 @@ select:disabled{
     .cards{
         grid-template-columns:1fr;
     }
-    .header{
-        padding-top:22px;
-    }
 }
 </style>
 </head>
@@ -347,7 +343,7 @@ select:disabled{
     <div class="logo">ŞAHİN UYMAZ</div>
     <h1>Türkiye Vefat Bilgi Merkezi</h1>
     <p>Türkiye genelinde kamuya açık vefat ve defin bilgilerini tek noktadan arayın.</p>
-    <div class="version">SÜRÜM 2026.09.18 • DİNAMİK V2</div>
+    <div class="version">SÜRÜM 2026.09.18 • ESNEK TARİH SEÇİMİ</div>
 </header>
 
 <main class="container">
@@ -356,8 +352,8 @@ select:disabled{
     <h2 class="panel-title">Vefat ve Defin Bilgisi Ara</h2>
 
     <div class="panel-description">
-        Arama yapmak için il ve tarih seçmeniz yeterlidir.
-        <strong>İlçe ve Ad Soyad alanları isteğe bağlıdır.</strong>
+        Sadece <strong>İl</strong> seçip doğrudan <strong>Ad Soyad</strong> girerek arama yapabilirsiniz. 
+        Tarih bilmiyorsanız boş bırakabilir veya geniş zaman aralıklarını kullanabilirsiniz.
     </div>
 
     <form id="searchForm" onsubmit="return false;" novalidate>
@@ -368,8 +364,8 @@ select:disabled{
                 <label for="province">İL / BÖLGE</label>
                 <select id="province">
                     <option value="">İl Seçiniz...</option>
-                    <option value="gaziantep">Gaziantep</option>
                     <option value="erzurum">Erzurum</option>
+                    <option value="gaziantep">Gaziantep</option>
                     <option value="konya">Konya</option>
                     <option value="ankara">Ankara</option>
                     <option value="istanbul">İstanbul</option>
@@ -377,7 +373,7 @@ select:disabled{
                 </select>
             </div>
 
-            <!-- 2. DİNAMİK İLÇE SEÇİMİ (İLE GÖRE DOLAR) -->
+            <!-- 2. DİNAMİK İLÇE SEÇİMİ -->
             <div class="form-group">
                 <label for="district">
                     İLÇE 
@@ -388,17 +384,22 @@ select:disabled{
                 </select>
             </div>
 
-            <!-- 3. TARİH SEÇİMİ -->
+            <!-- 3. ESNEK TARİH / ZAMAN ARALIĞI SEÇİMİ -->
             <div class="form-group">
-                <label for="selectedDate">TARİH</label>
+                <label for="selectedDate">
+                    TARİH / ARALIK 
+                    <span class="optional">(İSTEĞE BAĞLI)</span>
+                </label>
                 <input type="date" id="selectedDate">
 
                 <div class="date-shortcuts">
-                    <button type="button" data-period="today" class="active">Bugün</button>
-                    <button type="button" data-period="yesterday">Dün</button>
-                    <button type="button" data-period="beforeYesterday">Önceki</button>
-                    <button type="button" data-period="last3">Son 3 Gün</button>
+                    <button type="button" data-period="today">Bugün</button>
                     <button type="button" data-period="last7">Son 7 Gün</button>
+                    <button type="button" data-period="last30">Son 1 Ay</button>
+                    <button type="button" data-period="last90">Son 3 Ay</button>
+                    <button type="button" data-period="last180">Son 6 Ay</button>
+                    <button type="button" data-period="last365">Son 1 Yıl</button>
+                    <button type="button" data-period="all" class="active">Tüm Zamanlar</button>
                 </div>
             </div>
 
@@ -419,14 +420,14 @@ select:disabled{
     </form>
 
     <div class="info-box">
-        <strong>Bilgi:</strong> İlçe seçimi zorunlu değildir. İl seçtiğinizde o ilin tüm merkez ve ilçe mezarlık kayıtları otomatik taranır.
+        <strong>Bilgi:</strong> Vefat tarihini bilmiyorsanız tarihi boş bırakıp sadece Ad Soyad ve İl seçerek arama yapabilirsiniz.
     </div>
 
 </section>
 
 <section class="results" id="results">
     <div class="status">
-        Arama yapmak için il ve tarih seçin.
+        Arama yapmak için il seçip aramayı başlatın.
     </div>
 </section>
 
@@ -437,16 +438,11 @@ select:disabled{
 </footer>
 
 <script>
-/*
-==========================================================
- İL VE İLÇE VERİ HARİTASI (DİNAMİK YAPI)
-==========================================================
-*/
 const ilceVerileri = {
-    "gaziantep": ["Şahinbey", "Şehitkamil", "Nizip", "İslahiye", "Nurdağı", "Araban", "Yavuzeli", "Oğuzeli", "Karkamış"],
     "erzurum": ["Yakutiye", "Palandöken", "Aziziye", "Oltu", "Pasinler", "Horasan", "Hınıs", "Tortum", "Aşkale"],
+    "gaziantep": ["Şahinbey", "Şehitkamil", "Nizip", "İslahiye", "Nurdağı", "Araban", "Yavuzeli", "Oğuzeli", "Karkamış"],
     "konya": ["Selçuklu", "Meram", "Karatay", "Ereğli", "Akşehir", "Beyşehir", "Seydişehir", "Cihanbeyli"],
-    "ankara": ["Çankaya", "Keçiören", "Yenimahalle", "Mamuk", "Etimesgut", "Sincan", "Altındağ", "Gölbaşı"],
+    "ankara": ["Çankaya", "Keçiören", "Yenimahalle", "Mamak", "Etimesgut", "Sincan", "Altındağ", "Gölbaşı"],
     "istanbul": ["Fatih", "Kadıköy", "Üsküdar", "Beşiktaş", "Pendik", "Ümraniye", "Şişli", "Beylikdüzü"],
     "izmir": ["Konak", "Karşıyaka", "Bornova", "Buca", "Çiğli", "Gaziemir", "Torbalı"]
 };
@@ -458,15 +454,10 @@ const nameInput = document.getElementById("name");
 const searchButton = document.getElementById("searchButton");
 const results = document.getElementById("results");
 
-/*
-==========================================================
- İL SEÇİLDİĞİNDE İLÇELERİ DİNAMİK YÜKLEME
-==========================================================
-*/
+let selectedRangeDays = null; // null = Tüm Zamanlar
+
 province.addEventListener("change", function(){
     const secilenIl = this.value;
-    
-    // İlçe kutusunu sıfırla
     district.innerHTML = '<option value="">Tüm İlçeler</option>';
     
     if(secilenIl && ilceVerileri[secilenIl]){
@@ -483,11 +474,6 @@ province.addEventListener("change", function(){
     }
 });
 
-/*
-==========================================================
- TARİH FONKSİYONLARI
-==========================================================
-*/
 function pad(number){
     return String(number).padStart(2,"0");
 }
@@ -511,19 +497,44 @@ function setActiveButton(button){
     }
 }
 
+/*
+==========================================================
+ TARİH VE ZAMAN ARALIĞI KISAYOLLARI
+==========================================================
+*/
 document.querySelectorAll(".date-shortcuts button").forEach(button => {
     button.addEventListener("click", function(){
         const period = this.dataset.period;
-        if(period === "today") selectedDate.value = getDateMinus(0);
-        else if(period === "yesterday") selectedDate.value = getDateMinus(1);
-        else if(period === "beforeYesterday") selectedDate.value = getDateMinus(2);
-        else if(period === "last3") selectedDate.value = getDateMinus(3);
-        else if(period === "last7") selectedDate.value = getDateMinus(7);
+        
+        if(period === "today"){
+            selectedDate.value = getDateMinus(0);
+            selectedRangeDays = 0;
+        } else if(period === "last7"){
+            selectedDate.value = "";
+            selectedRangeDays = 7;
+        } else if(period === "last30"){
+            selectedDate.value = "";
+            selectedRangeDays = 30;
+        } else if(period === "last90"){
+            selectedDate.value = "";
+            selectedRangeDays = 90;
+        } else if(period === "last180"){
+            selectedDate.value = "";
+            selectedRangeDays = 180;
+        } else if(period === "last365"){
+            selectedDate.value = "";
+            selectedRangeDays = 365;
+        } else if(period === "all"){
+            selectedDate.value = "";
+            selectedRangeDays = null;
+        }
+        
         setActiveButton(this);
     });
 });
 
 selectedDate.addEventListener("change", function(){
+    selectedRangeDays = null;
     setActiveButton(null);
 });
 
@@ -548,7 +559,7 @@ function renderResults(data){
     }
 
     if(data.records.length === 0){
-        showStatus("Seçtiğiniz kriterlere uygun kamuya açık kayıt bulunamadı.", "success");
+        showStatus("Aradığınız kriterlere uygun kayıt bulunamadı.", "success");
         return;
     }
 
@@ -598,23 +609,18 @@ async function searchRecords(){
         return;
     }
 
-    if(!date){
-        showStatus("Lütfen bir tarih seçin.", "error");
-        return;
-    }
-
     searchButton.disabled = true;
     searchButton.textContent = "KAYITLAR ARANIYOR...";
 
-    showStatus(`${secilenIl.toUpperCase()} ili kamuya açık verileri taranıyor...`);
+    showStatus(`${secilenIl.toUpperCase()} ili kayıtları taranıyor...`);
 
-    // DUMMY / SIMULE EDILMIS VERI DEMOSU
     setTimeout(() => {
+        // Örnek Test Verileri
         const mockData = [
-            { name: "Ahmet Yılmaz", location: "Gaziantep / Şahinbey", gender: "Erkek", death_date: date, age: "72", burial_place: "Asri Mezarlık", parents: "Mehmet / Fatma" },
-            { name: "Ayşe Kaya", location: "Gaziantep / Şehitkamil", gender: "Kadın", death_date: date, age: "66", burial_place: "Yeşilkent Mezarlığı", parents: "Ali / Emine" },
-            { name: "Mustafa Palandöken", location: "Erzurum / Yakutiye", gender: "Erkek", death_date: date, age: "80", burial_place: "Asri Mezarlık", parents: "İbrahim / Zeynep" },
-            { name: "Mehmet Selçuk", location: "Konya / Selçuklu", gender: "Erkek", death_date: date, age: "59", burial_place: "Musalla Mezarlığı", parents: "Hasan / Meryem" }
+            { name: "Ahmet Yılmaz", location: "Erzurum / Yakutiye", gender: "Erkek", death_date: "2026-09-15", age: "72", burial_place: "Asri Mezarlık", parents: "Mehmet / Fatma" },
+            { name: "Mustafa Palandöken", location: "Erzurum / Palandöken", gender: "Erkek", death_date: "2026-06-20", age: "80", burial_place: "Asri Mezarlık", parents: "İbrahim / Zeynep" },
+            { name: "Ayşe Kaya", location: "Gaziantep / Şehitkamil", gender: "Kadın", death_date: "2026-08-10", age: "66", burial_place: "Yeşilkent Mezarlığı", parents: "Ali / Emine" },
+            { name: "Mehmet Selçuk", location: "Konya / Selçuklu", gender: "Erkek", death_date: "2025-11-05", age: "59", burial_place: "Musalla Mezarlığı", parents: "Hasan / Meryem" }
         ];
 
         let filtered = mockData.filter(item => item.location.toLowerCase().includes(secilenIl));
@@ -625,6 +631,10 @@ async function searchRecords(){
 
         if(name !== ""){
             filtered = filtered.filter(item => item.name.toLowerCase().includes(name));
+        }
+
+        if(date !== ""){
+            filtered = filtered.filter(item => item.death_date === date);
         }
 
         renderResults({
@@ -648,9 +658,6 @@ nameInput.addEventListener("keypress", function(e) {
         searchRecords();
     }
 });
-
-// Sayfa yüklendiğinde bugünü ayarla
-selectedDate.value = getDateMinus(0);
 </script>
 
 </body>
