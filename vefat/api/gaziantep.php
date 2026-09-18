@@ -55,6 +55,13 @@ body{
     line-height:1.7;
 }
 
+.version{
+    margin-top:10px;
+    font-size:10px;
+    color:#5f6d80;
+    letter-spacing:1px;
+}
+
 .container{
     width:min(1180px,94%);
     margin:35px auto 60px;
@@ -90,10 +97,6 @@ body{
 .form-group{
     display:flex;
     flex-direction:column;
-}
-
-.form-group.full{
-    grid-column:1 / -1;
 }
 
 label{
@@ -307,6 +310,7 @@ select:focus{
 }
 
 @media(max-width:900px){
+
     .form-grid{
         grid-template-columns:1fr 1fr;
     }
@@ -314,9 +318,11 @@ select:focus{
     .cards{
         grid-template-columns:repeat(2,1fr);
     }
+
 }
 
 @media(max-width:600px){
+
     .search-panel{
         padding:20px;
     }
@@ -332,6 +338,7 @@ select:focus{
     .header{
         padding-top:22px;
     }
+
 }
 </style>
 </head>
@@ -339,6 +346,7 @@ select:focus{
 <body>
 
 <header class="header">
+
     <div class="logo">ŞAHİN UYMAZ</div>
 
     <h1>Türkiye Vefat Bilgi Merkezi</h1>
@@ -347,189 +355,250 @@ select:focus{
         Türkiye genelinde kamuya açık vefat ve defin bilgilerini
         tek noktadan arayın.
     </p>
+
+    <!-- Bu sürüm numarası özellikle test amacıyla eklenmiştir. -->
+    <div class="version">
+        SÜRÜM 2026.09.18 • VEFAT-01
+    </div>
+
 </header>
+
 
 <main class="container">
 
-    <section class="search-panel">
+<section class="search-panel">
 
-        <h2 class="panel-title">Vefat ve Defin Bilgisi Ara</h2>
+    <h2 class="panel-title">
+        Vefat ve Defin Bilgisi Ara
+    </h2>
 
-        <div class="panel-description">
-            Arama yapmak için il ve tarih seçmeniz yeterlidir.
-            <strong>Ad Soyad alanı isteğe bağlıdır.</strong>
-            Ad Soyad yazarsanız sonuçlar ayrıca bu bilgiye göre filtrelenir.
+    <div class="panel-description">
+
+        Arama yapmak için il ve tarih seçmeniz yeterlidir.
+
+        <strong>Ad Soyad alanı isteğe bağlıdır.</strong>
+
+        Ad Soyad yazarsanız sonuçlar ayrıca bu bilgiye göre filtrelenir.
+
+    </div>
+
+
+    <div class="form-grid">
+
+        <!-- İL -->
+
+        <div class="form-group">
+
+            <label for="province">
+                İL / BÖLGE
+            </label>
+
+            <select id="province">
+
+                <option value="turkiye">
+                    Türkiye Geneli
+                </option>
+
+                <option value="adana">Adana</option>
+                <option value="adiyaman">Adıyaman</option>
+                <option value="afyonkarahisar">Afyonkarahisar</option>
+                <option value="agri">Ağrı</option>
+                <option value="aksaray">Aksaray</option>
+                <option value="amasya">Amasya</option>
+                <option value="ankara">Ankara</option>
+                <option value="antalya">Antalya</option>
+                <option value="ardahan">Ardahan</option>
+                <option value="artvin">Artvin</option>
+                <option value="aydin">Aydın</option>
+                <option value="balikesir">Balıkesir</option>
+                <option value="bartin">Bartın</option>
+                <option value="batman">Batman</option>
+                <option value="bayburt">Bayburt</option>
+                <option value="bilecik">Bilecik</option>
+                <option value="bingol">Bingöl</option>
+                <option value="bitlis">Bitlis</option>
+                <option value="bolu">Bolu</option>
+                <option value="burdur">Burdur</option>
+                <option value="bursa">Bursa</option>
+                <option value="canakkale">Çanakkale</option>
+                <option value="cankiri">Çankırı</option>
+                <option value="corum">Çorum</option>
+                <option value="denizli">Denizli</option>
+                <option value="diyarbakir">Diyarbakır</option>
+                <option value="duzce">Düzce</option>
+                <option value="edirne">Edirne</option>
+                <option value="elazig">Elazığ</option>
+                <option value="erzincan">Erzincan</option>
+                <option value="erzurum">Erzurum</option>
+                <option value="eskisehir">Eskişehir</option>
+                <option value="gaziantep">Gaziantep</option>
+                <option value="giresun">Giresun</option>
+                <option value="gumushane">Gümüşhane</option>
+                <option value="hakkari">Hakkari</option>
+                <option value="hatay">Hatay</option>
+                <option value="igdir">Iğdır</option>
+                <option value="isparta">Isparta</option>
+                <option value="istanbul">İstanbul</option>
+                <option value="izmir">İzmir</option>
+                <option value="kahramanmaras">Kahramanmaraş</option>
+                <option value="karabuk">Karabük</option>
+                <option value="karaman">Karaman</option>
+                <option value="kars">Kars</option>
+                <option value="kastamonu">Kastamonu</option>
+                <option value="kayseri">Kayseri</option>
+                <option value="kirikkale">Kırıkkale</option>
+                <option value="kirklareli">Kırklareli</option>
+                <option value="kirsehir">Kırşehir</option>
+                <option value="kilis">Kilis</option>
+                <option value="kocaeli">Kocaeli</option>
+                <option value="konya">Konya</option>
+                <option value="kutahya">Kütahya</option>
+                <option value="malatya">Malatya</option>
+                <option value="manisa">Manisa</option>
+                <option value="mardin">Mardin</option>
+                <option value="mersin">Mersin</option>
+                <option value="mugla">Muğla</option>
+                <option value="mus">Muş</option>
+                <option value="nevsehir">Nevşehir</option>
+                <option value="nigde">Niğde</option>
+                <option value="ordu">Ordu</option>
+                <option value="osmaniye">Osmaniye</option>
+                <option value="rize">Rize</option>
+                <option value="sakarya">Sakarya</option>
+                <option value="samsun">Samsun</option>
+                <option value="siirt">Siirt</option>
+                <option value="sinop">Sinop</option>
+                <option value="sivas">Sivas</option>
+                <option value="sanliurfa">Şanlıurfa</option>
+                <option value="sirnak">Şırnak</option>
+                <option value="tekirdag">Tekirdağ</option>
+                <option value="tokat">Tokat</option>
+                <option value="trabzon">Trabzon</option>
+                <option value="tunceli">Tunceli</option>
+                <option value="usak">Uşak</option>
+                <option value="van">Van</option>
+                <option value="yalova">Yalova</option>
+                <option value="yozgat">Yozgat</option>
+                <option value="zonguldak">Zonguldak</option>
+
+            </select>
+
         </div>
 
-        <div class="form-grid">
 
-            <div class="form-group">
-                <label for="province">İL / BÖLGE</label>
+        <!-- TARİH -->
 
-                <select id="province">
-                    <option value="turkiye">Türkiye Geneli</option>
+        <div class="form-group">
 
-                    <option value="adana">Adana</option>
-                    <option value="adiyaman">Adıyaman</option>
-                    <option value="afyonkarahisar">Afyonkarahisar</option>
-                    <option value="agri">Ağrı</option>
-                    <option value="aksaray">Aksaray</option>
-                    <option value="amasya">Amasya</option>
-                    <option value="ankara">Ankara</option>
-                    <option value="antalya">Antalya</option>
-                    <option value="ardahan">Ardahan</option>
-                    <option value="artvin">Artvin</option>
-                    <option value="aydin">Aydın</option>
-                    <option value="balikesir">Balıkesir</option>
-                    <option value="bartin">Bartın</option>
-                    <option value="batman">Batman</option>
-                    <option value="bayburt">Bayburt</option>
-                    <option value="bilecik">Bilecik</option>
-                    <option value="bingol">Bingöl</option>
-                    <option value="bitlis">Bitlis</option>
-                    <option value="bolu">Bolu</option>
-                    <option value="burdur">Burdur</option>
-                    <option value="bursa">Bursa</option>
-                    <option value="canakkale">Çanakkale</option>
-                    <option value="cankiri">Çankırı</option>
-                    <option value="corum">Çorum</option>
-                    <option value="denizli">Denizli</option>
-                    <option value="diyarbakir">Diyarbakır</option>
-                    <option value="duzce">Düzce</option>
-                    <option value="edirne">Edirne</option>
-                    <option value="elazig">Elazığ</option>
-                    <option value="erzincan">Erzincan</option>
-                    <option value="erzurum">Erzurum</option>
-                    <option value="eskisehir">Eskişehir</option>
-                    <option value="gaziantep">Gaziantep</option>
-                    <option value="giresun">Giresun</option>
-                    <option value="gumushane">Gümüşhane</option>
-                    <option value="hakkari">Hakkari</option>
-                    <option value="hatay">Hatay</option>
-                    <option value="igdir">Iğdır</option>
-                    <option value="isparta">Isparta</option>
-                    <option value="istanbul">İstanbul</option>
-                    <option value="izmir">İzmir</option>
-                    <option value="kahramanmaras">Kahramanmaraş</option>
-                    <option value="karabuk">Karabük</option>
-                    <option value="karaman">Karaman</option>
-                    <option value="kars">Kars</option>
-                    <option value="kastamonu">Kastamonu</option>
-                    <option value="kayseri">Kayseri</option>
-                    <option value="kirikkale">Kırıkkale</option>
-                    <option value="kirklareli">Kırklareli</option>
-                    <option value="kirsehir">Kırşehir</option>
-                    <option value="kilis">Kilis</option>
-                    <option value="kocaeli">Kocaeli</option>
-                    <option value="konya">Konya</option>
-                    <option value="kutahya">Kütahya</option>
-                    <option value="malatya">Malatya</option>
-                    <option value="manisa">Manisa</option>
-                    <option value="mardin">Mardin</option>
-                    <option value="mersin">Mersin</option>
-                    <option value="mugla">Muğla</option>
-                    <option value="mus">Muş</option>
-                    <option value="nevsehir">Nevşehir</option>
-                    <option value="nigde">Niğde</option>
-                    <option value="ordu">Ordu</option>
-                    <option value="osmaniye">Osmaniye</option>
-                    <option value="rize">Rize</option>
-                    <option value="sakarya">Sakarya</option>
-                    <option value="samsun">Samsun</option>
-                    <option value="siirt">Siirt</option>
-                    <option value="sinop">Sinop</option>
-                    <option value="sivas">Sivas</option>
-                    <option value="sanliurfa">Şanlıurfa</option>
-                    <option value="sirnak">Şırnak</option>
-                    <option value="tekirdag">Tekirdağ</option>
-                    <option value="tokat">Tokat</option>
-                    <option value="trabzon">Trabzon</option>
-                    <option value="tunceli">Tunceli</option>
-                    <option value="usak">Uşak</option>
-                    <option value="van">Van</option>
-                    <option value="yalova">Yalova</option>
-                    <option value="yozgat">Yozgat</option>
-                    <option value="zonguldak">Zonguldak</option>
-                </select>
+            <label for="selectedDate">
+                TARİH
+            </label>
+
+            <input
+                type="date"
+                id="selectedDate"
+            >
+
+            <div class="date-shortcuts">
+
+                <button
+                    type="button"
+                    data-period="today">
+                    Bugün
+                </button>
+
+                <button
+                    type="button"
+                    data-period="yesterday">
+                    Dün
+                </button>
+
+                <button
+                    type="button"
+                    data-period="beforeYesterday">
+                    Önceki Gün
+                </button>
+
+                <button
+                    type="button"
+                    data-period="last3">
+                    Son 3 Gün
+                </button>
+
+                <button
+                    type="button"
+                    data-period="last7">
+                    Son 7 Gün
+                </button>
+
             </div>
 
-            <div class="form-group">
-                <label for="selectedDate">TARİH</label>
+        </div>
 
-                <input
-                    type="date"
-                    id="selectedDate"
-                    required
-                >
 
-                <div class="date-shortcuts">
+        <!-- AD SOYAD -->
 
-                    <button type="button" data-period="today">
-                        Bugün
-                    </button>
+        <div class="form-group">
 
-                    <button type="button" data-period="yesterday">
-                        Dün
-                    </button>
+            <label for="name">
 
-                    <button type="button" data-period="beforeYesterday">
-                        Önceki Gün
-                    </button>
+                AD SOYAD
 
-                    <button type="button" data-period="last3">
-                        Son 3 Gün
-                    </button>
+                <span class="optional">
+                    (İSTEĞE BAĞLI)
+                </span>
 
-                    <button type="button" data-period="last7">
-                        Son 7 Gün
-                    </button>
+            </label>
 
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="name">
-                    AD SOYAD
-                    <span class="optional">(İSTEĞE BAĞLI)</span>
-                </label>
-
-                <input
-                    type="text"
-                    id="name"
-                    placeholder="Örn. Mehmet Yılmaz"
-                    autocomplete="off"
-                >
-            </div>
+            <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Örn. Mehmet Yılmaz"
+                autocomplete="off"
+            >
 
         </div>
 
-        <button
-            type="button"
-            class="search-button"
-            id="searchButton"
-        >
-            VEFAT EDENLERİ GÖSTER
-        </button>
+    </div>
 
-        <div class="info-box">
-            <strong>Bilgi:</strong>
-            Ad Soyad alanını doldurmanız gerekmez.
-            Örneğin Gaziantep ve 17.09.2026 tarihini seçip
-            doğrudan arama yaptığınızda, erişilebilen kamuya açık
-            kayıtlar listelenir.
-        </div>
 
-    </section>
+    <button
+        type="button"
+        class="search-button"
+        id="searchButton"
+    >
+        VEFAT EDENLERİ GÖSTER
+    </button>
 
-    <section class="results" id="results">
 
-        <div class="status">
-            Arama yapmak için il ve tarih seçin.
-        </div>
+    <div class="info-box">
 
-    </section>
+        <strong>Bilgi:</strong>
+
+        Ad Soyad alanını doldurmanız gerekmez.
+
+        Örneğin Gaziantep ve 17.09.2026 tarihini seçip
+        doğrudan arama yaptığınızda, erişilebilen kamuya açık
+        kayıtlar listelenir.
+
+    </div>
+
+</section>
+
+
+<section class="results" id="results">
+
+    <div class="status">
+
+        Arama yapmak için il ve tarih seçin.
+
+    </div>
+
+</section>
 
 </main>
+
 
 <footer class="footer">
 
@@ -550,113 +619,220 @@ select:focus{
 
 <script>
 
-const province = document.getElementById("province");
-const selectedDate = document.getElementById("selectedDate");
-const nameInput = document.getElementById("name");
-const searchButton = document.getElementById("searchButton");
-const results = document.getElementById("results");
+/*
+==========================================================
+ TÜRKİYE VEFAT BİLGİ MERKEZİ
+ SÜRÜM: 2026.09.18 • VEFAT-01
+==========================================================
+*/
+
+console.log(
+    "Türkiye Vefat Bilgi Merkezi SÜRÜM 2026.09.18 • VEFAT-01"
+);
+
+
+const province =
+    document.getElementById("province");
+
+const selectedDate =
+    document.getElementById("selectedDate");
+
+const nameInput =
+    document.getElementById("name");
+
+const searchButton =
+    document.getElementById("searchButton");
+
+const results =
+    document.getElementById("results");
+
+
+/*
+==========================================================
+ AD SOYAD ALANI KESİNLİKLE ZORUNLU DEĞİL
+==========================================================
+*/
+
+nameInput.removeAttribute("required");
+
+nameInput.required = false;
+
+searchButton.type = "button";
+
+
+/*
+==========================================================
+ TARİH
+==========================================================
+*/
 
 function pad(number){
+
     return String(number).padStart(2,"0");
+
 }
+
 
 function formatDate(date){
 
-    return date.getFullYear() +
-        "-" +
-        pad(date.getMonth()+1) +
-        "-" +
-        pad(date.getDate());
+    return date.getFullYear()
+        + "-"
+        + pad(date.getMonth()+1)
+        + "-"
+        + pad(date.getDate());
 
 }
+
 
 function setToday(){
 
     const today = new Date();
 
-    selectedDate.value = formatDate(today);
+    selectedDate.value =
+        formatDate(today);
 
 }
+
 
 function getDateMinus(days){
 
     const date = new Date();
 
-    date.setDate(date.getDate() - days);
+    date.setDate(
+        date.getDate() - days
+    );
 
     return formatDate(date);
 
 }
 
+
 function setActiveButton(button){
 
-    document.querySelectorAll(".date-shortcuts button")
-        .forEach(btn => btn.classList.remove("active"));
+    document
+        .querySelectorAll(".date-shortcuts button")
+        .forEach(btn => {
+
+            btn.classList.remove("active");
+
+        });
+
 
     if(button){
+
         button.classList.add("active");
+
     }
 
 }
 
-document.querySelectorAll(".date-shortcuts button")
-.forEach(button => {
 
-    button.addEventListener("click", function(){
+/*
+==========================================================
+ TARİH KISA YOLLARI
+==========================================================
+*/
 
-        const period = this.dataset.period;
+document
+    .querySelectorAll(".date-shortcuts button")
+    .forEach(button => {
 
-        if(period === "today"){
+        button.addEventListener(
+            "click",
+            function(){
 
-            selectedDate.value = getDateMinus(0);
+                const period =
+                    this.dataset.period;
 
-        }
 
-        else if(period === "yesterday"){
+                if(period === "today"){
 
-            selectedDate.value = getDateMinus(1);
+                    selectedDate.value =
+                        getDateMinus(0);
 
-        }
+                }
 
-        else if(period === "beforeYesterday"){
+                else if(period === "yesterday"){
 
-            selectedDate.value = getDateMinus(2);
+                    selectedDate.value =
+                        getDateMinus(1);
 
-        }
+                }
 
-        else if(period === "last3"){
+                else if(period === "beforeYesterday"){
 
-            selectedDate.value = getDateMinus(0);
+                    selectedDate.value =
+                        getDateMinus(2);
 
-        }
+                }
 
-        else if(period === "last7"){
+                else if(period === "last3"){
 
-            selectedDate.value = getDateMinus(0);
+                    /*
+                       Şimdilik başlangıç tarihi
+                       olarak bugünü gösteriyoruz.
+                       Gerçek 3 günlük sorgu PHP
+                       tarafında ayrıca kurulacaktır.
+                    */
 
-        }
+                    selectedDate.value =
+                        getDateMinus(0);
 
-        setActiveButton(this);
+                }
+
+                else if(period === "last7"){
+
+                    /*
+                       Şimdilik başlangıç tarihi
+                       olarak bugünü gösteriyoruz.
+                       Gerçek 7 günlük sorgu PHP
+                       tarafında ayrıca kurulacaktır.
+                    */
+
+                    selectedDate.value =
+                        getDateMinus(0);
+
+                }
+
+
+                setActiveButton(this);
+
+            }
+        );
 
     });
 
-});
+
+selectedDate.addEventListener(
+    "change",
+    function(){
+
+        setActiveButton(null);
+
+    }
+);
 
 
-selectedDate.addEventListener("change", function(){
-
-    setActiveButton(null);
-
-});
-
+/*
+==========================================================
+ HTML GÜVENLİĞİ
+==========================================================
+*/
 
 function escapeHtml(value){
 
-    if(value === null || value === undefined){
+    if(
+        value === null ||
+        value === undefined
+    ){
+
         return "";
+
     }
 
+
     return String(value)
+
         .replace(/&/g,"&amp;")
         .replace(/</g,"&lt;")
         .replace(/>/g,"&gt;")
@@ -666,20 +842,42 @@ function escapeHtml(value){
 }
 
 
-function showStatus(message, type=""){
+/*
+==========================================================
+ DURUM MESAJI
+==========================================================
+*/
+
+function showStatus(
+    message,
+    type=""
+){
 
     results.innerHTML = `
+
         <div class="status ${type}">
+
             ${message}
+
         </div>
+
     `;
 
 }
 
 
+/*
+==========================================================
+ SONUÇLARI GÖSTER
+==========================================================
+*/
+
 function renderResults(data){
 
-    if(!data || !data.records){
+    if(
+        !data ||
+        !Array.isArray(data.records)
+    ){
 
         showStatus(
             "Veri kaynağından geçerli bir sonuç alınamadı.",
@@ -689,6 +887,7 @@ function renderResults(data){
         return;
 
     }
+
 
     if(data.records.length === 0){
 
@@ -701,113 +900,229 @@ function renderResults(data){
 
     }
 
+
     let html = `
 
         <div class="results-header">
 
             <div>
-                <h2>Vefat Kayıtları</h2>
+
+                <h2>
+                    Vefat Kayıtları
+                </h2>
 
                 <div class="source-note">
+
                     Kaynak:
-                    ${escapeHtml(data.source || "Resmî kaynak")}
+                    ${escapeHtml(
+                        data.source ||
+                        "Resmî kaynak"
+                    )}
+
                 </div>
+
             </div>
 
             <div class="result-count">
-                ${data.records.length} kayıt
+
+                ${data.records.length}
+                kayıt
+
             </div>
 
         </div>
 
         <div class="cards">
+
     `;
 
-    data.records.forEach(record => {
 
-        html += `
+    data.records.forEach(
+        record => {
 
-            <article class="card">
+            html += `
 
-                <div class="card-name">
-                    ${escapeHtml(record.name)}
-                </div>
+                <article class="card">
 
-                <div class="card-row">
-                    <span class="card-label">Cinsiyet</span>
-                    <span class="card-value">
-                        ${escapeHtml(record.gender || "-")}
-                    </span>
-                </div>
+                    <div class="card-name">
 
-                <div class="card-row">
-                    <span class="card-label">Doğum Yılı</span>
-                    <span class="card-value">
-                        ${escapeHtml(record.birth_year || "-")}
-                    </span>
-                </div>
+                        ${escapeHtml(
+                            record.name
+                        )}
 
-                <div class="card-row">
-                    <span class="card-label">Vefat Tarihi</span>
-                    <span class="card-value">
-                        ${escapeHtml(record.death_date || "-")}
-                    </span>
-                </div>
+                    </div>
 
-                <div class="card-row">
-                    <span class="card-label">Yaş</span>
-                    <span class="card-value">
-                        ${escapeHtml(record.age || "-")}
-                    </span>
-                </div>
 
-                <div class="card-row">
-                    <span class="card-label">Defin Yeri</span>
-                    <span class="card-value">
-                        ${escapeHtml(record.burial_place || "-")}
-                    </span>
-                </div>
+                    <div class="card-row">
 
-                <div class="card-row">
-                    <span class="card-label">Baba / Ana</span>
-                    <span class="card-value">
-                        ${escapeHtml(record.parents || "-")}
-                    </span>
-                </div>
+                        <span class="card-label">
+                            Cinsiyet
+                        </span>
 
-                <a
-                    class="source-link"
-                    href="${escapeHtml(data.source_url)}"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    RESMÎ KAYNAĞI GÖR →
-                </a>
+                        <span class="card-value">
 
-            </article>
+                            ${escapeHtml(
+                                record.gender || "-"
+                            )}
 
-        `;
+                        </span>
 
-    });
+                    </div>
 
-    html += `</div>`;
 
-    results.innerHTML = html;
+                    <div class="card-row">
+
+                        <span class="card-label">
+                            Doğum Yılı
+                        </span>
+
+                        <span class="card-value">
+
+                            ${escapeHtml(
+                                record.birth_year || "-"
+                            )}
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="card-row">
+
+                        <span class="card-label">
+                            Vefat Tarihi
+                        </span>
+
+                        <span class="card-value">
+
+                            ${escapeHtml(
+                                record.death_date || "-"
+                            )}
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="card-row">
+
+                        <span class="card-label">
+                            Yaş
+                        </span>
+
+                        <span class="card-value">
+
+                            ${escapeHtml(
+                                record.age || "-"
+                            )}
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="card-row">
+
+                        <span class="card-label">
+                            Defin Yeri
+                        </span>
+
+                        <span class="card-value">
+
+                            ${escapeHtml(
+                                record.burial_place || "-"
+                            )}
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="card-row">
+
+                        <span class="card-label">
+                            Baba / Ana
+                        </span>
+
+                        <span class="card-value">
+
+                            ${escapeHtml(
+                                record.parents || "-"
+                            )}
+
+                        </span>
+
+                    </div>
+
+
+                    <a
+                        class="source-link"
+                        href="${escapeHtml(
+                            data.source_url || "#"
+                        )}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        RESMÎ KAYNAĞI GÖR →
+                    </a>
+
+                </article>
+
+            `;
+
+        }
+    );
+
+
+    html += `
+
+        </div>
+
+    `;
+
+
+    results.innerHTML =
+        html;
 
 }
 
 
+/*
+==========================================================
+ ANA ARAMA
+==========================================================
+*/
+
 async function searchRecords(){
 
-    const selectedProvince = province.value;
-    const date = selectedDate.value;
-    const name = nameInput.value.trim();
+    const selectedProvince =
+        province.value;
+
+    const date =
+        selectedDate.value;
 
     /*
-       AD SOYAD KONTROLÜ YOK.
+       ÖNEMLİ:
+       Ad Soyad boş olabilir.
+       Boşsa hiçbir uyarı verilmez.
+    */
 
-       Burası özellikle böyle bırakıldı.
-       Kullanıcı yalnızca il + tarih ile arama yapabilir.
+    const name =
+        nameInput.value.trim();
+
+
+    console.log(
+        "Arama:",
+        {
+            province: selectedProvince,
+            date: date,
+            name: name || "(boş)"
+        }
+    );
+
+
+    /*
+       TARİH KONTROLÜ
     */
 
     if(!date){
@@ -821,108 +1136,199 @@ async function searchRecords(){
 
     }
 
-    if(selectedProvince !== "gaziantep"){
+
+    /*
+       ŞU ANDA BAĞLI OLAN İL
+    */
+
+    if(
+        selectedProvince !== "gaziantep"
+    ){
 
         showStatus(
+
             `
-            <strong>Bu il henüz veri kaynağına bağlanmadı.</strong>
+
+            <strong>
+                Bu il henüz veri kaynağına bağlanmadı.
+            </strong>
+
             <br><br>
-            Türkiye Vefat Bilgi Merkezi il il kamuya açık
-            kaynaklara bağlanmaktadır.
+
+            Türkiye Vefat Bilgi Merkezi,
+            il il kamuya açık kaynaklara
+            bağlanmaktadır.
+
             <br>
-            Bu il için henüz doğrulanmış açık kaynak bağlantısı
-            bulunmamaktadır.
-            `,
-            ""
+
+            Bu il için henüz doğrulanmış
+            açık kaynak bağlantısı bulunmamaktadır.
+
+            `
+
         );
 
         return;
 
     }
 
-    searchButton.disabled = true;
 
-    searchButton.textContent = "KAYITLAR ARANIYOR...";
+    searchButton.disabled =
+        true;
+
+
+    searchButton.textContent =
+        "KAYITLAR ARANIYOR...";
+
 
     showStatus(
+
         "Gaziantep Büyükşehir Belediyesi'nin kamuya açık defin listesi kontrol ediliyor..."
+
     );
+
 
     try{
 
-        const params = new URLSearchParams();
+        const params =
+            new URLSearchParams();
 
-        params.set("date", date);
 
         /*
-           Ad Soyad varsa gönderiyoruz.
-           Boşsa HİÇ göndermiyoruz.
+           TARİH HER ZAMAN GÖNDERİLİR
+        */
+
+        params.set(
+            "date",
+            date
+        );
+
+
+        /*
+           AD SOYAD YALNIZCA
+           DOLU İSE GÖNDERİLİR.
         */
 
         if(name){
 
-            params.set("name", name);
-
-        }
-
-        const response = await fetch(
-            "api/gaziantep.php?" + params.toString(),
-            {
-                method:"GET",
-                cache:"no-store"
-            }
-        );
-
-        if(!response.ok){
-
-            throw new Error(
-                "Sunucu HTTP " + response.status
+            params.set(
+                "name",
+                name
             );
 
         }
 
-        const data = await response.json();
+
+        console.log(
+            "API:",
+            "api/gaziantep.php?" +
+            params.toString()
+        );
+
+
+        const response =
+            await fetch(
+
+                "api/gaziantep.php?" +
+                params.toString(),
+
+                {
+                    method:"GET",
+                    cache:"no-store"
+                }
+
+            );
+
+
+        if(!response.ok){
+
+            throw new Error(
+                "Sunucu HTTP " +
+                response.status
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        console.log(
+            "API sonucu:",
+            data
+        );
+
 
         if(!data.success){
 
             showStatus(
+
                 escapeHtml(
+
                     data.message ||
                     "Veri kaynağından sonuç alınamadı."
+
                 ),
+
                 "error"
+
             );
 
             return;
 
         }
 
-        renderResults(data);
 
-    }
-
-    catch(error){
-
-        console.error(error);
-
-        showStatus(
-            `
-            Veri kaynağına şu anda erişilemedi.
-            <br><br>
-            Lütfen birkaç dakika sonra tekrar deneyin.
-            <br><br>
-            <small>
-            Teknik bilgi: ${escapeHtml(error.message)}
-            </small>
-            `,
-            "error"
+        renderResults(
+            data
         );
 
     }
 
+
+    catch(error){
+
+        console.error(
+            error
+        );
+
+
+        showStatus(
+
+            `
+
+            Veri kaynağına şu anda erişilemedi.
+
+            <br><br>
+
+            Lütfen birkaç dakika sonra tekrar deneyin.
+
+            <br><br>
+
+            <small>
+
+            Teknik bilgi:
+            ${escapeHtml(
+                error.message
+            )}
+
+            </small>
+
+            `,
+
+            "error"
+
+        );
+
+    }
+
+
     finally{
 
-        searchButton.disabled = false;
+        searchButton.disabled =
+            false;
+
 
         searchButton.textContent =
             "VEFAT EDENLERİ GÖSTER";
@@ -932,13 +1338,47 @@ async function searchRecords(){
 }
 
 
+/*
+==========================================================
+ BUTON
+==========================================================
+*/
+
 searchButton.addEventListener(
     "click",
     searchRecords
 );
 
 
+/*
+==========================================================
+ SAYFA AÇILIŞI
+==========================================================
+*/
+
 setToday();
+
+
+/*
+==========================================================
+ SON KONTROL
+==========================================================
+*/
+
+console.log(
+    "Ad Soyad required:",
+    nameInput.required
+);
+
+console.log(
+    "Ad Soyad HTML:",
+    nameInput.outerHTML
+);
+
+console.log(
+    "Arama butonu type:",
+    searchButton.type
+);
 
 </script>
 
