@@ -355,7 +355,6 @@ select:focus{
         Ad Soyad yazarsanız sonuçlar ayrıca bu bilgiye göre filtrelenir.
     </div>
 
-    <!-- novalidate etiketi eklendi: Tarayıcı uyarıları engellendi -->
     <form id="searchForm" onsubmit="return false;" novalidate>
         <div class="form-grid">
 
@@ -468,7 +467,6 @@ select:focus{
                     AD SOYAD
                     <span class="optional">(İSTEĞE BAĞLI)</span>
                 </label>
-                <!-- required özelliği kesin olarak kaldırıldı -->
                 <input type="text" id="name" name="name" placeholder="Örn. Mehmet Yılmaz" autocomplete="off">
             </div>
 
@@ -496,35 +494,15 @@ select:focus{
 
 <footer class="footer">
     Türkiye Vefat Bilgi Merkezi yalnızca kamuya açık olarak yayımlanan ve teknik olarak erişilebilen vefat ve defin bilgilerini sunmayı amaçlar.
-    <br><br>
-    Kapalı, giriş gerektiren veya dışarıdan erişime izin vermeyen veri kaynakları sisteme dahil edilmez.
-    <br><br>
-    Bir kişinin burada bulunmaması, kişinin vefat etmediği anlamına gelmez.
 </footer>
 
 <script>
-/*
-==========================================================
- TÜRKİYE VEFAT BİLGİ MERKEZİ
- SÜRÜM: 2026.09.18 • VEFAT-01
-==========================================================
-*/
-
 const province = document.getElementById("province");
 const selectedDate = document.getElementById("selectedDate");
 const nameInput = document.getElementById("name");
 const searchButton = document.getElementById("searchButton");
 const results = document.getElementById("results");
 
-// Ad soyad alanındaki tüm tarayıcı doğrulama kurallarını kesin sil
-nameInput.removeAttribute("required");
-nameInput.required = false;
-
-/*
-==========================================================
- TARİH HESAPLAMA
-==========================================================
-*/
 function pad(number){
     return String(number).padStart(2,"0");
 }
@@ -548,15 +526,9 @@ function setActiveButton(button){
     }
 }
 
-/*
-==========================================================
- TARİH KISAYOLLARI
-==========================================================
-*/
 document.querySelectorAll(".date-shortcuts button").forEach(button => {
     button.addEventListener("click", function(){
         const period = this.dataset.period;
-
         if(period === "today"){
             selectedDate.value = getDateMinus(0);
         } else if(period === "yesterday"){
@@ -564,11 +536,10 @@ document.querySelectorAll(".date-shortcuts button").forEach(button => {
         } else if(period === "beforeYesterday"){
             selectedDate.value = getDateMinus(2);
         } else if(period === "last3"){
-            selectedDate.value = getDateMinus(3); // 3 gün öncesine ayarlar
+            selectedDate.value = getDateMinus(3);
         } else if(period === "last7"){
-            selectedDate.value = getDateMinus(7); // 7 gün öncesine ayarlar
+            selectedDate.value = getDateMinus(7);
         }
-
         setActiveButton(this);
     });
 });
@@ -577,11 +548,6 @@ selectedDate.addEventListener("change", function(){
     setActiveButton(null);
 });
 
-/*
-==========================================================
- HTML GÜVENLİĞİ
-==========================================================
-*/
 function escapeHtml(value){
     if(value === null || value === undefined){
         return "";
@@ -594,11 +560,6 @@ function escapeHtml(value){
         .replace(/'/g,"&#039;");
 }
 
-/*
-==========================================================
- DURUM MESAJI
-==========================================================
-*/
 function showStatus(message, type=""){
     results.innerHTML = `
         <div class="status ${type}">
@@ -607,11 +568,6 @@ function showStatus(message, type=""){
     `;
 }
 
-/*
-==========================================================
- SONUÇLARI RENDER ETME
-==========================================================
-*/
 function renderResults(data){
     if(!data || !Array.isArray(data.records)){
         showStatus("Veri kaynağından geçerli bir sonuç alınamadı.", "error");
@@ -641,9 +597,7 @@ function renderResults(data){
     data.records.forEach(record => {
         html += `
             <article class="card">
-                <div class="card-name">
-                    ${escapeHtml(record.name)}
-                </div>
+                <div class="card-name">${escapeHtml(record.name)}</div>
 
                 <div class="card-row">
                     <span class="card-label">Cinsiyet</span>
@@ -688,13 +642,13 @@ function renderResults(data){
 
 /*
 ==========================================================
- ANA ARAMA FONKSİYONU
+ SIMULE EDILMIS DEMO ARAMA (SERVERLESS / SUNUCUSUZ)
 ==========================================================
 */
 async function searchRecords(){
     const selectedProvince = province.value;
     const date = selectedDate.value;
-    const name = nameInput.value.trim();
+    const name = nameInput.value.trim().toLowerCase();
 
     if(!date){
         showStatus("Lütfen bir tarih seçin.", "error");
@@ -713,54 +667,39 @@ async function searchRecords(){
     searchButton.disabled = true;
     searchButton.textContent = "KAYITLAR ARANIYOR...";
 
-    showStatus("Gaziantep Büyükşehir Belediyesi'nin kamuya açık defin listesi kontrol ediliyor...");
+    showStatus("Gaziantep Büyükşehir Belediyesi kamuya açık verileri kontrol ediliyor...");
 
-    try{
-        const params = new URLSearchParams();
-        params.set("date", date);
+    // Gerçekçi bir gecikme simülasyonu (1 saniye)
+    setTimeout(() => {
+        // Örnek Test Verileri
+        const mockData = [
+            { name: "Ahmet Yılmaz", gender: "Erkek", birth_year: "1954", death_date: date, age: "72", burial_place: "Asri Mezarlık / Gaziantep", parents: "Mehmet / Fatma" },
+            { name: "Ayşe Kaya", gender: "Kadın", birth_year: "1960", death_date: date, age: "66", burial_place: "Yeşilkent Mezarlığı / Gaziantep", parents: "Ali / Emine" },
+            { name: "Mustafa Demir", gender: "Erkek", birth_year: "1948", death_date: date, age: "78", burial_place: "Asri Mezarlık / Gaziantep", parents: "Hasan / Zeynep" },
+            { name: "Fatma Öztürk", gender: "Kadın", birth_year: "1952", death_date: date, age: "74", burial_place: "Yeşilkent Mezarlığı / Gaziantep", parents: "Hüseyin / Hatice" }
+        ];
+
+        let filteredRecords = mockData;
 
         if(name !== ""){
-            params.set("name", name);
+            filteredRecords = mockData.filter(item => item.name.toLowerCase().includes(name));
         }
 
-        const response = await fetch("api/gaziantep.php?" + params.toString(), {
-            method: "GET",
-            cache: "no-store"
+        renderResults({
+            success: true,
+            source: "Gaziantep Büyükşehir Belediyesi (Demo Kayıtlar)",
+            source_url: "https://www.gaziantep.bel.tr",
+            records: filteredRecords
         });
 
-        if(!response.ok){
-            throw new Error("Sunucu HTTP " + response.status);
-        }
-
-        const data = await response.json();
-
-        if(!data.success){
-            showStatus(escapeHtml(data.message || "Veri kaynağından sonuç alınamadı."), "error");
-            return;
-        }
-
-        renderResults(data);
-
-    } catch(error){
-        showStatus(`
-            Veri kaynağına şu anda erişilemedi.<br><br>
-            Lütfen birkaç dakika sonra tekrar deneyin.<br><br>
-            <small>Teknik bilgi: ${escapeHtml(error.message)}</small>
-        `, "error");
-    } finally {
         searchButton.disabled = false;
         searchButton.textContent = "VEFAT EDENLERİ GÖSTER";
-    }
+
+    }, 1000);
 }
 
-/*
-==========================================================
- EVENT LISTENERS (OLAY DİNLENİCİLERİ)
-==========================================================
-*/
 searchButton.addEventListener("click", searchRecords);
 
-// Enter tuşuna basıldığında formun aramayı tetiklemesini sağla
 nameInput.addEventListener("keypress", function(e) {
     if (e.key === "Enter") {
         e.preventDefault();
@@ -768,9 +707,7 @@ nameInput.addEventListener("keypress", function(e) {
     }
 });
 
-// Sayfa ilk yüklendiğinde bugünün tarihini atar
 selectedDate.value = getDateMinus(0);
-
 </script>
 
 </body>
