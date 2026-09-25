@@ -481,29 +481,50 @@ async function consumeOneTimeCode(code) {
 
     const tokenRef = db.ref("one_time_tokens/" + code);
 
-    const result = await tokenRef.transaction(function(currentData) {
+    /*
+       Önce kodu doğrudan Firebase'den oku.
+       Selin panelinde kullanılan kod, erişim talebi sırasında
+       aynı Firebase projesindeki one_time_tokens alanına kaydedilir.
+    */
+    const snapshot = await tokenRef.once("value");
 
-        if (!currentData) {
-            return;
-        }
-
-        if (currentData.isUsed === true) {
-            return;
-        }
-
-        currentData.isUsed = true;
-        currentData.usedAt = new Date().toISOString();
-
-        return currentData;
-    });
-
-    if (!result.committed || !result.snapshot.exists()) {
+    if (!snapshot.exists()) {
         return false;
     }
 
-    const data = result.snapshot.val();
+    const data = snapshot.val();
 
-    return data.isUsed === true && !!data.usedAt;
+    /*
+       Kod daha önce kullanıldıysa tekrar kesinlikle çalışmaz.
+    */
+    if (data && data.isUsed === true) {
+        return false;
+    }
+
+    /*
+       Kod mevcut ve kullanılmamışsa tek kullanım için işaretle.
+       approved alanı giriş için zorunlu tutulmamıştır; çünkü
+       e-posta ile gönderilen kod zaten Selin'in onayından sonra
+       kullanıcıya iletilen erişim kodudur.
+    */
+    await tokenRef.update({
+        isUsed: true,
+        usedAt: new Date().toISOString()
+    });
+
+    /*
+       Güncellemeden sonra tekrar kontrol et.
+       Böylece yalnızca gerçekten Firebase'e yazılmış kod kabul edilir.
+    */
+    const verifySnapshot = await tokenRef.once("value");
+
+    if (!verifySnapshot.exists()) {
+        return false;
+    }
+
+    const verifyData = verifySnapshot.val();
+
+    return verifyData.isUsed === true && !!verifyData.usedAt;
 }
 
 /* =========================================================
