@@ -325,13 +325,13 @@
    ========================================================= */
 
 const firebaseConfig = {
-    apiKey: "REPLACE_WITH_YOUR_EXISTING_FIREBASE_API_KEY",
+    apiKey: "AIzaSyAGRDmBpq-Gfk8w3j8qZ8laA6bXvNrVC3Q",
     authDomain: "eserkon-ozgecmis.firebaseapp.com",
     databaseURL: "https://eserkon-ozgecmis-default-rtdb.firebaseio.com",
     projectId: "eserkon-ozgecmis",
     storageBucket: "eserkon-ozgecmis.firebasestorage.app",
-    messagingSenderId: "REPLACE_WITH_YOUR_EXISTING_MESSAGING_SENDER_ID",
-    appId: "REPLACE_WITH_YOUR_EXISTING_APP_ID"
+    messagingSenderId: "420867493169",
+    appId: "1:420867493169:web:fd3c3d8d503fc651da7410"
 };
 
 let db = null;
@@ -385,9 +385,10 @@ function generateSixDigitCode() {
 
 /* =========================================================
    ERİŞİM TALEBİ
-   Kod Firebase'e kaydedilir ve talep FormSubmit ile gönderilir.
-   Kod henüz kullanıcıya erişim sağlamaz; Selin'in onayından
-   sonra kod/link kullanıcıya gönderilir.
+   Her yeni talepte yeni 6 haneli kod üretilir.
+   Kod Firebase'e tek kullanımlık olarak kaydedilir ve talep
+   Selin'in e-posta adresine gönderilir. Selin kodu kullanıcıya
+   iletmeden önce talebi kendi değerlendirmesinden geçirir.
    ========================================================= */
 
 document.getElementById("access-request-form").addEventListener("submit", async function(event) {
@@ -442,7 +443,7 @@ document.getElementById("access-request-form").addEventListener("submit", async 
         formData.append("Telefon", phone);
         formData.append("Otomatik Oluşturulan 6 Haneli Kod", code);
 
-        const response = await fetch("https://formsubmit.co/ajax/eserkon.yasam.merkezi@protonmail.com", {
+        const response = await fetch("https://formsubmit.co/ajax/s.uymaz@protonmail.com", {
             method: "POST",
             body: formData,
             headers: {
@@ -487,10 +488,6 @@ async function consumeOneTimeCode(code) {
         }
 
         if (currentData.isUsed === true) {
-            return;
-        }
-
-        if (currentData.approved !== true) {
             return;
         }
 
